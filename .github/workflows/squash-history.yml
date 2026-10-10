@@ -29,12 +29,7 @@ jobs:
       GH_REPO: ${{ github.repository }}
       BRANCH: ${{ github.event.repository.default_branch }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          fetch-depth: 1
-
+      # 1) HUY job Generate Playlists TRUOC (chua checkout) de khong con ai push xen vao luc gop.
       - name: Huy job Generate Playlists dang chay (tranh push xen vao luc gop)
         run: |
           for st in in_progress queued pending; do
@@ -43,19 +38,42 @@ jobs:
               gh run cancel "$id" || true
             done
           done
-          sleep 10
+          sleep 15 # cho lenh push dang do cua job vua huy (neu co) ket thuc han
 
-      - name: Gop lich su thanh 1 commit va force push
+      # 2) Checkout SAU khi da huy -> lay dung ban moi nhat, gom ca commit cuoi cua job vua huy.
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 1
+
+      # 3) Gop + force push CO KHOA: --force-with-lease chi ghi de neu nhanh van dung o ban vua gop.
+      #    Neu giua chung co ai push (vd ban up code, workflow Check Domains) -> bi tu choi,
+      #    tai lay ban moi nhat roi gop lai (toi da 3 lan) -> KHONG bao gio xoa nham commit cua nguoi khac.
+      - name: Gop lich su thanh 1 commit va force push (co khoa)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan squashed
-          git add -A
-          git commit -q -m "Daily history squash $(date -u +%Y-%m-%d)"
-          git push --force origin "squashed:${BRANCH}"
+          ok=0
+          for i in 1 2 3; do
+            git fetch -q --depth 1 origin "${BRANCH}"
+            SHA=$(git rev-parse FETCH_HEAD)
+            git checkout -q -f --detach FETCH_HEAD
+            git checkout -q --orphan "squashed$i"
+            git add -A
+            git commit -q -m "Daily history squash $(date -u +%Y-%m-%d)"
+            if git push --force-with-lease="${BRANCH}:${SHA}" origin "squashed$i:${BRANCH}"; then
+              ok=1; break
+            fi
+            echo "Nhanh ${BRANCH} vua co commit moi (lan $i) - lay ban moi nhat va gop lai."
+            sleep 5
+          done
+          [ "$ok" = 1 ] || { echo "::error::Khong gop duoc sau 3 lan (nhanh lien tuc bi push) - se thu lai lan chay sau."; exit 1; }
           echo "Da gop lich su nhanh ${BRANCH} thanh 1 commit."
 
+      # 4) LUON chay lai Generate Playlists (ke ca khi buoc gop that bai), vi o buoc 1 da huy no.
       - name: Chay lai Generate Playlists
+        if: ${{ always() }}
         run: |
           for i in 1 2 3; do
             if gh workflow run validate-and-generate.yml --ref "${BRANCH}"; then exit 0; fi
