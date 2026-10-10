@@ -1,5 +1,5 @@
 #EXTM3U
-# Cập nhật lần cuối: 10:40:31 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:42:30 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (4 trận), Xôi Lạc (11 trận) =====
 
@@ -7,28 +7,32 @@
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5of5px8mwzv/image/small" group-title="Xôi Lạc" , 10/10 09:00 🟢 🎾 Li Yuyun vs Madeleine Brooks (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel50.flv?wsSecret=3d4d7b84de70bf7a4541796de5fde750&wsABSTime=1791646828
+https://live1.quickscoreboardz.com/live/channel50.flv?wsSecret=c724675067fff5746712bb5cb2660cff&wsABSTime=1791646948
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/6ypq3pf413wrd7o/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Ito Aoi vs Alycia Parks (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel51.flv?wsSecret=a423cc68f9074dfe5c60776014b52d10&wsABSTime=1791646828
+https://live1.quickscoreboardz.com/live/channel51.flv?wsSecret=1a86c11a2906b250fd4031855ce75594&wsABSTime=1791646948
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfzxjgml07/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Daria Kasatkina vs Viktorija Golubic (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel52.flv?wsSecret=f31eb87f4d48b62f42ff863fbd4f9be9&wsABSTime=1791646828
+https://live1.quickscoreboardz.com/live/channel52.flv?wsSecret=581dcf778a6cf633dab76c7d745df28a&wsABSTime=1791646948
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/318q6jf0overo9j/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Talia Gibson vs Sara Sorribes Tormo (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel53.flv?wsSecret=55217293ffa7c0d921a83fe80e72f4ec&wsABSTime=1791646828
+https://live1.quickscoreboardz.com/live/channel53.flv?wsSecret=32659716526470194a38e1a97076c14c&wsABSTime=1791646948
 
-#EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟡 🎾 Shanghai Open 1 vs Shanghai Open 1 (Chưa có link — chờ cập nhật)
-https://giovang.tax/truc-tiep-shanghai-open-1-vs-shanghai-open-1-10-10-z8dcraggtbhf
+#EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
+#EXTVLCOPT:http-referrer=https://giovang.tax/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://ftlh5sc02iliv.vcdn.cloud/1791561005_hd/1791561005_hd@720p.m3u8
 
-#EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟡 🎾 Shanghai Open 2 vs Shanghai Open 2 (Chưa có link — chờ cập nhật)
-https://giovang.tax/truc-tiep-shanghai-open-2-vs-shanghai-open-2-10-10-29we4c0py349
+#EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
+#EXTVLCOPT:http-referrer=https://giovang.tax/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/3glrw2fov1krdyj/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟡 🎾 Camilo Ugo Carabelli vs Felix Auger Aliassime (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/camilo-ugo-carabelli-vs-felix-auger-aliassime-luc-1100-ngay-10-10-2026/

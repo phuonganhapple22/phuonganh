@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 10:40:31 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:42:30 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (27 trận), Chuối Chiên (19 trận), Phá Làng (88 trận), Gà Vàng (19 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (28 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (27 trận), Chuối Chiên (19 trận), Phá Làng (91 trận), Gà Vàng (19 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (28 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/c5d75265caa6875d9ea84f36027312d5.png" group-title="Gà Vàng" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (cố tư nghiêm)
@@ -36,11 +36,11 @@ https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk9g2ryox/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (HD FILIP)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791603564-0-0-c90bb99b1050341e6f24d544b5af76e2
+https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791603685-0-0-8a0092182b55facdf065f23b0ab3cac5
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (BLV Iron Man)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791617964&signature=t5nKgSvOHBZA1SSIUoP81WBFqcIunnEC2_02TJ_aiHc
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791618084&signature=7Q9-oUelqBwt2pArR728-YrhAj3pZnfZfv8xj07w4rw
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-fc-seoul-vs-jeju-united-fc-10-10-6abef43f24d46db87090787b
@@ -264,6 +264,9 @@ https://phalang2.live/trang-chu#ednm9wh58994ryo
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/rayo-vallecano.png" group-title="Giờ Vàng" , 10/10 19:00 ⚽ Rayo Vallecano vs Athletic Bilbao (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-rayo-vallecano-vs-athletic-bilbao-10-10-6ab1e5bce5e6975d550f0747
 
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/61542b0245d16635eb2cabbcd7b24edc.png" group-title="Phá Làng" , 10/10 19:00 ⚽ Brazil Beach (W) - Ukraine Beach Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4jwq2ghgoyyjm0v
+
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/5005d8feab109ce64e40beb98073cc1f.png" group-title="Phá Làng" , 10/10 19:00 ⚽ Rayo Vallecano - Athletic Club (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#4wyrn4h6n9enq86
 
@@ -305,6 +308,9 @@ https://phalang2.live/trang-chu#3glrw7hn5ln2qdy
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/72ab7862a610b350aef7650ec0e06e06.png" group-title="Phá Làng" , 10/10 20:30 ⚽ TSG Hoffenheim - Hamburger SV (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#8yomo4h1o516q0j
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/7673ca4aa211d24f96e9cd542b2fb2b5.png" group-title="Phá Làng" , 10/10 20:30 ⚽ Brazil Beach Soccer - Paraguay Beach Soccer (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#ednm9wh58yyyryo
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/7c8c3c50966c793eba910e18659759a1.png" group-title="Phá Làng" , 10/10 20:30 ⚽ SC Paderborn 07 - VfB Stuttgart (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#k82rekhg4828rep
@@ -506,6 +512,9 @@ https://phalang2.live/trang-chu#vjxm8ghe69nlr6o
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e38c289658417160930e5d8487136482.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Association Sportive de la Vallée de l'Ouémé FC - Association Sportive du Port Autonome de Cotonou FC (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#y39mp1h62e95moj
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e373db9df7680c619bf5e658a3d617ef.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Spain Beach Soccer Women - Italy Beach Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1hdvgg2moj
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/8838b764fed0d75323e2db1b3098b775.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Indonesia Women - Armenia Women (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#y39mp1hdvnp1moj
