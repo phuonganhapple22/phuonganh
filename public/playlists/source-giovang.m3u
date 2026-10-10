@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 15:28:50 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 15:30:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (55 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (54 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
@@ -33,9 +33,6 @@ https://pzhgifbkllliv.vcdn.cloud/1791618373_hd/1791618373_hd@720p.m3u8
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://pzhgifbkllliv.vcdn.cloud/1791480907_hd/1791480907_hd@720p.m3u8
-
-#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/persita-tangerang.png" group-title="Giờ Vàng" , 10/10 15:30 🟡 ⚽ Persita Tangerang vs Garudayaksa (Chưa có link — chờ cập nhật)
-https://giovang.tax/truc-tiep-persita-tangerang-vs-garudayaksa-10-10-6abef44024d46db87090795f
 
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmxOmQyZvLlOuNX8TqsRmAJenqFMIQg5shbXiFonS-w&s=10" group-title="Giờ Vàng" , 10/10 16:00 🟢 ⚽ WANG Manyu vs Miwa HARIMOTO (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
