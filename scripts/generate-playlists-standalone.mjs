@@ -51,7 +51,7 @@
 // kiểm chứng chạy sạch sau khi thêm --external, không còn lỗi.
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execSync, execFileSync } from 'child_process';
 import { buildAggregatedMatches } from '@/src/services/playlistBuilder.service';
 import { filterBySportTab, filterBySource, getSourceKey, getSourceLabel, SOURCE_GROUP_ORDER } from '@/src/utils/playerGet';
 import { matchesToPlaylistEntries, buildM3uPlaylist } from '@/src/utils/m3uPlaylist';
@@ -178,58 +178,64 @@ function ensureGitIdentity() {
 // `origin` (`reset --hard`) — chấp nhận mất đúng 1 chu kỳ (2 phút) thay vì
 // kẹt cứng nhiều giờ; chu kỳ kế tiếp sẽ tự sinh lại nội dung mới và commit
 // bình thường trên nền đã đồng bộ.
+// ĐỔI CÁCH XUẤT BẢN (10/10/2026 — "không spam commit trên git, chỉ cần all.m3u"): TRƯỚC ĐÂY mỗi chu
+// kỳ 2 phút bot `git add` + `git commit` + `git push` thẳng vào nhánh `main` (~720 commit/ngày lẫn với
+// code của bạn, phải rebase/dọn lịch sử hằng ngày). GIỜ: playlist được đẩy sang NHÁNH RIÊNG
+// `playlists`, mỗi chu kỳ tạo 1 commit MỚI KHÔNG CÓ commit cha rồi ĐÈ lên nhánh đó -> nhánh đó luôn
+// chỉ có ĐÚNG 1 commit (lịch sử không phình), còn `main` hoàn toàn không bị bot đụng tới.
+// - Chỉ đẩy các file trong PLAYLIST_PUBLISH_FILES (mặc định chỉ `all.m3u`; thêm file khác bằng
+//   env, cách nhau dấu phẩy, ví dụ "all.m3u,all-app.m3u"). Các file còn lại vẫn được sinh trong
+//   runner nhưng KHÔNG commit.
+// - Dùng lệnh git cấp thấp (hash-object / mktree / commit-tree) nên KHÔNG đụng vào working tree,
+//   index hay nhánh `main` của job -> không còn rebase/reset đụng độ với commit của người dùng.
+// - Link raw: https://raw.githubusercontent.com/<user>/<repo>/playlists/all.m3u
+// - File domain (data/source-domains.*) do workflow Check Domains / Watch ghi vào `main` như cũ.
+const PLAYLIST_BRANCH = process.env.PLAYLIST_BRANCH || 'playlists';
+const PLAYLIST_PUBLISH_FILES = (process.env.PLAYLIST_PUBLISH_FILES || 'all.m3u').split(',').map((x) => x.trim()).filter(Boolean);
+let lastPublishedTree = '';
+
 function commitAndPush() {
   if (!AUTO_COMMIT) return;
   try {
-    execSync('git add public/playlists/', { stdio: 'inherit' });
-    const hasChanges = execSync('git status --porcelain -- public/playlists/').toString().trim().length > 0;
-    if (!hasChanges) {
-      console.log('[generate-playlists] Không có thay đổi mới — bỏ qua commit chu kỳ này.');
-      return;
-    }
-    execSync('git commit -m "Generate playlists (auto, watch loop)"', { stdio: 'inherit' });
-  } catch (err) {
-    console.error('[generate-playlists] Lỗi khi commit:', err.message);
-    return;
-  }
-
-  try {
-    execSync('git push', { stdio: 'inherit' });
-    console.log('[generate-playlists] Đã commit & push playlist mới.');
-    return;
-  } catch (err) {
-    console.warn(
-      '[generate-playlists] Push bị từ chối (nhánh local lùi sau remote — có thay đổi mới trên GitHub) — ' +
-      'thử fetch + rebase rồi push lại:', err.message
-    );
-  }
-
-  try {
-    const branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
-    execSync('git fetch origin', { stdio: 'inherit' });
-    try {
-      execSync(`git rebase origin/${branch}`, { stdio: 'inherit' });
-    } catch (rebaseErr) {
-      console.warn(
-        '[generate-playlists] Rebase bị conflict thật (có ai sửa tay đúng file bot đang ghi) — ' +
-        'huỷ rebase, đồng bộ cứng theo bản mới nhất trên GitHub, bỏ qua commit chu kỳ này:', rebaseErr.message
-      );
-      try {
-        execSync('git rebase --abort', { stdio: 'inherit' });
-      } catch {
-        // rebase có thể đã tự huỷ một phần — bỏ qua, reset --hard bên dưới vẫn đưa nhánh về trạng thái sạch.
+    const entries = [];
+    for (const name of PLAYLIST_PUBLISH_FILES) {
+      const full = path.join(OUTPUT_DIR, name);
+      if (!fs.existsSync(full)) {
+        console.warn(`[generate-playlists] Không thấy ${name} để xuất bản — bỏ qua file này.`);
+        continue;
       }
-      execSync(`git reset --hard origin/${branch}`, { stdio: 'inherit' });
-      console.log('[generate-playlists] Đã đồng bộ lại theo GitHub — chu kỳ sau sẽ tự sinh & commit lại từ đầu.');
+      const blob = execFileSync('git', ['hash-object', '-w', full], { timeout: 20000 }).toString().trim();
+      entries.push(`100644 blob ${blob}\t${name}`);
+    }
+    if (!entries.length) {
+      console.warn('[generate-playlists] Không có file nào để xuất bản chu kỳ này.');
       return;
     }
-    execSync('git push', { stdio: 'inherit' });
-    console.log('[generate-playlists] Đã rebase + commit & push playlist mới.');
+    const tree = execFileSync('git', ['mktree'], { input: `${entries.join('\n')}\n`, timeout: 20000 }).toString().trim();
+    if (tree === lastPublishedTree) {
+      console.log('[generate-playlists] Nội dung xuất bản y hệt lần trước — bỏ qua chu kỳ này.');
+      return;
+    }
+    const ident = {
+      ...process.env,
+      GIT_AUTHOR_NAME: 'GitHub Actions', GIT_AUTHOR_EMAIL: 'actions@github.com',
+      GIT_COMMITTER_NAME: 'GitHub Actions', GIT_COMMITTER_EMAIL: 'actions@github.com',
+    };
+    const commit = execFileSync('git', ['commit-tree', tree, '-m', `Playlist ${new Date().toISOString()}`], { env: ident, timeout: 20000 }).toString().trim();
+    let lastErr = null;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        execFileSync('git', ['push', '--force', 'origin', `${commit}:refs/heads/${PLAYLIST_BRANCH}`], { stdio: 'inherit', timeout: 60000 });
+        lastPublishedTree = tree;
+        console.log(`[generate-playlists] Đã xuất bản ${PLAYLIST_PUBLISH_FILES.join(', ')} lên nhánh ${PLAYLIST_BRANCH} (1 commit duy nhất).`);
+        return;
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    console.error('[generate-playlists] Push nhánh playlist lỗi — bỏ qua chu kỳ này, thử lại ở chu kỳ sau:', lastErr && lastErr.message);
   } catch (err) {
-    console.error(
-      '[generate-playlists] Vẫn lỗi khi fetch/rebase/push — bỏ qua chu kỳ này, thử lại ở chu kỳ kế tiếp (2 phút sau):',
-      err.message
-    );
+    console.error('[generate-playlists] Lỗi khi xuất bản playlist — bỏ qua chu kỳ này:', err.message);
   }
 }
 
@@ -338,6 +344,11 @@ function isAutoRerunOn(ref) {
   }
 }
 
+// Bot không còn commit lên `main` nên HEAD local luôn đứng yên; khi có commit lạ trên remote (domain/người dùng)
+// thì remote ≠ HEAD kéo dài -> nếu không nhớ kết quả sẽ `git fetch` lại mỗi 30 giây. Nhớ theo sha remote:
+// chỉ tính lại khi sha remote đổi.
+let upstreamCache = { sha: '', files: [] };
+
 /** @returns {string[]} danh sách file đã đổi trên origin kể từ lúc job bắt đầu (rỗng nếu không có/không kiểm tra được) */
 function detectUpstreamChanges() {
   if (!AUTO_COMMIT || !startSha) return [];
@@ -346,6 +357,7 @@ function detectUpstreamChanges() {
     const remoteLine = execSync(`git ls-remote origin refs/heads/${branch}`, { timeout: 20000 }).toString().trim();
     const remoteSha = remoteLine.split(/\s+/)[0] || '';
     if (!remoteSha) return [];
+    if (upstreamCache.sha === remoteSha) return upstreamCache.files;
     const localHead = execSync('git rev-parse HEAD').toString().trim();
     let target = 'HEAD';
     if (remoteSha !== localHead) {
@@ -357,11 +369,14 @@ function detectUpstreamChanges() {
     if (!isAutoRerunOn(target)) {
       if (!autoRerunOffLogged) console.log('[generate-playlists] Công tắc data/auto-rerun.txt = off — không tự chạy lại khi file đổi (đổi thành on để chạy lại).');
       autoRerunOffLogged = true;
+      upstreamCache = { sha: remoteSha, files: [] };
       return [];
     }
     autoRerunOffLogged = false;
     const out = execSync(`git diff --name-only ${startSha} ${target} -- . ${BOT_ONLY_PATHS.map((p) => `'${p}'`).join(' ')}`, { timeout: 15000 }).toString();
-    return out.split('\n').map((l) => l.trim()).filter(Boolean);
+    const files = out.split('\n').map((l) => l.trim()).filter(Boolean);
+    upstreamCache = { sha: remoteSha, files };
+    return files;
   } catch (err) {
     console.warn('[generate-playlists] Không kiểm tra được thay đổi trên GitHub (bỏ qua lượt này):', err.message);
     return [];
