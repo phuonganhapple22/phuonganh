@@ -1,14 +1,20 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:36:42 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 12:38:40 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (3 trận), Chuối Chiên (1 trận), Phá Làng (2 trận), Bông Lau (1 trận), Xôi Lạc (4 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (3 trận), Chuối Chiên (1 trận), Phá Làng (2 trận), Bông Lau (1 trận), Xôi Lạc (9 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/j1l4rjdh7lzr7vx/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🏐 Canberra Heat vs Queensland Pirates (HD 1)
-https://live1.quickscoreboardz.com/live/channel80.flv?wsSecret=721f1d5790a8d37aaf4da5de89014edf&wsABSTime=1791653800|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel80.flv?wsSecret=b24a4a216abbf3405acbacf813968362&wsABSTime=1791653918|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/kdj2rydhoxpr1zp/image/small" group-title="Xôi Lạc" , 10/10 13:30 🟢 🏐 Nữ Adelaide Storm vs Nữ NSW Phoenix (HD 1)
+https://live1.quickscoreboardz.com/live/channel80.flv?wsSecret=b24a4a216abbf3405acbacf813968362&wsABSTime=1791653918|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://img0.aiscore.com/volleyball/team/30a8757bc201fed57fcb779c30bb14db.png!w80" group-title="Phá Làng" , 10/10 16:00 🏐 Hisamitsu Springs Nữ - Body Queenseis Nữ (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#944d0095a406427c83478f40d2acd3a5
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/9dn1m1nhjw4qoep/image/small" group-title="Xôi Lạc" , 10/10 16:00 🏐 Nữ Murjani vs Nữ Jurmala (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/nu-murjani-vs-nu-jurmala-luc-1600-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/en/7/7d/Hisamitsusprings.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" group-title="Giờ Vàng" , 10/10 16:05 🏐 Hisamitsu Springs Nữ vs Aleeza Aichi Nữ (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-hisamitsu-springs-nu-vs-aleeza-aichi-nu-10-10-rjpx1g9ys04q
@@ -22,10 +28,16 @@ https://lau06.bonglautv1.org/truc-tiep/992987
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/z318q67h9j6ro9j/image/small" group-title="Xôi Lạc" , 10/10 16:05 🏐 Nữ Hisamitsu Springs vs Nữ Body Queenseis (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/nu-hisamitsu-springs-vs-nu-body-queenseis-luc-1605-ngay-10-10-2026/
 
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/3glrwjh58odqdyj/image/small" group-title="Xôi Lạc" , 10/10 17:00 🏐 Gaziantep Genclik vs Onikisubat (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/gaziantep-genclik-vs-onikisubat-luc-1700-ngay-10-10-2026/
+
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/2y8m4wh2pjeql07/image/small" group-title="Xôi Lạc" , 10/10 20:00 🏐 Gebze vs Sungurlu (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/gebze-vs-sungurlu-luc-2000-ngay-10-10-2026/
 
 # ----- Ngày 2026-10-11 -----
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/gy0or58hvglrwzv/image/small" group-title="Xôi Lạc" , 11/10 00:00 🏐 Nữ Kastela vs Nữ ZOK Osijek (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/nu-kastela-vs-nu-zok-osijek-luc-0000-ngay-11-10-2026/
+
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/0xTbjcWg-MaeUFCRe.png" group-title="Giờ Vàng" , 11/10 00:30 🏐 Vallefoglia Nữ vs Scandicci Nữ (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-vallefoglia-nu-vs-scandicci-nu-11-10-v23z1yudao2v
 
@@ -37,3 +49,6 @@ https://phalang2.live/trang-chu#19bfaa19eb8542a5aaf9540d09bea86f
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/56ypq3xh9zgqd7o/image/small" group-title="Xôi Lạc" , 11/10 01:30 🏐 Nữ Imoco Volley vs Nữ UYBA Volleyball (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/nu-imoco-volley-vs-nu-uyba-volleyball-luc-0130-ngay-11-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/kdj2rydho0kr1zp/image/small" group-title="Xôi Lạc" , 11/10 01:30 🏐 Nữ Evreux vs Nữ RC Cannes (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/nu-evreux-vs-nu-rc-cannes-luc-0130-ngay-11-10-2026/
