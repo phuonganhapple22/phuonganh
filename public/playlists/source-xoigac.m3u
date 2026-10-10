@@ -1,24 +1,24 @@
 #EXTM3U
-# Cập nhật lần cuối: 13:44:45 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:46:59 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (36 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (BLV Iron Man)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791629021&signature=Io67S_e9CfABLT6vXpMd8BH3j4p6hY3ptXQSz2qLddU
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791629141&signature=s4mtHIqkZ3IuXlOTMKchBx1qUoBNGncCeCRa2Wdbtcs
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (BLV Phan Pepsi)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791629022&signature=pDKkO9WxwaRpnhnNr_8K3h5JCW-8xYjTP2FEFE9n5X8
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791629142&signature=sP6byE0_4V2WL_aZ0MGjoqiZmEU4rbFRgJKCKrwr4io
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/1105.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 🏀 KCC Egis vs Wonju DB (BLV The Flash)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791629022&signature=yUqNEt27fKA-1H-jQ5ui5hHQkCByDcIhPBIUhtL-6yg
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791629142&signature=LyDHT2mx-BdCgNwHdpI26Pi3hV3NFvieaVlLCU-1X-g
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791629022&signature=eMVmUE9c3Q9hKjhg0aYfCzuSlsPdFxCicz7K032dhKo
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791629142&signature=oSVCH8CtMkj_1gbZVc9YQtL9PJTnnF-XsWPahNEafI0
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟡 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
 https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
