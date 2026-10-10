@@ -1,16 +1,13 @@
 #EXTM3U
-# Cập nhật lần cuối: 15:33:02 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 15:34:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (54 trận), Chuối Chiên (19 trận), Phá Làng (113 trận), Gà Vàng (32 trận), Sao Kê (17 trận), GaVang33 (33 trận), Bông Lau (19 trận), Xôi Lạc (48 trận), Xôi Gấc (33 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (54 trận), Chuối Chiên (19 trận), Phá Làng (113 trận), Gà Vàng (32 trận), Sao Kê (17 trận), GaVang33 (33 trận), Bông Lau (19 trận), Xôi Lạc (47 trận), Xôi Gấc (33 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
-
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5of0678mwzv/image/small" group-title="Xôi Lạc" , 10/10 13:15 🟢 🎾 Matteo Arnaldi vs Taylor Fritz (Chưa có link — chờ cập nhật)
-https://xoilacxbr.tv/truc-tiep/matteo-arnaldi-vs-taylor-fritz-luc-1210-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ncDnFmzB-xE40e4KN.png" group-title="Giờ Vàng" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -20,32 +17,32 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561268_hd/1791561268_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7t63drvy9/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (HD ALAN)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-25.flv?auth_key=3000001791621105-0-0-f2d4dd32d65aa1ed14b518fcece7e587
+https://live2.domaincdn.cc/livecdn/channel-25.flv?auth_key=3000001791621226-0-0-adb096bce67297badb1679f71d6669aa
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/vjxm8xtg055q6od/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Ningbo Rockets vs Jiangsu Dragons (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=5b7ce43a3af796b21a851bbeffe61707&wsABSTime=1791664370
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=7e6b4fde3e38c1fba71d4d084c4db5a9&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/56ypq3kto86md7o/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Liaoning Flying vs Fujian Jinjiang Tourism (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel44.flv?wsSecret=482e982ff8c85ae541ce8db809255219&wsABSTime=1791664370
+https://live1.quickscoreboardz.com/live/channel44.flv?wsSecret=d309c4b95cddf884f7f55aa533e11466&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/z8yomovtoynq0j6/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Shandong Hi-Speed vs Tianjin Pioneers (HD KOBE)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791621106-0-0-647932688ee8784192bd5ef7c1c68fee
+https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791621226-0-0-dc4445c0cf5b0b2ec6f4024e87b3a4fb
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t878mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Qingdao Guoxin vs Xinjiang Flying Tigers (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel46.flv?wsSecret=4eb3d27410240ce56a2bae887fc46d94&wsABSTime=1791664370
+https://live1.quickscoreboardz.com/live/channel46.flv?wsSecret=a572c6cef1bd4dcdec23e50d1b244aeb&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5ofepvnmwzv/image/small" group-title="Xôi Lạc" , 10/10 14:15 🟢 🎾 Bu Yunchaokete vs Casper Ruud (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=dfdc0f6210eb9e56a88b0a483ff2b189&wsABSTime=1791664369
+https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=ab6a2f9a9bd0b22799c81a87deb28b96&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -74,21 +71,21 @@ https://live2.zktsva.app/live/741294.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (HD MAX)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791621105-0-0-11e44948bff69b90e3f51a086d2f4bb3
+https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791621226-0-0-21d3403055d5509e9324a7a25fc99028
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7tyn5rvy9/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 🏀 Ulsan Phoebus vs Daegu KOGAS (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel47.flv?wsSecret=7ccfc51920be9719734b41603d5e1dcc&wsABSTime=1791664370
+https://live1.quickscoreboardz.com/live/channel47.flv?wsSecret=344389e2dc9bec276c16b1dd6af28172&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyf5lxkmojx/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 🎾 Yuan Yue vs Caty Mcnally (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=4dbf4fccaee21a95331c89970b022487&wsABSTime=1791664370
+https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=a6cacce228de7363e60cd04c8ba94e17&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791635505&signature=0Mig4oWrhfM8mSCJFhjxweI0wfAqg_836Q5l5rNwqvY
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791635626&signature=ki_VPCF_mOlwmBPQMeT5cSisMbAUP_y7aaEBfvupEKk
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟢 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Server 1)
 #EXTVLCOPT:http-referrer=https://phalang2.live/truc-tiep/liaoning-shenbei-hefeng-women-vs-zhejiang-hangzhou-women-965mkyh8l5kxr1g
@@ -98,17 +95,17 @@ https://lilive1.eu.cc/live/5f4e9da157d1e705779cde9f3a5525f7/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/badminton/team/318q66kse91dqo9/image/small" group-title="Xôi Lạc" , 10/10 15:00 🟢 🏸 Liu Kuang Heng vs Gao Jiaxuan (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel61.flv?wsSecret=bd6afea734867ae0ef366fda6ffe43b2&wsABSTime=1791664370
-
-#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/arema-fc.png" group-title="Giờ Vàng" , 10/10 15:30 🟢 ⚽ Arema Malang vs Bhayangkara Solo FC (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://pzhgifbkllliv.vcdn.cloud/1791618373_hd/1791618373_hd@720p.m3u8
+https://live1.quickscoreboardz.com/live/channel61.flv?wsSecret=6d3faa313d8460099ac1d4d08cf536b9&wsABSTime=1791664489
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e5c63f30ad74c5c5159f1e7695173ae5.png" group-title="Giờ Vàng" , 10/10 15:30 🟢 🏀 South East Melbourne Phoenix vs Melbourne United (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://pzhgifbkllliv.vcdn.cloud/1791480907_hd/1791480907_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/arema-fc.png" group-title="Giờ Vàng" , 10/10 15:30 🟢 ⚽ Arema Malang vs Bhayangkara Solo FC (Giovang 1)
+#EXTVLCOPT:http-referrer=https://giovang.tax/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1791618373_hd/1791618373_hd@720p.m3u8
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 15:30 🟢 ⚽ Dong Tam Long An - Quang Ninh (Server 1)
 #EXTVLCOPT:http-referrer=https://phalang2.live/truc-tiep/dong-tam-long-an-vs-quang-ninh-y39mp1h67okjmoj
@@ -121,15 +118,15 @@ https://gavanglinkv.tv/truc-tiep/south-melbourne-vs-melbourne-victory-ngay-10-10
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/badminton/team/965mkyjskkyer1g/image/small" group-title="Xôi Lạc" , 10/10 15:50 🟡 🏸 Mia Blichfeldt vs Nozomi Okuhara (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/mia-blichfeldt-vs-nozomi-okuhara-luc-1550-ngay-10-10-2026/
 
-#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmxOmQyZvLlOuNX8TqsRmAJenqFMIQg5shbXiFonS-w&s=10" group-title="Giờ Vàng" , 10/10 16:00 🟢 ⚽ WANG Manyu vs Miwa HARIMOTO (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://ftlh5sc02iliv.vcdn.cloud/1791619795_hd/1791619795_hd@720p.m3u8
-
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Gb3S_hVBxADavywtKLX_sSpJUrlsxbdBeKq6YIXZqQ&s" group-title="Giờ Vàng" , 10/10 16:00 🟢 🏎️ F1 vs 2026 (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://ftlh5sc02iliv.vcdn.cloud/1791619949_hd/1791619949_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmxOmQyZvLlOuNX8TqsRmAJenqFMIQg5shbXiFonS-w&s=10" group-title="Giờ Vàng" , 10/10 16:00 🟢 ⚽ WANG Manyu vs Miwa HARIMOTO (Giovang 1)
+#EXTVLCOPT:http-referrer=https://giovang.tax/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://ftlh5sc02iliv.vcdn.cloud/1791619795_hd/1791619795_hd@720p.m3u8
 
 #EXTINF:-1 tvg-logo="https://img0.aiscore.com/volleyball/team/30a8757bc201fed57fcb779c30bb14db.png!w80" group-title="Phá Làng" , 10/10 16:00 🟢 🏐 Hisamitsu Springs Nữ - Body Queenseis Nữ (LÝ LIỀU LĨNH (Server 1))
 #EXTVLCOPT:http-referrer=https://phalang2.live/truc-tiep/hisamitsu-springs-nu-vs-body-queenseis-nu-944d0095a406427c83478f40d2acd3a5
