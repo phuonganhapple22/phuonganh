@@ -1,14 +1,14 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:57:00 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:58:44 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (34 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633333&signature=bKXo6R189jCJkGIk2hYjLZvX78T34Ykh1TH2i3GMAdc|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633459&signature=2tf2fJ5yKVsHBy2lKCkP4w3VI3cIh9rDvANzrd62OLI|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633339&signature=FXtdTwGh8d9rsRK4jbvsxA_7yYuZF23suOhVmxvxrMU|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633459&signature=M8MmItrxuSYyBywOVQUa1TlHTh2yEfIq_CC8MCN_4CM|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/302.webp" group-title="Xôi Gấc" , 10/10 17:00 ⚽ Kyoto Sanga vs Machida Zelvia (Chưa có link — chờ cập nhật)
 https://xoigac.top/kyoto-sanga-vs-machida-zelvia-id336819/phan-dau

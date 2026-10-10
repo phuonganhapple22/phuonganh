@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:57:00 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:58:44 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (54 trận), Chuối Chiên (19 trận), Phá Làng (108 trận), Gà Vàng (33 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (53 trận), Xôi Gấc (34 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (54 trận), Chuối Chiên (19 trận), Phá Làng (108 trận), Gà Vàng (33 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (52 trận), Xôi Gấc (34 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
@@ -28,44 +28,41 @@ https://live2.zktsva.app/live/796315.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="GaVang33" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (Gà Siêu Nhí)
 https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (HD FELIX)
-https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791618940-0-0-6d994a7964b6c5cab1a11601bd9a565c|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
-
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hd6jqo9j/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa Red (HD BRADY)
-https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791618940-0-0-e5de4fb42e4ca83d5a3b9d46be09ecd4|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791619060-0-0-59356acf389e7a52a0a58082d5d82090|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633333&signature=bKXo6R189jCJkGIk2hYjLZvX78T34Ykh1TH2i3GMAdc|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633459&signature=2tf2fJ5yKVsHBy2lKCkP4w3VI3cIh9rDvANzrd62OLI|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🟢 🏀 Nagasaki Velca vs Gunma Crane Thunders (HD 1)
-https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=f7d1960cd6e935138bede423c4f3090f&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=808721b1731bb53c4886031bc1e745f1&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5of0678mwzv/image/small" group-title="Xôi Lạc" , 10/10 13:15 🟢 🎾 Matteo Arnaldi vs Taylor Fritz (HD 1)
-https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=578075ab6ee5a786a02e31fb1dee871e&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=45a2e8a9e24564e04de3f735947e09d9&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ncDnFmzB-xE40e4KN.png" group-title="Giờ Vàng" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (Giovang 1)
 https://ftlh5sc02iliv.vcdn.cloud/1791561268_hd/1791561268_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7t63drvy9/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (HD ALAN)
-https://live2.domaincdn.cc/livecdn/channel-25.flv?auth_key=3000001791618940-0-0-643be1d6ca11d203e367889ebce5dbce|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-25.flv?auth_key=3000001791619060-0-0-686de4bec33e19c85f1bfa7ddbc7b957|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/vjxm8xtg055q6od/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Ningbo Rockets vs Jiangsu Dragons (HD 1)
-https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=ca02b4d8d196642adbbbfa657c6eff1a&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=68e673e4dee5334cf7d2fbfb159d36bd&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/56ypq3kto86md7o/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Liaoning Flying vs Fujian Jinjiang Tourism (HD 1)
-https://live1.quickscoreboardz.com/live/channel44.flv?wsSecret=06201c5d646699b37282380db21649a9&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel44.flv?wsSecret=83ffd574d115ffd6a012efd9684febed&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/z8yomovtoynq0j6/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Shandong Hi-Speed vs Tianjin Pioneers (HD KOBE)
-https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791618941-0-0-fbfc85d3a01934f30546b661d03bbb86|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791619060-0-0-71f1f31af5040dc92c9688a9172f9606|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t878mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🏀 Qingdao Guoxin vs Xinjiang Flying Tigers (HD 1)
-https://live1.quickscoreboardz.com/live/channel46.flv?wsSecret=f111ba62f45f9e7c6ef5aec69df5d702&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel46.flv?wsSecret=d9614539d8cfd6c7f78d9ee628eb7773&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyfol52mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (HD VIC)
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791618941-0-0-6f8d16ec4549fbc3f05e61e9eb982843|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791619060-0-0-f3ec667aa43e61b54445678d1d7b3a7b|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5ofepvnmwzv/image/small" group-title="Xôi Lạc" , 10/10 14:15 🟢 🎾 Bu Yunchaokete vs Casper Ruud (HD 1)
-https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=62bcda9c43fb165056d7692c51ff84b2&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=0c63fac05b341e5457ab707627387da7&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (Giovang 1)
 https://ftlh5sc02iliv.vcdn.cloud/1791535992_hd/1791535992_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
@@ -83,16 +80,16 @@ https://playback.livetl002.com/live/6a9a5525864ea536c2577392.m3u8|User-Agent=Moz
 https://live2.zktsva.app/live/741294.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (HD MAX)
-https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791618939-0-0-98eab21f2b5f8a9b6de7cf637ea6c590|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791619060-0-0-5d4d6c9fb15626ad0cc089e28521ffc6|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7tyn5rvy9/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 🏀 Ulsan Phoebus vs Daegu KOGAS (HD 1)
-https://live1.quickscoreboardz.com/live/channel47.flv?wsSecret=a7f253b5ea0fedf5b4394bb061cc8b92&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel47.flv?wsSecret=5be527a1ace5cde525a9b7f76ced29d8&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyf5lxkmojx/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 🎾 Yuan Yue vs Caty Mcnally (HD 1)
-https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=a56b2e11687ca59b9d7edffaba3bda4d&wsABSTime=1791662204|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=7ab10290de87875e22243034d1c86db2&wsABSTime=1791662322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633339&signature=FXtdTwGh8d9rsRK4jbvsxA_7yYuZF23suOhVmxvxrMU|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633459&signature=M8MmItrxuSYyBywOVQUa1TlHTh2yEfIq_CC8MCN_4CM|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟡 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#965mkyh8l5kxr1g
