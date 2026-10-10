@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:24:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:26:50 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (45 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (50 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -139,3 +139,18 @@ https://giovang.tax/truc-tiep-golden-state-warriors-vs-sacramento-kings-11-10-28
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/6a6855785a58edb23c76c99ed6601a33.png" group-title="Giờ Vàng" , 11/10 09:30 🏀 Phoenix Suns vs San Antonio Spurs (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-phoenix-suns-vs-san-antonio-spurs-11-10-23912476
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/7e24a7272efcfecc7b45fa8c86605bd0.png" group-title="Giờ Vàng" , 11/10 11:00 🏀 Sydney Kings vs Adelaide 36ers (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-sydney-kings-vs-adelaide-36ers-11-10-29322275
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/jef-united-ichihara-chiba.png" group-title="Giờ Vàng" , 11/10 12:00 ⚽ JEF United Ichihara vs V-Varen Nagasaki (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-jef-united-ichihara-vs-v-varen-nagasaki-11-10-6ac045c524d46db8705b5947
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a41dc05de91a396420f82f30bab19765.png" group-title="Giờ Vàng" , 11/10 12:00 🏀 Anyang Jung Kwan Jang Red Boosters vs Changwon LG Sakers (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-anyang-jung-kwan-jang-red-boosters-vs-changwon-lg-sakers-11-10-24850377
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/77da210054627a8fde62b8e6d76f3d74.png" group-title="Giờ Vàng" , 11/10 12:00 🏀 Seoul Samsung Thunders vs Goyang Orions (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-seoul-samsung-thunders-vs-goyang-orions-11-10-25850378
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/mito-hollyhock.png" group-title="Giờ Vàng" , 11/10 13:00 ⚽ Mito Hollyhock vs Shimizu S-Pulse (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-mito-hollyhock-vs-shimizu-s-pulse-11-10-6ac045c524d46db8705b5a70
