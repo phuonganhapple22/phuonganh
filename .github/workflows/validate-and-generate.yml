@@ -209,6 +209,8 @@ jobs:
         run: node .generate-playlists-standalone.cjs --watch
         env:
           CHROME_EXECUTABLE_PATH: ${{ steps.chrome.outputs.path }}
+          PLAYLIST_BRANCH: 'playlists' # (10/10/2026) playlist day sang NHANH RIENG nay, moi chu ky ghi de thanh 1 commit duy nhat - main khong con bi bot commit
+          PLAYLIST_PUBLISH_FILES: 'all.m3u' # chi day file nay; muon them: 'all.m3u,all-app.m3u' (cach nhau dau phay)
           GENERATE_AUTO_COMMIT: '1' # bat cong tac tu commit/push moi chu ky ben trong script (xem AUTO_COMMIT trong generate-playlists-standalone.mjs)
           MAX_RUNTIME_MINUTES: '335' # FIX (06/10/2026): 5h35 tinh tu DAU JOB (gom ca vai phut cai dat) - truoc day 345 phut tinh tu luc script chay nen de cham timeout truoc khi kip goi job ke tiep
           JOB_STARTED_AT: ${{ github.run_started_at }} # moc bat dau job de script tinh dung thoi gian da chay
@@ -225,10 +227,5 @@ jobs:
           # -> bỏ bước gọi thẳng, mở trình duyệt headless ngay (lỗi mới thử gọi thẳng). Xoá dòng này để về mặc định.
           SAOKE_BROWSER_FIRST: '1'
 
-      - name: Commit and push (du phong)
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add public/playlists/
-          git commit -m "Generate playlists" || true
-          git push || true
+      # (10/10/2026) DA BO buoc "Commit and push (du phong)": no `git add public/playlists/` roi push thang
+      # vao main -> se lam spam commit tro lai. Viec xuat ban nay do script tu lam moi chu ky (xem commitAndPush()).
