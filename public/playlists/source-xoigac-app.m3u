@@ -1,11 +1,11 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:04:48 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:06:50 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (34 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791630223&signature=ZUBgANuKwTHe37RYr1QqWSZZ_CpG3vz5wncZrWcFQ00|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791630343&signature=sI2S4XPiI-Hj7YHdeRk--DvQTNe0IieKtauLkl_Ue88|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟡 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
 https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
@@ -43,11 +43,11 @@ https://xoigac.top/inter-vs-parma-id337916/super-man-2
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/529.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
 https://xoigac.top/barcelona-vs-getafe-id337999/joker-2
 
-#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/33.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
-https://xoigac.top/manchester-united-vs-tottenham-id337995/deal-pool
-
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/173.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ RB Leipzig vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
 https://xoigac.top/rb-leipzig-vs-eintracht-frankfurt-id338001/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/33.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
+https://xoigac.top/manchester-united-vs-tottenham-id337995/deal-pool
 
 # ----- Ngày 2026-10-11 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2932.webp" group-title="Xôi Gấc" , 11/10 01:00 ⚽ Al-Hilal Saudi FC vs Al-Ittihad FC (Chưa có link — chờ cập nhật)
@@ -89,11 +89,11 @@ https://xoigac.top/club-america-vs-monterrey-id338549/joker-2
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/4.webp" group-title="Xôi Gấc" , 11/10 11:00 🏀 Sydney vs Adelaide (Chưa có link — chờ cập nhật)
 https://xoigac.top/sydney-vs-adelaide-id338273/the-flash
 
-#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2759.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ Gwangju FC vs Ulsan Hyundai FC (Chưa có link — chờ cập nhật)
-https://xoigac.top/gwangju-fc-vs-ulsan-hyundai-fc-id338553/groot
-
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/301.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ JEF United Chiba vs V-varen Nagasaki (Chưa có link — chờ cập nhật)
 https://xoigac.top/jef-united-chiba-vs-v-varen-nagasaki-id338560/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2759.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ Gwangju FC vs Ulsan Hyundai FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/gwangju-fc-vs-ulsan-hyundai-fc-id338553/groot
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/306.webp" group-title="Xôi Gấc" , 11/10 13:00 ⚽ Tokyo Verdy vs Sanfrecce Hiroshima (Chưa có link — chờ cập nhật)
 https://xoigac.top/tokyo-verdy-vs-sanfrecce-hiroshima-id338566/phan-pepsi
