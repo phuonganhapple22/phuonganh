@@ -1,14 +1,9 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:24:35 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:26:34 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (45 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (44 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tigres-uanl.png" group-title="Giờ Vàng" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://ftlh5sc02iliv.vcdn.cloud/1791535334_hd/1791535334_hd@720p.m3u8
-
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/0Y20XKDa-0GVPIiRs.png" group-title="Giờ Vàng" , 10/10 11:00 🟢 ⚽ LIN Yun-Ju vs Truls MOREGARD (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
