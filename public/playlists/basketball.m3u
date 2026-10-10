@@ -1,28 +1,23 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:40:25 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:42:26 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (9 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (2 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (2 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/c73eca8b9cc18ff386bf6ff4c1236b9e.png" group-title="Giờ Vàng" , 10/10 07:00 🟢 🏀 Chicago Bulls vs Memphis Grizzlies (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://ftlh5sc02iliv.vcdn.cloud/1791534408_hd/1791534408_hd@720p.m3u8
-
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kjw2r02tdkkqz84/image/small" group-title="Xôi Lạc" , 10/10 07:00 🟢 🏀 Chicago Bulls vs Memphis Grizzlies (HD TOMMY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791599959-0-0-08e37a4257844826b3e4bdd723bb26d2
+https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791600078-0-0-41510b0afd90fa7d2a7202741f0c31ae
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4768m1ge/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 🏀 CEU Scorpions UCBL vs Anahuac Queretaro (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel48.flv?wsSecret=34a3ba75c9cf8c83f2521cd75c1dd060&wsABSTime=1791643222
+https://live1.quickscoreboardz.com/live/channel48.flv?wsSecret=2db75f7d62976ddbc89693a284ce31cb&wsABSTime=1791643343
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/6ypq3ktzzkdmd7o/image/small" group-title="Xôi Lạc" , 10/10 08:10 🟢 🏀 CD Jorge Guzman vs Corinthians (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel42.flv?wsSecret=1c6e47502c14894dde9dc482084b6ba1&wsABSTime=1791643222
+https://live1.quickscoreboardz.com/live/channel42.flv?wsSecret=9ee70f8b463fd281c7253fb3c650547f&wsABSTime=1791643343
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/cbf9424df17d6e06d655dca78651d329.png" group-title="Giờ Vàng" , 10/10 08:30 🟢 🏀 Las Vegas Aces vs Golden State Valkyries (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -32,12 +27,12 @@ https://ftlh5sc02iliv.vcdn.cloud/1791534163_hd/1791534163_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/23xmv1tdo2jmg8n/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Caimanes del Llano vs Motilones del Norte (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=fa5132bed17ca384084c606d977ae321&wsABSTime=1791643222
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=feba0466eb9c96cbcc300b2abb9b148d&wsABSTime=1791643343
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t8x8mojx/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Nữ Las Vegas Aces vs Nữ Golden State (HD KOBE)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791599959-0-0-c91304d4b7bbcbd8f7a34021e8565589
+https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791600079-0-0-71184b56bae68187b2ac6076d11ca3f1
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a2ba5e8d224376506856ad5dd34de831.png" group-title="Giờ Vàng" , 10/10 12:00 🏀 Jeonju KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-jeonju-kcc-egis-vs-wonju-dongbu-promy-10-10-22850375
