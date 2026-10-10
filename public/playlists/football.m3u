@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:30:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:32:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (27 trận), Chuối Chiên (18 trận), Phá Làng (106 trận), Gà Vàng (20 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (18 trận), Xôi Lạc (2 trận), Xôi Gấc (30 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (18 trận), Phá Làng (106 trận), Gà Vàng (20 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (18 trận), Xôi Lạc (4 trận), Xôi Gấc (31 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (NGƯỜI KIẾN)
@@ -50,16 +50,16 @@ https://live2.zktsva.app/live/301263.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (HD FELIX)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791617386-0-0-42b8103ce02ea166bc961bbd5530f0dd
+https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791617506-0-0-ee57bb6acc0e572ee02c731b2dcb83bb
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hd6jqo9j/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa Red (HD BRADY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791617386-0-0-685f1cc16f7b3724281617713ef66dd4
+https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791617506-0-0-447c1add266dc37b4c67a50d099595d9
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791631785&signature=T5WUB9ZFmVQ_XTq9GJJ51MKvIeLdgi8SB2V0qGSVCPk
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791631905&signature=9LAqKsD0aGTgJm2BsX8j4KM2c9eZIC1Y6Dy_qToRfec
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -74,6 +74,15 @@ https://lilive1.eu.cc/live/d24817336c3cbbde5b6415b2fedb2274/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="GaVang33" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu Football Club vs FC Anyang (Gà Siêu Kiêu)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://live2.zktsva.app/live/741294.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (HD MAX)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791617506-0-0-2b5c7aa9a11a72f494339e81ccc612c4
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791631906&signature=T0QzfTkD2oNL1gd8EpkjdXUPFoEIRKlOquDqekI_8aE
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟡 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#965mkyh8l5kxr1g
@@ -218,6 +227,9 @@ https://gavang33.me/truc-tiep/arsenal-vs-leeds-united-luc-1830-ngay-10-10-2026-2
 
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125547_ba273b85.png" group-title="Bông Lau" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
 https://lau06.bonglautv1.org/truc-tiep/1557417
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hdd1qo9j/image/small" group-title="Xôi Lạc" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/arsenal-vs-leeds-united-luc-1830-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/42.webp" group-title="Xôi Gấc" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
 https://xoigac.top/arsenal-vs-leeds-id336911/joker-2
@@ -831,6 +843,9 @@ https://xoigac.top/gwangju-fc-vs-ulsan-hyundai-fc-id338553/groot
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/mito-hollyhock.png" group-title="Giờ Vàng" , 11/10 13:00 ⚽ Mito Hollyhock vs Shimizu S-Pulse (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-mito-hollyhock-vs-shimizu-s-pulse-11-10-6ac045c524d46db8705b5a70
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tokyo-verdy.png" group-title="Giờ Vàng" , 11/10 13:00 ⚽ Tokyo Verdy vs Sanfrecce Hiroshima (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-tokyo-verdy-vs-sanfrecce-hiroshima-11-10-6ac045c524d46db8705b5a9c
 
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/2a8adb34e764602183a7bee8f51726e4.png" group-title="GaVang33" , 11/10 13:00 ⚽ Tokyo Verdy vs Sanfrecce Hiroshima (Chưa có link — chờ cập nhật)
 https://gavang33.me/truc-tiep/tokyo-verdy-vs-sanfrecce-hiroshima-luc-1300-ngay-11-10-2026-6ypq3nhvd3e6md7

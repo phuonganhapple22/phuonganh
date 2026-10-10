@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:30:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:32:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (50 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (53 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -128,6 +128,9 @@ https://giovang.tax/truc-tiep-inter-miami-vs-washington-d-c-united-11-10-6ac045c
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/new-york-red-bulls.png" group-title="Giờ Vàng" , 11/10 06:30 ⚽ New York Red Bulls vs San Diego FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-new-york-red-bulls-vs-san-diego-fc-11-10-6ac045c424d46db8705b569a
 
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/CMe9zXzS-QNrz0V5B.png" group-title="Giờ Vàng" , 11/10 07:00 ⚽ Cleverland Guardians vs Chicago White Sox (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-cleverland-guardians-vs-chicago-white-sox-11-10-d6a2386a2zvj
+
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/43ebb4d6ad3ea5b68e9b1c969dff055b.png" group-title="Giờ Vàng" , 11/10 07:00 🏀 Miami Heat vs Minnesota Timberwolves (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-miami-heat-vs-minnesota-timberwolves-11-10-15022278
 
@@ -152,5 +155,11 @@ https://giovang.tax/truc-tiep-anyang-jung-kwan-jang-red-boosters-vs-changwon-lg-
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/77da210054627a8fde62b8e6d76f3d74.png" group-title="Giờ Vàng" , 11/10 12:00 🏀 Seoul Samsung Thunders vs Goyang Orions (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-seoul-samsung-thunders-vs-goyang-orions-11-10-25850378
 
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e97aa6ff62044e05b1dc126043568a18.png" group-title="Giờ Vàng" , 11/10 13:00 🏀 Illawarra Hawks vs Cairns Taipans (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-illawarra-hawks-vs-cairns-taipans-11-10-10422277
+
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/mito-hollyhock.png" group-title="Giờ Vàng" , 11/10 13:00 ⚽ Mito Hollyhock vs Shimizu S-Pulse (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-mito-hollyhock-vs-shimizu-s-pulse-11-10-6ac045c524d46db8705b5a70
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tokyo-verdy.png" group-title="Giờ Vàng" , 11/10 13:00 ⚽ Tokyo Verdy vs Sanfrecce Hiroshima (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-tokyo-verdy-vs-sanfrecce-hiroshima-11-10-6ac045c524d46db8705b5a9c
