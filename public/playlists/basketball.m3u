@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 13:16:46 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:18:43 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (19 trận), Xôi Lạc (19 trận), Xôi Gấc (4 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (19 trận), Xôi Lạc (20 trận), Xôi Gấc (4 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a2ba5e8d224376506856ad5dd34de831.png" group-title="Giờ Vàng" , 10/10 12:00 🟢 🏀 Jeonju KCC Egis vs Wonju Dongbu Promy (Giovang 1)
@@ -12,11 +12,16 @@ https://ftlh5sc02iliv.vcdn.cloud/1791535555_hd/1791535555_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjdwr8k0/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 🏀 Busan KCC Egis vs Wonju Dongbu Promy (HD TOMMY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791612939-0-0-3aab61d3d040b3c6e3bf9f3180c07066
+https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791613059-0-0-2ae2a6f0329f5e1ddb8e3983283bcaf1
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/1105.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 🏀 KCC Egis vs Wonju DB (BLV The Flash)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791627339&signature=2LMORlA7t24N-EuJzPMEWTzI8r_VecOBQh13ufEwk-E
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791627458&signature=bUoOkBDubLmRiR_y2sPZ2n2wZZuzgEOfCt1dEl15Fbc
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🟢 🏀 Nagasaki Velca vs Gunma Crane Thunders (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=2a530b01825f516c45ce43a3616ab944&wsABSTime=1791656320
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
