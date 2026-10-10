@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:28:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:30:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (34 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (33 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (NGƯỜI KIẾN)
@@ -16,10 +16,7 @@ https://playback.livetl002.com/live/6a704ad865997681f18c2160.m3u8|User-Agent=Moz
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Gà Vàng" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (SiêU QuậY)
 https://playback.livetl002.com/live/6a2a59b347bbddd62a8dc4e4.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8e93da8386dc5b378446762993400ca7.png" group-title="Gà Vàng" , 10/10 14:30 🟡 🏀 Ulsan Mobis Phoebus vs Daegu KOGAS Pegasus (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fb957ad093d309e8c337aeb83ebe7857.png" group-title="Gà Vàng" , 10/10 15:30 🏀 South East Melbourne Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fb957ad093d309e8c337aeb83ebe7857.png" group-title="Gà Vàng" , 10/10 15:30 🟡 🏀 South East Melbourne Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/d6f5debc456da1119256ab66462ab510.png" group-title="Gà Vàng" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)

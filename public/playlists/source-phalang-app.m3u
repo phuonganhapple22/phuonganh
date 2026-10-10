@@ -1,5 +1,5 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:28:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:30:53 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Phá Làng (108 trận) =====
 
@@ -10,13 +10,13 @@ https://lilive1.eu.cc/live/9e26fe8bcffdc347e877201e1128044d/playlist.m3u8|User-A
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Phá Làng" , 10/10 13:00 🟢 ⚽ FC Tokyo - Urawa Red Diamonds (Server 1)
 https://lilive1.eu.cc/live/556a4fd5e55cd47a221ecf26b63cfebe/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-vjxm8gheol9jr6o&Origin=https://phalang2.live
 
-#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Phá Làng" , 10/10 14:30 🟡 ⚽ Gimcheon Sangmu Football Club - FC Anyang (Chưa có link — chờ cập nhật)
-https://phalang2.live/trang-chu#n54qllhn7e3eqvy
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Phá Làng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu Football Club - FC Anyang (Server 1)
+https://lilive1.eu.cc/live/d24817336c3cbbde5b6415b2fedb2274/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/gimcheon-sangmu-football-club-vs-fc-anyang-n54qllhn7e3eqvy&Origin=https://phalang2.live
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟡 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#965mkyh8l5kxr1g
 
-#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 15:30 ⚽ Dong Tam Long An - Quang Ninh (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 15:30 🟡 ⚽ Dong Tam Long An - Quang Ninh (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#y39mp1h67okjmoj
 
 #EXTINF:-1 tvg-logo="https://img0.aiscore.com/volleyball/team/30a8757bc201fed57fcb779c30bb14db.png!w80" group-title="Phá Làng" , 10/10 16:00 🏐 Hisamitsu Springs Nữ - Body Queenseis Nữ (Chưa có link — chờ cập nhật)
