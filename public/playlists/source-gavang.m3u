@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:58:38 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:00:26 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (40 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (39 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/c5d75265caa6875d9ea84f36027312d5.png" group-title="Gà Vàng" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (cố tư nghiêm)
@@ -13,9 +13,6 @@ https://playback.livetl002.com/live/69a1aaa7230584579e2d5ce1.m3u8
 #EXTVLCOPT:http-referrer=https://gavanglinkv.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://playback.livetl002.com/live/69b8e6f43bcf2231c35d5144.m3u8
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/truc-tiep/tigres-uanl-vs-toluca-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 ⚽ FC Seoul vs Jeju SK FC (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/fc-seoul-vs-jeju-sk-fc-ngay-10-10-2026/

@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:58:38 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:00:26 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Phá Làng (83 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Phá Làng (85 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Phá Làng" , 10/10 12:00 ⚽ FC Seoul - Jeju SK FC (Chưa có link — chờ cập nhật)
@@ -253,3 +253,9 @@ https://phalang2.live/trang-chu#pxwrxlhy3n43ryk
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f0efbe4997e2d984d419c3ea8b15ffbb.png" group-title="Phá Làng" , 11/10 00:30 ⚽ Austria Vienna - Sturm Graz (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#2y8m4zh59n24ql0
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/07a555616afab7be32e00150eacf4197.png" group-title="Phá Làng" , 11/10 01:00 ⚽ Al Hilal - Al Ittihad (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dj2ryohlo3x5q1z
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/622951cb622289cb656f2a1a05edcb13.png" group-title="Phá Làng" , 11/10 01:00 ⚽ Fortuna Sittard - FC Twente Enschede (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l7oqdehgze4jr51
