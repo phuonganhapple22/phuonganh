@@ -4,6 +4,11 @@ on:
   # Cho phep bam tay "Run workflow" tren tab Actions de test ngay, khong
   # can doi lich cron 2 phut.
   workflow_dispatch:
+    inputs:
+      ignore_quiet_hours:
+        description: 'Chay luon ca trong khung gio nghi (3h-6h sang gio VN) - chi cho lan bam tay nay'
+        type: boolean
+        default: false
   # FIX (24/09/2026 - "khi thay doi file muon dung workflow ngay de chay lai
   # lan moi"): truoc day chi push sua data/sources.json moi kich hoat. Gio
   # push vao main o BAT KY file nao (tru public/playlists/** - do chinh bot
@@ -28,6 +33,9 @@ on:
     # tieng/lan, khop voi MAX_RUNTIME_MINUTES ben duoi) - phong khi buoc tu
     # kich hoat lai bi loi (het han token, loi mang,...) thi van co nguoi
     # bat lai, khong de dut han day chuyen.
+    # KHUNG GIO NGHI (10/10/2026): 23:00 UTC = 06:00 sang gio VN - mo lai chuoi sau khung nghi 3h-6h.
+    # (GitHub co the tre vai chuc phut; neu tre qua thi luoi du phong '0 */6' luc 00:00 UTC = 07:00 VN se bat lai.)
+    - cron: '0 23 * * *'
     - cron: '0 */6 * * *'  # luoi du phong, giao ~6 tieng/lan - vong lap that nam trong tung job (xem env MAX_RUNTIME_MINUTES)
 
 # Dam bao chi 1 job dang chay tai 1 thoi diem. FIX (24/09/2026 - "khi thay doi
@@ -52,6 +60,14 @@ on:
 # dang chay nua - no chay 1 job "gate" rat nhe (rieng 1 nhom concurrency) doc co trong
 # commit vua push: "on" -> goi workflow_dispatch de chay lai (huy job cu nhu truoc),
 # "off" -> bo qua, job dang chay giu nguyen. Vong lap trong script cung ton trong co nay.
+# KHUNG GIO NGHI (10/10/2026 - "3h-6h sang gio VN it tran, khong can chay 24/24"): trong khung nay job
+# vong lap TU DUNG (script) va workflow khong mo job moi (job `window` ben duoi kiem tra gio VN truoc khi
+# cai dat gi). Doi gio: sua 2 so duoi day; muon TAT khung nghi: de rong ''. Bam tay "Run workflow" co o
+# tick `ignore_quiet_hours` de chay vuot khung gio cho rieng lan do.
+env:
+  QUIET_START_HOUR_VN: ${{ inputs.ignore_quiet_hours == true && 'off' || '3' }}
+  QUIET_END_HOUR_VN: ${{ inputs.ignore_quiet_hours == true && 'off' || '6' }}
+
 concurrency:
   group: ${{ github.event_name == 'push' && 'generate-playlists-gate' || 'generate-playlists-loop' }}
   cancel-in-progress: ${{ github.event_name != 'schedule' }}
@@ -86,8 +102,34 @@ jobs:
           done
           echo "::error::Khong goi duoc workflow_dispatch"; exit 1
 
-  generate:
+  # Kiem tra khung gio nghi (rat nhe, ~10 giay) TRUOC khi cai Node/Chrome - ngoai khung moi chay job that.
+  window:
     if: ${{ github.event_name != 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      quiet: ${{ steps.w.outputs.quiet }}
+    steps:
+      - id: w
+        name: Kiem tra khung gio nghi (gio VN)
+        run: |
+          S="${QUIET_START_HOUR_VN}"; E="${QUIET_END_HOUR_VN}"
+          H=$((10#$(TZ=Asia/Ho_Chi_Minh date +%H)))
+          quiet=false
+          if [[ "$S" =~ ^[0-9]{1,2}$ && "$E" =~ ^[0-9]{1,2}$ && "$S" != "$E" ]]; then
+            S=$((10#$S)); E=$((10#$E))
+            if [ "$S" -lt "$E" ]; then
+              if [ "$H" -ge "$S" ] && [ "$H" -lt "$E" ]; then quiet=true; fi
+            else
+              if [ "$H" -ge "$S" ] || [ "$H" -lt "$E" ]; then quiet=true; fi
+            fi
+          fi
+          echo "Gio VN hien tai: ${H}h | khung nghi: '${S}'-'${E}' | quiet=${quiet}"
+          echo "quiet=${quiet}" >> "$GITHUB_OUTPUT"
+
+  generate:
+    needs: window
+    if: ${{ github.event_name != 'push' && needs.window.outputs.quiet != 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 358 # FIX (06/10/2026): gioi han cung cua GitHub la 360 phut/job. Script dung som o MAX_RUNTIME_MINUTES (tinh tu DAU JOB) de con ~20 phut du cho chu ky cuoi + goi API kich hoat job ke tiep
     permissions:
