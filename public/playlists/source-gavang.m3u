@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:58:54 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:00:44 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (40 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (38 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (SiêU QuậY)
@@ -9,25 +9,19 @@
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://playback.livetl002.com/live/6a2a59b347bbddd62a8dc4e4.m3u8
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Gà Vàng" , 10/10 13:00 🟡 ⚽ FC Tokyo vs Urawa Red Diamonds (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-ngay-10-10-2026/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Gà Vàng" , 10/10 13:00 🟡 ⚽ Avispa Fukuoka vs Fagiano Okayama (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-ngay-10-10-2026/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/f7ad4ca154d205eb1799c5a1d1ff3370.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/f7ad4ca154d205eb1799c5a1d1ff3370.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/9b17d2feb1397b99fa0530fba4c7385b.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Ningbo Rockets vs Jiangsu Dragons Kentier (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/9b17d2feb1397b99fa0530fba4c7385b.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Ningbo Rockets vs Jiangsu Dragons Kentier (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fd94971d5354c254a48249ad402cfb92.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shandong Hi-Speed Kirin vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fd94971d5354c254a48249ad402cfb92.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Shandong Hi-Speed Kirin vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Gà Vàng" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)

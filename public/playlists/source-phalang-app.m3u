@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:58:54 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:00:44 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Phá Làng (106 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Phá Làng (109 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Phá Làng" , 10/10 12:00 🟢 ⚽ FC Seoul - Jeju SK FC (Server 1)
@@ -10,11 +10,11 @@ https://lilive1.eu.cc/live/feaa886976cd1a1b110157619c8ffbaf/playlist.m3u8|User-A
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="Phá Làng" , 10/10 12:00 🟢 ⚽ Cerezo Osaka - Yokohama F. Marinos (Server 1)
 https://lilive1.eu.cc/live/84ccb65e0d28d0b92f8878db0315e32e/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/cerezo-osaka-vs-yokohama-f-marinos-jw2r09hkd20yrz8&Origin=https://phalang2.live
 
-#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Phá Làng" , 10/10 13:00 🟡 ⚽ Avispa Fukuoka - Fagiano Okayama (Chưa có link — chờ cập nhật)
-https://phalang2.live/trang-chu#ednm9whwl7x2ryo
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Phá Làng" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka - Fagiano Okayama (Server 1)
+https://lilive1.eu.cc/live/9e26fe8bcffdc347e877201e1128044d/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-ednm9whwl7x2ryo&Origin=https://phalang2.live
 
-#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Phá Làng" , 10/10 13:00 🟡 ⚽ FC Tokyo - Urawa Red Diamonds (Chưa có link — chờ cập nhật)
-https://phalang2.live/trang-chu#vjxm8gheol9jr6o
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Phá Làng" , 10/10 13:00 🟢 ⚽ FC Tokyo - Urawa Red Diamonds (Server 1)
+https://lilive1.eu.cc/live/556a4fd5e55cd47a221ecf26b63cfebe/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-vjxm8gheol9jr6o&Origin=https://phalang2.live
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Phá Làng" , 10/10 14:30 ⚽ Gimcheon Sangmu Football Club - FC Anyang (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#n54qllhn7e3eqvy
@@ -322,3 +322,12 @@ https://phalang2.live/trang-chu#4jwq2ghnyvjkm0v
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/67256285f216103ea32ac92ea66cc6e3.jfif" group-title="Phá Làng" , 11/10 02:50 ⚽ F.C. Nouadhibou - Nouakchott Academie (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#4jwq2ghgojwem0v
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/438c7bb1094785a397b98eaee7bb34b4.png" group-title="Phá Làng" , 11/10 04:00 ⚽ Panama Women - New Zealand Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dn1m1gh9vd92moe
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f110dc3a4406e67ecbc46511a7ea83f7.png" group-title="Phá Làng" , 11/10 04:00 ⚽ Vasco da Gama Saf - RJ - Remo - PA (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l5ergph4lopyr8k
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/fc2983212373493c10636dc641310eea.png" group-title="Phá Làng" , 11/10 04:00 ⚽ International San Carlos - Municipal Pérez Zeledón (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#n54qllhnyzj6qvy
