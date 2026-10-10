@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:44:40 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 12:46:52 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (18 trận), Phá Làng (104 trận), Gà Vàng (21 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (18 trận), Xôi Lạc (3 trận), Xôi Gấc (29 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (18 trận), Phá Làng (104 trận), Gà Vàng (21 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (18 trận), Xôi Lạc (3 trận), Xôi Gấc (30 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (SiêU QuậY)
@@ -35,20 +35,20 @@ https://live2.zktsva.app/live/304565.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phd18m2wd/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 ⚽ Seoul FC vs Jeju SK FC (HD FABIO)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-2.flv?auth_key=3000001791611015-0-0-3f22473954657f95482daffcfff9854c
+https://live2.domaincdn.cc/livecdn/channel-2.flv?auth_key=3000001791611135-0-0-4477330a30413f4ae5d4ac66dde5c2e4
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/d23xmvkhjdzqg8n/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama Marinos (HD ASTRA)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-11.flv?auth_key=3000001791611015-0-0-9d055afd22f6d9a8eb8fd074e609ecf5
+https://live2.domaincdn.cc/livecdn/channel-11.flv?auth_key=3000001791611135-0-0-72ea433d2f5caf8c1f8f4babfe8d272b
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (BLV Iron Man)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791625415&signature=3lrxn5VjxX0eUHk5QRlV81Kx8nTWJevq__woRC-jO5A
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791625535&signature=7eDnL1F0T_nzNEe_-K6qmEj8VmIPFM21HInELmy84Dg
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (BLV Phan Pepsi)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791625415&signature=JQewoQYPLuOwHMxads35fyCtJn9VA7FMhx6AcRs7TVI
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791625535&signature=D7z3R7pheFR_gt8W7zvEz3qQ4N33uLUs8EZNwNmJYJ4
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/avispa-fukuoka.png" group-title="Giờ Vàng" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Okayama FC (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -77,6 +77,9 @@ https://gavanglinkv.tv/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-ngay-10-10-20
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟡 ⚽ Avispa Fukuoka vs Fagiano Okayama (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-luc-1300-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟡 ⚽ FC Tokyo vs Urawa (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-tokyo-vs-urawa-id336750/groot
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 ⚽ Gimcheon Sangmu vs FC Anyang (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-gimcheon-sangmu-vs-fc-anyang-10-10-6abef44024d46db8709078f4
@@ -829,8 +832,8 @@ https://xoigac.top/club-america-vs-monterrey-id338549/joker-2
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/2e8e1e2a893d37e3f7260e97c807c28a.png" group-title="GaVang33" , 11/10 12:00 ⚽ Gwangju Football Club vs Ulsan HD FC (Chưa có link — chờ cập nhật)
 https://gavang33.me/truc-tiep/gwangju-football-club-vs-ulsan-hd-fc-luc-1200-ngay-11-10-2026-pxwrxlhy51y0ryk
 
-#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2759.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ Gwangju FC vs Ulsan Hyundai FC (Chưa có link — chờ cập nhật)
-https://xoigac.top/gwangju-fc-vs-ulsan-hyundai-fc-id338553/groot
-
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/301.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ JEF United Chiba vs V-varen Nagasaki (Chưa có link — chờ cập nhật)
 https://xoigac.top/jef-united-chiba-vs-v-varen-nagasaki-id338560/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2759.webp" group-title="Xôi Gấc" , 11/10 12:00 ⚽ Gwangju FC vs Ulsan Hyundai FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/gwangju-fc-vs-ulsan-hyundai-fc-id338553/groot
