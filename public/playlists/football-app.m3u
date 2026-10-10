@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 10:28:29 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:30:30 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (27 trận), Chuối Chiên (19 trận), Phá Làng (84 trận), Gà Vàng (19 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (29 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (27 trận), Chuối Chiên (19 trận), Phá Làng (88 trận), Gà Vàng (19 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (29 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/c5d75265caa6875d9ea84f36027312d5.png" group-title="Gà Vàng" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (cố tư nghiêm)
@@ -23,10 +23,10 @@ https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.
 https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://live.chuoichien.tv/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk9g2ryox/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (HD FILIP)
-https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791602843-0-0-2befc6db1a7e76761763c2fcabb37c45|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791602963-0-0-94ed26e42eabf034217f5a7cc781eae5|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (BLV Iron Man)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791617243&signature=9EffCKf-X2yZ_8aFDWsAqyV2nQKdzRUnm5J96hKKNpM|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791617363&signature=pIPuUCVqDawucKAmQZZ1iqvFY6oYWvNhvkK9Arhu49k|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-fc-seoul-vs-jeju-united-fc-10-10-6abef43f24d46db87090787b
@@ -634,6 +634,18 @@ https://gavang33.me/truc-tiep/al-hilal-vs-al-ittihad-luc-0100-ngay-11-10-2026-dj
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2932.webp" group-title="Xôi Gấc" , 11/10 01:00 ⚽ Al-Hilal Saudi FC vs Al-Ittihad FC (Chưa có link — chờ cập nhật)
 https://xoigac.top/al-hilal-saudi-fc-vs-al-ittihad-fc-id338078/phan-dau
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/929fe1b737e458218cbe8ce00a55a05c.png" group-title="Phá Làng" , 11/10 01:30 ⚽ Chicago Fire - New York City Football Club (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhvn89emd7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/895a263ae5237d0edbaf850a907a59b0.png" group-title="Phá Làng" , 11/10 01:30 ⚽ 1. FC Nürnberg - VfL Wolfsburg (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dn1m1ghlzknvmoe
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/8986a59ba835b1362a51cbc3505c9780.png" group-title="Phá Làng" , 11/10 01:30 ⚽ USA Women - Spain Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#k82rekh2zd2xrep
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a413daa882f96b18ddb1f0e8c9dbfda7.png" group-title="Phá Làng" , 11/10 01:30 ⚽ Fotbal Club FCSB - FC Otelul Galati (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzghg94n8q82
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/paris-saint-germain-psg.png" group-title="Giờ Vàng" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-paris-saint-germain-vs-le-mans-11-10-6ab1e5f5e5e6975d550f07b1
