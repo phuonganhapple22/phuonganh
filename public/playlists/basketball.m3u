@@ -1,5 +1,5 @@
 #EXTM3U
-# Cập nhật lần cuối: 13:46:59 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:48:49 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (19 trận), Xôi Lạc (20 trận), Xôi Gấc (4 trận) =====
 
@@ -12,16 +12,16 @@ https://ftlh5sc02iliv.vcdn.cloud/1791535555_hd/1791535555_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjdwr8k0/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 🏀 Busan KCC Egis vs Wonju Dongbu Promy (HD TOMMY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791614742-0-0-ba88068d355279ccdc06f28557e11800
+https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791614862-0-0-868940871140267a2759abbb5b0f9c3a
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/1105.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 🏀 KCC Egis vs Wonju DB (BLV The Flash)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791629142&signature=LyDHT2mx-BdCgNwHdpI26Pi3hV3NFvieaVlLCU-1X-g
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.fFx4fTSOsICL.m3u8?expires=1791629262&signature=0hAbQXrH2rv286K27ikxm850j-PW__zM6QGRGvbZWNM
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🟢 🏀 Nagasaki Velca vs Gunma Crane Thunders (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=7ccfed122df5baabc5b086d04482220a&wsABSTime=1791658004
+https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=8f88d48409ea772a1ee541500f137487&wsABSTime=1791658126
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🟡 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
