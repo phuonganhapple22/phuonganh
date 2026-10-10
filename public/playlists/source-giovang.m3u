@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 15:14:48 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 15:16:47 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (53 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (55 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
@@ -36,6 +36,12 @@ https://pzhgifbkllliv.vcdn.cloud/1791480907_hd/1791480907_hd@720p.m3u8
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/persita-tangerang.png" group-title="Giờ Vàng" , 10/10 15:30 🟡 ⚽ Persita Tangerang vs Garudayaksa (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-persita-tangerang-vs-garudayaksa-10-10-6abef44024d46db87090795f
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmxOmQyZvLlOuNX8TqsRmAJenqFMIQg5shbXiFonS-w&s=10" group-title="Giờ Vàng" , 10/10 16:00 🟡 ⚽ WANG Manyu vs Miwa HARIMOTO (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-wang-manyu-vs-miwa-harimoto-10-10-jdrp8b8c6p5z
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Gb3S_hVBxADavywtKLX_sSpJUrlsxbdBeKq6YIXZqQ&s" group-title="Giờ Vàng" , 10/10 16:00 🟡 🏎️ F1 vs 2026 (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-f1-vs-2026-10-10-89ik6lftyk70
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/dong-tam-long-an.png" group-title="Giờ Vàng" , 10/10 16:00 🟡 ⚽ Đồng Tâm Long An vs Than Quảng Ninh (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-dong-tam-long-an-vs-than-quang-ninh-10-10-6abef44024d46db8709079d4
