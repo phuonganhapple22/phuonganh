@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:02:48 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:04:48 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (42 trận), Chuối Chiên (19 trận), Phá Làng (108 trận), Gà Vàng (34 trận), Sao Kê (17 trận), GaVang33 (37 trận), Bông Lau (19 trận), Xôi Lạc (48 trận), Xôi Gấc (34 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (41 trận), Chuối Chiên (19 trận), Phá Làng (108 trận), Gà Vàng (34 trận), Sao Kê (17 trận), GaVang33 (36 trận), Bông Lau (19 trận), Xôi Lạc (48 trận), Xôi Gấc (34 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -17,12 +17,7 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/3glrw2fov1krdyj/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Camilo Ugo Carabelli vs Felix Auger Aliassime (HD VIC)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791615703-0-0-bc4b0f3aaaae1b8d904f02c780146df0
-
-#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://ftlh5sc02iliv.vcdn.cloud/1791535457_hd/1791535457_hd@720p.m3u8
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791615822-0-0-b63a4ff8a30e90a5c0dc166d43220f8e
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (NGƯỜI KIẾN)
 #EXTVLCOPT:http-referrer=https://gavanglinkv.tv/
@@ -37,15 +32,6 @@ https://playback.livetl002.com/live/6a0c7c4b1ae4d6db02433c48.m3u8
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="GaVang33" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (Gà Siêu Son)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://live2.zktsva.app/live/306290.m3u8
-
-#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ad010af729c420626d1865ad744168d3.png" group-title="GaVang33" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (Gà Siêu Quỷ)
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.zktsva.app/live/304565.m3u8
-
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjdwr8k0/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 🏀 Busan KCC Egis vs Wonju Dongbu Promy (HD TOMMY)
-#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791615703-0-0-85163f72f4b06e251abc363862faf2a6
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/avispa-fukuoka.png" group-title="Giờ Vàng" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Okayama FC (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -83,26 +69,26 @@ https://live2.zktsva.app/live/301263.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (HD FELIX)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791615703-0-0-4f46597c0a6862035d1cb602997c218c
+https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791615822-0-0-61a8ba18471a4c56e36979cd0d6ca766
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hd6jqo9j/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa Red (HD BRADY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791615703-0-0-e4fca942c32b3ea08278fe1c66e036d0
+https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791615822-0-0-12c0f142cc8f42c1c122226867c50a3c
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791630103&signature=nhTsv7OHYahu1td6ZHG16pOuAn_HZEw5yiNUV495eUo
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791630223&signature=ZUBgANuKwTHe37RYr1QqWSZZ_CpG3vz5wncZrWcFQ00
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🟢 🏀 Nagasaki Velca vs Gunma Crane Thunders (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=a594654453b16f3388e717786009be41&wsABSTime=1791658965
+https://live1.quickscoreboardz.com/live/channel41.flv?wsSecret=0b8ef25c0c2d0e8a018996264782c5ab&wsABSTime=1791659085
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5of0678mwzv/image/small" group-title="Xôi Lạc" , 10/10 13:15 🟢 🎾 Matteo Arnaldi vs Taylor Fritz (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=51090d6e56338c0bc39014ab0cf1511c&wsABSTime=1791658965
+https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=d0081198e42ffbc699e4ee51c9dbcba5&wsABSTime=1791659085
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ncDnFmzB-xE40e4KN.png" group-title="Giờ Vàng" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -1014,6 +1000,9 @@ https://giovang.tax/truc-tiep-toronto-raptors-vs-los-angeles-clippers-11-10-2702
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/e299ddecec93dc5c8db83b1761e2fa1f.png" group-title="Gà Vàng" , 11/10 05:30 🏀 Toronto Raptors vs Los Angeles Clippers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/9dn1m17tdl0moep/image/small" group-title="Xôi Lạc" , 11/10 05:30 🏀 Toronto Raptors vs Los Angeles Clippers (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/toronto-raptors-vs-los-angeles-clippers-luc-0530-ngay-11-10-2026/
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/f4a3bba0c74c9f2b90bc5861ec26e3c7.png" group-title="Giờ Vàng" , 11/10 06:00 🏀 Washington Wizards vs Detroit Pistons (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-washington-wizards-vs-detroit-pistons-11-10-22912475
