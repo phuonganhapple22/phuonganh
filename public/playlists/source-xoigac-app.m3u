@@ -1,11 +1,11 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:20:50 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:23:02 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (34 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791631185&signature=PmIlzZzhjcheQK6mV_yCAqlY-mrKA93--UY_irysnx4|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791631305&signature=oX78ALGYMuS16x6Bhu-L1tckreteXN4SOoWNU3qBXOo|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟡 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
 https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
