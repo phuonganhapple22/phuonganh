@@ -711,6 +711,25 @@ async function runCycle() {
   return ok;
 }
 
+// KHUNG GIỜ NGHỈ (10/10/2026 — "ngừng chạy 3h-6h sáng giờ VN vì ít trận, tránh chạy 24/24"): trong khung
+// [QUIET_START_HOUR_VN, QUIET_END_HOUR_VN) theo giờ Việt Nam, vòng lặp DỪNG HẲN (job kết thúc, không tự nối job
+// mới) và workflow cũng không mở job mới (xem job `window` trong validate-and-generate.yml). Chạy lại lúc hết
+// khung nhờ lịch cron 06:00 VN trong workflow. Đặt 1 trong 2 biến thành rỗng/"off" để TẮT khung nghỉ.
+// Chỉ có tác dụng khi chạy trong GitHub Actions (AUTO_COMMIT) — chạy local không bị chặn.
+function isQuietAt(timeMs) {
+  if (!AUTO_COMMIT) return false;
+  const rawS = process.env.QUIET_START_HOUR_VN;
+  const rawE = process.env.QUIET_END_HOUR_VN;
+  if (!/^\d{1,2}$/.test(rawS || '') || !/^\d{1,2}$/.test(rawE || '')) return false;
+  const start = Number(rawS);
+  const end = Number(rawE);
+  if (start > 23 || end > 23 || start === end) return false;
+  const hour = Number(
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', hourCycle: 'h23' }).format(new Date(timeMs))
+  );
+  return start < end ? hour >= start && hour < end : hour >= start || hour < end; // hỗ trợ cả khung qua nửa đêm
+}
+
 async function main() {
   if (isWatchMode()) {
     ensureGitIdentity();
@@ -733,6 +752,13 @@ async function main() {
       // triggerSelfRestart() lẫn vòng lặp kế tiếp. Bọc try/catch NGAY VÒNG
       // LẶP để 1 chu kỳ lỗi chỉ bị bỏ qua (giống hệt cách runCycle() đã tự
       // bảo vệ commitAndPush()), tiến trình vẫn sống tiếp tới chu kỳ sau.
+      if (isQuietAt(Date.now())) {
+        console.log(
+          `[generate-playlists] Đang trong khung giờ nghỉ (${process.env.QUIET_START_HOUR_VN}h–${process.env.QUIET_END_HOUR_VN}h giờ VN) — ` +
+          'dừng vòng lặp, KHÔNG tự nối job mới. Sẽ chạy lại khi hết khung giờ nghỉ (lịch cron 06:00 VN).'
+        );
+        break;
+      }
       const cycleStartedAt = Date.now();
       try {
         await runCycle();
@@ -753,7 +779,11 @@ async function main() {
           `[generate-playlists] Đã chạy ${Math.round(elapsedMs / 60000)} phút (tính từ đầu job) — dừng vòng lặp trong job này ` +
           `để tránh chạm giới hạn 6 tiếng/job của GitHub Actions.`
         );
-        await triggerSelfRestart();
+        if (isQuietAt(Date.now() + 8 * 60 * 1000)) {
+          console.log('[generate-playlists] Sắp tới khung giờ nghỉ (trong ~8 phút) — không nối job mới, dừng hẳn tới hết khung giờ nghỉ.');
+        } else {
+          await triggerSelfRestart();
+        }
         break;
       }
 
