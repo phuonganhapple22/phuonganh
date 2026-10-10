@@ -1,19 +1,9 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:54:54 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:57:00 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (30 trận), Chuối Chiên (18 trận), Phá Làng (106 trận), Gà Vàng (20 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (18 trận), Xôi Lạc (4 trận), Xôi Gấc (31 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (NGƯỜI KIẾN)
-#EXTVLCOPT:http-referrer=https://gavanglinkv.tv/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://playback.livetl002.com/live/6a439a7fb89dded67b208b87.m3u8
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="Gà Vàng" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama Marinos (Cá MậP)
-#EXTVLCOPT:http-referrer=https://gavanglinkv.tv/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://playback.livetl002.com/live/6a0c7c4b1ae4d6db02433c48.m3u8
-
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/avispa-fukuoka.png" group-title="Giờ Vàng" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Okayama FC (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
@@ -50,16 +40,16 @@ https://live2.zktsva.app/live/301263.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ Avispa Fukuoka vs Fagiano Okayama (HD FELIX)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791618828-0-0-f5eaa6b490b6d89e9d246e3ff76f5967
+https://live2.domaincdn.cc/livecdn/channel-24.flv?auth_key=3000001791618940-0-0-6d994a7964b6c5cab1a11601bd9a565c
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hd6jqo9j/image/small" group-title="Xôi Lạc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa Red (HD BRADY)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791618828-0-0-7221db684a9d011c8d005349ed39cf71
+https://live2.domaincdn.cc/livecdn/channel-15.flv?auth_key=3000001791618940-0-0-e5de4fb42e4ca83d5a3b9d46be09ecd4
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 🟢 ⚽ FC Tokyo vs Urawa (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633228&signature=UroD-twQj_UwLLKC2LTtVo5sc0UYNOUd-DRYbhcGRBU
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.YNapsL82glqr.m3u8?expires=1791633333&signature=bKXo6R189jCJkGIk2hYjLZvX78T34Ykh1TH2i3GMAdc
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -71,6 +61,11 @@ https://ftlh5sc02iliv.vcdn.cloud/1791535992_hd/1791535992_hd@720p.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://lilive1.eu.cc/live/d24817336c3cbbde5b6415b2fedb2274/playlist.m3u8
 
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Gà Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (SÚP LƠ)
+#EXTVLCOPT:http-referrer=https://gavanglinkv.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl002.com/live/6a9a5525864ea536c2577392.m3u8
+
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="GaVang33" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu Football Club vs FC Anyang (Gà Siêu Kiêu)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://live2.zktsva.app/live/741294.m3u8
@@ -78,11 +73,11 @@ https://live2.zktsva.app/live/741294.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (HD MAX)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791618828-0-0-0bc6e2ae546103f463e286f8d7717162
+https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791618939-0-0-98eab21f2b5f8a9b6de7cf637ea6c590
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633228&signature=cOsbjyCxA15-rXONau8MJyxwHsOptqdowuxzaXNJT2A
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791633339&signature=FXtdTwGh8d9rsRK4jbvsxA_7yYuZF23suOhVmxvxrMU
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟡 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#965mkyh8l5kxr1g
@@ -95,6 +90,9 @@ https://giovang.tax/truc-tiep-persita-tangerang-vs-garudayaksa-10-10-6abef44024d
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 15:30 🟡 ⚽ Dong Tam Long An - Quang Ninh (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#y39mp1h67okjmoj
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/3728683390847f335552d077cf0b8752.png" group-title="Gà Vàng" , 10/10 15:35 🟡 ⚽ South Melbourne vs Melbourne Victory (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/south-melbourne-vs-melbourne-victory-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/dong-tam-long-an.png" group-title="Giờ Vàng" , 10/10 16:00 ⚽ Đồng Tâm Long An vs Than Quảng Ninh (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-dong-tam-long-an-vs-than-quang-ninh-10-10-6abef44024d46db8709079d4
