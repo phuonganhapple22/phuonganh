@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 14:11:01 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 14:12:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (41 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (42 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -127,3 +127,6 @@ https://giovang.tax/truc-tiep-inter-miami-vs-washington-d-c-united-11-10-6ac045c
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/new-york-red-bulls.png" group-title="Giờ Vàng" , 11/10 06:30 ⚽ New York Red Bulls vs San Diego FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-new-york-red-bulls-vs-san-diego-fc-11-10-6ac045c424d46db8705b569a
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/43ebb4d6ad3ea5b68e9b1c969dff055b.png" group-title="Giờ Vàng" , 11/10 07:00 🏀 Miami Heat vs Minnesota Timberwolves (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-miami-heat-vs-minnesota-timberwolves-11-10-15022278
