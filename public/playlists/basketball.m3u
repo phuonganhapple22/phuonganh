@@ -1,14 +1,9 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:04:33 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:06:31 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (3 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/cbf9424df17d6e06d655dca78651d329.png" group-title="Giờ Vàng" , 10/10 08:30 🟢 🏀 Las Vegas Aces vs Golden State Valkyries (Giovang 1)
-#EXTVLCOPT:http-referrer=https://giovang.tax/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://ftlh5sc02iliv.vcdn.cloud/1791534163_hd/1791534163_hd@720p.m3u8
-
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a2ba5e8d224376506856ad5dd34de831.png" group-title="Giờ Vàng" , 10/10 12:00 🟡 🏀 Jeonju KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-jeonju-kcc-egis-vs-wonju-dongbu-promy-10-10-22850375
 
@@ -132,6 +127,9 @@ https://xoilacxbr.tv/truc-tiep/rostock-seawolves-vs-wurzburg-luc-2330-ngay-10-10
 # ----- Ngày 2026-10-11 -----
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjxjr8k0/image/small" group-title="Xôi Lạc" , 11/10 01:00 🏀 Gladiators Trier vs Alba Berlin (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/gladiators-trier-vs-alba-berlin-luc-0100-ngay-11-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/GnMnvHhl-UNsdztR4.png" group-title="Giờ Vàng" , 11/10 02:00 🏀 Breogan vs Basquet Girona (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-breogan-vs-basquet-girona-11-10-9zqzevirhl7n
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/d23xmv1tzl3mg8n/image/small" group-title="Xôi Lạc" , 11/10 02:00 🏀 Crvena Zvezda vs KK Buducnost (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/crvena-zvezda-vs-kk-buducnost-luc-0200-ngay-11-10-2026/
