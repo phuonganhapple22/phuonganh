@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 13:04:43 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:06:43 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (4 trận), Xôi Lạc (18 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (4 trận), Xôi Lạc (17 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -17,30 +17,27 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/3glrw2fov1krdyj/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Camilo Ugo Carabelli vs Felix Auger Aliassime (HD VIC)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791612217-0-0-6f70f554d0be5c2882af485ab4254dab
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791612338-0-0-39b278efabc0c2eb67f0de0bfa76c631
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/dn1m12f1n4nqoep/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Daniil Medvedev vs Jan-Lennard Struff (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel54.flv?wsSecret=accf98bafa50a6803617e2ba0837820e&wsABSTime=1791655481
+https://live1.quickscoreboardz.com/live/channel54.flv?wsSecret=852ba71fbc95083342e3921e0722ec18&wsABSTime=1791655600
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/1l4rjwf3024m7vx/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Thiago Agustin Tirante vs Rafael Jodar (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel55.flv?wsSecret=07899f7e7a766ba241490cad4aaec5ea&wsABSTime=1791655481
+https://live1.quickscoreboardz.com/live/channel55.flv?wsSecret=31e5ea9bf65367e5d0446b584a4709f5&wsABSTime=1791655600
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/jw2r0jfwy7nmz84/image/small" group-title="Xôi Lạc" , 10/10 11:30 🟢 🎾 Taylah Preston vs Ashlyn Krueger (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel56.flv?wsSecret=9dfdff9743048440e47c162ed272b2bd&wsABSTime=1791655481
+https://live1.quickscoreboardz.com/live/channel56.flv?wsSecret=980479ba0dae1340310d99df6827e83e&wsABSTime=1791655600
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/4wyrnjf4w6eq86p/image/small" group-title="Xôi Lạc" , 10/10 11:40 🟢 🎾 Elena-Gabriela Ruse vs Yulia Putintseva (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel57.flv?wsSecret=5950196c7be091f74172f633392eb9bf&wsABSTime=1791655481
-
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyf5lxkmojx/image/small" group-title="Xôi Lạc" , 10/10 13:05 🟡 🎾 Yuan Yue vs Caty Mcnally (Chưa có link — chờ cập nhật)
-https://xoilacxbr.tv/truc-tiep/yuan-yue-vs-caty-mcnally-luc-1305-ngay-10-10-2026/
+https://live1.quickscoreboardz.com/live/channel57.flv?wsSecret=4bca895891956b3958dd42e5d250b08b&wsABSTime=1791655600
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/dn1m12fez55qoep/image/small" group-title="Xôi Lạc" , 10/10 13:30 🟡 🎾 Mananchaya Sawangkaew vs Maya Joint (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/mananchaya-sawangkaew-vs-maya-joint-luc-1330-ngay-10-10-2026/
