@@ -8,8 +8,9 @@
 name: Daily Squash History
 
 on:
-  schedule:
-    - cron: '30 19 * * *' # 19:30 UTC moi ngay = 02:30 sang hom sau gio VN
+  # (10/10/2026) TAT lich tu dong: bot khong con commit vao main (playlist da sang nhanh `playlists`
+  # luon 1 commit), nen khong con gi can gop moi ngay - va gop se XOA LICH SU CODE cua ban. Chi chay khi
+  # bam tay. Muon bat lai tu dong thi them lai:  schedule: [{ cron: '30 19 * * *' }]
   workflow_dispatch:
 
 concurrency:
