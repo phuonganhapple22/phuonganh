@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:28:35 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:30:37 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (44 trận), Chuối Chiên (20 trận), Phá Làng (104 trận), Gà Vàng (42 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (20 trận), Xôi Lạc (47 trận), Xôi Gấc (31 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (44 trận), Chuối Chiên (20 trận), Phá Làng (105 trận), Gà Vàng (42 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (20 trận), Xôi Lạc (46 trận), Xôi Gấc (31 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Chuối Chiên" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Chuối Kem (FHD))
@@ -26,29 +26,26 @@ https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk9g2ryox/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (HD FILIP)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791606448-0-0-e17e6d84dd409ce95f3b7874e51f15ca
-
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/6ypq3pf413wrd7o/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Ito Aoi vs Alycia Parks (Chưa có link — chờ cập nhật)
-https://xoilacxbr.tv/truc-tiep/ito-aoi-vs-alycia-parks-luc-1000-ngay-10-10-2026/
+https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791606568-0-0-5aeb70300ff2486c3f79c5d8b3a5d493
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfzxjgml07/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Daria Kasatkina vs Viktorija Golubic (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel52.flv?wsSecret=a31ee0303f54627fe3326f0485d62cc4&wsABSTime=1791649712
+https://live1.quickscoreboardz.com/live/channel52.flv?wsSecret=28a99397d60b920838b432c1e5c4c500&wsABSTime=1791649834
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/318q6jf0overo9j/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🎾 Talia Gibson vs Sara Sorribes Tormo (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel53.flv?wsSecret=6aea6e8cfeaa2759709bde7f2f47affa&wsABSTime=1791649712
+https://live1.quickscoreboardz.com/live/channel53.flv?wsSecret=1fd3419431d7b24c56b9b8c842cbe98b&wsABSTime=1791649834
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/j1l4rjdh7lzr7vx/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 🏐 Canberra Heat vs Queensland Pirates (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel80.flv?wsSecret=5ee1bde714ac37e658071d1b509a2537&wsABSTime=1791649712
+https://live1.quickscoreboardz.com/live/channel80.flv?wsSecret=528369d2fe0adaab4ef652cea30c257a&wsABSTime=1791649834
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (BLV Iron Man)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791620848&signature=t19zTIZtLsZZoz0cn_c4O96f02dvg63iZfO-YcHHF_0
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791620968&signature=_NqIh-Y8ST9fZxzdhi4jmItbSPyvXLhBc7K_F9MR8rE
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/0Y20XKDa-0GVPIiRs.png" group-title="Giờ Vàng" , 10/10 11:00 🟢 ⚽ LIN Yun-Ju vs Truls MOREGARD (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -68,17 +65,17 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/3glrw2fov1krdyj/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Camilo Ugo Carabelli vs Felix Auger Aliassime (HD VIC)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791606448-0-0-a49bd3b63ea2c6885102fb600acce16f
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791606568-0-0-231fcd9756b58732ae8c7427c5184463
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/dn1m12f1n4nqoep/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Daniil Medvedev vs Jan-Lennard Struff (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel54.flv?wsSecret=12c5773934e29c08d49131a478130182&wsABSTime=1791649712
+https://live1.quickscoreboardz.com/live/channel54.flv?wsSecret=0670b46a1398786ff12937ed8b85aba0&wsABSTime=1791649834
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/1l4rjwf3024m7vx/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Thiago Agustin Tirante vs Rafael Jodar (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel55.flv?wsSecret=cc5ee9c0f9dbdede5e2498079fe3c1c1&wsABSTime=1791649712
+https://live1.quickscoreboardz.com/live/channel55.flv?wsSecret=9a1274b5ba9526a0e58adb4fb9a629be&wsABSTime=1791649834
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 🟡 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-fc-seoul-vs-jeju-united-fc-10-10-6abef43f24d46db87090787b
@@ -1019,6 +1016,9 @@ https://xoilacxbr.tv/truc-tiep/crvena-zvezda-vs-kk-buducnost-luc-0200-ngay-11-10
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/541.webp" group-title="Xôi Gấc" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
 https://xoigac.top/real-madrid-vs-villarreal-id338100/black-panther
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/54b45952992ecffc33601a8eecc9881e.png" group-title="Phá Làng" , 11/10 02:30 ⚽ Vizela - Sporting CP B (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4jwq2ghnyvjkm0v
 
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bd659fbcfc82ac233cc8e329f35f2b50.png" group-title="GaVang33" , 11/10 02:30 ⚽ Viseu vs Estoril (Chưa có link — chờ cập nhật)
 https://gavang33.me/truc-tiep/viseu-vs-estoril-luc-0230-ngay-11-10-2026-k82rekhgpo17rep

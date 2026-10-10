@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:28:36 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:30:37 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (19 trận), Phá Làng (102 trận), Gà Vàng (22 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (28 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (19 trận), Phá Làng (103 trận), Gà Vàng (22 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (3 trận), Xôi Gấc (28 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Chuối Chiên" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Chuối Kem (FHD))
@@ -17,10 +17,10 @@ https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.
 https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://live.chuoichien.tv/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk9g2ryox/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (HD FILIP)
-https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791606448-0-0-e17e6d84dd409ce95f3b7874e51f15ca|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-19.flv?auth_key=3000001791606568-0-0-5aeb70300ff2486c3f79c5d8b3a5d493|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (BLV Iron Man)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791620848&signature=t19zTIZtLsZZoz0cn_c4O96f02dvg63iZfO-YcHHF_0|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.yrIm1dwESPte.m3u8?expires=1791620968&signature=_NqIh-Y8ST9fZxzdhi4jmItbSPyvXLhBc7K_F9MR8rE|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 🟡 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-fc-seoul-vs-jeju-united-fc-10-10-6abef43f24d46db87090787b
@@ -751,6 +751,9 @@ https://lau06.bonglautv1.org/truc-tiep/1570411
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/541.webp" group-title="Xôi Gấc" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
 https://xoigac.top/real-madrid-vs-villarreal-id338100/black-panther
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/54b45952992ecffc33601a8eecc9881e.png" group-title="Phá Làng" , 11/10 02:30 ⚽ Vizela - Sporting CP B (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4jwq2ghnyvjkm0v
 
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bd659fbcfc82ac233cc8e329f35f2b50.png" group-title="GaVang33" , 11/10 02:30 ⚽ Viseu vs Estoril (Chưa có link — chờ cập nhật)
 https://gavang33.me/truc-tiep/viseu-vs-estoril-luc-0230-ngay-11-10-2026-k82rekhgpo17rep
