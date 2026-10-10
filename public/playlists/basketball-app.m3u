@@ -1,5 +1,5 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:20:32 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:22:47 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (3 trận) =====
 
@@ -19,6 +19,12 @@ https://xoigac.top/kcc-egis-vs-wonju-db-id336352/the-flash
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🏀 Nagasaki Velca vs Gunma Crane Thunders (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/nagasaki-velca-vs-gunma-crane-thunders-luc-1305-ngay-10-10-2026/
 
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/f7ad4ca154d205eb1799c5a1d1ff3370.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
@@ -26,12 +32,6 @@ https://gavanglinkv.tv/
 https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fd94971d5354c254a48249ad402cfb92.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shandong Hi-Speed Kirin vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7t63drvy9/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)

@@ -1,11 +1,11 @@
 #EXTM3U
-# Cập nhật lần cuối: 11:20:32 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 11:22:47 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (38 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Gà Vàng (42 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a98bd615308472b65dc82bcc3a2d54fb.png" group-title="Gà Vàng" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (KAYTI)
-https://playback.livetl002.com/live/69b8e6f43bcf2231c35d5144.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (SiêU QuậY)
+https://playback.livetl002.com/live/6a2a59b347bbddd62a8dc4e4.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 🟡 ⚽ FC Seoul vs Jeju SK FC (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/fc-seoul-vs-jeju-sk-fc-ngay-10-10-2026/
@@ -19,6 +19,12 @@ https://gavanglinkv.tv/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-ngay-10-10-2026/
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Gà Vàng" , 10/10 13:00 ⚽ Avispa Fukuoka vs Fagiano Okayama (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-ngay-10-10-2026/
 
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/f7ad4ca154d205eb1799c5a1d1ff3370.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
@@ -28,17 +34,17 @@ https://gavanglinkv.tv/
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fd94971d5354c254a48249ad402cfb92.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shandong Hi-Speed Kirin vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Gà Vàng" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/gimcheon-sangmu-football-club-vs-fc-anyang-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8e93da8386dc5b378446762993400ca7.png" group-title="Gà Vàng" , 10/10 14:30 🏀 Ulsan Mobis Phoebus vs Daegu KOGAS Pegasus (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fb957ad093d309e8c337aeb83ebe7857.png" group-title="Gà Vàng" , 10/10 15:30 🏀 South East Melbourne Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/3728683390847f335552d077cf0b8752.png" group-title="Gà Vàng" , 10/10 15:35 ⚽ South Melbourne vs Melbourne Victory (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/south-melbourne-vs-melbourne-victory-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/d6f5debc456da1119256ab66462ab510.png" group-title="Gà Vàng" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/arsenal-vs-leeds-united-ngay-10-10-2026/
@@ -72,6 +78,12 @@ https://gavanglinkv.tv/truc-tiep/1-fsv-mainz-05-vs-bayer-04-leverkusen-ngay-10-1
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/7c8c3c50966c793eba910e18659759a1.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ SC Paderborn 07 vs Stuttgart (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/sc-paderborn-07-vs-vfb-stuttgart-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/72ab7862a610b350aef7650ec0e06e06.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ Hoffenheim vs Hamburger SV (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/tsg-hoffenheim-vs-hamburger-sv-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/45ab4c846b0d4df5b002c571b16112dc.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ Union Berlin vs SV Elversberg (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/1-fc-union-berlin-vs-sv-07-elversberg-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a3c32d6a906083118cac2cb796edaab3.png" group-title="Gà Vàng" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/aston-villa-vs-brentford-ngay-10-10-2026/
