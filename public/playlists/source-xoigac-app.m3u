@@ -1,14 +1,14 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:26:39 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 12:28:39 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (31 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (BLV Iron Man)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791624333&signature=zIVOvD5nfduvsEk5jXh1V9P5E0y45iC3USc_XA72iPs|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791624454&signature=1_HByqbQVfTDGlnOGWLFYl19uNPHWAu6k8R-rBtNbSE|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (BLV Phan Pepsi)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791624333&signature=y0fHv38ZgYyVIkrSa8U2mYj9JSbX86z5FSszFSfYnr8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791624454&signature=Vh22evcDs9Bz_OADCCibg6ZNUVYlvGn9qf3W3jB4UdQ|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
 https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
