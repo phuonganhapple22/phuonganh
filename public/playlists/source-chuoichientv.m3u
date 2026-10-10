@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 10:00:26 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 10:02:25 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Chuối Chiên (19 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Chuối Chiên (20 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Chuối Chiên" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Chuối Kem (FHD))
@@ -63,3 +63,6 @@ https://live05.chuoichientv.me/live/1490513/inter-miami-vs-dc-united
 
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131607_798216b4.png" group-title="Chuối Chiên" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
 https://live05.chuoichientv.me/live/1490523/colorado-rapids-vs-san-jose-earthquakes
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133407_faa908b8.png" group-title="Chuối Chiên" , 11/10 10:00 ⚽ Club America vs Monterrey (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550989/club-america-vs-monterrey
