@@ -1,23 +1,26 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:30:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:32:22 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (19 trận), Phá Làng (82 trận), Gà Vàng (20 trận), Sao Kê (18 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (5 trận), Xôi Gấc (30 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (19 trận), Phá Làng (83 trận), Gà Vàng (20 trận), Sao Kê (18 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (5 trận), Xôi Gấc (30 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/c5d75265caa6875d9ea84f36027312d5.png" group-title="Gà Vàng" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (cố tư nghiêm)
 https://playback.livetl002.com/live/69a1aaa7230584579e2d5ce1.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvojwrepz/image/small" group-title="Xôi Lạc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (HD SILVA)
-https://live2.domaincdn.cc/livecdn/channel-20.flv?auth_key=3000001791599358-0-0-3bfc3720753c9fb3b510dc6030a68b43|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-20.flv?auth_key=3000001791599477-0-0-c546b781f5a0b387718b24794f388322|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/441.webp" group-title="Xôi Gấc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (BLV Groot)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613757&signature=mMGNrMLvR20VoRChuKs9Tuu_lQFwN5OXmK6Wbo9mOMY|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613877&signature=7JYHjvLNNJ_w-MTdzvHJNZj6aNvKyppwc-OgTEP7kz4|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/puebla.png" group-title="Giờ Vàng" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (Giovang 1)
 https://ftlh5sc02iliv.vcdn.cloud/1791534860_hd/1791534860_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
 
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133839_09ad8cba.png" group-title="Chuối Chiên" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (Chuối Chao (FHD))
 https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://fhd-01.cctvsignal.xyz/
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/28f1cec7a4eeadd65aba895fe1869c65.png" group-title="Phá Làng" , 10/10 08:00 🟢 ⚽ Mexico Women - Jamaica Women (Server 1)
+https://lilive1.eu.cc/live/2f24e81f191333e06fede38b2a304b50/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/mexico-women-vs-jamaica-women-pxwrxlhlpwy0ryk&Origin=https://phalang2.live
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a98bd615308472b65dc82bcc3a2d54fb.png" group-title="Gà Vàng" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (KAYTI)
 https://playback.livetl002.com/live/69b8e6f43bcf2231c35d5144.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
@@ -32,16 +35,19 @@ https://live2.zktsva.app/live/796315.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.
 https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://live.chuoichien.tv/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kdj2ryoh66gq1zp/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (HD TOM)
-https://live2.domaincdn.cc/livecdn/channel-4.flv?auth_key=3000001791599358-0-0-9dd150db371001a444276a1664e21b82|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-4.flv?auth_key=3000001791599477-0-0-9c5352f16eefff3715645f6d1fa4e5aa|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvvkorepz/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Nữ Mexico vs Nữ Jamaica (HD 1)
-https://live1.quickscoreboardz.com/live/channel15.flv?wsSecret=b906735f03fc0a079841f6364db90f15&wsABSTime=1791642621|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel15.flv?wsSecret=dba37c90d1973555b09c0b069f7cdce4&wsABSTime=1791642740|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2291.webp" group-title="Xôi Gấc" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (BLV Phan Pepsi)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613757&signature=A7fXqLD-jutd9lUEuzHluiq05Zi3A0TUD1pxm6Z-iOA|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613877&signature=fD9sf5dWKq_kXS3V3aSMHjBjVYRCH3_GMX15E1bREgc|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/v2y8m4zhlnvql07/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 ⚽ Nữ El Salvador vs Nữ Paraguay (HD 1)
-https://live1.quickscoreboardz.com/live/channel10.flv?wsSecret=0dcd10b70568fa78b6c1f9b8b248e58e&wsABSTime=1791642621|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live1.quickscoreboardz.com/live/channel10.flv?wsSecret=4bd1afbf66aa1cd50839a61a25df4c69&wsABSTime=1791642740|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Gà Siêu Nhí)
+https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tigres-uanl.png" group-title="Giờ Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-tigres-uanl-vs-toluca-10-10-6abef43f24d46db870907851
@@ -51,9 +57,6 @@ https://live05.chuoichientv.me/live/1550986/tigres-uanl-vs-toluca
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/truc-tiep/tigres-uanl-vs-toluca-ngay-10-10-2026/
-
-#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
-https://gavang33.me/truc-tiep/tigres-uanl-vs-toluca-luc-1000-ngay-10-10-2026-y0or5jh8dol0qwz
 
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Bông Lau" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
 https://lau06.bonglautv1.org/truc-tiep/1550986

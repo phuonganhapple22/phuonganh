@@ -1,5 +1,5 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:30:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:32:22 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — GaVang33 (35 trận) =====
 
@@ -7,8 +7,8 @@
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a98bd615308472b65dc82bcc3a2d54fb.png" group-title="GaVang33" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (Gà Siêu Tồ)
 https://live2.zktsva.app/live/796315.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
-#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
-https://gavang33.me/truc-tiep/tigres-uanl-vs-toluca-luc-1000-ngay-10-10-2026-y0or5jh8dol0qwz
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Gà Siêu Nhí)
+https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ad010af729c420626d1865ad744168d3.png" group-title="GaVang33" , 10/10 12:00 ⚽ FC Seoul vs Jeju SK FC (Chưa có link — chờ cập nhật)
 https://gavang33.me/truc-tiep/fc-seoul-vs-jeju-sk-fc-luc-1200-ngay-10-10-2026-6ypq3nhv3538md7
