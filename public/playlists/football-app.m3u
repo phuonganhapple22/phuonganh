@@ -1,20 +1,11 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:04:37 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 12:06:36 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (19 trận), Phá Làng (103 trận), Gà Vàng (21 trận), Sao Kê (17 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (2 trận), Xôi Gấc (28 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (26 trận), Chuối Chiên (18 trận), Phá Làng (103 trận), Gà Vàng (21 trận), Sao Kê (17 trận), GaVang33 (34 trận), Bông Lau (18 trận), Xôi Lạc (2 trận), Xôi Gấc (29 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Chuối Chiên" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Chuối Kem (FHD))
-https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://fhd-01.cctvsignal.xyz/
-
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (SiêU QuậY)
 https://playback.livetl002.com/live/6a2a59b347bbddd62a8dc4e4.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://gavanglinkv.tv/
-
-#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Gà Siêu Nhí)
-https://live2.zktsva.app/live/301263.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-
-#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Bông Lau" , 10/10 10:00 🟢 ⚽ Tigres UANL vs Toluca (Chuối Kem (FHD))
-https://gckc0525.edgemaxcdn.org/live/chuoikemhd/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://live.chuoichien.tv/
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (Giovang 1)
 https://ftlh5sc02iliv.vcdn.cloud/1791535457_hd/1791535457_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
@@ -22,20 +13,23 @@ https://ftlh5sc02iliv.vcdn.cloud/1791535457_hd/1791535457_hd@720p.m3u8|User-Agen
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Phá Làng" , 10/10 12:00 🟢 ⚽ FC Seoul - Jeju SK FC (Server 1)
 https://lilive1.eu.cc/live/feaa886976cd1a1b110157619c8ffbaf/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/fc-seoul-vs-jeju-sk-fc-6ypq3nhv3538md7&Origin=https://phalang2.live
 
-#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ad010af729c420626d1865ad744168d3.png" group-title="GaVang33" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (Gà Siêu Quỷ)
-https://live2.zktsva.app/live/304565.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-
 #EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="GaVang33" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (Gà Siêu Son)
 https://live2.zktsva.app/live/306290.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ad010af729c420626d1865ad744168d3.png" group-title="GaVang33" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju SK FC (Gà Siêu Quỷ)
+https://live2.zktsva.app/live/304565.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phd18m2wd/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 ⚽ Seoul FC vs Jeju SK FC (HD FABIO)
-https://live2.domaincdn.cc/livecdn/channel-2.flv?auth_key=3000001791608611-0-0-bb2a3956b3c601560e65781e9aac37aa|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-2.flv?auth_key=3000001791608732-0-0-e26c9bab305109ce6bd332983d543338|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/d23xmvkhjdzqg8n/image/small" group-title="Xôi Lạc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama Marinos (HD ASTRA)
-https://live2.domaincdn.cc/livecdn/channel-11.flv?auth_key=3000001791608611-0-0-fd02c0db453a1814e9b370d06ceaecd1|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-11.flv?auth_key=3000001791608732-0-0-84bd0a743ea59e769404509456af77cb|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (BLV Iron Man)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791623011&signature=uu8AE3hrary8vWMs6hTzmT_B7Ipt9VuD99c03xIxW1s|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791623131&signature=3GXhhfPgQ0GEfwQpVIq7bnx-1eC9Vd8XbW3yCLALFiY|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (BLV Phan Pepsi)
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791623132&signature=_SrpLTncOMkMIV-o0hfQjyEB4hzu_Hcg5XiLWFfesmM|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/avispa-fukuoka.png" group-title="Giờ Vàng" , 10/10 13:00 🟡 ⚽ Avispa Fukuoka vs Okayama FC (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-avispa-fukuoka-vs-okayama-fc-10-10-6abef44024d46db8709078b0
