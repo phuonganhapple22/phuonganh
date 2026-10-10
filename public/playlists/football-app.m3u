@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 15:34:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 15:36:52 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (18 trận), Phá Làng (111 trận), Gà Vàng (20 trận), Sao Kê (17 trận), GaVang33 (33 trận), Bông Lau (18 trận), Xôi Lạc (2 trận), Xôi Gấc (30 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (18 trận), Phá Làng (111 trận), Gà Vàng (19 trận), Sao Kê (17 trận), GaVang33 (33 trận), Bông Lau (18 trận), Xôi Lạc (2 trận), Xôi Gấc (30 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (Giovang 1)
@@ -17,10 +17,10 @@ https://playback.livetl002.com/live/6a9a5525864ea536c2577392.m3u8|User-Agent=Moz
 https://live2.zktsva.app/live/741294.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu vs FC Anyang (HD MAX)
-https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791621226-0-0-21d3403055d5509e9324a7a25fc99028|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+https://live2.domaincdn.cc/livecdn/channel-6.flv?auth_key=3000001791621347-0-0-c4f4c3434eb0ba028b1ef568f06874ab|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 🟢 ⚽ Gimcheon Sangmu FC vs FC Anyang (BLV Black Panther)
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791635626&signature=ki_VPCF_mOlwmBPQMeT5cSisMbAUP_y7aaEBfvupEKk|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.jfSJXqAGarz9.m3u8?expires=1791635746&signature=Umhf-VrQtjQBUCW39Zg4GXS_Sksxq4yBHZh9STVveIc|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 🟢 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Server 1)
 https://lilive1.eu.cc/live/5f4e9da157d1e705779cde9f3a5525f7/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/liaoning-shenbei-hefeng-women-vs-zhejiang-hangzhou-women-965mkyh8l5kxr1g&Origin=https://phalang2.live
@@ -30,9 +30,6 @@ https://pzhgifbkllliv.vcdn.cloud/1791618373_hd/1791618373_hd@720p.m3u8|User-Agen
 
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 15:30 🟢 ⚽ Dong Tam Long An - Quang Ninh (Server 1)
 https://lilive1.eu.cc/live/3eb669e3b52c4352311b0cb4725fbd48/playlist.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://phalang2.live/truc-tiep/dong-tam-long-an-vs-quang-ninh-y39mp1h67okjmoj&Origin=https://phalang2.live
-
-#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/3728683390847f335552d077cf0b8752.png" group-title="Gà Vàng" , 10/10 15:35 🟡 ⚽ South Melbourne vs Melbourne Victory (Chưa có link — chờ cập nhật)
-https://gavanglinkv.tv/truc-tiep/south-melbourne-vs-melbourne-victory-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/dong-tam-long-an.png" group-title="Giờ Vàng" , 10/10 16:00 🟡 ⚽ Đồng Tâm Long An vs Than Quảng Ninh (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-dong-tam-long-an-vs-than-quang-ninh-10-10-6abef44024d46db8709079d4
