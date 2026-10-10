@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 15:24:50 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 15:26:51 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (3 trận), Xôi Lạc (11 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (2 trận), Xôi Lạc (11 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 2 vs Shanghai Open 2 (Giovang 1)
@@ -12,7 +12,7 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5of0678mwzv/image/small" group-title="Xôi Lạc" , 10/10 13:15 🟢 🎾 Matteo Arnaldi vs Taylor Fritz (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=82ac9ab392e9e879e270ec9377a0a6ca&wsABSTime=1791663888
+https://live1.quickscoreboardz.com/live/channel59.flv?wsSecret=94016aa699f2b124a762097ff4f50fc6&wsABSTime=1791664009
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ncDnFmzB-xE40e4KN.png" group-title="Giờ Vàng" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -22,23 +22,20 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561268_hd/1791561268_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyfol52mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟢 🎾 Mirra Andreeva vs Nikola Bartunkova (HD VIC)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791620625-0-0-0b4615c50ff3db4dc9eb6e8359e6d608
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791620745-0-0-700cc2630bbeb384b6bfcb488eb2be16
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y0or5ofepvnmwzv/image/small" group-title="Xôi Lạc" , 10/10 14:15 🟢 🎾 Bu Yunchaokete vs Casper Ruud (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=8ce4678501ef94e340958cb9f454458f&wsABSTime=1791663888
+https://live1.quickscoreboardz.com/live/channel58.flv?wsSecret=7a220a83bc57504b91e2888210f1219c&wsABSTime=1791664009
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyf5lxkmojx/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟢 🎾 Yuan Yue vs Caty Mcnally (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=25ee21b6708824072e07b5ee3932a690&wsABSTime=1791663888
+https://live1.quickscoreboardz.com/live/channel60.flv?wsSecret=36dfe5efcc012f827b081175b302d8fe&wsABSTime=1791664009
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/ednm9efdyxnryox/image/small" group-title="Xôi Lạc" , 10/10 17:00 🎾 Juan Manuel Cerundolo vs Carlos Alcaraz Garfia (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/juan-manuel-cerundolo-vs-carlos-alcaraz-garfia-luc-1700-ngay-10-10-2026/
-
-#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAFGPMy-RQNuSOUV8rsxwSTt1gTC3_hQlH4Kn_uxntrQ&s" group-title="Giờ Vàng" , 10/10 18:00 🎾 Elise Mertens vs Iga Swiatek (Chưa có link — chờ cập nhật)
-https://giovang.tax/truc-tiep-elise-mertens-vs-iga-swiatek-10-10-x407em6d2qcr
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/l5erg1fee2xr8k0/image/small" group-title="Xôi Lạc" , 10/10 18:00 🎾 Zheng Qinwen vs Elise Mertens (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/zheng-qinwen-vs-elise-mertens-luc-1800-ngay-10-10-2026/
