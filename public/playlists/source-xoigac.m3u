@@ -1,16 +1,16 @@
 #EXTM3U
-# Cập nhật lần cuối: 12:18:39 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 12:20:39 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (31 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ FC Seoul vs Jeju United FC (BLV Iron Man)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791623853&signature=eIoiI8YRmrKxmQFvn1NXtf89wm-pfjzb1t4E0gjFIiU
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.Qta9bdj9Ep1a.m3u8?expires=1791623973&signature=IdQ-fqB5MWHdBZcjNrlbTjgXanOZJMv9M_p5ielf2dU
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 🟢 ⚽ Cerezo Osaka vs Yokohama F. Marinos (BLV Phan Pepsi)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791623853&signature=WIpR7bkW8FCks6owwayUU6dziBlZcncmtQxw48i-V7s
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.pvn3U3uNihQK.m3u8?expires=1791623973&signature=f-pqIZjwoVy-JY5IUGc2rRyDuTgKBNweRWHbiLGiEB4
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
 https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
