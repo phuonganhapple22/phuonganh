@@ -1,16 +1,13 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:48:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:50:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
 # ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (8 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (2 trận) =====
 
 # ----- Ngày 2026-10-10 -----
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4768m1ge/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 🏀 CEU Scorpions UCBL vs Anahuac Queretaro (Chưa có link — chờ cập nhật)
-https://xoilacxbr.tv/truc-tiep/ceu-scorpions-ucbl-vs-anahuac-queretaro-luc-0800-ngay-10-10-2026/
-
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/6ypq3ktzzkdmd7o/image/small" group-title="Xôi Lạc" , 10/10 08:10 🟢 🏀 CD Jorge Guzman vs Corinthians (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel42.flv?wsSecret=836890111991d2551984842688a49339&wsABSTime=1791643701
+https://live1.quickscoreboardz.com/live/channel42.flv?wsSecret=31e345eb5dd6cfb111577a4d62e2da00&wsABSTime=1791643822
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/cbf9424df17d6e06d655dca78651d329.png" group-title="Giờ Vàng" , 10/10 08:30 🟢 🏀 Las Vegas Aces vs Golden State Valkyries (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -20,12 +17,12 @@ https://ftlh5sc02iliv.vcdn.cloud/1791534163_hd/1791534163_hd@720p.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/23xmv1tdo2jmg8n/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Caimanes del Llano vs Motilones del Norte (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=311db19e9971f38dd7b5822dd55a448f&wsABSTime=1791643701
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=cba86441c0d51c5f871c555472f5c2a0&wsABSTime=1791643821
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t8x8mojx/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Nữ Las Vegas Aces vs Nữ Golden State (HD KOBE)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791600440-0-0-040197bb8634ca966c8cb6f162b133b9
+https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791600560-0-0-eab2d7c9e34830f930034c3e8f7d2554
 
 #EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a2ba5e8d224376506856ad5dd34de831.png" group-title="Giờ Vàng" , 10/10 12:00 🏀 Jeonju KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-jeonju-kcc-egis-vs-wonju-dongbu-promy-10-10-22850375
@@ -134,6 +131,9 @@ https://gavanglinkv.tv/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/b60374e3eb7d87f037978fb16b9b888d.png" group-title="Gà Vàng" , 10/10 22:00 🏀 BOTEV 2012 vs Balkan Botevgrad (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/ednm9ktke88ryox/image/small" group-title="Xôi Lạc" , 10/10 22:00 🏀 Al Rayyan vs Al Khor (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/al-rayyan-vs-al-khor-luc-2200-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/cee2f2a4f10e23a3a8cfa31d70fc9064.png" group-title="Gà Vàng" , 10/10 23:00 🏀 Minyor 2015 vs SHUM (Chưa có link — chờ cập nhật)
 https://gavanglinkv.tv/
