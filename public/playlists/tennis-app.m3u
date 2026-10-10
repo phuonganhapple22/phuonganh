@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 13:28:46 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 13:30:45 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (4 trận), Xôi Lạc (13 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (4 trận), Xôi Lạc (12 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://en.rolexshanghaimasters.com/-/media/images/tournaments-news/shanghai/2026-highlights/banner1.jpg" group-title="Giờ Vàng" , 10/10 11:00 🟢 🎾 Shanghai Open 1 vs Shanghai Open 1 (Giovang 1)
@@ -11,10 +11,7 @@ https://ftlh5sc02iliv.vcdn.cloud/1791561005_hd/1791561005_hd@720p.m3u8|User-Agen
 https://ftlh5sc02iliv.vcdn.cloud/1791561085_hd/1791561085_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/3glrw2fov1krdyj/image/small" group-title="Xôi Lạc" , 10/10 11:00 🟢 🎾 Camilo Ugo Carabelli vs Felix Auger Aliassime (HD VIC)
-https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791613660-0-0-50031250fad63dd1287580aad4497123|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
-
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/dn1m12fez55qoep/image/small" group-title="Xôi Lạc" , 10/10 13:30 🟡 🎾 Mananchaya Sawangkaew vs Maya Joint (Chưa có link — chờ cập nhật)
-https://xoilacxbr.tv/truc-tiep/mananchaya-sawangkaew-vs-maya-joint-luc-1330-ngay-10-10-2026/
+https://live2.domaincdn.cc/livecdn/channel-32.flv?auth_key=3000001791613780-0-0-668c3f9955a7b65c4ef13135a82345f6|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
 
 #EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ncDnFmzB-xE40e4KN.png" group-title="Giờ Vàng" , 10/10 14:00 🟡 🎾 Mirra Andreeva vs Nikola Bartunkova (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-mirra-andreeva-vs-nikola-bartunkova-10-10-wsaej6wzsbxk
@@ -22,13 +19,13 @@ https://giovang.tax/truc-tiep-mirra-andreeva-vs-nikola-bartunkova-10-10-wsaej6wz
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyfol52mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🟡 🎾 Mirra Andreeva vs Nikola Bartunkova (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/mirra-andreeva-vs-nikola-bartunkova-luc-1400-ngay-10-10-2026/
 
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/6ypq3pfzx98rd7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🎾 Ignacio Buse vs Zizou Bergs (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/6ypq3pfzx98rd7o/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟡 🎾 Ignacio Buse vs Zizou Bergs (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/ignacio-buse-vs-zizou-bergs-luc-1430-ngay-10-10-2026/
 
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/k82re9f9vypmepz/image/small" group-title="Xôi Lạc" , 10/10 14:30 🎾 Luciano Darderi vs Stefanos Tsitsipas (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/k82re9f9vypmepz/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟡 🎾 Luciano Darderi vs Stefanos Tsitsipas (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/luciano-darderi-vs-stefanos-tsitsipas-luc-1430-ngay-10-10-2026/
 
-#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/k82re9f3welmepz/image/small" group-title="Xôi Lạc" , 10/10 14:30 🎾 Tommy Paul vs Adolfo Daniel Vallejo (Chưa có link — chờ cập nhật)
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/k82re9f3welmepz/image/small" group-title="Xôi Lạc" , 10/10 14:30 🟡 🎾 Tommy Paul vs Adolfo Daniel Vallejo (Chưa có link — chờ cập nhật)
 https://xoilacxbr.tv/truc-tiep/tommy-paul-vs-adolfo-daniel-vallejo-luc-1430-ngay-10-10-2026/
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/ednm9efdyxnryox/image/small" group-title="Xôi Lạc" , 10/10 17:00 🎾 Juan Manuel Cerundolo vs Carlos Alcaraz Garfia (Chưa có link — chờ cập nhật)
