@@ -1,0 +1,142 @@
+name: Check Domains
+
+# Quét xem domain các nguồn còn sống không. Domain nào chết / đã chuyển hướng ->
+# tự tìm domain mới (đã kiểm tra nội dung, chống trang rao bán / trang lạ) -> ghi vào biến
+# SOURCE_DOMAINS (MỘT biến chứa domain của tất cả nguồn) -> chạy lại "Generate Playlists"
+# để dùng domain mới ngay.
+# TỰ CHẠY MỖI NGÀY lúc 03:00 giờ Việt Nam (cron bên dưới là giờ UTC: 20:00 UTC = 03:00 UTC+7;
+# muốn đổi giờ/tần suất thì sửa dòng cron) và vẫn chạy tay được: tab Actions > Check Domains > Run workflow.
+# Lưu ý: GitHub có thể trễ vài phút đến vài chục phút so với giờ hẹn; lần chạy theo lịch dùng
+# giá trị mặc định (tự sửa domain, quét tất cả nguồn, lưu bản domain, chạy lại Generate).
+# Nếu còn nguồn chưa xử lý được thì lần chạy báo đỏ và GitHub gửi email cho bạn.
+#
+# Sau khi quét, domain hiện tại được lưu vào data/source-domains.txt + .json và commit lên git
+# (chỉ khi domain thay đổi; tắt bằng ô save_snapshot khi chạy tay).
+#
+# CẦN 1 LẦN: tạo secret GH_VARIABLES_TOKEN (Fine-grained PAT, chọn repo này,
+# Repository permissions > Variables = Read and write). Không có secret này thì
+# workflow vẫn quét + báo cáo, nhưng KHÔNG ghi được biến (GITHUB_TOKEN mặc định
+# của GitHub không có quyền ghi Variables). Chi tiết: CHECK_DOMAINS.md
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # 20:00 UTC = 03:00 giờ Việt Nam, mỗi ngày
+  workflow_dispatch:
+    inputs:
+      auto_fix:
+        description: 'Tự ghi biến domain mới lên GitHub (tắt = chỉ quét, báo cáo)'
+        type: boolean
+        default: true
+      sources:
+        description: 'Nguồn cần quét: all hoặc danh sách cách nhau dấu phẩy (vd giovang,saoke)'
+        type: string
+        default: 'all'
+      extra_candidates:
+        description: 'Domain mới BẠN biết (cách nhau dấu phẩy) — thử đầu tiên cho nguồn nào chết'
+        type: string
+        default: ''
+      extra_tlds:
+        description: 'Đuôi tên miền muốn thử thêm (cách nhau dấu phẩy, vd lat,wiki) — thử trước danh sách có sẵn'
+        type: string
+        default: ''
+      restart_generator:
+        description: 'Sau khi đổi biến, chạy lại Generate Playlists để dùng domain mới ngay'
+        type: boolean
+        default: true
+      save_snapshot:
+        description: 'Lưu danh sách domain hiện tại vào data/source-domains.txt + .json rồi commit lên git (chỉ commit khi domain có thay đổi)'
+        type: boolean
+        default: true
+
+concurrency:
+  group: check-domains
+  cancel-in-progress: false
+
+permissions:
+  contents: write # cần để commit file lưu domain (data/source-domains.*)
+  actions: write  # cần để chạy lại workflow Generate Playlists
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Script không cần cài thư viện nào (dùng fetch/dns có sẵn của Node 20).
+      - name: Scan domains
+        id: scan
+        run: node scripts/check-domains.mjs
+        env:
+          AUTO_FIX: ${{ inputs.auto_fix }}
+          SOURCES: ${{ inputs.sources }}
+          EXTRA_CANDIDATES: ${{ inputs.extra_candidates }}
+          EXTRA_TLDS: ${{ inputs.extra_tlds }}
+          SAVE_SNAPSHOT: ${{ inputs.save_snapshot }}
+          GH_VARIABLES_TOKEN: ${{ secrets.GH_VARIABLES_TOKEN }}
+          SOURCE_DOMAINS: ${{ vars.SOURCE_DOMAINS }}
+          PINNED_SOURCES: ${{ vars.PINNED_SOURCES }} # nguồn GHIM: không tự đổi domain (hoặc thêm '# pin' cuối dòng trong SOURCE_DOMAINS)
+          GIOVANG_DOMAIN: ${{ vars.GIOVANG_DOMAIN }}
+          KHANDAITV_BASE_URL: ${{ vars.KHANDAITV_BASE_URL }}
+          PHAOHOA_BASE_URL: ${{ vars.PHAOHOA_BASE_URL }}
+          GAVANG_BASE_URL: ${{ vars.GAVANG_BASE_URL }}
+          GAVANG33_DOMAIN: ${{ vars.GAVANG33_DOMAIN }}
+          SAOKE_BASE_URL: ${{ vars.SAOKE_BASE_URL }}
+          BONGLAU_DOMAIN: ${{ vars.BONGLAU_DOMAIN }}
+          XOILAC_DOMAIN: ${{ vars.XOILAC_DOMAIN }}
+          XOIGAC_DOMAIN: ${{ vars.XOIGAC_DOMAIN }}
+          XOILAC_SCORE_API: ${{ vars.XOILAC_SCORE_API }}
+          PHALANG_DOMAIN: ${{ vars.PHALANG_DOMAIN }}
+          CHUOICHIENTV_WATCH_DOMAIN: ${{ vars.CHUOICHIENTV_WATCH_DOMAIN }}
+          CHUOICHIENTV_PLAYER_DOMAIN: ${{ vars.CHUOICHIENTV_PLAYER_DOMAIN || secrets.CHUOICHIENTV_PLAYER_DOMAIN }}
+          SAOKE_PLAYER_DOMAIN: ${{ vars.SAOKE_PLAYER_DOMAIN }}
+          BONGLAU_PLAYER_DOMAIN: ${{ vars.BONGLAU_PLAYER_DOMAIN }}
+          GIOVANG_LIVE_API_HOST: ${{ vars.GIOVANG_LIVE_API_HOST }}
+          SAOKE_API_DOMAIN: ${{ vars.SAOKE_API_DOMAIN }}
+          GAVANG33_API_DOMAIN: ${{ vars.GAVANG33_API_DOMAIN }}
+          PHALANG_API_BASE: ${{ vars.PHALANG_API_BASE }}
+          CHUOICHIENTV_API_BASE: ${{ vars.CHUOICHIENTV_API_BASE }}
+          BONGLAU_API_BASE: ${{ vars.BONGLAU_API_BASE }}
+
+      # Lưu danh sách domain HIỆN TẠI vào git (data/source-domains.txt = dán lại được vào biến
+      # SOURCE_DOMAINS để khôi phục; data/source-domains.json = trạng thái + lịch sử đổi domain).
+      # Script chỉ ghi file khi domain thay đổi nên chỉ commit khi cần. Commit do GITHUB_TOKEN
+      # đẩy lên KHÔNG tự kích hoạt workflow khác. Workflow Generate cũng commit liên tục nên
+      # có vòng thử lại pull --rebase để tránh đụng nhau.
+      - name: Commit domain snapshot
+        if: ${{ !cancelled() && steps.scan.outputs.snapshot_changed == 'true' }}
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add -f data/source-domains.txt data/source-domains.json
+          git commit -m "chore: cap nhat danh sach domain nguon [skip ci]" || { echo "Không có gì để commit"; exit 0; }
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"; then
+              echo "Đã đẩy file domain lên git (lần thử $i)"; exit 0
+            fi
+            echo "Đẩy lỗi (lần $i), thử lại..."; sleep $((i * 4))
+          done
+          echo "::error::Không đẩy được file domain lên git sau 5 lần"; exit 1
+
+      # Dự phòng: dù commit lên git lỗi (vd nhánh bị khoá) vẫn tải được file domain ở mục Artifacts của lần chạy.
+      - name: Upload domain files
+        if: ${{ !cancelled() && steps.scan.outputs.snapshot_changed == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-domains
+          path: data/source-domains.*
+
+      # Chạy chậm sau cùng: dù bước quét báo đỏ (còn nguồn chưa xử lý được) mà đã ghi
+      # được biến cho nguồn khác thì vẫn khởi động lại để dùng domain mới.
+      - name: Restart Generate Playlists
+        # Chạy tay: theo ô restart_generator. Chạy theo lịch (không có inputs): luôn chạy lại khi đã đổi biến.
+        if: ${{ !cancelled() && steps.scan.outputs.changed == 'true' && (github.event_name != 'workflow_dispatch' || inputs.restart_generator) }}
+        run: gh workflow run validate-and-generate.yml --ref "${{ github.ref_name }}"
+        env:
+          GH_TOKEN: ${{ github.token }}

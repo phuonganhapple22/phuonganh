@@ -1,0 +1,118 @@
+name: Watch SOURCE_DOMAINS
+
+# CHẠY THỦ CÔNG (06/10/2026): đã BỎ lịch tự chạy mỗi 5 phút. Workflow này chỉ chạy khi BẠN bấm:
+#   tab Actions > Watch SOURCE_DOMAINS > Run workflow.
+# Dùng khi bạn vừa sửa biến SOURCE_DOMAINS (GitHub KHÔNG có sự kiện "biến vừa bị sửa" nên Generate
+# Playlists không tự chạy lại được). Bấm chạy -> workflow tính mã băm nội dung biến, lưu vào
+# data/source-domains.hash, rồi chạy lại "Generate Playlists" ngay (run cũ bị huỷ nhờ concurrency
+# cancel-in-progress của Generate).
+# Ô "force" (mặc định BẬT): bật = luôn chạy lại Generate dù biến không đổi; tắt = chỉ chạy lại khi
+# mã băm khác lần trước (lần đầu chưa có file hash thì chỉ ghi mã, trừ khi bật force).
+# Bước "Canh chừng" ở cuối (chỉ khi không chạy lại ở bước trên): nếu KHÔNG có run Generate nào đang
+# chạy/đang chờ thì bật lại luôn; có rồi thì không đụng tới (tránh huỷ nhầm run đang chạy).
+# Commit file hash dùng GITHUB_TOKEN nên KHÔNG kích hoạt thêm workflow nào khác.
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Luôn chạy lại Generate Playlists dù biến SOURCE_DOMAINS không đổi (tắt = chỉ chạy lại khi biến đã đổi)'
+        type: boolean
+        default: true
+
+concurrency:
+  group: watch-source-domains
+  cancel-in-progress: false
+
+permissions:
+  contents: write # commit data/source-domains.hash
+  actions: write  # chạy lại workflow Generate Playlists
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: So sánh SOURCE_DOMAINS với lần trước
+        id: cmp
+        env:
+          SOURCE_DOMAINS: ${{ vars.SOURCE_DOMAINS }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -e
+          # Chuẩn hoá (bỏ \r, khoảng trắng cuối dòng, dòng trống cuối) để đổi xuống dòng/dấu cách thừa không bị tính là thay đổi.
+          NORM=$(printf '%s' "$SOURCE_DOMAINS" | tr -d '\r' | sed 's/[[:space:]]*$//')
+          NEW=$(printf '%s' "$NORM" | sha256sum | cut -d' ' -f1)
+          OLD=""
+          [ -f data/source-domains.hash ] && OLD=$(tr -d '[:space:]' < data/source-domains.hash)
+          echo "Mã hiện tại: $NEW"; echo "Mã đã lưu : ${OLD:-<chưa có>}"
+          echo "new=$NEW" >> "$GITHUB_OUTPUT"
+          if [ -z "$OLD" ]; then
+            echo "Lần đầu (chưa có mã đã lưu): ghi mã."
+            echo "save=true" >> "$GITHUB_OUTPUT"
+            if [ "$FORCE" = "true" ]; then echo "trigger=true" >> "$GITHUB_OUTPUT"; else echo "trigger=false" >> "$GITHUB_OUTPUT"; fi
+          elif [ "$OLD" != "$NEW" ]; then
+            echo "Biến SOURCE_DOMAINS ĐÃ ĐỔI -> sẽ chạy lại Generate Playlists."
+            echo "save=true" >> "$GITHUB_OUTPUT"; echo "trigger=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Không đổi."
+            echo "save=false" >> "$GITHUB_OUTPUT"
+            if [ "$FORCE" = "true" ]; then echo "trigger=true" >> "$GITHUB_OUTPUT"; else echo "trigger=false" >> "$GITHUB_OUTPUT"; fi
+          fi
+
+      # Lưu mã TRƯỚC khi chạy Generate: nếu đẩy lỗi thì dừng (lần sau thử lại) chứ không chạy Generate lặp mỗi 5 phút.
+      - name: Lưu mã mới lên git
+        if: ${{ steps.cmp.outputs.save == 'true' }}
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          mkdir -p data
+          printf '%s\n' "${{ steps.cmp.outputs.new }}" > data/source-domains.hash
+          git add -f data/source-domains.hash
+          git commit -m "chore: cap nhat ma SOURCE_DOMAINS [skip ci]" || { echo "Không có gì để commit"; exit 0; }
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"; then
+              echo "Đã lưu mã (lần thử $i)"; exit 0
+            fi
+            echo "Đẩy lỗi (lần $i), thử lại..."; sleep $((i * 4))
+          done
+          echo "::error::Không đẩy được file hash lên git sau 5 lần"; exit 1
+
+      - name: Chạy lại Generate Playlists
+        id: rerun
+        if: ${{ steps.cmp.outputs.trigger == 'true' }}
+        run: |
+          for i in 1 2 3; do
+            if gh workflow run validate-and-generate.yml --ref "${{ github.ref_name }}"; then
+              echo "Đã yêu cầu chạy lại Generate Playlists"; exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "::error::Không chạy lại được Generate Playlists"; exit 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      # Canh chừng: bảo đảm LUÔN có 1 run Generate Playlists đang chạy hoặc đang chờ. Bỏ qua nếu bước trên vừa
+      # chạy lại Generate. Nếu không lấy được danh sách run (lỗi API) thì KHÔNG bật gì (tránh huỷ nhầm run đang chạy).
+      - name: Canh chừng - bật lại Generate Playlists nếu dây chuyền bị đứt
+        if: ${{ !cancelled() && steps.cmp.outputs.trigger != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ACTIVE=$(gh run list --workflow validate-and-generate.yml --limit 50 --json status \
+            --jq '[.[] | select(.status=="in_progress" or .status=="queued" or .status=="waiting" or .status=="pending" or .status=="requested")] | length') || {
+            echo "Không lấy được danh sách run -> bỏ qua, không bật gì."; exit 0; }
+          echo "Số run Generate đang chạy/đang chờ: ${ACTIVE:-0}"
+          if [ "${ACTIVE:-0}" -gt 0 ]; then echo "Dây chuyền còn sống."; exit 0; fi
+          echo "KHÔNG có run Generate nào -> dây chuyền đã đứt, bật lại."
+          for i in 1 2 3; do
+            if gh workflow run validate-and-generate.yml --ref "${{ github.ref_name }}"; then
+              echo "Đã bật lại Generate Playlists (canh chừng)"; exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "::error::Không bật lại được Generate Playlists"; exit 1

@@ -1,0 +1,159 @@
+#EXTM3U
+# Cập nhật lần cuối: 09:15:25 10/10/2026 (giờ VN) — chỉ đổi khi danh sách trận/link thay đổi
+
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (9 trận), Gà Vàng (20 trận), Xôi Lạc (20 trận), Xôi Gấc (2 trận) =====
+
+# ----- Ngày 2026-10-10 -----
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/c73eca8b9cc18ff386bf6ff4c1236b9e.png" group-title="Giờ Vàng" , 10/10 07:00 🟢 🏀 Chicago Bulls vs Memphis Grizzlies (Giovang 1)
+https://ftlh5sc02iliv.vcdn.cloud/1791534408_hd/1791534408_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kjw2r02tdkkqz84/image/small" group-title="Xôi Lạc" , 10/10 07:00 🟢 🏀 Chicago Bulls vs Memphis Grizzlies (HD TOMMY)
+https://live2.domaincdn.cc/livecdn/channel-29.flv?auth_key=3000001791598458-0-0-d84e1acc767042756dc2a85c9af4619f|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4768m1ge/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 🏀 CEU Scorpions UCBL vs Anahuac Queretaro (HD 1)
+https://live1.quickscoreboardz.com/live/channel48.flv?wsSecret=c23b7ca7f9469063769e35c48f600030&wsABSTime=1791641722|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/6ypq3ktzzkdmd7o/image/small" group-title="Xôi Lạc" , 10/10 08:10 🟢 🏀 CD Jorge Guzman vs Corinthians (HD 1)
+https://live1.quickscoreboardz.com/live/channel42.flv?wsSecret=c08fb48c3ac68f68670af85db2c01db7&wsABSTime=1791641722|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/cbf9424df17d6e06d655dca78651d329.png" group-title="Giờ Vàng" , 10/10 08:30 🟢 🏀 Las Vegas Aces vs Golden State Valkyries (Giovang 1)
+https://ftlh5sc02iliv.vcdn.cloud/1791534163_hd/1791534163_hd@720p.m3u8|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://giovang.tax/&Origin=https://giovang.tax
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/23xmv1tdo2jmg8n/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Caimanes del Llano vs Motilones del Norte (HD 1)
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=9a8e484623467920b6439efc9ebe30bf&wsABSTime=1791641722|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t8x8mojx/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 🏀 Nữ Las Vegas Aces vs Nữ Golden State (HD KOBE)
+https://live2.domaincdn.cc/livecdn/channel-27.flv?auth_key=3000001791598458-0-0-bfd1b265fd597e5db85d8db4e782f174|User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&Referer=https://xl365.domainkqt.cc/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/a2ba5e8d224376506856ad5dd34de831.png" group-title="Giờ Vàng" , 10/10 12:00 🏀 Jeonju KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-jeonju-kcc-egis-vs-wonju-dongbu-promy-10-10-22850375
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/0add24fc964de3ea25e83417aa301f81.png" group-title="Gà Vàng" , 10/10 12:00 🏀 Busan KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjdwr8k0/image/small" group-title="Xôi Lạc" , 10/10 12:00 🏀 Busan KCC Egis vs Wonju Dongbu Promy (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/busan-kcc-egis-vs-wonju-dongbu-promy-luc-1200-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/1105.webp" group-title="Xôi Gấc" , 10/10 12:00 🏀 KCC Egis vs Wonju DB (Chưa có link — chờ cập nhật)
+https://xoigac.top/kcc-egis-vs-wonju-db-id336352/the-flash
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/965mk8t4042m1ge/image/small" group-title="Xôi Lạc" , 10/10 13:05 🏀 Nagasaki Velca vs Gunma Crane Thunders (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/nagasaki-velca-vs-gunma-crane-thunders-luc-1305-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/03173dab50b9418d1a834a91104d90a4.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Liaoning Flying Leopards vs Fujian Xunxing Sturgeons (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8265cde14b18d7e3716bb1e0b0aed623.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Qingdao Eagles vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/f7ad4ca154d205eb1799c5a1d1ff3370.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/9b17d2feb1397b99fa0530fba4c7385b.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Ningbo Rockets vs Jiangsu Dragons Kentier (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fd94971d5354c254a48249ad402cfb92.png" group-title="Gà Vàng" , 10/10 14:00 🏀 Shandong Hi-Speed Kirin vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7t63drvy9/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Shanxi Loongs Fenjiu vs Nanjing Monkey Kings (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/shanxi-loongs-fenjiu-vs-nanjing-monkey-kings-luc-1400-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/vjxm8xtg055q6od/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Ningbo Rockets vs Jiangsu Dragons (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/ningbo-rockets-vs-jiangsu-dragons-luc-1400-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/56ypq3kto86md7o/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Liaoning Flying vs Fujian Jinjiang Tourism (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/liaoning-flying-vs-fujian-jinjiang-tourism-luc-1400-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/z8yomovtoynq0j6/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Shandong Hi-Speed vs Tianjin Pioneers (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/shandong-hi-speed-vs-tianjin-pioneers-luc-1400-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8y39mp4t878mojx/image/small" group-title="Xôi Lạc" , 10/10 14:00 🏀 Qingdao Guoxin vs Xinjiang Flying Tigers (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/qingdao-guoxin-vs-xinjiang-flying-tigers-luc-1400-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e22caa597076764dd0d04b55d46f764e.png" group-title="Giờ Vàng" , 10/10 14:30 🏀 Ulsan Hyundai Mobis Phoebus vs Daegu KoGas Pegasus (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-ulsan-hyundai-mobis-phoebus-vs-daegu-kogas-pegasus-10-10-23850376
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/8e93da8386dc5b378446762993400ca7.png" group-title="Gà Vàng" , 10/10 14:30 🏀 Ulsan Mobis Phoebus vs Daegu KOGAS Pegasus (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7tyn5rvy9/image/small" group-title="Xôi Lạc" , 10/10 14:30 🏀 Ulsan Phoebus vs Daegu KOGAS (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/ulsan-phoebus-vs-daegu-kogas-luc-1430-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e5c63f30ad74c5c5159f1e7695173ae5.png" group-title="Giờ Vàng" , 10/10 15:30 🏀 South East Melbourne Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-south-east-melbourne-phoenix-vs-melbourne-united-10-10-27322273
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fb957ad093d309e8c337aeb83ebe7857.png" group-title="Gà Vàng" , 10/10 15:30 🏀 South East Melbourne Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/2y8m4ptj8wgml07/image/small" group-title="Xôi Lạc" , 10/10 15:30 🏀 SEM Phoenix vs Melbourne United (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/sem-phoenix-vs-melbourne-united-luc-1530-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/j1l4rjztow7m7vx/image/small" group-title="Xôi Lạc" , 10/10 16:05 🏀 Kawasaki Brave Thunders vs Alvark Tokyo (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/kawasaki-brave-thunders-vs-alvark-tokyo-luc-1605-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/z318q6nt584mo9j/image/small" group-title="Xôi Lạc" , 10/10 17:00 🏀 MBA Moscow vs Enisey (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/mba-moscow-vs-enisey-luc-1700-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/d6e217ac051f3258b82d74a932d11ada.png" group-title="Giờ Vàng" , 10/10 17:30 🏀 Perth Wildcats vs New Zealand Breakers (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-perth-wildcats-vs-new-zealand-breakers-10-10-28322274
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/9dn1m17tz2pmoep/image/small" group-title="Xôi Lạc" , 10/10 17:30 🏀 Perth Wildcats vs New Zealand Breakers (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/perth-wildcats-vs-new-zealand-breakers-luc-1730-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/nd80e6d5b1e2d6d989b5c3b7790fe0025.png" group-title="Gà Vàng" , 10/10 18:30 🏀 Sichuan Jinqiang Blue Whales vs Shanghai Jiushi Sharks (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/fb44eee02df789207dee98898982cc16.png" group-title="Gà Vàng" , 10/10 18:30 🏀 Shenzhen Leopards vs Beijing Royal Fighters (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/96108e3d2a3cf92f8f5305e5135f2419.png" group-title="Gà Vàng" , 10/10 18:30 🏀 Zhejiang Guangsha Lions vs Jilin Northeast Tigers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/46cf02209721e88c21a85f35faeaa5f1.png" group-title="Gà Vàng" , 10/10 18:30 🏀 Beijing Shougang Ducks vs Zhejiang Golden Bulls (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/858cde8d2c075296f24e7ee61929fbeb.png" group-title="Gà Vàng" , 10/10 18:30 🏀 Guangzhou Loong Lions vs Guangdong Southern Tigers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kdj2ry7t07zr1zp/image/small" group-title="Xôi Lạc" , 10/10 18:30 🏀 Guangzhou Lions vs Guangdong Sunshine (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/guangzhou-lions-vs-guangdong-sunshine-luc-1830-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/v2y8m4pty98ml07/image/small" group-title="Xôi Lạc" , 10/10 18:30 🏀 Sichuan Blue Whales vs Shanghai Sharks (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/sichuan-blue-whales-vs-shanghai-sharks-luc-1830-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/p3glrwyt591qdyj/image/small" group-title="Xôi Lạc" , 10/10 18:30 🏀 Shenzhen Leopards vs Beijing Royal (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/shenzhen-leopards-vs-beijing-royal-luc-1830-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/7b361f18506b4cb38e1315fd04ee139a.png" group-title="Gà Vàng" , 10/10 21:30 🏀 Levski Lukoil vs Euroins Cherno More (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/b60374e3eb7d87f037978fb16b9b888d.png" group-title="Gà Vàng" , 10/10 22:00 🏀 BOTEV 2012 vs Balkan Botevgrad (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/cee2f2a4f10e23a3a8cfa31d70fc9064.png" group-title="Gà Vàng" , 10/10 23:00 🏀 Minyor 2015 vs SHUM (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/a41a32bd73698ae20ac977fd328e1b46.jfif" group-title="Gà Vàng" , 10/10 23:00 🏀 CSKA Sofia vs BC Polytechnica (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+# ----- Ngày 2026-10-11 -----
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/3f61db02c20eb73e5f27948b3122f2fb.png" group-title="Giờ Vàng" , 11/10 05:30 🏀 Toronto Raptors vs Los Angeles Clippers (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-toronto-raptors-vs-los-angeles-clippers-11-10-27022270
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/e299ddecec93dc5c8db83b1761e2fa1f.png" group-title="Gà Vàng" , 11/10 05:30 🏀 Toronto Raptors vs Los Angeles Clippers (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/f4a3bba0c74c9f2b90bc5861ec26e3c7.png" group-title="Giờ Vàng" , 11/10 06:00 🏀 Washington Wizards vs Detroit Pistons (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-washington-wizards-vs-detroit-pistons-11-10-22912475
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/3a8c9a8a304f078913c60b52698ab585.png" group-title="Giờ Vàng" , 11/10 06:00 🏀 Indiana Pacers vs Atlanta Hawks (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-indiana-pacers-vs-atlanta-hawks-11-10-36832470
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/6f313b682482799762cf60dbc30dbfae.png" group-title="Gà Vàng" , 11/10 06:00 🏀 Indiana Pacers vs Atlanta Hawks (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/ac18ecfecac3af349477383866cf8ef5.png" group-title="Gà Vàng" , 11/10 06:00 🏀 Washington Wizards vs Detroit Pistons (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/133.webp" group-title="Xôi Gấc" , 11/10 07:00 🏀 Boston Celtics vs Philadelphia 76ers (Chưa có link — chờ cập nhật)
+https://xoigac.top/boston-celtics-vs-philadelphia-76ers-id338269/the-flash

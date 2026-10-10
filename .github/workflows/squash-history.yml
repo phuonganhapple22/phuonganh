@@ -1,0 +1,64 @@
+# DON DEP LICH SU COMMIT HANG NGAY (09/10/2026): gop TOAN BO lich su nhanh chinh thanh 1 commit
+# duy nhat chua trang thai hien tai (file + noi dung giu nguyen, link raw khong doi), roi force push.
+# Muc dich: repo khong phinh dan theo thoi gian. Chay 02:30 sang moi ngay (gio VN) hoac bam tay.
+#
+# Thu tu (de khong tranh nhau voi job vong lap Generate Playlists):
+#   1) Huy job Generate Playlists dang chay  2) Gop lich su + force push  3) Chay lai Generate Playlists.
+# LUU Y: force push se bi chan neu nhanh chinh bat "branch protection". Mat lich su sua code cu.
+name: Daily Squash History
+
+on:
+  schedule:
+    - cron: '30 19 * * *' # 19:30 UTC moi ngay = 02:30 sang hom sau gio VN
+  workflow_dispatch:
+
+concurrency:
+  group: squash-history
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  squash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      BRANCH: ${{ github.event.repository.default_branch }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 1
+
+      - name: Huy job Generate Playlists dang chay (tranh push xen vao luc gop)
+        run: |
+          for st in in_progress queued pending; do
+            for id in $(gh run list --workflow validate-and-generate.yml --status "$st" --json databaseId -q '.[].databaseId' 2>/dev/null || true); do
+              echo "Huy run $id ($st)"
+              gh run cancel "$id" || true
+            done
+          done
+          sleep 10
+
+      - name: Gop lich su thanh 1 commit va force push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan squashed
+          git add -A
+          git commit -q -m "Daily history squash $(date -u +%Y-%m-%d)"
+          git push --force origin "squashed:${BRANCH}"
+          echo "Da gop lich su nhanh ${BRANCH} thanh 1 commit."
+
+      - name: Chay lai Generate Playlists
+        run: |
+          for i in 1 2 3; do
+            if gh workflow run validate-and-generate.yml --ref "${BRANCH}"; then exit 0; fi
+            sleep $((i * 3))
+          done
+          echo "::error::Khong goi duoc workflow_dispatch"; exit 1

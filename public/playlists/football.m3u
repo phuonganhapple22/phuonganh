@@ -1,0 +1,778 @@
+#EXTM3U
+# Cập nhật lần cuối: 09:15:25 10/10/2026 (giờ VN) — chỉ đổi khi danh sách trận/link thay đổi
+
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (19 trận), Phá Làng (81 trận), Gà Vàng (18 trận), Sao Kê (18 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (5 trận), Xôi Gấc (29 trận) =====
+
+# ----- Ngày 2026-10-10 -----
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvojwrepz/image/small" group-title="Xôi Lạc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (HD SILVA)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.domaincdn.cc/livecdn/channel-20.flv?auth_key=3000001791598458-0-0-75da9657ef880d5f1090d4b21b70001b
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/441.webp" group-title="Xôi Gấc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (BLV Groot)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791612858&signature=CU9-VpwzIpI69Q5x7kSdPlPG19c_99qP9hXOeJCmW9A
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/puebla.png" group-title="Giờ Vàng" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (Giovang 1)
+#EXTVLCOPT:http-referrer=https://giovang.tax/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://ftlh5sc02iliv.vcdn.cloud/1791534860_hd/1791534860_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133839_09ad8cba.png" group-title="Chuối Chiên" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (Chuối Chao (FHD))
+#EXTVLCOPT:http-referrer=https://fhd-01.cctvsignal.xyz/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/7847.png" group-title="Sao Kê" , 10/10 08:00 🟢 ⚽ Puebla vs León (Long Ruồi (HD))
+#EXTVLCOPT:http-referrer=https://sk.mediastation.live/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://wtyi0525.edgemaxcdn.org/live/x1-hd-1111/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a98bd615308472b65dc82bcc3a2d54fb.png" group-title="GaVang33" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (Gà Siêu Tồ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/796315.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133839_09ad8cba.png" group-title="Bông Lau" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (Chuối Chao (FHD))
+#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kdj2ryoh66gq1zp/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (HD TOM)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.domaincdn.cc/livecdn/channel-4.flv?auth_key=3000001791598458-0-0-bd9111463ded1b6afd9d8d84c09d43a4
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvvkorepz/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Nữ Mexico vs Nữ Jamaica (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel15.flv?wsSecret=9e59cd998f6ce4b59885721fa5d6bb12&wsABSTime=1791641722
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2291.webp" group-title="Xôi Gấc" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (BLV Phan Pepsi)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791612858&signature=_gYdSCiLnfsSHDw1HCZfXigq6PVY4ZG6-Q8mU8wEGds
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/v2y8m4zhlnvql07/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 ⚽ Nữ El Salvador vs Nữ Paraguay (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel10.flv?wsSecret=9cbd74c35d8180f52223986e6d38637f&wsABSTime=1791641722
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tigres-uanl.png" group-title="Giờ Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-tigres-uanl-vs-toluca-10-10-6abef43f24d46db870907851
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Chuối Chiên" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550986/tigres-uanl-vs-toluca
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="Gà Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/tigres-uanl-vs-toluca-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a7df6424c12ac9b7a6e5ca3ff953d5b3.png" group-title="GaVang33" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/tigres-uanl-vs-toluca-luc-1000-ngay-10-10-2026-y0or5jh8dol0qwz
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133406_3bc30a80.png" group-title="Bông Lau" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550986
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk9g2ryox/image/small" group-title="Xôi Lạc" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://xoilacxbr.tv/truc-tiep/tigres-uanl-vs-toluca-luc-1000-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://xoigac.top/tigres-uanl-vs-toluca-id336731/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-seoul.png" group-title="Giờ Vàng" , 10/10 12:00 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-fc-seoul-vs-jeju-united-fc-10-10-6abef43f24d46db87090787b
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Phá Làng" , 10/10 12:00 ⚽ FC Seoul - Jeju SK FC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhv3538md7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="Phá Làng" , 10/10 12:00 ⚽ Cerezo Osaka - Yokohama F. Marinos (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#jw2r09hkd20yrz8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/ad010af729c420626d1865ad744168d3.png" group-title="Gà Vàng" , 10/10 12:00 ⚽ FC Seoul vs Jeju SK FC (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/fc-seoul-vs-jeju-sk-fc-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ad010af729c420626d1865ad744168d3.png" group-title="GaVang33" , 10/10 12:00 ⚽ FC Seoul vs Jeju SK FC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fc-seoul-vs-jeju-sk-fc-luc-1200-ngay-10-10-2026-6ypq3nhv3538md7
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/ab10ee503e539e55a9a11a9ff202405a.png" group-title="GaVang33" , 10/10 12:00 ⚽ Cerezo Osaka vs Yokohama F. Marinos (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/cerezo-osaka-vs-yokohama-f-marinos-luc-1200-ngay-10-10-2026-jw2r09hkd20yrz8
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 ⚽ Cerezo Osaka vs Yokohama F. Marinos (Chưa có link — chờ cập nhật)
+https://xoigac.top/cerezo-osaka-vs-yokohama-f-marinos-id336742/phan-pepsi
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-seoul-vs-jeju-united-fc-id336734/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/avispa-fukuoka.png" group-title="Giờ Vàng" , 10/10 13:00 ⚽ Avispa Fukuoka vs Okayama FC (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-avispa-fukuoka-vs-okayama-fc-10-10-6abef44024d46db8709078b0
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Phá Làng" , 10/10 13:00 ⚽ Avispa Fukuoka - Fagiano Okayama (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#ednm9whwl7x2ryo
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Phá Làng" , 10/10 13:00 ⚽ FC Tokyo - Urawa Red Diamonds (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#vjxm8gheol9jr6o
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="Gà Vàng" , 10/10 13:00 ⚽ FC Tokyo vs Urawa Red Diamonds (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="Gà Vàng" , 10/10 13:00 ⚽ Avispa Fukuoka vs Fagiano Okayama (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/333df39860930a21cf72b4e9664723ab.png" group-title="GaVang33" , 10/10 13:00 ⚽ FC Tokyo vs Urawa Red Diamonds (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fc-tokyo-vs-urawa-red-diamonds-luc-1300-ngay-10-10-2026-vjxm8gheol9jr6o
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bf0e2229b39b6cb6fd17e9d0f3fb747e.png" group-title="GaVang33" , 10/10 13:00 ⚽ Avispa Fukuoka vs Fagiano Okayama (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/avispa-fukuoka-vs-fagiano-okayama-luc-1300-ngay-10-10-2026-ednm9whwl7x2ryo
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 ⚽ FC Tokyo vs Urawa (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-tokyo-vs-urawa-id336750/groot
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/gimcheon-sangmu-fc.png" group-title="Giờ Vàng" , 10/10 14:30 ⚽ Gimcheon Sangmu vs FC Anyang (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-gimcheon-sangmu-vs-fc-anyang-10-10-6abef44024d46db8709078f4
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="Phá Làng" , 10/10 14:30 ⚽ Gimcheon Sangmu Football Club - FC Anyang (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#n54qllhn7e3eqvy
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/4a3e50e90ab721c1782568a287bd5358.png" group-title="GaVang33" , 10/10 14:30 ⚽ Gimcheon Sangmu Football Club vs FC Anyang (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/gimcheon-sangmu-football-club-vs-fc-anyang-luc-1430-ngay-10-10-2026-n54qllhn7e3eqvy
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
+https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d056e1b2da2af1828a7f577ef8dba753.png" group-title="Phá Làng" , 10/10 15:00 ⚽ Liaoning Shenbei Hefeng Women - Zhejiang Hangzhou Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#965mkyh8l5kxr1g
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/dong-tam-long-an.png" group-title="Giờ Vàng" , 10/10 16:00 ⚽ Đồng Tâm Long An vs Than Quảng Ninh (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-dong-tam-long-an-vs-than-quang-ninh-10-10-6abef44024d46db8709079d4
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_135806_3ef2d96e.png" group-title="Chuối Chiên" , 10/10 16:00 ⚽ Long An FC vs Than Quang Ninh (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1634970/long-an-fc-vs-than-quang-ninh
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/347d428c24e85dbda67f7817e7d80ebf.png" group-title="Phá Làng" , 10/10 16:00 ⚽ Dong Tam Long An - Quang Ninh (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1h67okjmoj
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/AmiaX086-jeFu6Qy4.png" group-title="Sao Kê" , 10/10 16:00 ⚽ Long An vs Thep Can Tho (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/long-an-vs-thep-can-tho-6ac984e1098994de5ad527ae.html
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_135806_3ef2d96e.png" group-title="Bông Lau" , 10/10 16:00 ⚽ Long An FC vs Than Quang Ninh (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1634970
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/hoang-anh-gia-lai.png" group-title="Giờ Vàng" , 10/10 17:00 ⚽ Hoàng Anh Gia Lai vs SHB Đà Nẵng (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-hoang-anh-gia-lai-vs-shb-da-nang-10-10-6abef44124d46db870907a04
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20250817_040309_83ab6fc5.png" group-title="Chuối Chiên" , 10/10 17:00 ⚽ Hoang Anh Gia Lai vs Da Nang (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1633902/hoang-anh-gia-lai-vs-da-nang
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4640a8c2881298c36b5c67927ce820f8.png" group-title="Phá Làng" , 10/10 17:00 ⚽ CD Tondela - SCU Torreense (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#1l4rjnh9oz06m7v
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/df2ae58b9e658494b940b0bd782901b8.png" group-title="Phá Làng" , 10/10 17:00 ⚽ Hoang Anh Gia Lai - SHB Da Nang (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#2y8m4zh5lxv7ql0
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4797964197773c02e4d5e2de93591a28.png" group-title="Phá Làng" , 10/10 17:00 ⚽ Chornomorets Odesa - Metalist 1925 Kharkiv (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#318q66hxpx6gqo9
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e3edd00a3b183c321f6d7cc0a3398fb0.png" group-title="Phá Làng" , 10/10 17:00 ⚽ Kolos Kovalivka - FK Epitsentr Dunayivtsi (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4h6n6oxq86
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/6d81ef01fa7aaedf7144c933bdcc62d8.png" group-title="Phá Làng" , 10/10 17:00 ⚽ FC Orenburg - Dynamo Makhachkala (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dj2ryohl0j6nq1z
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/260dd85236710e5fe82be0480ce4764c.png" group-title="Phá Làng" , 10/10 17:00 ⚽ Obolon Kyiv - Kryvbas (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l7oqdehgkg8xr51
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/7d6fa50ea67cde7d66612a8189897ba5.png" group-title="Phá Làng" , 10/10 17:00 ⚽ Kyoto Sanga - Machida Zelvia (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#x7lm7phjdz7wm2w
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/179227.png" group-title="Sao Kê" , 10/10 17:00 ⚽ Hoàng Anh Gia Lai vs Da Nẵng (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/hoang-anh-gia-lai-vs-da-nang-6ac8cc77447046ae4e199347.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/7d6fa50ea67cde7d66612a8189897ba5.png" group-title="GaVang33" , 10/10 17:00 ⚽ Kyoto Sanga vs Machida Zelvia (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/kyoto-sanga-vs-machida-zelvia-luc-1700-ngay-10-10-2026-x7lm7phjdz7wm2w
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/df2ae58b9e658494b940b0bd782901b8.png" group-title="GaVang33" , 10/10 17:00 ⚽ Hoang Anh Gia Lai vs SHB Da Nang (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/hoang-anh-gia-lai-vs-shb-da-nang-luc-1700-ngay-10-10-2026-2y8m4zh5lxv7ql0
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20250817_040309_83ab6fc5.png" group-title="Bông Lau" , 10/10 17:00 ⚽ Hoang Anh Gia Lai vs Da Nang (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1633902
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/302.webp" group-title="Xôi Gấc" , 10/10 17:00 ⚽ Kyoto Sanga vs Machida Zelvia (Chưa có link — chờ cập nhật)
+https://xoigac.top/kyoto-sanga-vs-machida-zelvia-id336819/phan-dau
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/hai-phong.png" group-title="Giờ Vàng" , 10/10 18:00 ⚽ Hải Phòng vs Thanh Hóa (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-hai-phong-vs-thanh-hoa-10-10-6abef44124d46db870907b2d
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/nam-dinh-fc.png" group-title="Giờ Vàng" , 10/10 18:00 ⚽ Thép Xanh Nam Định vs Phu Dong (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-thep-xanh-nam-dinh-vs-phu-dong-10-10-6abef44124d46db870907b31
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_132402_2fa85175.png" group-title="Chuối Chiên" , 10/10 18:00 ⚽ Hai Phong vs Thanh Hóa (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1633903/hai-phong-vs-thanh-hoa
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251204_035149_f918db1e.png" group-title="Chuối Chiên" , 10/10 18:00 ⚽ Nam Dinh vs Ninh Bình FC (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1633904/nam-dinh-vs-ninh-binh-fc
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/838f9656561a3aab05c59b77850e24d4.png" group-title="Phá Làng" , 10/10 18:00 ⚽ Hung Yen - Xuan Thien Phu Tho (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#318q66hxl17jqo9
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/fed18f35e0d187fb4c812f24a97c3e6a.png" group-title="Phá Làng" , 10/10 18:00 ⚽ XM Hai Phong FC - CLB Thanh Hoa (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhvxekdmd7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/bc5db4dd418cb566a4475649876b55bb.png" group-title="Phá Làng" , 10/10 18:00 ⚽ Thep Xanh Nam Dinh FC - Ninh Binh FC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#8yomo4h1nxy6q0j
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/ec374a18505f07e7f49bd679b312ebc3.png" group-title="Phá Làng" , 10/10 18:00 ⚽ Lebanon Women - Palestine Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#965mkyh8ldywr1g
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/da5997a60373a56628e684ae3c16f2c8.png" group-title="Phá Làng" , 10/10 18:00 ⚽ SV Darmstadt 98 - Energie Cottbus (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#965mkyhkx1lvr1g
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/8781d3f729c7f3a9baacbee4385f7c84.png" group-title="Phá Làng" , 10/10 18:00 ⚽ Becamex Ho Chi Minh City - Lam Dong (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#k82rekhgle8orep
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e4dba0e2b72f3f545ece098b91b811a1.png" group-title="Phá Làng" , 10/10 18:00 ⚽ 1. FC Magdeburg - Hannover 96 (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l7oqdehgkdy0r51
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/12fe4d3ee5c01134d48584015c4646f3.png" group-title="Phá Làng" , 10/10 18:00 ⚽ BG Pathum United - Ayutthaya United (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#vjxm8ghe1jder6o
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/7d869f45894b0c8a3cdf8ade8c568a06.png" group-title="Phá Làng" , 10/10 18:00 ⚽ VfL Osnabrück - Dynamo Dresden (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y0or5jh8kjekqwz
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/47faf6e6e957fc611c55640e13d7d818.png" group-title="Phá Làng" , 10/10 18:00 ⚽ Guangdong Women - Shandong Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1hdvw6gmoj
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/179222.png" group-title="Sao Kê" , 10/10 18:00 ⚽ Hải Phòng vs Thanh Hòa FC (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/hai-phong-vs-thanh-hoa-fc-6ac8cc77447046ae4e199348.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/109375.png" group-title="Sao Kê" , 10/10 18:00 ⚽ Nam Định vs Ninh Bình Club (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/nam-dinh-vs-ninh-binh-club-6ac8cc77447046ae4e199349.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bc5db4dd418cb566a4475649876b55bb.png" group-title="GaVang33" , 10/10 18:00 ⚽ Thep Xanh Nam Dinh FC vs Ninh Binh FC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/thep-xanh-nam-dinh-fc-vs-ninh-binh-fc-luc-1800-ngay-10-10-2026-8yomo4h1nxy6q0j
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/fed18f35e0d187fb4c812f24a97c3e6a.png" group-title="GaVang33" , 10/10 18:00 ⚽ XM Hai Phong FC vs CLB Thanh Hoa (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/xm-hai-phong-fc-vs-clb-thanh-hoa-luc-1800-ngay-10-10-2026-6ypq3nhvxekdmd7
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_132402_2fa85175.png" group-title="Bông Lau" , 10/10 18:00 ⚽ Hai Phong vs Thanh Hóa (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1633903
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251204_035149_f918db1e.png" group-title="Bông Lau" , 10/10 18:00 ⚽ Nam Dinh vs Ninh Bình FC (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1633904
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/arsenal.png" group-title="Giờ Vàng" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-arsenal-vs-leeds-united-10-10-6ab1e59ae5e6975d550f06e2
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125547_ba273b85.png" group-title="Chuối Chiên" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557417/arsenal-vs-leeds
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d6f5debc456da1119256ab66462ab510.png" group-title="Phá Làng" , 10/10 18:30 ⚽ Arsenal - Leeds United (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#2y8m4zh5d98yql0
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/649a85f258f62ec83a62983488e4b347.png" group-title="Phá Làng" , 10/10 18:30 ⚽ Buriram United - Rayong FC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#x7lm7phj60yxm2w
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/d6f5debc456da1119256ab66462ab510.png" group-title="Gà Vàng" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/arsenal-vs-leeds-united-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9825.png" group-title="Sao Kê" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/arsenal-vs-leeds-united-6ac8cc77447046ae4e19933e.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/d6f5debc456da1119256ab66462ab510.png" group-title="GaVang33" , 10/10 18:30 ⚽ Arsenal vs Leeds United (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/arsenal-vs-leeds-united-luc-1830-ngay-10-10-2026-2y8m4zh5d98yql0
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125547_ba273b85.png" group-title="Bông Lau" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557417
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/42.webp" group-title="Xôi Gấc" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
+https://xoigac.top/arsenal-vs-leeds-id336911/joker-2
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e5c9882eac2bcd64767b4cdb6544dcd7.png" group-title="Phá Làng" , 10/10 18:35 ⚽ Wuhan Jiangda Women - Jiangsu Yinhao Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#k82rekh2z6gkrep
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/e8327d4681b4a73c83be9fe087b30721.png" group-title="GaVang33" , 10/10 18:35 ⚽ Shanghai Shenhua vs Yunnan Yukun (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/shanghai-shenhua-vs-yunnan-yukun-luc-1835-ngay-10-10-2026-jw2r09hkk007rz8
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/81f5727743f8759ae7a99b8d7f2557e3.png" group-title="Phá Làng" , 10/10 18:45 ⚽ Kuching City FC - Kelantan City (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#ednm9wh58994ryo
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/rayo-vallecano.png" group-title="Giờ Vàng" , 10/10 19:00 ⚽ Rayo Vallecano vs Athletic Bilbao (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-rayo-vallecano-vs-athletic-bilbao-10-10-6ab1e5bce5e6975d550f0747
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/5005d8feab109ce64e40beb98073cc1f.png" group-title="Phá Làng" , 10/10 19:00 ⚽ Rayo Vallecano - Athletic Club (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4h6n9enq86
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/0bebca8b04365cbdf36703122a59189c.png" group-title="Phá Làng" , 10/10 19:00 ⚽ Uthai Thani Forest - Rasisalai United (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#n54qllhn0xgwqvy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e00a9ba2cb280569a2c0537bb6346fc1.png" group-title="Phá Làng" , 10/10 19:00 ⚽ FC Balti - Real Sireti (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1h6xdkpmoj
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/5005d8feab109ce64e40beb98073cc1f.png" group-title="Gà Vàng" , 10/10 19:00 ⚽ Vallecano vs Ath Bilbao (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/rayo-vallecano-vs-athletic-club-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/5005d8feab109ce64e40beb98073cc1f.png" group-title="GaVang33" , 10/10 19:00 ⚽ Rayo Vallecano vs Athletic Club (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/rayo-vallecano-vs-athletic-club-luc-1900-ngay-10-10-2026-4wyrn4h6n9enq86
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/728.webp" group-title="Xôi Gấc" , 10/10 19:00 ⚽ Rayo Vallecano vs Athletic Club (Chưa có link — chờ cập nhật)
+https://xoigac.top/rayo-vallecano-vs-athletic-club-id336984/hawkeye
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d4aace06743a4a5df8221771f870f077.png" group-title="Phá Làng" , 10/10 19:15 ⚽ Fakel Voronezh - Lokomotiv Moscow (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzghg9zvdq82
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/178df2f7b70aa342f101f957d0c3144f.png" group-title="Phá Làng" , 10/10 20:00 ⚽ Amarante - Portimonense SC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#3glrw7hn2je5qdy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/51474fb68c7da46b9c20ebddccec7766.png" group-title="Phá Làng" , 10/10 20:00 ⚽ Genoa - Fiorentina (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4h618nzq86
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/51474fb68c7da46b9c20ebddccec7766.png" group-title="Gà Vàng" , 10/10 20:00 ⚽ Genoa vs Fiorentina (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/genoa-vs-fiorentina-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/augsburg.png" group-title="Giờ Vàng" , 10/10 20:30 ⚽ Augsburg vs Bayern Munich (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-augsburg-vs-bayern-munich-10-10-6ab1e5cae5e6975d550f076d
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125556_af369dcc.png" group-title="Chuối Chiên" , 10/10 20:30 ⚽ FC Augsburg vs Bayern München (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1575180/fc-augsburg-vs-bayern-munchen
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/db4411a3c4ce1d0f092f5b9d1df08664.png" group-title="Phá Làng" , 10/10 20:30 ⚽ FC Augsburg - FC Bayern Munich (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#3glrw7hn5ln2qdy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/72ab7862a610b350aef7650ec0e06e06.png" group-title="Phá Làng" , 10/10 20:30 ⚽ TSG Hoffenheim - Hamburger SV (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#8yomo4h1o516q0j
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/7c8c3c50966c793eba910e18659759a1.png" group-title="Phá Làng" , 10/10 20:30 ⚽ SC Paderborn 07 - VfB Stuttgart (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#k82rekhg4828rep
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/25df2ab8d6c975b4218480a23ace9285.png" group-title="Phá Làng" , 10/10 20:30 ⚽ 1. FSV Mainz 05 - Bayer 04 Leverkusen (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y0or5jh8k08vqwz
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/45ab4c846b0d4df5b002c571b16112dc.png" group-title="Phá Làng" , 10/10 20:30 ⚽ 1. FC Union Berlin - SV 07 Elversberg (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzghg923jq82
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/db4411a3c4ce1d0f092f5b9d1df08664.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ Augsburg vs Bayern Munich (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/fc-augsburg-vs-fc-bayern-munich-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/903089d338485f6c68fbc5da690a0628.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ Mainz vs Bayer Leverkusen (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/1-fsv-mainz-05-vs-bayer-04-leverkusen-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/7c8c3c50966c793eba910e18659759a1.png" group-title="Gà Vàng" , 10/10 20:30 ⚽ SC Paderborn 07 vs Stuttgart (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/sc-paderborn-07-vs-vfb-stuttgart-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8406.png" group-title="Sao Kê" , 10/10 20:30 ⚽ Augsburg vs Bayern München (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/augsburg-vs-bayern-munchen-6ac8cc77447046ae4e199346.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/db4411a3c4ce1d0f092f5b9d1df08664.png" group-title="GaVang33" , 10/10 20:30 ⚽ FC Augsburg vs FC Bayern Munich (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fc-augsburg-vs-fc-bayern-munich-luc-2030-ngay-10-10-2026-3glrw7hn5ln2qdy
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/25df2ab8d6c975b4218480a23ace9285.png" group-title="GaVang33" , 10/10 20:30 ⚽ 1. FSV Mainz 05 vs Bayer 04 Leverkusen (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/1-fsv-mainz-05-vs-bayer-04-leverkusen-luc-2030-ngay-10-10-2026-y0or5jh8k08vqwz
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125556_af369dcc.png" group-title="Bông Lau" , 10/10 20:30 ⚽ FC Augsburg vs Bayern München (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1575180
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/170.webp" group-title="Xôi Gấc" , 10/10 20:30 ⚽ FC Augsburg vs Bayern München (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-augsburg-vs-bayern-munchen-id337401/deal-pool
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a2246a99fffe73bb4274e59b10d95f2d.png" group-title="Phá Làng" , 10/10 20:50 ⚽ Al Hazem - Neom SC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l7oqdehgpz3er51
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/aston-villa.png" group-title="Giờ Vàng" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-aston-villa-vs-brentford-10-10-6ab1e59ae5e6975d550f06e3
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/chelsea.png" group-title="Giờ Vàng" , 10/10 21:00 ⚽ Chelsea FC vs AFC Bournemouth (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-chelsea-fc-vs-afc-bournemouth-10-10-6ab1e59ae5e6975d550f06e4
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/ipswich-town.png" group-title="Giờ Vàng" , 10/10 21:00 ⚽ Ipswich vs Fulham (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-ipswich-vs-fulham-10-10-6ab1e59ae5e6975d550f06e5
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/sunderland-afc.png" group-title="Giờ Vàng" , 10/10 21:00 ⚽ Sunderland vs Brighton   Hove Albion (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-sunderland-vs-brighton-hove-albion-10-10-6abef44824d46db870908ed2
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125552_15f20ce5.png" group-title="Chuối Chiên" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557418/aston-villa-vs-brentford
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125549_a4353df0.png" group-title="Chuối Chiên" , 10/10 21:00 ⚽ Chelsea vs Bournemouth (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557419/chelsea-vs-bournemouth
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/957bdc50c307e2a9b526b34b3792da1a.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Sunderland - Brighton Hove Albion (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#318q66hxdpjwqo9
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a0cf8f551e9440acb3f4ff533dcc58a4.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Chelsea - Bournemouth AFC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#3glrw7hne5ydqdy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/39a72341d47b12221f9f959e52725d63.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Dundee United - Hibernian F.C. (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#3glrw7hneg3vqdy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a3c32d6a906083118cac2cb796edaab3.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Aston Villa - Brentford (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhvdowjmd7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a825b9006d763920de9e7dc17adf6693.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Cercle Brugge - Anderlecht (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#8yomo4h1joogq0j
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/92d1b71fd7263c40492952a99c10462b.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Dacia-Buiucani - Sheriff Tiraspol (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#k82rekhg5286rep
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/12f14e0545aae5398f0ee7d9ab3c8f7b.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Rangers F.C. - Kilmarnock F.C. (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#n54qllhnyw72qvy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/c4376b3f6ae5bf9e6da7c07bcec8a33d.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Falkirk - Dundee F.C. (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#vjxm8gheo75nr6o
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/eaf06359f42dcf69c7ac660731511239.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Heart of Midlothian F.C. - St Mirren F.C. (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#x7lm7phjd234m2w
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/171e958f5c7a21219f1c2cf1191a97fb.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Liechtenstein Women - Gibraltar Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzgh3y90yq82
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/cec3eaaa5271c1f2f036469593ecbcd8.png" group-title="Phá Làng" , 10/10 21:00 ⚽ Ipswich Town - Fulham (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzghge9xxq82
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/a3c32d6a906083118cac2cb796edaab3.png" group-title="Gà Vàng" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/aston-villa-vs-brentford-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/b365ad0e85e2b1bcbf63f7a0f2f70a79.png" group-title="Gà Vàng" , 10/10 21:00 ⚽ Chelsea vs Bournemouth (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/chelsea-vs-bournemouth-afc-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/cec3eaaa5271c1f2f036469593ecbcd8.png" group-title="Gà Vàng" , 10/10 21:00 ⚽ Ipswich vs Fulham (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/ipswich-town-vs-fulham-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/957bdc50c307e2a9b526b34b3792da1a.png" group-title="Gà Vàng" , 10/10 21:00 ⚽ Sunderland vs Brighton (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/sunderland-vs-brighton-hove-albion-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10252.png" group-title="Sao Kê" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/aston-villa-vs-brentford-6ac8cc77447046ae4e19933f.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8455.png" group-title="Sao Kê" , 10/10 21:00 ⚽ Chelsea vs AFC Bournemouth (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/chelsea-vs-afc-bournemouth-6ac8cc77447046ae4e199340.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a3c32d6a906083118cac2cb796edaab3.png" group-title="GaVang33" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/aston-villa-vs-brentford-luc-2100-ngay-10-10-2026-6ypq3nhvdowjmd7
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/a0cf8f551e9440acb3f4ff533dcc58a4.png" group-title="GaVang33" , 10/10 21:00 ⚽ Chelsea vs Bournemouth AFC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/chelsea-vs-bournemouth-afc-luc-2100-ngay-10-10-2026-3glrw7hne5ydqdy
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/cec3eaaa5271c1f2f036469593ecbcd8.png" group-title="GaVang33" , 10/10 21:00 ⚽ Ipswich Town vs Fulham (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/ipswich-town-vs-fulham-luc-2100-ngay-10-10-2026-zp5rzghge9xxq82
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/957bdc50c307e2a9b526b34b3792da1a.png" group-title="GaVang33" , 10/10 21:00 ⚽ Sunderland vs Brighton Hove Albion (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/sunderland-vs-brighton-hove-albion-luc-2100-ngay-10-10-2026-318q66hxdpjwqo9
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125552_15f20ce5.png" group-title="Bông Lau" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557418
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125549_a4353df0.png" group-title="Bông Lau" , 10/10 21:00 ⚽ Chelsea vs Bournemouth (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557419
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/49.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Chelsea vs Bournemouth (Chưa có link — chờ cập nhật)
+https://xoigac.top/chelsea-vs-bournemouth-id337493/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/57.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Ipswich vs Fulham (Chưa có link — chờ cập nhật)
+https://xoigac.top/ipswich-vs-fulham-id337494/groot
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/66.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://xoigac.top/aston-villa-vs-brentford-id337492/phan-quan
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/746.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Sunderland vs Brighton (Chưa có link — chờ cập nhật)
+https://xoigac.top/sunderland-vs-brighton-id337495/hawkeye
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/alaves.png" group-title="Giờ Vàng" , 10/10 21:15 ⚽ Alaves vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-alaves-vs-atletico-madrid-10-10-6ab1e5bce5e6975d550f0748
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_7a707dd9.png" group-title="Chuối Chiên" , 10/10 21:15 ⚽ Alaves vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1570403/alaves-vs-atletico-madrid
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/fffbebaa7a0c3c2db7e8d637a3de1811.png" group-title="Phá Làng" , 10/10 21:15 ⚽ Deportivo Alavés - Atletico Madrid (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#23xmvkh6jxowqg8
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/b7e1d23bb62776473efc5ef196a98de5.png" group-title="Phá Làng" , 10/10 21:15 ⚽ FC Botosani - FC UT Arad (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y0or5jh8k6vpqwz
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/fffbebaa7a0c3c2db7e8d637a3de1811.png" group-title="Gà Vàng" , 10/10 21:15 ⚽ Alavés vs Atl. Madrid (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/deportivo-alaves-vs-atletico-madrid-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9866.png" group-title="Sao Kê" , 10/10 21:15 ⚽ Deportivo Alavés vs Atlético Madrid (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/deportivo-alaves-vs-atletico-madrid-6ac8cc77447046ae4e199343.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/fffbebaa7a0c3c2db7e8d637a3de1811.png" group-title="GaVang33" , 10/10 21:15 ⚽ Deportivo Alavés vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/deportivo-alaves-vs-atletico-madrid-luc-2115-ngay-10-10-2026-23xmvkh6jxowqg8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_7a707dd9.png" group-title="Bông Lau" , 10/10 21:15 ⚽ Alaves vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1570403
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/542.webp" group-title="Xôi Gấc" , 10/10 21:15 ⚽ Alaves vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://xoigac.top/alaves-vs-atletico-madrid-id337688/phan-dau
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/acc42732b97d91016e37952666003417.png" group-title="Phá Làng" , 10/10 21:30 ⚽ Go Ahead Eagles - Sparta Rotterdam (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l5ergph4j5vwr8k
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/340d41d735133c7d7ed375b9a4a18d3f.png" group-title="Phá Làng" , 10/10 21:30 ⚽ Krylya Sovetov - Spartak Moscow (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#x7lm7phje0ezm2w
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/28da4be2e01d4db90e8fce3769d9ccb9.png" group-title="Phá Làng" , 10/10 21:30 ⚽ Leixoes - Porto B (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y0or5jh8yed2qwz
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/al-ettifaq.png" group-title="Giờ Vàng" , 10/10 21:55 ⚽ Al-Ettifaq vs Al Khaleej Club (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-al-ettifaq-vs-al-khaleej-club-10-10-6aa88a9724d46db870488fc4
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/381dd852484f06350b771097612cf08e.png" group-title="Phá Làng" , 10/10 21:55 ⚽ Al Ettifaq - Al Khaleej (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4h631l4q86
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/c5ab7f44d5c8cbb1d222ed661c0cf261.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Cameroon Women - Guinea (W) (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#3glrw7h4k24zqdy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/072547d9ec4d45b053f4c3ccda1c9a29.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Benin Cavaliers - USS Krake (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhvjp5gmd7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/4de67e6f969fc0bae95ae090ed48a09a.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Grazer AK - Red Bull Salzburg (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#8yomo4h1o9w9q0j
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/b5e300bc77ac2ffd21c313b3634e78f0.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Dragons - Pantheres (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#965mkyhk607vr1g
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/bddaeae0cb6deca762a495cf9938bd98.png" group-title="Phá Làng" , 10/10 22:00 ⚽ ASPAC Cotonou - Ayema (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dj2ryohlz9nxq1z
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/fdfa6f77959210f27832811fb20f8605.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Bani Ganse - LOTO (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#n54qllhnowjgqvy
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f9a82ecd54632916dfcf7e1a8e9e1616.png" group-title="Phá Làng" , 10/10 22:00 ⚽ WSG Tirol - SV Ried (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#vjxm8ghe69nlr6o
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/e38c289658417160930e5d8487136482.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Association Sportive de la Vallée de l'Ouémé FC - Association Sportive du Port Autonome de Cotonou FC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1h62e95moj
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/8838b764fed0d75323e2db1b3098b775.png" group-title="Phá Làng" , 10/10 22:00 ⚽ Indonesia Women - Armenia Women (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#y39mp1hdvnp1moj
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/lille.png" group-title="Giờ Vàng" , 10/10 22:15 ⚽ Lille OSC vs Le Havre (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-lille-osc-vs-le-havre-10-10-6ab1e5f5e5e6975d550f07ae
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/28e94925fdcc848f86a544a1cedcceed.png" group-title="Phá Làng" , 10/10 22:15 ⚽ LOSC Lille - Havre Athletic Club (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#zp5rzghgepk4q82
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/28e94925fdcc848f86a544a1cedcceed.png" group-title="Gà Vàng" , 10/10 22:15 ⚽ LOSC vs Havre AC (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/losc-lille-vs-havre-athletic-club-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/28e94925fdcc848f86a544a1cedcceed.png" group-title="GaVang33" , 10/10 22:15 ⚽ LOSC Lille vs Havre Athletic Club (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/losc-lille-vs-havre-athletic-club-luc-2215-ngay-10-10-2026-zp5rzghgepk4q82
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125605_14c915ad.png" group-title="Chuối Chiên" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550141/inter-vs-parma
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/aa2245702c40f77799a5ad4b119581a8.png" group-title="Phá Làng" , 10/10 23:00 ⚽ Inter Milan - Parma (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4jwq2ghnd4ddm0v
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/2e8e6c87d106649ed8f888a6da0422ba.png" group-title="Phá Làng" , 10/10 23:00 ⚽ Orlando Pirates - Mamelodi Sundowns (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4hyzpvlq86
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/aa2245702c40f77799a5ad4b119581a8.png" group-title="Gà Vàng" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/inter-milan-vs-parma-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8636.png" group-title="Sao Kê" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/inter-vs-parma-6ac8cc77447046ae4e19933c.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/aa2245702c40f77799a5ad4b119581a8.png" group-title="GaVang33" , 10/10 23:00 ⚽ Inter Milan vs Parma (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/inter-milan-vs-parma-luc-2300-ngay-10-10-2026-4jwq2ghnd4ddm0v
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125605_14c915ad.png" group-title="Bông Lau" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550141
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/505.webp" group-title="Xôi Gấc" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://xoigac.top/inter-vs-parma-id337916/super-man-2
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/68d4b5edf560156939713dd5872a1627.png" group-title="Phá Làng" , 10/10 23:15 ⚽ RAAL La Louvière - Club Brugge (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#dj2ryohl3004q1z
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/rb-leipzig.png" group-title="Giờ Vàng" , 10/10 23:30 ⚽ RB Leipzig vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-rb-leipzig-vs-eintracht-frankfurt-10-10-6ab1e5cae5e6975d550f0772
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-barcelona.png" group-title="Giờ Vàng" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-barcelona-vs-getafe-10-10-6ab1e5bce5e6975d550f0749
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/manchester-united.png" group-title="Giờ Vàng" , 10/10 23:30 ⚽ Manchester United vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-manchester-united-vs-tottenham-hotspur-10-10-6ab1e59ae5e6975d550f06e6
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125544_6dff7e1a.png" group-title="Chuối Chiên" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557425/manchester-united-vs-tottenham
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125621_92132918.png" group-title="Chuối Chiên" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1570404/barcelona-vs-getafe
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/12dcc69bef67aa2a93107e940ee89144.png" group-title="Phá Làng" , 10/10 23:30 ⚽ AEK Athens - OFI Crete FC (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#2y8m4zh5o39oql0
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/dbd8fbe82c9a39a85054bd7a2ac99b24.png" group-title="Phá Làng" , 10/10 23:30 ⚽ Asteras Aktor - Atromitos Athens (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#6ypq3nhv90o2md7
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d39ce586fd7278342dde33b3090b3f75.png" group-title="Phá Làng" , 10/10 23:30 ⚽ Manchester United - Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#965mkyhk9xn5r1g
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f378eb1ea04e53999b89051aa3244de6.png" group-title="Phá Làng" , 10/10 23:30 ⚽ FC Barcelona - Getafe (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#ednm9whw4e97ryo
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f48a781b76e04c7a50ea2136cb37ab87.png" group-title="Phá Làng" , 10/10 23:30 ⚽ FK Krasnodar - Zenit St. Petersburg (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#ednm9whw4z3yryo
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/c166a220bf20977df2bd82fc067696f5.png" group-title="Phá Làng" , 10/10 23:30 ⚽ RB Leipzig - Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l7oqdehgkeggr51
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/cb9797fa8614b9664231a4861ed71875.png" group-title="Phá Làng" , 10/10 23:30 ⚽ Independiente del Valle - Sociedad Deportiva Aucas (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#pxwrxlhlp9nzryk
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/d39ce586fd7278342dde33b3090b3f75.png" group-title="Phá Làng" , 10/10 23:30 ⚽ Manchester United - Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#97836f230aa9482e9ce83da70b0b47bb
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/d39ce586fd7278342dde33b3090b3f75.png" group-title="Gà Vàng" , 10/10 23:30 ⚽ Man Utd vs Spurs (Chưa có link — chờ cập nhật)
+https://gavanglinkv.tv/truc-tiep/manchester-united-vs-tottenham-hotspur-ngay-10-10-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10260.png" group-title="Sao Kê" , 10/10 23:30 ⚽ Manchester United vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/manchester-united-vs-tottenham-hotspur-6ac8cc77447046ae4e199341.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8634.png" group-title="Sao Kê" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/barcelona-vs-getafe-6ac8cc77447046ae4e199344.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/d39ce586fd7278342dde33b3090b3f75.png" group-title="GaVang33" , 10/10 23:30 ⚽ Manchester United vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/manchester-united-vs-tottenham-hotspur-luc-2330-ngay-10-10-2026-965mkyhk9xn5r1g
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/f378eb1ea04e53999b89051aa3244de6.png" group-title="GaVang33" , 10/10 23:30 ⚽ FC Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fc-barcelona-vs-getafe-luc-2330-ngay-10-10-2026-ednm9whw4e97ryo
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125544_6dff7e1a.png" group-title="Bông Lau" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557425
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125621_92132918.png" group-title="Bông Lau" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1570404
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/529.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://xoigac.top/barcelona-vs-getafe-id337999/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/173.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ RB Leipzig vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://xoigac.top/rb-leipzig-vs-eintracht-frankfurt-id338001/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/33.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
+https://xoigac.top/manchester-united-vs-tottenham-id337995/deal-pool
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/44073f2d2c979a9388f98505ac3b754d.png" group-title="Phá Làng" , 10/10 23:45 ⚽ Feyenoord - AZ Alkmaar (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#4wyrn4h617doq86
+
+# ----- Ngày 2026-10-11 -----
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/0e46a367636113807f797b9db2787c22.png" group-title="Phá Làng" , 11/10 00:00 ⚽ FC Tevragh-Zeina - Nzeidane (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#l5ergphk06d1r8k
+
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a6f6290d4b7699729dc19349484841bf.png" group-title="Phá Làng" , 11/10 00:00 ⚽ Toronto FC - Montreal Impact (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#pxwrxlhy3n43ryk
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/al-hilal.png" group-title="Giờ Vàng" , 11/10 01:00 ⚽ Al Hilal vs Al Ittihad Jeddah (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-al-hilal-vs-al-ittihad-jeddah-11-10-6aa88a9724d46db870489005
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/07a555616afab7be32e00150eacf4197.png" group-title="GaVang33" , 11/10 01:00 ⚽ Al Hilal vs Al Ittihad (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/al-hilal-vs-al-ittihad-luc-0100-ngay-11-10-2026-dj2ryohlo3x5q1z
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2932.webp" group-title="Xôi Gấc" , 11/10 01:00 ⚽ Al-Hilal Saudi FC vs Al-Ittihad FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/al-hilal-saudi-fc-vs-al-ittihad-fc-id338078/phan-dau
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/paris-saint-germain-psg.png" group-title="Giờ Vàng" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-paris-saint-germain-vs-le-mans-11-10-6ab1e5f5e5e6975d550f07b1
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125601_1ca3923a.png" group-title="Chuối Chiên" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550144/napoli-vs-frosinone
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125513_ca6329d9.png" group-title="Chuối Chiên" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1552780/paris-saint-germain-vs-le-mans
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9875.png" group-title="Sao Kê" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/napoli-vs-frosinone-6ac8cc77447046ae4e19933d.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9847.png" group-title="Sao Kê" , 11/10 01:45 ⚽ Paris Saint-Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/paris-saint-germain-vs-le-mans-6ac8cc77447046ae4e199342.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/37ed13d27edccd30e053167962c02b3a.png" group-title="GaVang33" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/napoli-vs-frosinone-luc-0145-ngay-11-10-2026-8yomo4h1j7ozq0j
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/b593727321793084b1f7804aebedc31a.png" group-title="GaVang33" , 11/10 01:45 ⚽ Lorient vs Paris FC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/lorient-vs-paris-fc-luc-0145-ngay-11-10-2026-1l4rjnh9px7lm7v
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/693af0d277fe3179594695614dce8666.png" group-title="GaVang33" , 11/10 01:45 ⚽ AS Monaco vs Toulouse FC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/as-monaco-vs-toulouse-fc-luc-0145-ngay-11-10-2026-4jwq2ghndx2zm0v
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/3b720f181ce9993f9422d276acf7b292.png" group-title="GaVang33" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/paris-saint-germain-vs-le-mans-luc-0145-ngay-11-10-2026-965mkyhk9evkr1g
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125601_1ca3923a.png" group-title="Bông Lau" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550144
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125513_ca6329d9.png" group-title="Bông Lau" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1552780
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/85.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://xoigac.top/paris-saint-germain-vs-le-mans-id338095/groot
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/492.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://xoigac.top/napoli-vs-frosinone-id338091/hawkeye
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/91.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Monaco vs Toulouse (Chưa có link — chờ cập nhật)
+https://xoigac.top/monaco-vs-toulouse-id338094/phan-quan
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/real-madrid.png" group-title="Giờ Vàng" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-real-madrid-vs-villarreal-11-10-6ab1e5bce5e6975d550f074a
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_9a1b10da.png" group-title="Chuối Chiên" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1570411/real-madrid-vs-villarreal
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8633.png" group-title="Sao Kê" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/real-madrid-vs-villarreal-6ac8cc77447046ae4e199345.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/7dacaa934fe4be00f23c1e209b5ef947.png" group-title="GaVang33" , 11/10 02:00 ⚽ Real Madrid vs Villarreal CF (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/real-madrid-vs-villarreal-cf-luc-0200-ngay-11-10-2026-jw2r09hkv1nzrz8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_9a1b10da.png" group-title="Bông Lau" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1570411
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/541.webp" group-title="Xôi Gấc" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://xoigac.top/real-madrid-vs-villarreal-id338100/black-panther
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/bd659fbcfc82ac233cc8e329f35f2b50.png" group-title="GaVang33" , 11/10 02:30 ⚽ Viseu vs Estoril (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/viseu-vs-estoril-luc-0230-ngay-11-10-2026-k82rekhgpo17rep
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/atlanta-united.png" group-title="Giờ Vàng" , 11/10 06:30 ⚽ Atlanta United vs FC Cincinnati (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-atlanta-united-vs-fc-cincinnati-11-10-6ac045c424d46db8705b5612
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/inter-miami-cf.png" group-title="Giờ Vàng" , 11/10 06:30 ⚽ Inter Miami vs Washington D.C. United (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-inter-miami-vs-washington-d-c-united-11-10-6ac045c424d46db8705b5657
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/new-york-red-bulls.png" group-title="Giờ Vàng" , 11/10 06:30 ⚽ New York Red Bulls vs San Diego FC (Chưa có link — chờ cập nhật)
+https://giovang.tax/truc-tiep-new-york-red-bulls-vs-san-diego-fc-11-10-6ac045c424d46db8705b569a
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131436_8ba487aa.png" group-title="Chuối Chiên" , 11/10 06:30 ⚽ Inter Miami vs DC United (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1490513/inter-miami-vs-dc-united
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/960720.png" group-title="Sao Kê" , 11/10 06:30 ⚽ Inter Miami CF vs DC United (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/inter-miami-cf-vs-dc-united-6ac8cc77447046ae4e19933a.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/976fe1d29c112f4baeb844cdda2f04cb.png" group-title="GaVang33" , 11/10 06:30 ⚽ Inter Miami CF vs DC United (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/inter-miami-cf-vs-dc-united-luc-0630-ngay-11-10-2026-3glrw7hnp98gqdy
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131436_8ba487aa.png" group-title="Bông Lau" , 11/10 06:30 ⚽ Inter Miami vs DC United (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1490513
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/9568.webp" group-title="Xôi Gấc" , 11/10 06:30 ⚽ Inter Miami vs DC United (Chưa có link — chờ cập nhật)
+https://xoigac.top/inter-miami-vs-dc-united-id338207/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/126.webp" group-title="Xôi Gấc" , 11/10 07:00 ⚽ Sao Paulo vs Vitoria (Chưa có link — chờ cập nhật)
+https://xoigac.top/sao-paulo-vs-vitoria-id338518/phan-pepsi
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/435.webp" group-title="Xôi Gấc" , 11/10 07:30 ⚽ River Plate vs Estudiantes de Rio Cuarto (Chưa có link — chờ cập nhật)
+https://xoigac.top/river-plate-vs-estudiantes-de-rio-cuarto-id339517/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2283.webp" group-title="Xôi Gấc" , 11/10 08:00 ⚽ Atlas vs Guadalajara Chivas (Chưa có link — chờ cập nhật)
+https://xoigac.top/atlas-vs-guadalajara-chivas-id338531/joker-2
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131607_798216b4.png" group-title="Chuối Chiên" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1490523/colorado-rapids-vs-san-jose-earthquakes
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8314.png" group-title="Sao Kê" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
+https://vip3.saoketv40.xyz/colorado-rapids-vs-san-jose-earthquakes-6ac8cc77447046ae4e19933b.html
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/2d874c6a14447ac110695b300849ca7c.png" group-title="GaVang33" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/colorado-rapids-vs-san-jose-earthquakes-luc-0830-ngay-11-10-2026-jw2r09hk03o9rz8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131607_798216b4.png" group-title="Bông Lau" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1490523

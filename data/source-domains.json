@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-09T20:05:44.617Z",
+  "domains": {
+    "giovang": {
+      "url": "https://giovang.tax",
+      "envVar": "GIOVANG_DOMAIN",
+      "role": "site",
+      "status": "moved",
+      "from": "SOURCE_DOMAINS"
+    },
+    "khandaitv": {
+      "url": "https://khandai2.com",
+      "envVar": "KHANDAITV_BASE_URL",
+      "role": "site",
+      "status": "down",
+      "from": "SOURCE_DOMAINS"
+    },
+    "phaohoa": {
+      "url": "https://phaohoa1.live",
+      "envVar": "PHAOHOA_BASE_URL",
+      "role": "site",
+      "status": "down",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang": {
+      "url": "https://gavanglinkv.tv",
+      "envVar": "GAVANG_BASE_URL",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang33": {
+      "url": "https://gavang33.me",
+      "envVar": "GAVANG33_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke": {
+      "url": "https://vip3.saoketv40.xyz",
+      "envVar": "SAOKE_BASE_URL",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau": {
+      "url": "https://lau06.bonglautv1.org",
+      "envVar": "BONGLAU_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoilac": {
+      "url": "https://xoilacxbr.tv",
+      "envVar": "XOILAC_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoigac": {
+      "url": "https://xoigac.top",
+      "envVar": "XOIGAC_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "phalang": {
+      "url": "https://phalang2.live",
+      "envVar": "PHALANG_DOMAIN",
+      "role": "site",
+      "status": "moved",
+      "from": "SOURCE_DOMAINS"
+    },
+    "chuoichientv": {
+      "url": "https://live05.chuoichientv.me",
+      "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
+      "role": "site",
+      "status": "moved",
+      "from": "mặc định",
+      "found": "https://live08.chuoichientv.me"
+    },
+    "chuoichientv-player": {
+      "url": "https://live.chuoichien.tv",
+      "envVar": "CHUOICHIENTV_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke-player": {
+      "url": "https://sk.mediastation.live",
+      "envVar": "SAOKE_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau-player": {
+      "url": "https://live.chuoichien.tv",
+      "envVar": "BONGLAU_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "giovang-api": {
+      "url": "https://live-api.keonhacaitp.one",
+      "envVar": "GIOVANG_LIVE_API_HOST",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke-api": {
+      "url": "https://skapi.66887979.xyz",
+      "envVar": "SAOKE_API_DOMAIN",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang33-api": {
+      "url": "https://gavangtv-api.adviceme.io",
+      "envVar": "GAVANG33_API_DOMAIN",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "phalang-api": {
+      "url": "https://api.plapi202624081158.com",
+      "envVar": "PHALANG_API_BASE",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "chuoichientv-api": {
+      "url": "https://api-v2.chuoichientv.net/v2",
+      "envVar": "CHUOICHIENTV_API_BASE",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoilac-api": {
+      "url": "https://fb-api.sportliveapiz.com",
+      "envVar": "XOILAC_SCORE_API",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau-api": {
+      "url": "https://api-v2.chuoichientv.net/v2",
+      "envVar": "BONGLAU_API_BASE",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-09T07:40:50.064Z",
+      "source": "(tất cả)",
+      "from": null,
+      "to": null,
+      "via": "tạo bản lưu đầu tiên"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "giovang",
+      "from": "https://giovang.rent",
+      "to": "https://giovang.tax",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "khandaitv",
+      "from": "https://khandai3.link",
+      "to": "https://khandai2.com",
+      "via": "biến thể tên/đuôi"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "phalang",
+      "from": "https://phalang.live",
+      "to": "https://phalang2.live",
+      "via": "chuyển hướng của chính trang"
+    }
+  ]
+}

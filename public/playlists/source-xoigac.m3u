@@ -1,0 +1,101 @@
+#EXTM3U
+# Cập nhật lần cuối: 09:17:25 10/10/2026 (giờ VN) — chỉ đổi khi danh sách trận/link thay đổi
+
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (31 trận) =====
+
+# ----- Ngày 2026-10-10 -----
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/441.webp" group-title="Xôi Gấc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (BLV Groot)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791612978&signature=bMhlzCXnXxi7Qg7-7FI_avod_eBCure63DowNs3fDHk
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2291.webp" group-title="Xôi Gấc" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (BLV Phan Pepsi)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791612978&signature=7xz4CGmyP-l1H0ZGniCnGJ-b9Q_botyi1HoJh_a8nlQ
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
+https://xoigac.top/tigres-uanl-vs-toluca-id336731/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/291.webp" group-title="Xôi Gấc" , 10/10 12:00 ⚽ Cerezo Osaka vs Yokohama F. Marinos (Chưa có link — chờ cập nhật)
+https://xoigac.top/cerezo-osaka-vs-yokohama-f-marinos-id336742/phan-pepsi
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/1105.webp" group-title="Xôi Gấc" , 10/10 12:00 🏀 KCC Egis vs Wonju DB (Chưa có link — chờ cập nhật)
+https://xoigac.top/kcc-egis-vs-wonju-db-id336352/the-flash
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2766.webp" group-title="Xôi Gấc" , 10/10 12:00 ⚽ FC Seoul vs Jeju United FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-seoul-vs-jeju-united-fc-id336734/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/292.webp" group-title="Xôi Gấc" , 10/10 13:00 ⚽ FC Tokyo vs Urawa (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-tokyo-vs-urawa-id336750/groot
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2768.webp" group-title="Xôi Gấc" , 10/10 14:30 ⚽ Gimcheon Sangmu FC vs FC Anyang (Chưa có link — chờ cập nhật)
+https://xoigac.top/gimcheon-sangmu-fc-vs-fc-anyang-id336753/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/302.webp" group-title="Xôi Gấc" , 10/10 17:00 ⚽ Kyoto Sanga vs Machida Zelvia (Chưa có link — chờ cập nhật)
+https://xoigac.top/kyoto-sanga-vs-machida-zelvia-id336819/phan-dau
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/42.webp" group-title="Xôi Gấc" , 10/10 18:30 ⚽ Arsenal vs Leeds (Chưa có link — chờ cập nhật)
+https://xoigac.top/arsenal-vs-leeds-id336911/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/728.webp" group-title="Xôi Gấc" , 10/10 19:00 ⚽ Rayo Vallecano vs Athletic Club (Chưa có link — chờ cập nhật)
+https://xoigac.top/rayo-vallecano-vs-athletic-club-id336984/hawkeye
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/170.webp" group-title="Xôi Gấc" , 10/10 20:30 ⚽ FC Augsburg vs Bayern München (Chưa có link — chờ cập nhật)
+https://xoigac.top/fc-augsburg-vs-bayern-munchen-id337401/deal-pool
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/49.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Chelsea vs Bournemouth (Chưa có link — chờ cập nhật)
+https://xoigac.top/chelsea-vs-bournemouth-id337493/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/57.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Ipswich vs Fulham (Chưa có link — chờ cập nhật)
+https://xoigac.top/ipswich-vs-fulham-id337494/groot
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/66.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Aston Villa vs Brentford (Chưa có link — chờ cập nhật)
+https://xoigac.top/aston-villa-vs-brentford-id337492/phan-quan
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/746.webp" group-title="Xôi Gấc" , 10/10 21:00 ⚽ Sunderland vs Brighton (Chưa có link — chờ cập nhật)
+https://xoigac.top/sunderland-vs-brighton-id337495/hawkeye
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/542.webp" group-title="Xôi Gấc" , 10/10 21:15 ⚽ Alaves vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://xoigac.top/alaves-vs-atletico-madrid-id337688/phan-dau
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/505.webp" group-title="Xôi Gấc" , 10/10 23:00 ⚽ Inter vs Parma (Chưa có link — chờ cập nhật)
+https://xoigac.top/inter-vs-parma-id337916/super-man-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/529.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Barcelona vs Getafe (Chưa có link — chờ cập nhật)
+https://xoigac.top/barcelona-vs-getafe-id337999/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/173.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ RB Leipzig vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://xoigac.top/rb-leipzig-vs-eintracht-frankfurt-id338001/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/33.webp" group-title="Xôi Gấc" , 10/10 23:30 ⚽ Manchester United vs Tottenham (Chưa có link — chờ cập nhật)
+https://xoigac.top/manchester-united-vs-tottenham-id337995/deal-pool
+
+# ----- Ngày 2026-10-11 -----
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2932.webp" group-title="Xôi Gấc" , 11/10 01:00 ⚽ Al-Hilal Saudi FC vs Al-Ittihad FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/al-hilal-saudi-fc-vs-al-ittihad-fc-id338078/phan-dau
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/85.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Paris Saint Germain vs Le Mans (Chưa có link — chờ cập nhật)
+https://xoigac.top/paris-saint-germain-vs-le-mans-id338095/groot
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/492.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Napoli vs Frosinone (Chưa có link — chờ cập nhật)
+https://xoigac.top/napoli-vs-frosinone-id338091/hawkeye
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/91.webp" group-title="Xôi Gấc" , 11/10 01:45 ⚽ Monaco vs Toulouse (Chưa có link — chờ cập nhật)
+https://xoigac.top/monaco-vs-toulouse-id338094/phan-quan
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/541.webp" group-title="Xôi Gấc" , 11/10 02:00 ⚽ Real Madrid vs Villarreal (Chưa có link — chờ cập nhật)
+https://xoigac.top/real-madrid-vs-villarreal-id338100/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/9568.webp" group-title="Xôi Gấc" , 11/10 06:30 ⚽ Inter Miami vs DC United (Chưa có link — chờ cập nhật)
+https://xoigac.top/inter-miami-vs-dc-united-id338207/black-panther
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/126.webp" group-title="Xôi Gấc" , 11/10 07:00 ⚽ Sao Paulo vs Vitoria (Chưa có link — chờ cập nhật)
+https://xoigac.top/sao-paulo-vs-vitoria-id338518/phan-pepsi
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/133.webp" group-title="Xôi Gấc" , 11/10 07:00 🏀 Boston Celtics vs Philadelphia 76ers (Chưa có link — chờ cập nhật)
+https://xoigac.top/boston-celtics-vs-philadelphia-76ers-id338269/the-flash
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/435.webp" group-title="Xôi Gấc" , 11/10 07:30 ⚽ River Plate vs Estudiantes de Rio Cuarto (Chưa có link — chờ cập nhật)
+https://xoigac.top/river-plate-vs-estudiantes-de-rio-cuarto-id339517/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2283.webp" group-title="Xôi Gấc" , 11/10 08:00 ⚽ Atlas vs Guadalajara Chivas (Chưa có link — chờ cập nhật)
+https://xoigac.top/atlas-vs-guadalajara-chivas-id338531/joker-2

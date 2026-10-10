@@ -1,0 +1,234 @@
+name: Generate Playlists
+
+on:
+  # Cho phep bam tay "Run workflow" tren tab Actions de test ngay, khong
+  # can doi lich cron 2 phut.
+  workflow_dispatch:
+  # FIX (24/09/2026 - "khi thay doi file muon dung workflow ngay de chay lai
+  # lan moi"): truoc day chi push sua data/sources.json moi kich hoat. Gio
+  # push vao main o BAT KY file nao (tru public/playlists/** - do chinh bot
+  # ghi moi 2 phut, tranh kich hoat vo ich) deu chay workflow moi, va workflow
+  # moi se HUY job cu dang chay (xem concurrency ben duoi).
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'public/playlists/**'
+      - 'data/source-domains.hash' # file ma bam do workflow Watch SOURCE_DOMAINS tu ghi - khong can chay lai vi no
+  schedule:
+    # FIX (22/09/2026 - "GitHub khong dam bao lich */2 chay dung gio, hang
+    # doi runner co the tre/bo lan"): TRUOC DAY dung lich nay de tao 1 JOB
+    # MOI moi 2 phut (chay 1 lan roi thoat) - doi khi bi tre hoac bo lan luc
+    # tai cao. GIO chuyen sang mo hinh 1 JOB DUY NHAT tu lap ben trong moi 2
+    # phut bang che do "--watch" (xem buoc "Generate playlists" ben duoi va
+    # FIX cung ngay trong scripts/generate-playlists-standalone.mjs) - job
+    # do tu chay lien tuc toi gan gioi han 6 tieng roi tu goi API kich hoat
+    # lai chinh no (workflow_dispatch), nen KHONG con phu thuoc lich cron
+    # moi 2 phut nua. Lich cron o day gio chi con la LUOI DU PHONG (giao ~6
+    # tieng/lan, khop voi MAX_RUNTIME_MINUTES ben duoi) - phong khi buoc tu
+    # kich hoat lai bi loi (het han token, loi mang,...) thi van co nguoi
+    # bat lai, khong de dut han day chuyen.
+    - cron: '0 */6 * * *'  # luoi du phong, giao ~6 tieng/lan - vong lap that nam trong tung job (xem env MAX_RUNTIME_MINUTES)
+
+# Dam bao chi 1 job dang chay tai 1 thoi diem. FIX (24/09/2026 - "khi thay doi
+# file muon dung workflow ngay de chay lai lan moi"): cancel-in-progress: true
+# -> run moi (push / bam tay / lich du phong / tu kich hoat lai) se HUY NGAY run
+# cu dang chay roi chay thay the, khong xep hang cho run cu xong nhu truoc
+# (truoc day phai bam Cancel nhieu lan). Moi chu ky 2 phut deu da commit/push
+# xong truoc khi sang chu ky sau nen huy giua chung chi mat toi da 1 chu ky
+# dang do.
+#
+# FIX (09/10/2026 - "kiem tra tai nguyen GitHub khi bi ep chay lai"): TRUOC DAY
+# luoi du phong 'cron 0 */6' cung co cancel-in-progress: true nen cu moi 6 tieng
+# NO LAI HUY job dang chay khoe (thuong la job moi duoc tu kich hoat chi ~25 phut
+# truoc do), bat chay lai tu dau (apt + npm ci + tai Chrome ~3-5 phut) -> ~4 lan
+# huy + cai lai moi ngay, vo ich. GIO: chi push / bam tay / tu kich hoat lai
+# (workflow_dispatch) moi huy run cu; lich cron chi XEP HANG (khong huy) - neu job
+# van dang chay thi run cron nay bi thay/bo di khi job ke tiep duoc kich hoat, con
+# neu chuoi that su da dut thi run cron chay ngay (dung vai tro luoi du phong).
+#
+# CONG TAC TAT/MO TU DONG CHAY LAI KHI DOI FILE (09/10/2026): sua file data/auto-rerun.txt
+# thanh "off" (tat) hoac "on" (mo) ngay tren GitHub. Su kien push KHONG con huy thang job
+# dang chay nua - no chay 1 job "gate" rat nhe (rieng 1 nhom concurrency) doc co trong
+# commit vua push: "on" -> goi workflow_dispatch de chay lai (huy job cu nhu truoc),
+# "off" -> bo qua, job dang chay giu nguyen. Vong lap trong script cung ton trong co nay.
+concurrency:
+  group: ${{ github.event_name == 'push' && 'generate-playlists-gate' || 'generate-playlists-loop' }}
+  cancel-in-progress: ${{ github.event_name != 'schedule' }}
+
+jobs:
+  gate:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write # de goi workflow_dispatch chay lai workflow nay
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Doc cong tac data/auto-rerun.txt
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          FLAG=$(tr -d '[:space:]\r' < data/auto-rerun.txt 2>/dev/null | tr 'A-Z' 'a-z' || true)
+          echo "Cong tac auto-rerun: '${FLAG:-<khong co file, mac dinh on>}'"
+          case "$FLAG" in
+            off|0|false|no) echo "TAT tu dong chay lai -> bo qua, job dang chay giu nguyen."; exit 0 ;;
+          esac
+          for i in 1 2 3; do
+            if gh workflow run validate-and-generate.yml --ref "${{ github.ref_name }}"; then
+              echo "Da yeu cau chay lai Generate Playlists"; exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "::error::Khong goi duoc workflow_dispatch"; exit 1
+
+  generate:
+    if: ${{ github.event_name != 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 358 # FIX (06/10/2026): gioi han cung cua GitHub la 360 phut/job. Script dung som o MAX_RUNTIME_MINUTES (tinh tu DAU JOB) de con ~20 phut du cho chu ky cuoi + goi API kich hoat job ke tiep
+    permissions:
+      contents: write
+      actions: write # can quyen nay de buoc "Generate playlists" tu goi API workflow_dispatch kich hoat lai chinh workflow nay
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # FIX (09/10/2026): cache npm (~/.npm) - moi lan bi ep chay lai khong phai tai lai
+      # toan bo goi tu registry (npm ci van xoa/cai lai node_modules, chi lay goi tu cache).
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Domain các nguồn: khai báo TẤT CẢ trong MỘT biến GitHub tên SOURCE_DOMAINS
+      # (Settings > Secrets and variables > Actions > tab Variables), mỗi dòng "tên=domain".
+      # Bước này mở biến đó thành các biến môi trường thường (GIOVANG_DOMAIN, SAOKE_BASE_URL...)
+      # cho MỌI bước phía sau qua $GITHUB_ENV nên code các nguồn không phải sửa gì.
+      # Ưu tiên: dòng trong SOURCE_DOMAINS > biến riêng lẻ cũ > domain mặc định trong code.
+      # Workflow "Check Domains" cũng tự sửa biến SOURCE_DOMAINS khi tìm được domain mới.
+      # Bước này còn TỰ THEO REDIRECT: domain trang web nào đang chuyển hướng sang domain khác (và trang
+      # đích đúng là nguồn đó) thì dùng domain mới ngay cho lần chạy, kèm cảnh báo nên cập nhật biến.
+      # (Biến riêng lẻ bên dưới chỉ là dự phòng tương thích cũ — để trống cũng được.)
+      - name: Expand source domains (GitHub Variables)
+        run: node scripts/expand-source-domains.mjs
+        env:
+          SOURCE_DOMAINS: ${{ vars.SOURCE_DOMAINS }}
+          PINNED_SOURCES: ${{ vars.PINNED_SOURCES }} # nguồn GHIM: không tự đổi domain (hoặc thêm '# pin' cuối dòng trong SOURCE_DOMAINS)
+          FOLLOW_REDIRECTS: ${{ vars.FOLLOW_REDIRECTS }} # đặt biến GitHub FOLLOW_REDIRECTS=0 để TẮT tự theo redirect
+          GIOVANG_DOMAIN: ${{ vars.GIOVANG_DOMAIN }}
+          KHANDAITV_BASE_URL: ${{ vars.KHANDAITV_BASE_URL }}
+          PHAOHOA_BASE_URL: ${{ vars.PHAOHOA_BASE_URL }}
+          GAVANG_BASE_URL: ${{ vars.GAVANG_BASE_URL }}
+          GAVANG33_DOMAIN: ${{ vars.GAVANG33_DOMAIN }}
+          SAOKE_BASE_URL: ${{ vars.SAOKE_BASE_URL }}
+          BONGLAU_DOMAIN: ${{ vars.BONGLAU_DOMAIN }}
+          XOILAC_DOMAIN: ${{ vars.XOILAC_DOMAIN }}
+          XOIGAC_DOMAIN: ${{ vars.XOIGAC_DOMAIN }}
+          XOILAC_SCORE_API: ${{ vars.XOILAC_SCORE_API }}
+          PHALANG_DOMAIN: ${{ vars.PHALANG_DOMAIN }}
+          CHUOICHIENTV_WATCH_DOMAIN: ${{ vars.CHUOICHIENTV_WATCH_DOMAIN }}
+          CHUOICHIENTV_PLAYER_DOMAIN: ${{ vars.CHUOICHIENTV_PLAYER_DOMAIN || secrets.CHUOICHIENTV_PLAYER_DOMAIN }}
+          SAOKE_PLAYER_DOMAIN: ${{ vars.SAOKE_PLAYER_DOMAIN }}
+          BONGLAU_PLAYER_DOMAIN: ${{ vars.BONGLAU_PLAYER_DOMAIN }}
+          GIOVANG_LIVE_API_HOST: ${{ vars.GIOVANG_LIVE_API_HOST }}
+          SAOKE_API_DOMAIN: ${{ vars.SAOKE_API_DOMAIN }}
+          GAVANG33_API_DOMAIN: ${{ vars.GAVANG33_API_DOMAIN }}
+          PHALANG_API_BASE: ${{ vars.PHALANG_API_BASE }}
+          CHUOICHIENTV_API_BASE: ${{ vars.CHUOICHIENTV_API_BASE }}
+          BONGLAU_API_BASE: ${{ vars.BONGLAU_API_BASE }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      # FIX (20/09/2026 - "khong deploy VPS/Vercel/Render nao ca, chi up len
+      # GitHub"): truoc day workflow nay goi qua HTTP toi 1 trang DA DEPLOY
+      # (xem scripts/generate-playlists.js) de lay du lieu tran dau - buoc
+      # do can 1 server dang chay song (Vercel/Render/VPS). Gio KHONG con
+      # server nao ca, nen chuyen sang scripts/generate-playlists-standalone.mjs
+      # (tu goi thang buildAggregatedMatches() - dung 100% logic that, chi
+      # khac la chay TRUC TIEP trong chinh tien trinh GitHub Actions nay,
+      # khong qua HTTP toi dau ca). File .mjs do dung alias "@/..." (chi
+      # Next.js/webpack hieu) nen phai BUNDLE truoc bang esbuild (doc alias
+      # thang tu jsconfig.json) ra 1 file .cjs doc lap roi moi chay duoc
+      # bang node thuan - xem npm script "generate-playlists:standalone:build"
+      # trong package.json.
+      - name: Bundle standalone playlist generator
+        run: npm run generate-playlists:standalone:build
+
+      # 2 nguon (Gio Vang, Khan Dai) can mo trinh duyet Chromium that de
+      # vuot chan (xem src/utils/browserFetch.js) - GitHub Actions ubuntu-
+      # latest KHONG co san chromium dang dung duoc thang (goi "chromium"
+      # qua apt tren Ubuntu la snap wrapper, khong chay duoc trong container
+      # khong co snapd) - tu tai 1 ban Chrome-for-Testing doc lap qua CLI
+      # chinh thuc cua Puppeteer (@puppeteer/browsers), roi tro thang
+      # CHROME_EXECUTABLE_PATH vao do - src/utils/browserFetch.js da tu uu
+      # tien bien nay tu truoc (dung chung co che voi huong dan Docker/VPS
+      # trong DEPLOY_VPS.md), khong can sua gi them o do.
+      # FIX (09/10/2026): Chrome-for-Testing nang ~150MB, truoc day MOI LAN bi ep chay lai
+      # (push / cron / tu kich hoat) deu tai lai tu dau. Cache theo TUAN (key doi moi tuan de
+      # van nhan ban Chrome stable moi) - lan chay lai trong tuan chi dung lai ban da cache.
+      - name: Chrome cache key (theo tuan)
+        id: chrome-week
+        run: echo "id=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Chrome-for-Testing
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/chrome-browser
+          key: chrome-stable-${{ runner.os }}-${{ steps.chrome-week.outputs.id }}
+
+      - name: Install Chromium for headless sources (Gio Vang / Khan Dai)
+        id: chrome
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libatk1.0-0 libcups2 \
+            libdrm2 libgbm1 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 \
+            libxrandr2 libasound2t64
+          INSTALL_OUTPUT=$(npx --yes @puppeteer/browsers install chrome@stable --path "$RUNNER_TEMP/chrome-browser")
+          echo "$INSTALL_OUTPUT"
+          CHROME_PATH=$(echo "$INSTALL_OUTPUT" | tail -1 | awk '{print $2}')
+          echo "Duong dan Chrome: $CHROME_PATH"
+          echo "path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
+
+      # FIX (22/09/2026 - "can 1 job tu lap moi 2 phut, khong phai 1 job/lan"):
+      # them "--watch" (khung nay da co san trong file .mjs, chi la truoc day
+      # khong duoc dung toi) - script se tu lap generateOnce() + tu
+      # commit/push (xem GENERATE_AUTO_COMMIT ben duoi) moi 2 phut LIEN TUC
+      # ngay trong 1 tien trinh node duy nhat, khong can GitHub tao job moi
+      # moi lan. Sau toi da MAX_RUNTIME_MINUTES phut (de dem duoi gioi han
+      # cung 360 phut/job), script tu dung vong lap va tu goi API
+      # workflow_dispatch (can GITHUB_TOKEN + quyen "actions: write" o tren)
+      # de kich hoat 1 job MOI tiep tuc ngay, khong dut quang.
+      - name: Generate playlists (vong lap 2 phut/lan, tu commit tung chu ky)
+        run: node .generate-playlists-standalone.cjs --watch
+        env:
+          CHROME_EXECUTABLE_PATH: ${{ steps.chrome.outputs.path }}
+          GENERATE_AUTO_COMMIT: '1' # bat cong tac tu commit/push moi chu ky ben trong script (xem AUTO_COMMIT trong generate-playlists-standalone.mjs)
+          MAX_RUNTIME_MINUTES: '335' # FIX (06/10/2026): 5h35 tinh tu DAU JOB (gom ca vai phut cai dat) - truoc day 345 phut tinh tu luc script chay nen de cham timeout truoc khi kip goi job ke tiep
+          JOB_STARTED_AT: ${{ github.run_started_at }} # moc bat dau job de script tinh dung thoi gian da chay
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # dung de tu goi API workflow_dispatch kich hoat lai chinh workflow nay
+          # FIX (25/09/2026): Override referer cho Chuoi Chien (GitHub Actions IP bi CDN chcan)
+          CHUOICHIENTV_IPTV_REFERER: ${{ secrets.CHUOICHIENTV_IPTV_REFERER }}
+          # FIX (27/09/2026 — sinh thêm file "-proxy.m3u" chạy qua server
+          # sống /api/proxy/hls, dùng được cho MỌI app IPTV kể cả app không
+          # hỗ trợ header tuỳ chỉnh): để trống secret này thì bỏ qua, không
+          # sinh file proxy nào (giữ nguyên hành vi cũ). Set giá trị là domain
+          # Vercel/Render/VPS đã deploy, ví dụ https://ten-project.vercel.app
+          PROXY_BASE_URL: ${{ secrets.PROXY_BASE_URL }}
+          # FIX (05/10/2026): API Sao Kê luôn bị Cloudflare chặn (403 "Just a moment...") với IP máy chủ GitHub
+          # -> bỏ bước gọi thẳng, mở trình duyệt headless ngay (lỗi mới thử gọi thẳng). Xoá dòng này để về mặc định.
+          SAOKE_BROWSER_FIRST: '1'
+
+      - name: Commit and push (du phong)
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add public/playlists/
+          git commit -m "Generate playlists" || true
+          git push || true
