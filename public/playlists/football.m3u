@@ -1,7 +1,7 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:28:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:30:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (19 trận), Phá Làng (81 trận), Gà Vàng (20 trận), Sao Kê (18 trận), GaVang33 (34 trận), Bông Lau (19 trận), Xôi Lạc (5 trận), Xôi Gấc (29 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (28 trận), Chuối Chiên (19 trận), Phá Làng (82 trận), Gà Vàng (20 trận), Sao Kê (18 trận), GaVang33 (35 trận), Bông Lau (19 trận), Xôi Lạc (5 trận), Xôi Gấc (30 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/c5d75265caa6875d9ea84f36027312d5.png" group-title="Gà Vàng" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (cố tư nghiêm)
@@ -12,11 +12,11 @@ https://playback.livetl002.com/live/69a1aaa7230584579e2d5ce1.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvojwrepz/image/small" group-title="Xôi Lạc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (HD SILVA)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-20.flv?auth_key=3000001791599237-0-0-2e7782e08aa68d6b5b5f2148e0416f69
+https://live2.domaincdn.cc/livecdn/channel-20.flv?auth_key=3000001791599358-0-0-3bfc3720753c9fb3b510dc6030a68b43
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/441.webp" group-title="Xôi Gấc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613637&signature=n29twukmLqKglxEBY6V1J_3CqE3W71bKT7WNYEWf5wY
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613757&signature=mMGNrMLvR20VoRChuKs9Tuu_lQFwN5OXmK6Wbo9mOMY
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/puebla.png" group-title="Giờ Vàng" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (Giovang 1)
 #EXTVLCOPT:http-referrer=https://giovang.tax/
@@ -50,21 +50,21 @@ https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kdj2ryoh66gq1zp/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Puebla vs Club Leon (HD TOM)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live2.domaincdn.cc/livecdn/channel-4.flv?auth_key=3000001791599237-0-0-ee1f56a3fbd5fdb18b1820276aa1efc9
+https://live2.domaincdn.cc/livecdn/channel-4.flv?auth_key=3000001791599358-0-0-9dd150db371001a444276a1664e21b82
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvvkorepz/image/small" group-title="Xôi Lạc" , 10/10 08:00 🟢 ⚽ Nữ Mexico vs Nữ Jamaica (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel15.flv?wsSecret=b9fdaa4576f8b5e1efdeb62a94740e4a&wsABSTime=1791642502
+https://live1.quickscoreboardz.com/live/channel15.flv?wsSecret=b906735f03fc0a079841f6364db90f15&wsABSTime=1791642621
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2291.webp" group-title="Xôi Gấc" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (BLV Phan Pepsi)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613637&signature=cWW4zoeLow5enO7Qu0u3YblcCJYDvmmpNbfqzlfU8UE
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613757&signature=A7fXqLD-jutd9lUEuzHluiq05Zi3A0TUD1pxm6Z-iOA
 
 #EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/v2y8m4zhlnvql07/image/small" group-title="Xôi Lạc" , 10/10 08:30 🟢 ⚽ Nữ El Salvador vs Nữ Paraguay (HD 1)
 #EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://live1.quickscoreboardz.com/live/channel10.flv?wsSecret=e8a152c33c3d91b027acea42ec042e4f&wsABSTime=1791642502
+https://live1.quickscoreboardz.com/live/channel10.flv?wsSecret=0dcd10b70568fa78b6c1f9b8b248e58e&wsABSTime=1791642621
 
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/tigres-uanl.png" group-title="Giờ Vàng" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-tigres-uanl-vs-toluca-10-10-6abef43f24d46db870907851
@@ -670,6 +670,9 @@ https://phalang2.live/trang-chu#l5ergphk06d1r8k
 #EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/a6f6290d4b7699729dc19349484841bf.png" group-title="Phá Làng" , 11/10 00:00 ⚽ Toronto FC - Montreal Impact (Chưa có link — chờ cập nhật)
 https://phalang2.live/trang-chu#pxwrxlhy3n43ryk
 
+#EXTINF:-1 tvg-logo="https://img.sports-data.online/football/team/f0efbe4997e2d984d419c3ea8b15ffbb.png" group-title="Phá Làng" , 11/10 00:30 ⚽ Austria Vienna - Sturm Graz (Chưa có link — chờ cập nhật)
+https://phalang2.live/trang-chu#2y8m4zh59n24ql0
+
 #EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/al-hilal.png" group-title="Giờ Vàng" , 11/10 01:00 ⚽ Al Hilal vs Al Ittihad Jeddah (Chưa có link — chờ cập nhật)
 https://giovang.tax/truc-tiep-al-hilal-vs-al-ittihad-jeddah-11-10-6aa88a9724d46db870489005
 
@@ -786,3 +789,9 @@ https://gavang33.me/truc-tiep/colorado-rapids-vs-san-jose-earthquakes-luc-0830-n
 
 #EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131607_798216b4.png" group-title="Bông Lau" , 11/10 08:30 ⚽ Colorado Rapids vs San Jose Earthquakes (Chưa có link — chờ cập nhật)
 https://lau06.bonglautv1.org/truc-tiep/1490523
+
+#EXTINF:-1 tvg-logo="https://img.gvapi.cc/football/team/9c5ad5227377e12b87f77790d3d88c1c.png" group-title="GaVang33" , 11/10 09:30 ⚽ Los Angeles FC vs Vancouver Whitecaps (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/los-angeles-fc-vs-vancouver-whitecaps-luc-0930-ngay-11-10-2026-dj2ryohlxpzeq1z
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/1616.webp" group-title="Xôi Gấc" , 11/10 09:30 ⚽ Los Angeles FC vs Vancouver Whitecaps (Chưa có link — chờ cập nhật)
+https://xoigac.top/los-angeles-fc-vs-vancouver-whitecaps-id338547/groot

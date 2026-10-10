@@ -1,16 +1,16 @@
 #EXTM3U
-# Cập nhật lần cuối: 09:28:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
+# Cập nhật lần cuối: 09:30:24 10/10/2026 (giờ VN) — tự làm mới mỗi 2 phút
 
-# ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (31 trận) =====
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Xôi Gấc (32 trận) =====
 
 # ----- Ngày 2026-10-10 -----
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/441.webp" group-title="Xôi Gấc" , 10/10 07:45 🟢 ⚽ Union Santa Fe vs Defensa Y Justicia (BLV Groot)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613637&signature=n29twukmLqKglxEBY6V1J_3CqE3W71bKT7WNYEWf5wY
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.RQmSeHyB9nFo.m3u8?expires=1791613757&signature=mMGNrMLvR20VoRChuKs9Tuu_lQFwN5OXmK6Wbo9mOMY
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2291.webp" group-title="Xôi Gấc" , 10/10 08:00 🟢 ⚽ Puebla vs Leon (BLV Phan Pepsi)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613637&signature=cWW4zoeLow5enO7Qu0u3YblcCJYDvmmpNbfqzlfU8UE
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.DyemEGskBN9Q.m3u8?expires=1791613757&signature=A7fXqLD-jutd9lUEuzHluiq05Zi3A0TUD1pxm6Z-iOA
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2279.webp" group-title="Xôi Gấc" , 10/10 10:00 🟡 ⚽ Tigres UANL vs Toluca (Chưa có link — chờ cập nhật)
 https://xoigac.top/tigres-uanl-vs-toluca-id336731/iron-man-2
@@ -99,3 +99,6 @@ https://xoigac.top/river-plate-vs-estudiantes-de-rio-cuarto-id339517/iron-man-2
 
 #EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2283.webp" group-title="Xôi Gấc" , 11/10 08:00 ⚽ Atlas vs Guadalajara Chivas (Chưa có link — chờ cập nhật)
 https://xoigac.top/atlas-vs-guadalajara-chivas-id338531/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/1616.webp" group-title="Xôi Gấc" , 11/10 09:30 ⚽ Los Angeles FC vs Vancouver Whitecaps (Chưa có link — chờ cập nhật)
+https://xoigac.top/los-angeles-fc-vs-vancouver-whitecaps-id338547/groot
