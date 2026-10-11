@@ -54,7 +54,11 @@ export default async function handler(req, res) {
   let content;
   try {
     if (repo) {
-      const url = `https://raw.githubusercontent.com/${repo}/${branch}/public/playlists/${file}`;
+      // (10/10/2026) GITHUB_PLAYLIST_BRANCH (vd "playlists") -> file nằm ngay gốc nhánh riêng đó; không đặt -> như cũ.
+      const playlistBranch = process.env.GITHUB_PLAYLIST_BRANCH;
+      const url = playlistBranch
+        ? `https://raw.githubusercontent.com/${repo}/${playlistBranch}/${file}`
+        : `https://raw.githubusercontent.com/${repo}/${branch}/public/playlists/${file}`;
       const upstream = await fetch(url, { headers: { 'User-Agent': 'nguonvip-static-playlist-proxy' } });
       if (!upstream.ok) throw new Error(`HTTP ${upstream.status} khi tải ${url}`);
       content = await upstream.text();

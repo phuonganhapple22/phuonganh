@@ -22,8 +22,14 @@ export default function handler(req, res) {
   const repo = process.env.GITHUB_REPO; // dạng "chu-so-huu/ten-repo"
   const branch = process.env.GITHUB_BRANCH || 'main';
 
+  // (10/10/2026) Playlist giờ được bot đẩy sang NHÁNH RIÊNG (mặc định `playlists`, file nằm ngay gốc nhánh, chỉ có
+  // all.m3u) thay vì public/playlists/ trên main. Đặt GITHUB_PLAYLIST_BRANCH=playlists để trỏ đúng; không đặt thì giữ
+  // hành vi cũ (main/public/playlists).
+  const playlistBranch = process.env.GITHUB_PLAYLIST_BRANCH;
   const staticPlaylistBase = repo
-    ? `https://raw.githubusercontent.com/${repo}/${branch}/public/playlists`
+    ? (playlistBranch
+      ? `https://raw.githubusercontent.com/${repo}/${playlistBranch}`
+      : `https://raw.githubusercontent.com/${repo}/${branch}/public/playlists`)
     : null; // chưa khai báo GITHUB_REPO -> client tự dùng link cục bộ /playlists/... như cũ
 
   res.setHeader('Cache-Control', 'public, max-age=60');
