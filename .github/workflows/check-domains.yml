@@ -4,7 +4,7 @@ name: Check Domains
 # tự tìm domain mới (đã kiểm tra nội dung, chống trang rao bán / trang lạ) -> ghi vào biến
 # SOURCE_DOMAINS (MỘT biến chứa domain của tất cả nguồn) -> chạy lại "Generate Playlists"
 # để dùng domain mới ngay.
-# TỰ CHẠY MỖI NGÀY lúc 03:00 giờ Việt Nam (cron bên dưới là giờ UTC: 20:00 UTC = 03:00 UTC+7;
+# (Đã tắt tự chạy hằng ngày từ 10/10/2026 — xem khối `on:` bên dưới.) Trước đó: tự chạy mỗi ngày 03:00 giờ VN (cron là giờ UTC: 20:00 UTC = 03:00 UTC+7;
 # muốn đổi giờ/tần suất thì sửa dòng cron) và vẫn chạy tay được: tab Actions > Check Domains > Run workflow.
 # Lưu ý: GitHub có thể trễ vài phút đến vài chục phút so với giờ hẹn; lần chạy theo lịch dùng
 # giá trị mặc định (tự sửa domain, quét tất cả nguồn, lưu bản domain, chạy lại Generate).
@@ -19,8 +19,10 @@ name: Check Domains
 # của GitHub không có quyền ghi Variables). Chi tiết: CHECK_DOMAINS.md
 
 on:
-  schedule:
-    - cron: '0 20 * * *' # 20:00 UTC = 03:00 giờ Việt Nam, mỗi ngày
+  # (10/10/2026) ĐÃ TẮT chạy tự động hằng ngày — chỉ còn chạy tay (tab Actions > Check Domains > Run workflow).
+  # Muốn bật lại tự động mỗi ngày 03:00 giờ VN thì bỏ dấu # ở 2 dòng dưới (20:00 UTC = 03:00 UTC+7):
+  # schedule:
+  #   - cron: '0 20 * * *'
   workflow_dispatch:
     inputs:
       auto_fix:
