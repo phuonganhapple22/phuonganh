@@ -8,6 +8,7 @@ import chuoichientvService from '@/src/services/chuoichientv.service';
 import phalangService from '@/src/services/phalang.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
+import xoicheService from '@/src/services/xoiche.service';
 import { normalizeStreamList, isFlvUrl } from '@/src/utils/playerGet';
 import { preferHlsForIptv } from '@/src/utils/m3uPlaylist';
 import { buildProxyStreamUrl } from '@/src/utils/proxyUrl';
@@ -93,6 +94,10 @@ export default async function handler(req, res) {
           // Trang chủ Xoigac có sẵn link HLS từng trận -> lấy mới lúc bấm xem cho chắc trạng thái BLV.
           if (!matchId) return notReadyYet();
           raw = await withDeadline(xoigacService.getStreamLinks(matchId), 15000);
+        } else if (source === 'xoiche') {
+          // Link HLS nằm sẵn trong __NUXT_DATA__ trang chủ (cache 45s) -> lấy lại lúc bấm xem cho chắc trạng thái BLV.
+          if (!matchId) return notReadyYet();
+          raw = await withDeadline(xoicheService.getStreamLinks(matchId), 12000);
         } else if (source === 'giovang') {
           const id = url || matchId;
           if (!id) return notReadyYet();

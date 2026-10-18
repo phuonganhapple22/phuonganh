@@ -31,6 +31,7 @@ export const SOURCES = [
   { key: 'bonglau', brand: 'bonglau', label: 'Bông Lau', role: 'site', envVar: 'BONGLAU_DOMAIN', defaultUrl: 'https://lau05.bonglautv1.pro', keywords: ['bonglau', 'bong lau', 'bóng lậu', 'bóng lầu', 'bòng lau'], autoFix: true },
   { key: 'xoilac', brand: 'xoilac', label: 'Xôi Lạc', role: 'site', envVar: 'XOILAC_DOMAIN', defaultUrl: 'https://xoilacxc.tv', keywords: ['xoilac', 'xôi lạc', 'xoi lac'], autoFix: true },
   { key: 'xoigac', brand: 'xoigac', label: 'Xôi Gấc', role: 'site', envVar: 'XOIGAC_DOMAIN', defaultUrl: 'https://xoigac.live', keywords: ['xoigac', 'xôi gấc', 'xôi gác', 'xoi gac'], candidates: ['https://xoigac.top', 'https://xoigac.live'], autoFix: true },
+  { key: 'xoiche', brand: 'xoiche', label: 'Xôi Chè', role: 'site', envVar: 'XOICHE_DOMAIN', defaultUrl: 'https://xoiche.live', keywords: ['xoiche', 'xôi chè', 'xoi che'], candidates: ['https://xoiche.live', 'https://xoiche1.live', 'https://xoiche2.live'], autoFix: true },
   { key: 'phalang', brand: 'phalang', label: 'Phá Làng', role: 'site', envVar: 'PHALANG_DOMAIN', defaultUrl: 'https://phalang.live', keywords: ['phalang', 'phá làng', 'pha lang'], autoFix: true },
   // Chuối Chiên: code TỰ DÒ liveNN.chuoichientv.me; biến *_WATCH_DOMAIN sẽ ÉP cố định 1 domain
   // nên script KHÔNG tự ghi biến này (chỉ báo cáo).

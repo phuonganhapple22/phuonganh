@@ -150,7 +150,9 @@ const REFERER_BY_SOURCE = {
   // Xôi Lạc TV (03/10/2026) — xem xoilac.service.js.
   xoilac: String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, ''),
   // Xoigac TV (04/10/2026) — xem xoigac.service.js.
-  xoigac: String(process.env.XOIGAC_DOMAIN || process.env.XOIGAC_BASE_URL || 'https://xoigac.live').replace(/\/+$/, '')
+  xoigac: String(process.env.XOIGAC_DOMAIN || process.env.XOIGAC_BASE_URL || 'https://xoigac.live').replace(/\/+$/, ''),
+  // Xôi Chè TV (18/10/2026) — xem xoiche.service.js. CDN live.khoga.space; chưa biết có chặn hotlink không.
+  xoiche: String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')
 };
 const REFERER_FALLBACK = REFERER_BY_SOURCE.phaohoa;
 
@@ -239,6 +241,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   xoilac: ['https://xl365.domainkqt.cc/', `${REFERER_BY_SOURCE.xoilac}/`, 'https://xoilacxcw.tv/', null],
   // Xoigac: request m3u8 thật (04/10/2026) tới AWS IVS (*.playlist.live-video.net) KHÔNG gửi Referer -> thử không Referer trước.
   xoigac: [null, `${REFERER_BY_SOURCE.xoigac}/`],
+  xoiche: [null, `${REFERER_BY_SOURCE.xoiche}/`],
   // FIX (24/09/2026 — "Sao Kê các trận lỗi không xem được" dù link .m3u8 có
   // #EXTVLCOPT Referer chuoichientv): trang Sao Kê tự phát bằng Referer LÀ
   // CHÍNH DOMAIN CỦA NÓ, nên Referer đúng phải là SAOKE_SITE — đặt LÊN ĐẦU.

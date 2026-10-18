@@ -15,6 +15,7 @@ import gavang33Service from '@/src/services/gavang33.service';
 import bonglauService from '@/src/services/bonglau.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
+import xoicheService from '@/src/services/xoiche.service';
 import { shouldDropMatch } from '@/src/utils/leagueFilter';
 import {
   isWithinNextHours,
@@ -55,7 +56,7 @@ const STREAM_RESOLVE_TIMEOUT_MS = 4500;
 const STREAM_RESOLVE_TIMEOUT_MS_BROWSER = 18000;
 // Xôi Gấc: tải trang chủ (dùng chung, cache 30s) + gọi /api/stream/info/ cho từng BLV
 // -> 4,5s không đủ (quá hạn là mất link, rơi về nhánh "chưa có link").
-const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000 };
+const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000 };
 const BROWSER_BASED_SOURCES = new Set(['giovang', 'khandaitv']);
 const STREAM_RESOLVE_CONCURRENCY = 12;
 // Riêng nguồn cần trình duyệt: giảm số tab mở song song — 12 tab Chrome
@@ -186,7 +187,7 @@ async function resolveWithinDeadline(match) {
 
 /** Mirror fetchLiveLists() from pages/index.jsx but calling services in-process. */
 async function fetchLiveLists() {
-  const [giovangLive, khandaitvAll, khandaitvBb, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive] = await Promise.all([
+  const [giovangLive, khandaitvAll, khandaitvBb, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('live'), 'giovang:live'),
     safe(khandaitvService.getAllMatchesByTab('live', 'all', 50), 'khandaitv:all'),
     safe(khandaitvService.getAllMatchesByTab('live', 'basketball', 50), 'khandaitv:basketball'),
@@ -197,7 +198,8 @@ async function fetchLiveLists() {
     safe(gavang33Service.getAllMatchesByTab('live'), 'gavang33:live'),
     safe(bonglauService.getAllMatchesByTab('live'), 'bonglau:live'),
     safe(xoilacService.getAllMatchesByTab('live'), 'xoilac:live'),
-    safe(xoigacService.getAllMatchesByTab('live', 'all', { prefetchIvs: true }), 'xoigac:live')
+    safe(xoigacService.getAllMatchesByTab('live', 'all', { prefetchIvs: true }), 'xoigac:live'),
+    safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -228,6 +230,7 @@ async function fetchLiveLists() {
   pushListNoFilter(bonglauLive, 'bonglau');
   pushListNoFilter(xoilacLive, 'xoilac');
   pushListNoFilter(xoigacLive, 'xoigac');
+  pushListNoFilter(xoicheLive, 'xoiche');
 
   return tagged;
 }
@@ -240,7 +243,7 @@ async function fetchLiveLists() {
  * moment the player actually opens the channel.
  */
 async function fetchUpcomingLists() {
-  const [giovangUpcoming, khandaitvAll, khandaitvBb, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming] = await Promise.all([
+  const [giovangUpcoming, khandaitvAll, khandaitvBb, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('upcoming'), 'giovang:upcoming'),
     safe(khandaitvService.getAllMatchesByTab('upcoming', 'all', 50), 'khandaitv:upcoming:all'),
     safe(khandaitvService.getAllMatchesByTab('upcoming', 'basketball', 50), 'khandaitv:upcoming:basketball'),
@@ -251,7 +254,8 @@ async function fetchUpcomingLists() {
     safe(gavang33Service.getAllMatchesByTab('upcoming'), 'gavang33:upcoming'),
     safe(bonglauService.getAllMatchesByTab('upcoming'), 'bonglau:upcoming'),
     safe(xoilacService.getAllMatchesByTab('upcoming'), 'xoilac:upcoming'),
-    safe(xoigacService.getAllMatchesByTab('upcoming'), 'xoigac:upcoming')
+    safe(xoigacService.getAllMatchesByTab('upcoming'), 'xoigac:upcoming'),
+    safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -284,6 +288,7 @@ async function fetchUpcomingLists() {
   pushListNoFilter(bonglauUpcoming, 'bonglau');
   pushListNoFilter(xoilacUpcoming, 'xoilac');
   pushListNoFilter(xoigacUpcoming, 'xoigac');
+  pushListNoFilter(xoicheUpcoming, 'xoiche');
 
   return tagged;
 }
@@ -330,6 +335,9 @@ async function resolveStreams(match) {
       } else if (source === 'xoigac') {
         if (!matchId) return [];
         raw = await xoigacService.getStreamLinks(matchId);
+      } else if (source === 'xoiche') {
+        if (!matchId) return [];
+        raw = await xoicheService.getStreamLinks(matchId);
       } else if (source === 'giovang') {
         if (!liveUrl && !matchId) return [];
         const detail = await giovangService.getMatchDetail(liveUrl || matchId);

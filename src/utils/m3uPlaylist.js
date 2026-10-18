@@ -161,6 +161,11 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null,
     `${String(process.env.XOIGAC_DOMAIN || process.env.XOIGAC_BASE_URL || 'https://xoigac.live').replace(/\/+$/, '')}/`
   ],
+  // Xôi Chè TV (18/10/2026): HLS công khai trên live.khoga.space — thử không Referer trước, site sau.
+  xoiche: [
+    null,
+    `${String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')}/`
+  ],
   saoke: [
     // Referer/Origin thật của player (bắt từ DevTools 24/09/2026) — đặt LÊN ĐẦU.
     `${String(process.env.SAOKE_PLAYER_DOMAIN || 'https://sk.mediastation.live').replace(/\/+$/, '')}/`,
