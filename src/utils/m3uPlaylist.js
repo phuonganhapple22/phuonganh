@@ -120,7 +120,6 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   ],
   // FIX (30/09/2026): giovang.city đã redirect sang giovang.blog; giovang.cv là mirror còn nhắc trên trang.
   giovang: [`${String(process.env.GIOVANG_DOMAIN || 'https://giovang.blog').replace(/\/+$/, '')}/`, 'https://giovang.cv/', null],
-  khandaitv: [process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandai3.link', null],
   // FIX (29/09/2026): trình duyệt thật luôn gửi Referer có dấu "/" cuối
   // (https://phalang.live/) — đặt bản có "/" LÊN ĐẦU cho khớp CDN kiểm tra chuỗi chính xác.
   phalang: [`${String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, '')}/`, String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, ''), null],

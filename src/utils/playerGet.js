@@ -51,7 +51,6 @@ const SPORT_ALIASES = {
 
 const SOURCE_LABELS = {
   giovang: 'Gio Vang TV',
-  khandaitv: 'Khan Dai TV',
   chuoichientv: 'Chuoi Chien TV',
   phalang: 'Pha Lang TV',
   gavang: 'Ga Vang TV',
@@ -65,7 +64,6 @@ const SOURCE_LABELS = {
 
 const SOURCE_SHORT = {
   giovang: 'Giờ Vàng',
-  khandaitv: 'Khán Đài',
   chuoichientv: 'Chuối Chiên',
   phalang: 'Phá Làng',
   gavang: 'Gà Vàng',
@@ -87,7 +85,7 @@ const SOURCE_SHORT = {
 // FIX (27/09/2026 — theo yêu cầu, thêm Bông Lau TV): xem bonglau.service.js
 // — ĐÃ BÁO TRƯỚC nguồn này dùng CHUNG API/CDN/pool trận với chuoichientv
 // (chỉ khác domain/giao diện), người dùng vẫn muốn tách thành nguồn riêng.
-export const SOURCE_GROUP_ORDER = ['giovang', 'khandaitv', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche'];
+export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche'];
 
 // Danh sách nguồn dùng để vẽ công tắc bật/tắt trên giao diện. Giữ đồng bộ
 // với SOURCE_GROUP_ORDER — mỗi nguồn 1 công tắc, người dùng tự chọn nguồn
@@ -126,7 +124,6 @@ export const SOURCE_GROUP_ORDER = ['giovang', 'khandaitv', 'chuoichientv', 'phal
 // chỉ ngừng gọi/hiển thị ở mọi nơi khác trong pipeline.
 export const SOURCE_TOGGLE_LIST = [
   { key: 'giovang', label: 'Giờ Vàng' },
-  { key: 'khandaitv', label: 'Khán Đài' },
   { key: 'chuoichientv', label: 'Chuối Chiên' },
   { key: 'phalang', label: 'Phá Làng' },
   { key: 'gavang33', label: 'GaVang33' },
@@ -391,7 +388,7 @@ export function streamsFromMatchCard(match) {
     return list.length ? list : null;
   }
 
-  if (match?.source !== 'phaohoa' && match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche') return null;
+  if (match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche') return null;
 
   const fromCommentators = (match.commentators || match.streamers || [])
     .filter((c) => c.streamUrl || c.link || c.m3u8Url)

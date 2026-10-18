@@ -23,8 +23,6 @@
 // ---------------------------------------------------------------------------
 export const SOURCES = [
   { key: 'giovang', brand: 'giovang', label: 'Giờ Vàng', role: 'site', envVar: 'GIOVANG_DOMAIN', defaultUrl: 'https://giovang.blog', keywords: ['giovang', 'giờ vàng', 'gio vang'], candidates: ['https://giovang.cv', 'https://giovang.blog', 'https://giovang.city'], autoFix: true },
-  { key: 'khandaitv', brand: 'khandai', label: 'Khán Đài', role: 'site', envVar: 'KHANDAITV_BASE_URL', defaultUrl: 'https://khandai3.link', keywords: ['khandai', 'khán đài', 'khan dai'], autoFix: true },
-  { key: 'phaohoa', brand: 'phaohoa', label: 'Pháo Hoa', role: 'site', envVar: 'PHAOHOA_BASE_URL', defaultUrl: 'https://phaohoa1.live', keywords: ['phaohoa', 'pháo hoa', 'phao hoa'], autoFix: true },
   { key: 'gavang', brand: 'gavang', label: 'Gà Vàng', role: 'site', envVar: 'GAVANG_BASE_URL', defaultUrl: 'https://gavanglinkp.tv', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true },
   { key: 'gavang33', brand: 'gavang', label: 'Gà Vàng 33', role: 'site', envVar: 'GAVANG33_DOMAIN', defaultUrl: 'https://gavang33.me', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true },
   { key: 'saoke', brand: 'saoke', label: 'Sao Kê', role: 'site', envVar: 'SAOKE_BASE_URL', defaultUrl: 'https://vip3.saoketv40.xyz', keywords: ['saoke', 'sao kê', 'sao ke'], autoFix: true },

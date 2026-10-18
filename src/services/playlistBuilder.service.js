@@ -6,7 +6,6 @@
 // Pháo Hoa hoạt động lại sau này, chỉ cần import lại + thêm lại các dòng
 // gọi bên dưới là dùng lại được ngay).
 import giovangService from '@/src/services/giovang.service';
-import khandaitvService from '@/src/services/khandaitv.service';
 import chuoichientvService from '@/src/services/chuoichientv.service';
 import phalangService from '@/src/services/phalang.service';
 import gavangService from '@/src/services/gavang.service';
@@ -62,7 +61,7 @@ const STREAM_RESOLVE_TIMEOUT_MS_BROWSER = 18000;
 // Xôi Gấc: tải trang chủ (dùng chung, cache 30s) + gọi /api/stream/info/ cho từng BLV
 // -> 4,5s không đủ (quá hạn là mất link, rơi về nhánh "chưa có link").
 const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000 };
-const BROWSER_BASED_SOURCES = new Set(['giovang', 'khandaitv']);
+const BROWSER_BASED_SOURCES = new Set(['giovang']);
 const STREAM_RESOLVE_CONCURRENCY = 12;
 // Riêng nguồn cần trình duyệt: giảm số tab mở song song — 12 tab Chrome
 // cùng lúc trên máy chủ CI 2 nhân rất dễ khiến MỌI tab đều chậm/timeout dây
@@ -192,10 +191,8 @@ async function resolveWithinDeadline(match) {
 
 /** Mirror fetchLiveLists() from pages/index.jsx but calling services in-process. */
 async function fetchLiveLists() {
-  const [giovangLive, khandaitvAll, khandaitvBb, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive] = await Promise.all([
+  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('live'), 'giovang:live'),
-    safe(khandaitvService.getAllMatchesByTab('live', 'all', 50), 'khandaitv:all'),
-    safe(khandaitvService.getAllMatchesByTab('live', 'basketball', 50), 'khandaitv:basketball'),
     safe(chuoichientvService.getAllMatchesByTab('live'), 'chuoichientv:live'),
     safe(phalangService.getAllMatchesByTab('live'), 'phalang:live'),
     safe(gavangService.getAllMatchesByTab('live'), 'gavang:live'),
@@ -226,7 +223,6 @@ async function fetchLiveLists() {
   };
 
   pushListNoFilter(giovangLive, 'giovang');
-  [khandaitvAll, khandaitvBb].forEach((res) => pushListNoFilter(res, 'khandaitv'));
   pushListNoFilter(chuoichientvLive, 'chuoichientv');
   pushListNoFilter(phalangLive, 'phalang');
   pushListNoFilter(gavangLive, 'gavang');
@@ -248,10 +244,8 @@ async function fetchLiveLists() {
  * moment the player actually opens the channel.
  */
 async function fetchUpcomingLists() {
-  const [giovangUpcoming, khandaitvAll, khandaitvBb, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming] = await Promise.all([
+  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('upcoming'), 'giovang:upcoming'),
-    safe(khandaitvService.getAllMatchesByTab('upcoming', 'all', 50), 'khandaitv:upcoming:all'),
-    safe(khandaitvService.getAllMatchesByTab('upcoming', 'basketball', 50), 'khandaitv:upcoming:basketball'),
     safe(chuoichientvService.getAllMatchesByTab('upcoming'), 'chuoichientv:upcoming'),
     safe(phalangService.getAllMatchesByTab('upcoming'), 'phalang:upcoming'),
     safe(gavangService.getAllMatchesByTab('upcoming'), 'gavang:upcoming'),
@@ -284,7 +278,6 @@ async function fetchUpcomingLists() {
   };
 
   pushListNoFilter(giovangUpcoming, 'giovang');
-  [khandaitvAll, khandaitvBb].forEach((res) => pushListNoFilter(res, 'khandaitv'));
   pushListNoFilter(chuoichientvUpcoming, 'chuoichientv');
   pushListNoFilter(phalangUpcoming, 'phalang');
   pushListNoFilter(gavangUpcoming, 'gavang');
@@ -313,10 +306,7 @@ async function resolveStreams(match) {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       let raw = [];
-      if (source === 'khandaitv') {
-        if (!matchId) return [];
-        raw = await khandaitvService.getStreamLinks(matchId, match.sport || 'football');
-      } else if (source === 'chuoichientv') {
+      if (source === 'chuoichientv') {
         if (!matchId) return [];
         raw = await chuoichientvService.getStreamLinks(matchId);
       } else if (source === 'phalang') {

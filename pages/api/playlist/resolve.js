@@ -3,7 +3,6 @@
 // được tạo ra từ playlistBuilder.service.js, nhánh xử lý bên dưới không
 // bao giờ được gọi tới nữa.
 import giovangService from '@/src/services/giovang.service';
-import khandaitvService from '@/src/services/khandaitv.service';
 import chuoichientvService from '@/src/services/chuoichientv.service';
 import phalangService from '@/src/services/phalang.service';
 import xoilacService from '@/src/services/xoilac.service';
@@ -77,10 +76,7 @@ export default async function handler(req, res) {
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        if (source === 'khandaitv') {
-          if (!matchId) return notReadyYet();
-          raw = await withDeadline(khandaitvService.getStreamLinks(matchId, sport), attemptTimeoutMs);
-        } else if (source === 'chuoichientv') {
+        if (source === 'chuoichientv') {
           if (!matchId) return notReadyYet();
           raw = await withDeadline(chuoichientvService.getStreamLinks(matchId), attemptTimeoutMs);
         } else if (source === 'phalang') {

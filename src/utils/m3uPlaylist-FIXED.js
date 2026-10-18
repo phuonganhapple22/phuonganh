@@ -82,7 +82,6 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null
   ],
   giovang: [process.env.GIOVANG_DOMAIN || 'https://giovang.city', null],
-  khandaitv: [process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandai3.link', null],
   phalang: ['https://phalang.live', 'https://phalang.live/', null],
   gavang: [
     ...new Set([

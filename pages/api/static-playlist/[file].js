@@ -29,7 +29,7 @@ import path from 'path';
 // vừa để chặn path traversal (../../…) vừa để chặn lợi dụng param `file`
 // làm SSRF sang file bất kỳ trên GitHub.
 const SPORT_IDS = ['all', 'football', 'basketball', 'volleyball', 'badminton', 'tennis', 'f1'];
-const SOURCE_KEYS = ['giovang', 'khandaitv', 'chuoichientv', 'phalang', 'gavang', 'saoke'];
+const SOURCE_KEYS = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke'];
 const ALLOWED_FILES = new Set([
   ...SPORT_IDS.map((s) => `${s}.m3u`),
   ...SOURCE_KEYS.map((s) => `source-${s}.m3u`)

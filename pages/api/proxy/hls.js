@@ -118,9 +118,7 @@ function readDetectedReferers(source) {
 }
 
 const REFERER_BY_SOURCE = {
-  phaohoa: process.env.PHAOHOA_DOMAIN || process.env.PHAOHOA_BASE_URL || 'https://phaohoa1.live',
   giovang: process.env.GIOVANG_DOMAIN || 'https://giovang.blog', // giovang.city đã redirect sang giovang.blog (30/09/2026)
-  khandaitv: process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandai3.link',
   // FIX (25/09/2026 — bắt được request THẬT từ DevTools, xem chú thích ở
   // REFERER_CANDIDATES_BY_SOURCE bên dưới): domain player CHUẨN không phải
   // live05.chuoichientv.me/chuoichientv.link như đoán trước đây, mà là
@@ -154,7 +152,8 @@ const REFERER_BY_SOURCE = {
   // Xôi Chè TV (18/10/2026) — xem xoiche.service.js. CDN live.khoga.space; chưa biết có chặn hotlink không.
   xoiche: String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')
 };
-const REFERER_FALLBACK = REFERER_BY_SOURCE.phaohoa;
+// Gỡ Pháo Hoa/Khán Đài (18/10/2026): fallback cho nguồn không có entry riêng đổi sang Giờ Vàng (domain còn sống).
+const REFERER_FALLBACK = REFERER_BY_SOURCE.giovang;
 
 // FIX 2 (17/09/2026 — vẫn 403 Forbidden dù đã chọn đúng Referer theo
 // nguồn ở trên, riêng CDN hdplaylink.com của Chuối Chiên):
@@ -215,9 +214,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     'https://chuoichientv.link/',
     null
   ],
-  phaohoa: [REFERER_BY_SOURCE.phaohoa, null],
   giovang: [`${REFERER_BY_SOURCE.giovang}/`, REFERER_BY_SOURCE.giovang, null], // có "/" cuối trước, giống trình duyệt thật
-  khandaitv: [REFERER_BY_SOURCE.khandaitv, null],
   // domain hiển thị thật của Phá Làng là phalang.live (xem FIX 18/09/2026 ở
   // phalang.service.js) — thử kèm/không dấu "/" cuối rồi mới tới không gửi
   // Referer, theo đúng khuôn mẫu các nguồn khác ở trên.

@@ -42,7 +42,7 @@ const SPORT_TABS = ['all', 'football', 'basketball', 'volleyball', 'badminton', 
 // import chung được SOURCE_GROUP_ORDER từ src/utils/playerGet.js như bản
 // scripts/generate-playlists-standalone.mjs — phải tự sửa tay ở đây mỗi khi
 // danh sách nguồn đổi, nhớ đồng bộ với SOURCE_GROUP_ORDER bên đó.
-const SOURCE_KEYS = ['giovang', 'khandaitv', 'chuoichientv', 'phalang', 'gavang', 'saoke'];
+const SOURCE_KEYS = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke'];
 
 const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://nguonvip.vercel.app').replace(/\/+$/, '');
 // FIX (27/09/2026 — người dùng xác nhận domain Vercel THẬT đang chạy là

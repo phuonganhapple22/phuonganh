@@ -3,8 +3,6 @@
 # Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-08T08:22:20.379Z
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
 giovang=https://giovang.rent
-khandaitv=https://khandai3.link
-phaohoa=https://phaohoa1.live
 gavang=https://gavanglinkv.tv
 gavang33=https://gavang33.me
 saoke=https://vip3.saoketv40.xyz

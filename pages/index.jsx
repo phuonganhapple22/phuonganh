@@ -320,7 +320,6 @@ function ViewModeToggle({ mode, onChange }) {
 
 const SOURCE_META = {
   giovang: { color: '#F5B301', icon: '🥇' },
-  khandaitv: { color: '#4F8EF7', icon: '🏟️' },
   chuoichientv: { color: '#FFD23F', icon: '🍌' },
   phalang: { color: '#8E5CF7', icon: '⚡' },
   // FIX (20/09/2026): trước đây dùng SOURCE_META.phaohoa làm giá trị
