@@ -85,8 +85,6 @@ jobs:
           SOURCE_DOMAINS: ${{ vars.SOURCE_DOMAINS }}
           PINNED_SOURCES: ${{ vars.PINNED_SOURCES }} # nguồn GHIM: không tự đổi domain (hoặc thêm '# pin' cuối dòng trong SOURCE_DOMAINS)
           GIOVANG_DOMAIN: ${{ vars.GIOVANG_DOMAIN }}
-          KHANDAITV_BASE_URL: ${{ vars.KHANDAITV_BASE_URL }}
-          PHAOHOA_BASE_URL: ${{ vars.PHAOHOA_BASE_URL }}
           GAVANG_BASE_URL: ${{ vars.GAVANG_BASE_URL }}
           GAVANG33_DOMAIN: ${{ vars.GAVANG33_DOMAIN }}
           SAOKE_BASE_URL: ${{ vars.SAOKE_BASE_URL }}
