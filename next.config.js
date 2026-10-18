@@ -53,8 +53,6 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/api/giovang/live': PUPPETEER_EXTRA_TRACE_PATHS,
     '/api/giovang/stream': PUPPETEER_EXTRA_TRACE_PATHS,
-    '/api/khandaitv/live': PUPPETEER_EXTRA_TRACE_PATHS,
-    '/api/khandaitv/stream': PUPPETEER_EXTRA_TRACE_PATHS,
     '/api/matches': PUPPETEER_EXTRA_TRACE_PATHS,
     '/api/playlist': PUPPETEER_EXTRA_TRACE_PATHS,
     '/api/playlist/status': PUPPETEER_EXTRA_TRACE_PATHS,
@@ -74,7 +72,6 @@ const nextConfig = {
       { source: '/playlist.m3u', destination: '/api/playlist' },
       { source: '/playlist.m3u8', destination: '/api/playlist' },
       { source: '/playlist-giovang.m3u', destination: '/api/playlist?source=giovang' },
-      { source: '/playlist-khandaitv.m3u', destination: '/api/playlist?source=khandaitv' },
       { source: '/playlist-chuoichientv.m3u', destination: '/api/playlist?source=chuoichientv' }
     ];
   }
