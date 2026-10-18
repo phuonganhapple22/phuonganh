@@ -98,7 +98,8 @@ function parseNuxtPayload(jsonText) {
   const root = decodeNuxtData(arr);
   const home = root?.data?.['home-initial-data'];
   const list = home?.rawMatches || home?.fetchedMatches || [];
-  return Array.isArray(list) ? list : [];
+  // Chỉ giữ trận có BLV (trận không có BLV thì không có link phát).
+  return Array.isArray(list) ? list.filter((r) => (r?.commentator_streams?.length || 0) > 0 || (r?.commentators?.length || 0) > 0) : [];
 }
 
 function extractPayloadFromHtml(html) {
@@ -159,6 +160,23 @@ function mapStatus(raw) {
   return { isLive: false, isFinished: false, isUpcoming: true, isHalfTime: false };
 }
 
+
+// Tên giải trên site trùng nhau giữa các nước ("Premier League" của Anh, Nga, Belarus...; "Serie A" của Ý, Brazil...).
+// Bộ lọc giải nhỏ so khớp theo TÊN nên sẽ giữ nhầm giải nước khác. Dựa vào id giải (api_football_id của apifootball)
+// để đổi tên giải lạ thành "<Nước> <tên giải>" -> bộ lọc loại đúng; giải gốc (Anh/Tây Ban Nha/Ý/Đức/Pháp) giữ nguyên tên.
+const TOP5_LEAGUE_IDS = { 'premier league': 152, 'la liga': 302, 'serie a': 207, 'bundesliga': 175, 'ligue 1': 168 };
+function leagueName(r) {
+  const name = String(r.tournament_name || r.tournament?.name || '').trim();
+  const want = TOP5_LEAGUE_IDS[name.toLowerCase()];
+  const id = Number(r.tournament?.api_football_id);
+  if (want && id && id !== want) {
+    const c = String(r.home_team?.country || r.away_team?.country || '').trim();
+    if (name.toLowerCase() === 'serie a' && /brazil/i.test(c)) return 'Brazilian Serie A';
+    return c && c !== 'intl' ? `${c} ${name}` : `${name} (giai khac)`;
+  }
+  return name;
+}
+
 function buildMatches(rawList, base = XOICHE_BASE_URL) {
   const out = [];
   for (const r of rawList) {
@@ -189,7 +207,7 @@ function buildMatches(rawList, base = XOICHE_BASE_URL) {
       sport,
       sportName: info.name,
       sportIcon: info.icon,
-      competition: { name: r.tournament_name || r.tournament?.name || '', logo: logo(r.tournament?.icon), icon: logo(r.tournament?.icon) },
+      competition: { name: leagueName(r), logo: logo(r.tournament?.icon), icon: logo(r.tournament?.icon) },
       homeTeam: { name: r.home_team_name || r.home_team?.name || 'Home', logo: logo(r.home_team_logo || r.home_team?.logo) },
       awayTeam: { name: r.away_team_name || r.away_team?.name || 'Away', logo: logo(r.away_team_logo || r.away_team?.logo) },
       score: { home: Number(r.home_score) || 0, away: Number(r.away_score) || 0 },
@@ -242,6 +260,98 @@ function mapStreams(commentators) {
   }));
 }
 
+
+// --- Lịch các ngày sau (API JSON của site) -----------------------------------------------------
+// GET /api/matches/?date=YYYY-MM-DD  ->  { count, next, previous, results: [ {trận}, ... ] }  (có phân trang,
+// ~30 trận/trang; 1 ngày có thể hơn 300 trận vì site liệt kê cả giải nhỏ). Chỉ trận được gán BLV mới có
+// commentator_streams[] -> chỉ giữ các trận đó. Trận "scheduled" chưa có luồng nên link phát chỉ có khi trận
+// chuyển sang 'live' (lúc đó trang chủ trả về trận đó, trùng id nên được ưu tiên).
+// Biến môi trường: XOICHE_DAYS (số ngày tới, mặc định 2; 0 = tắt), XOICHE_MAX_PAGES (trang tối đa / ngày, mặc định 14),
+// XOICHE_SCHEDULE_TTL_MIN (phút giữ cache lịch, mặc định 10).
+const intEnv = (name, def, min = 0) => {
+  const n = Number(process.env[name]);
+  return Number.isFinite(n) && n >= min ? Math.floor(n) : def;
+};
+const SCHEDULE_DAYS = intEnv('XOICHE_DAYS', 2);
+const SCHEDULE_MAX_PAGES = intEnv('XOICHE_MAX_PAGES', 14, 1);
+const SCHEDULE_TTL_MS = intEnv('XOICHE_SCHEDULE_TTL_MIN', 10, 1) * 60000;
+
+const apiClient = createHttpClient(
+  {
+    baseURL: XOICHE_BASE_URL,
+    headers: {
+      'User-Agent': UA,
+      Accept: 'application/json, text/plain, */*',
+      'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
+      'X-Site': 'xoiche',
+      'X-Site-Id': 'xoiche'
+    },
+    timeout: 12000
+  },
+  { maxAttempts: 2 }
+);
+
+const hasBlv = (r) => (r?.commentator_streams?.length || 0) > 0 || (r?.commentators?.length || 0) > 0;
+
+function vnDate(offsetDays) {
+  const t = new Date(Date.now() + offsetDays * 86400000);
+  return t.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' }); // YYYY-MM-DD
+}
+
+async function fetchApiPage(base, date, page) {
+  const q = page > 1 ? `&page=${page}` : '';
+  const { data } = await apiClient.get(`${base}/api/matches/?date=${date}${q}`, { headers: { Referer: `${base}/lich-truc-tiep` } });
+  const body = typeof data === 'string' ? JSON.parse(data) : data;
+  if (!body || !Array.isArray(body.results)) throw new Error('response không phải JSON danh sách trận');
+  return body;
+}
+
+/** Lấy mọi trang của 1 ngày, giữ trận có BLV. Lỗi giữa chừng -> trả phần đã lấy được. */
+async function fetchDayRaw(base, date) {
+  const out = [];
+  try {
+    const first = await fetchApiPage(base, date, 1);
+    out.push(...first.results.filter(hasBlv));
+    const pageSize = first.results.length || 30;
+    const totalPages = Math.min(Math.ceil((Number(first.count) || pageSize) / pageSize), SCHEDULE_MAX_PAGES);
+    const pages = [];
+    for (let p = 2; p <= totalPages; p++) pages.push(p);
+    for (let i = 0; i < pages.length; i += 4) {
+      const chunk = pages.slice(i, i + 4);
+      const res = await Promise.all(chunk.map((p) => fetchApiPage(base, date, p).catch((e) => { console.error(`[xoiche] ${date} trang ${p}: ${e.message}`); return null; })));
+      for (const b of res) if (b) out.push(...b.results.filter(hasBlv));
+    }
+    console.log(`[xoiche] lịch ${date}: ${out.length} trận có BLV / ${first.count} trận (${totalPages} trang)`);
+  } catch (error) {
+    console.error(`[xoiche] lịch ${date} lỗi: ${error.message}${error?.response?.status ? ` (HTTP ${error.response.status})` : ''}`);
+  }
+  return out;
+}
+
+let scheduleCache = { at: 0, raw: [], pending: null };
+
+async function fetchScheduleRaw(base) {
+  if (!SCHEDULE_DAYS) return [];
+  if (scheduleCache.raw.length && Date.now() - scheduleCache.at < SCHEDULE_TTL_MS) return scheduleCache.raw;
+  if (scheduleCache.pending) return scheduleCache.pending;
+  scheduleCache.pending = (async () => {
+    const days = [];
+    for (let d = 1; d <= SCHEDULE_DAYS; d++) days.push(vnDate(d));
+    const lists = await Promise.all(days.map((date) => fetchDayRaw(base, date)));
+    const raw = lists.flat();
+    // Lỗi toàn bộ (rỗng) thì giữ cache cũ thêm một lúc, tránh mất lịch vì 1 lần site chặn.
+    const keep = raw.length ? raw : scheduleCache.raw;
+    scheduleCache = { at: Date.now(), raw: keep, pending: null };
+    return keep;
+  })().catch((e) => { scheduleCache.pending = null; console.error(`[xoiche] lịch lỗi: ${e.message}`); return scheduleCache.raw; });
+  return scheduleCache.pending;
+}
+
+function mergeRaw(primary, extra) {
+  const seen = new Set(primary.map((r) => String(r.id)));
+  return [...primary, ...extra.filter((r) => !seen.has(String(r.id)))];
+}
+
 let preferredBase = '';
 let homepageCache = { at: 0, matches: null, pending: null };
 
@@ -274,8 +384,9 @@ class XoicheService {
         const raw = parseNuxtPayload(payload);
         if (!raw.length) throw new Error('rawMatches rỗng');
         preferredBase = base;
-        console.log(`[xoiche] OK ${base} (axios): ${raw.length} trận`);
-        return buildMatches(raw, base);
+        const extra = await fetchScheduleRaw(base);
+        console.log(`[xoiche] OK ${base} (axios): ${raw.length} trận trang chủ + ${extra.length} trận lịch các ngày sau`);
+        return buildMatches(mergeRaw(raw, extra), base);
       } catch (error) {
         lastError = error;
         console.error(`[xoiche] ${base} lỗi: ${error.message}`);
@@ -289,7 +400,8 @@ class XoicheService {
           const raw = await fetchRawMatchesViaBrowser(base);
           if (!raw.length) throw new Error('rawMatches rỗng');
           preferredBase = base;
-          return buildMatches(raw, base);
+          const extra = await fetchScheduleRaw(base);
+          return buildMatches(mergeRaw(raw, extra), base);
         } catch (error) {
           lastError = error;
           console.error(`[xoiche] trình duyệt ${base} lỗi: ${error.message}`);

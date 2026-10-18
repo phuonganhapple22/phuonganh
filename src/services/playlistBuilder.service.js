@@ -37,7 +37,12 @@ const PHALANG_UPCOMING_WINDOW_HOURS = (() => {
   const n = Number(process.env.PHALANG_UPCOMING_HOURS);
   return Number.isFinite(n) && n > 0 ? n : 15;
 })();
-const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS };
+// Xôi Chè (18/10/2026): có lịch BLV nhiều ngày tới (xem xoiche.service.js) -> mặc định lấy 48h tới; đổi bằng XOICHE_UPCOMING_HOURS.
+const XOICHE_UPCOMING_WINDOW_HOURS = (() => {
+  const n = Number(process.env.XOICHE_UPCOMING_HOURS);
+  return Number.isFinite(n) && n > 0 ? n : 48;
+})();
+const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS };
 // Do not let a slow streamer detail page delay the complete match list.
 // FIX (20/09/2026 — "Giờ Vàng đều bị 'chưa có link'"): mốc 4500ms này ban
 // đầu hợp lý cho những nguồn gọi thẳng 1 API JSON (chuoichientv, phalang).

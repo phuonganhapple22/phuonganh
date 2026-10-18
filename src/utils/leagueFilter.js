@@ -8,7 +8,7 @@
 // "Italian Serie C", "RUS D3B") nên so khớp trên bản đã bỏ dấu + chữ thường.
 //
 // Chỉnh bằng biến môi trường (không cần sửa code):
-//   LEAGUE_FILTER_SOURCES  nguồn áp dụng: "xoilac,xoigac" (mặc định) | "xoilac,gavang" | "all" | "none"
+//   LEAGUE_FILTER_SOURCES  nguồn áp dụng: "xoilac,xoigac,xoiche" (mặc định) | "xoilac,gavang" | "all" | "none"
 //   LEAGUE_ALLOW           từ khoá GIỮ thêm, cách nhau dấu phẩy. VD: "colombia,indonesia liga 1"
 //   LEAGUE_BLOCK           từ khoá BỎ thêm.  VD: "friendly,giao huu clb"
 // Từ khoá cũng được gõ có dấu/hoa thường tuỳ ý. LEAGUE_BLOCK thắng LEAGUE_ALLOW.
@@ -109,7 +109,7 @@ export function judgeFootballLeague(leagueName, homeName = '', awayName = '') {
 }
 
 function sourcesEnabled() {
-  const raw = String(process.env.LEAGUE_FILTER_SOURCES ?? 'xoilac,xoigac').toLowerCase().trim();
+  const raw = String(process.env.LEAGUE_FILTER_SOURCES ?? 'xoilac,xoigac,xoiche').toLowerCase().trim();
   if (!raw || raw === 'none' || raw === 'off' || raw === '0') return null;
   if (raw === 'all' || raw === '*') return 'all';
   return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
