@@ -1,34 +1,22 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T20:05:14.680Z",
+  "updatedAt": "2026-10-19T12:42:55.425Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.tax",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
-    },
-    "khandaitv": {
-      "url": "https://khandaia.one",
-      "envVar": "KHANDAITV_BASE_URL",
-      "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
-    },
-    "phaohoa": {
-      "url": "https://phaohoa1.live",
-      "envVar": "PHAOHOA_BASE_URL",
-      "role": "site",
-      "status": "down",
-      "from": "mặc định"
+      "status": "moved",
+      "from": "SOURCE_DOMAINS",
+      "found": "https://giovang.bet"
     },
     "gavang": {
       "url": "https://gavanglinkv.tv",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
+      "status": "moved",
+      "from": "SOURCE_DOMAINS",
+      "found": "https://gavanglinkz.tv"
     },
     "gavang33": {
       "url": "https://gavang33.me",
@@ -41,8 +29,9 @@
       "url": "https://vip3.saoketv40.xyz",
       "envVar": "SAOKE_BASE_URL",
       "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
+      "status": "moved",
+      "from": "SOURCE_DOMAINS",
+      "found": "https://vip4.saoketv40.xyz"
     },
     "bonglau": {
       "url": "https://lau06.bonglautv1.org",
@@ -55,12 +44,20 @@
       "url": "https://xoilacxbr.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
+      "status": "moved",
+      "from": "SOURCE_DOMAINS",
+      "found": "https://xoilacxbn.tv"
     },
     "xoigac": {
       "url": "https://xoigac.top",
       "envVar": "XOIGAC_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoiche": {
+      "url": "https://xoiche.live",
+      "envVar": "XOICHE_DOMAIN",
       "role": "site",
       "status": "alive",
       "from": "SOURCE_DOMAINS"
@@ -76,8 +73,9 @@
       "url": "https://live08.chuoichientv.me",
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
-      "status": "alive",
-      "from": "SOURCE_DOMAINS"
+      "status": "moved",
+      "from": "SOURCE_DOMAINS",
+      "found": "https://live09.chuoichientv.me"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -192,6 +190,48 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live08.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "giovang",
+      "from": "https://giovang.tax",
+      "to": "https://giovang.tax",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "gavang",
+      "from": "https://gavanglinkv.tv",
+      "to": "https://gavanglinkv.tv",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "saoke",
+      "from": "https://vip3.saoketv40.xyz",
+      "to": "https://vip3.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "xoilac",
+      "from": "https://xoilacxbr.tv",
+      "to": "https://xoilacxbr.tv",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "xoiche",
+      "from": null,
+      "to": "https://xoiche.live",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "chuoichientv",
+      "from": "https://live08.chuoichientv.me",
+      "to": "https://live08.chuoichientv.me",
+      "via": "chuyển hướng của chính trang"
     }
   ]
 }
