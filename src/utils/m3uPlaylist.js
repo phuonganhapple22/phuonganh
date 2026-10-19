@@ -200,6 +200,14 @@ const IPTV_REFERER_PROBE_TIMEOUT_MS = 4000;
 // CUỐI khi không nhớ được lựa chọn thắng trước đó (xem workingRefererByHost),
 // vì đa số CDN thật sự cần Referer đúng, chỉ 1 số ít không cần.
 const workingRefererByHost = new Map();
+// FIX (19/10/2026 — log "Probe referer thất bại cho gavang playback.livetl002.com" lặp mỗi chu kỳ):
+// CDN chặn IP máy chủ CI nên dò luôn thất bại -> trước đây mỗi 2 phút lại dò lại cả 5 ứng viên
+// (tới ~20s/link) rồi in lại cảnh báo. Giờ nhớ kết quả "dò thất bại -> dùng best-guess" theo
+// nguồn+host trong PROBE_FAIL_TTL_MS (mặc định 30 phút; đặt IPTV_PROBE_FAIL_TTL_MS để chỉnh) và
+// chỉ cảnh báo 1 lần/host cho mỗi tiến trình. Hết hạn thì dò lại phòng CDN chỉ chặn tạm thời.
+const PROBE_FAIL_TTL_MS = Number(process.env.IPTV_PROBE_FAIL_TTL_MS) > 0 ? Number(process.env.IPTV_PROBE_FAIL_TTL_MS) : 30 * 60 * 1000;
+const probeFailedUntil = new Map(); // cacheKey -> { until, referer }
+const probeFailWarned = new Set();
 
 /**
  * FIX (25/09/2026 — GitHub-only deploy): Kiểm tra env var override referer
@@ -282,6 +290,8 @@ async function resolveIptvReferer(url, source) {
   const cacheKey = `${source}|${host}`;
   const remembered = workingRefererByHost.get(cacheKey);
   if (remembered !== undefined) return remembered;
+  const failed = probeFailedUntil.get(cacheKey);
+  if (failed && failed.until > Date.now()) return failed.referer;
 
   for (const referer of candidates) {
     // eslint-disable-next-line no-await-in-loop
@@ -311,7 +321,11 @@ async function resolveIptvReferer(url, source) {
   // dò sau (2 phút kế) vẫn thử lại từ đầu, phòng khi CDN chỉ chặn tạm thời.
   const bestGuess = candidates.find((c) => c);
   if (bestGuess) {
-    console.warn(`[m3uPlaylist] Probe referer thất bại cho ${source} ${host} — fallback best-guess: ${bestGuess}`);
+    probeFailedUntil.set(cacheKey, { until: Date.now() + PROBE_FAIL_TTL_MS, referer: bestGuess });
+    if (!probeFailWarned.has(cacheKey)) {
+      probeFailWarned.add(cacheKey);
+      console.warn(`[m3uPlaylist] Probe referer thất bại cho ${source} ${host} — fallback best-guess: ${bestGuess} (CDN chặn IP CI; nhớ ${Math.round(PROBE_FAIL_TTL_MS / 60000)} phút, không cảnh báo lại)`);
+    }
   }
   return bestGuess || null;
 }
