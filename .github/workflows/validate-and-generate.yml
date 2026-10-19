@@ -257,6 +257,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # dung de tu goi API workflow_dispatch kich hoat lai chinh workflow nay
           # FIX (25/09/2026): Override referer cho Chuoi Chien (GitHub Actions IP bi CDN chcan)
           CHUOICHIENTV_IPTV_REFERER: ${{ secrets.CHUOICHIENTV_IPTV_REFERER }}
+          # FIX (19/10/2026): Xoi Lac - doi domain trang nhung / ep Referer bang GitHub Variables (de trong = dung mac dinh)
+          XOILAC_EMBED_DOMAIN: ${{ vars.XOILAC_EMBED_DOMAIN }}
+          XOILAC_IPTV_REFERER: ${{ vars.XOILAC_IPTV_REFERER }}
           # FIX (27/09/2026 — sinh thêm file "-proxy.m3u" chạy qua server
           # sống /api/proxy/hls, dùng được cho MỌI app IPTV kể cả app không
           # hỗ trợ header tuỳ chỉnh): để trống secret này thì bỏ qua, không
