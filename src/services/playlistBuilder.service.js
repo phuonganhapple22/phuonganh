@@ -146,6 +146,7 @@ const lastGoodBySource = new Map(); // label -> { data, at }
 
 async function safe(promise, label) {
   let timer;
+  const startedAt = Date.now();
   const TIMED_OUT = Symbol('timeout');
   try {
     const timeout = new Promise((resolve) => {
@@ -158,6 +159,11 @@ async function safe(promise, label) {
       throw new Error(`quá ${Math.round(SOURCE_FETCH_TIMEOUT_MS / 1000)}s không phản hồi`);
     }
     lastGoodBySource.set(label, { data: res, at: Date.now() });
+    // FIX (19/10/2026 — "khong thay dong quet nguon xoilac"): truoc day chi in log khi nguon LOI,
+    // nguon chay tot thi im lang nen khong biet nguon nao da duoc quet. Gio moi nguon quet xong
+    // deu in 1 dong: ten nguon:tab, so tran, thoi gian.
+    const count = Array.isArray(res) ? res.length : (res?.matches?.length ?? res?.data?.length ?? 0);
+    console.log(`[playlist-builder] Quét nguồn ${label}: ${count} trận (${((Date.now() - startedAt) / 1000).toFixed(1)}s)`);
     return res;
   } catch (err) {
     const prev = lastGoodBySource.get(label);
