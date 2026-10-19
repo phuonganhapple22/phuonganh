@@ -598,6 +598,8 @@ function mapStreams(match) {
       playUrl: url,
       format: isFlv ? 'flv' : 'hls',
       cdn: c.cdn,
+      // FIX (19/10/2026): giữ Referer thật (origin trang nhúng) để m3uPlaylist.js không phải dò lại.
+      referer: c.referer || null,
       quality: 'HD'
     });
   }

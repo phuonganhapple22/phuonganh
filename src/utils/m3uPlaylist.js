@@ -148,8 +148,13 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // Xôi Lạc TV (03/10/2026): CHƯA bắt được Referer thật của CDN — đoán domain
   // trang xem (có "/" cuối như trình duyệt thật) rồi tới không Referer. Nếu
   // CDN chặn hotlink thì set XOILAC_IPTV_REFERER hoặc gửi request bắt từ DevTools.
+  // FIX (19/10/2026 — log "Probe referer thất bại cho xoilac live1.quickscoreboardz.com"):
+  // CDN stream của Xôi Lạc đã đổi sang host mới (live1.quickscoreboardz.com, trước là
+  // live2.domaincdn.cc); trang nhúng (xl365.domainkqt.cc) mới là nơi player thật chạy nên
+  // Referer đúng LUÔN là origin của trang nhúng. CDN này chặn IP máy chủ CI -> dò luôn thất
+  // bại. Xem getXoilacEmbedReferer() + nhánh riêng trong resolveIptvReferer(): xoilac KHÔNG dò nữa.
   xoilac: [
-    'https://xl365.domainkqt.cc/',
+    getXoilacEmbedReferer(),
     `${String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '')}/`,
     'https://xoilacxcw.tv/',
     null
@@ -174,6 +179,21 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null
   ]
 };
+
+/**
+ * Referer của Xôi Lạc = origin trang nhúng (mặc định https://xl365.domainkqt.cc/, đổi bằng
+ * XOILAC_EMBED_DOMAIN khi site đổi domain nhúng — cùng biến mà xoilac.service.js dùng).
+ */
+function getXoilacEmbedReferer() {
+  const raw = String(process.env.XOILAC_EMBED_DOMAIN || '').trim();
+  const fallback = 'https://xl365.domainkqt.cc/';
+  if (!raw) return fallback;
+  try {
+    return `${new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`).origin}/`;
+  } catch {
+    return fallback;
+  }
+}
 
 const IPTV_REFERER_PROBE_TIMEOUT_MS = 4000;
 // null nằm trong danh sách nghĩa là "không gửi Referer nào" — luôn xếp
@@ -235,6 +255,12 @@ async function resolveIptvReferer(url, source) {
   // FIX (25/09/2026): Kiểm tra override env var trước
   const override = getOverrideReferer(source);
   if (override) return override;
+
+  // FIX (19/10/2026): Xôi Lạc — không dò. Stream.referer (origin trang nhúng thật của từng
+  // kênh) đã được ưu tiên ở matchesToPlaylistEntries(); tới đây chỉ khi thiếu field đó thì
+  // dùng thẳng origin trang nhúng cấu hình, KHÔNG gọi probe (CDN chặn IP CI -> luôn timeout,
+  // mỗi link tốn tới 4 ứng viên x 4s và in cảnh báo mỗi chu kỳ 2 phút).
+  if (source === 'xoilac') return getXoilacEmbedReferer();
 
   const candidates = REFERER_CANDIDATES_BY_SOURCE[source];
   if (!candidates) return null;
