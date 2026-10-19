@@ -37,6 +37,102 @@ const client = createHttpClient(
   { maxAttempts: 2 }
 );
 
+// FIX (19/10/2026) — log workflow báo hàng loạt:
+//   "[xoilac] lỗi mở trang nhúng https://xl365.domainkqt.cc/ajax/chanel/type/7/link/channelNN
+//    (Referer https://xoilacxbn.tv): timeout of 10000ms exceeded"
+// Nguyên nhân: domain nhúng (xl365.domainkqt.cc) phản hồi chậm/treo với IP máy chủ GitHub
+// Actions. Code cũ coi MỌI lỗi là "thử Referer khác" và thử cả 2 URL (gốc + /off-tvc) nên
+// 1 kênh treo tốn tới 3 Referer x 2 URL x 2 lần axios x 10s = ~120s và in 6 dòng lỗi,
+// khiến mỗi chu kỳ 2 phút của workflow bị kéo dài/đứt nhịp. Sửa:
+//   1) client riêng cho trang nhúng: timeout dài hơn (mặc định 15s, chỉnh bằng
+//      XOILAC_EMBED_TIMEOUT_MS), KHÔNG tự retry ở tầng axios, có trần cứng bằng AbortSignal.
+//   2) timeout là lỗi của CẢ domain/kênh, không phải do Referer -> gặp timeout thì dừng
+//      ngay, không thử Referer/URL khác của cùng kênh (chỉ lỗi 403/404/trang rỗng mới thử tiếp).
+//   3) nhớ kênh vừa timeout ~90s (negative cache) để các trận/BLV khác cùng kênh không gọi lại.
+//   4) cầu dao theo host: timeout liên tiếp quá nhiều lần thì tạm bỏ qua host ~45s.
+//   5) XOILAC_EMBED_DOMAIN (tuỳ chọn): đổi domain nhúng khi site đổi (vd xl365.domainkqt.cc
+//      -> domain mới) mà không cần sửa code.
+const EMBED_TIMEOUT_MS = Math.max(3000, parseInt(process.env.XOILAC_EMBED_TIMEOUT_MS || '', 10) || 15000);
+const EMBED_FAIL_TTL_MS = 90000;
+const EMBED_BREAKER_THRESHOLD = 8;
+const EMBED_BREAKER_OPEN_MS = 45000;
+const XOILAC_EMBED_DOMAIN = String(process.env.XOILAC_EMBED_DOMAIN || '').trim().replace(/\/+$/, '');
+
+const embedClient = createHttpClient(
+  {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8'
+    },
+    timeout: EMBED_TIMEOUT_MS
+  },
+  { maxAttempts: 1 }
+);
+
+const embedFailures = new Map(); // embedUrl -> thời điểm hết hạn "nhớ lỗi"
+const embedHosts = new Map(); // host -> { timeouts, openUntil }
+
+function embedHostOf(url) {
+  try {
+    return new URL(url).host;
+  } catch {
+    return '';
+  }
+}
+
+function isTimeoutError(error) {
+  const code = error?.code || '';
+  return code === 'ECONNABORTED' || code === 'ETIMEDOUT' || code === 'ERR_CANCELED' || /timeout|aborted|canceled/i.test(error?.message || '');
+}
+
+function isEmbedHostOpen(host) {
+  const st = embedHosts.get(host);
+  return !!st && st.openUntil > Date.now();
+}
+
+function noteEmbedResponded(host) {
+  const st = embedHosts.get(host);
+  if (st) {
+    st.timeouts = 0;
+    st.openUntil = 0;
+  }
+}
+
+function noteEmbedTimeout(host) {
+  const st = embedHosts.get(host) || { timeouts: 0, openUntil: 0 };
+  st.timeouts += 1;
+  if (st.timeouts >= EMBED_BREAKER_THRESHOLD && st.openUntil <= Date.now()) {
+    st.openUntil = Date.now() + EMBED_BREAKER_OPEN_MS;
+    st.timeouts = 0;
+    console.warn(`[xoilac] ${host} timeout liên tiếp ${EMBED_BREAKER_THRESHOLD} lần -> tạm bỏ qua host này ${Math.round(EMBED_BREAKER_OPEN_MS / 1000)}s`);
+  }
+  embedHosts.set(host, st);
+}
+
+function recentlyFailedEmbed(embedUrl) {
+  const until = embedFailures.get(embedUrl);
+  if (!until) return false;
+  if (until > Date.now()) return true;
+  embedFailures.delete(embedUrl);
+  return false;
+}
+
+/** Đổi origin của URL nhúng sang XOILAC_EMBED_DOMAIN (nếu có cấu hình). */
+function applyEmbedDomain(url) {
+  if (!XOILAC_EMBED_DOMAIN || !url) return url;
+  try {
+    const base = new URL(/^https?:\/\//i.test(XOILAC_EMBED_DOMAIN) ? XOILAC_EMBED_DOMAIN : `https://${XOILAC_EMBED_DOMAIN}`);
+    const u = new URL(url);
+    u.protocol = base.protocol;
+    u.host = base.host;
+    return u.href;
+  } catch {
+    return url;
+  }
+}
+
 // API tỉ số trực tiếp (bắt từ DevTools 03/10/2026): GET /football/match/detail_live
 // trả về MỌI trận bóng đá đang diễn ra/vừa xong trong 1 lần gọi. CHỈ có tỉ
 // số/trạng thái/thống kê — KHÔNG có link stream. Cần Origin/Referer của site.
@@ -52,23 +148,52 @@ const scoreClient = createHttpClient(
       'User-Agent':
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36',
       Accept: 'application/json, text/javascript, */*; q=0.01',
-      'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8'
+      'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
+      // FIX (19/10/2026): giống request trình duyệt thật (cross-site XHR) để đỡ bị WAF 403.
+      'Sec-Fetch-Dest': 'empty',
+      'Sec-Fetch-Mode': 'cors',
+      'Sec-Fetch-Site': 'cross-site'
     },
     timeout: 8000
   },
   { maxAttempts: 1 }
 );
 
+// FIX (19/10/2026) — log "không lấy được detail_live ... status code 403": API tỉ số chặn
+// (403) IP máy chủ GitHub Actions hoặc Origin không nằm trong danh sách cho phép. Lỗi này
+// KHÔNG làm hỏng nguồn (đã tự dùng trạng thái trang chủ) nhưng mỗi chu kỳ 2 phút lại gọi
+// N origin x 1 request rồi in lỗi. Giờ: khi MỌI origin đều bị 403 thì nhớ lỗi 5 phút
+// (không gọi lại, không spam log); origin nào từng thành công được ưu tiên lên đầu.
+const SCORE_FAIL_TTL_MS = 300000;
+let scoreBlockedUntil = 0;
+let lastGoodScoreOrigin = '';
+
 async function fetchLiveScoreResults() {
+  if (scoreBlockedUntil > Date.now()) {
+    throw new Error(`API tỉ số đang bị chặn (403), bỏ qua tới ${new Date(scoreBlockedUntil).toISOString()}`);
+  }
+  const origins = lastGoodScoreOrigin
+    ? [lastGoodScoreOrigin, ...SCORE_ORIGINS.filter((o) => o !== lastGoodScoreOrigin)]
+    : SCORE_ORIGINS;
   let lastError = null;
-  for (const origin of SCORE_ORIGINS) {
+  let all403 = true;
+  for (const origin of origins) {
     try {
       const { data } = await scoreClient.get('/football/match/detail_live', { headers: { Origin: origin, Referer: `${origin}/` } });
-      if (data?.code === 0 && Array.isArray(data.results)) return data.results;
+      if (data?.code === 0 && Array.isArray(data.results)) {
+        lastGoodScoreOrigin = origin;
+        return data.results;
+      }
+      all403 = false;
       lastError = new Error(`phản hồi lạ (code=${data?.code})`);
     } catch (error) {
+      if (error?.response?.status !== 403) all403 = false;
       lastError = error;
     }
+  }
+  if (all403 && lastError) {
+    scoreBlockedUntil = Date.now() + SCORE_FAIL_TTL_MS;
+    lastError = new Error(`403 từ mọi Origin (${origins.join(', ')}) — IP máy chủ có thể bị chặn; thử lại sau ${Math.round(SCORE_FAIL_TTL_MS / 60000)} phút`);
   }
   throw lastError || new Error('không có Origin nào dùng được');
 }
@@ -332,14 +457,23 @@ function parseUrlStream(html) {
 
 /** Mở trang nhúng, lấy link stream (kể cả iframe lồng 1 cấp nếu không thấy gì). */
 async function resolveEmbedStream(embedUrl, depth = 0) {
+  const host = embedHostOf(embedUrl);
+  // Kênh vừa timeout / host đang bị cầu dao ngắt -> bỏ qua ngay, không tốn thêm 15s.
+  if (recentlyFailedEmbed(embedUrl) || isEmbedHostOpen(host)) return [];
+
   // Thử Referer là domain site đang dùng, rồi domain site trình duyệt thật
   // gửi (xoilacxcw.tv) — trang nhúng có thể kiểm tra Referer.
   // Site xoay domain (xoilacxc.tv -> xoilacxcw.tv -> xoilacxyc.io ...): thử cả
   // các domain đã thấy phòng khi trang nhúng chỉ nhận Referer trong danh sách.
   const referers = [...new Set([XOILAC_BASE_URL, XOILAC_SCORE_ORIGIN, 'https://xoilacxyc.io'])];
+  let timedOut = false;
   for (const ref of referers) {
     try {
-      const { data } = await client.get(embedUrl, { headers: { Referer: `${ref}/`, Origin: ref } });
+      const extra = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+        ? { signal: AbortSignal.timeout(EMBED_TIMEOUT_MS + 2000) }
+        : {};
+      const { data } = await embedClient.get(embedUrl, { headers: { Referer: `${ref}/`, Origin: ref }, ...extra });
+      noteEmbedResponded(host);
       const body = typeof data === 'string' ? data : JSON.stringify(data);
       const direct = parseUrlStream(body);
       if (direct) return [direct];
@@ -353,10 +487,22 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
         }
       }
     } catch (error) {
+      if (isTimeoutError(error)) {
+        // Timeout = domain/kênh treo, đổi Referer không giúp được -> dừng, nhớ lỗi.
+        timedOut = true;
+        noteEmbedTimeout(host);
+        console.warn(`[xoilac] trang nhúng timeout (${EMBED_TIMEOUT_MS}ms), bỏ qua kênh này ~${Math.round(EMBED_FAIL_TTL_MS / 1000)}s: ${embedUrl}`);
+        break;
+      }
+      noteEmbedResponded(host); // có phản hồi HTTP (403/404...) = host vẫn sống
       console.error(`[xoilac] lỗi mở trang nhúng ${embedUrl} (Referer ${ref}):`, error.message);
     }
   }
-  console.error(`[xoilac] trang nhúng không có link stream: ${embedUrl}`);
+  if (timedOut) {
+    embedFailures.set(embedUrl, Date.now() + EMBED_FAIL_TTL_MS);
+  } else {
+    console.error(`[xoilac] trang nhúng không có link stream: ${embedUrl}`);
+  }
   return [];
 }
 
@@ -376,12 +522,15 @@ async function fetchCommentatorsForMatch(match) {
   const targets = list.map((embeds, idx) => ({ idx, embeds, name: names[idx] || `BLV ${idx + 1}` })).filter((t) => t.embeds.length).slice(0, 5);
 
   const resolved = await mapPool(targets, 3, async (t) => {
-    for (const embed of t.embeds) {
+    for (const rawEmbed of t.embeds) {
+      const embed = applyEmbedDomain(rawEmbed);
       // Trình duyệt thật nạp `<embed>/off-tvc?is_off_add=false` khi không có TVC
       // (xem show_player() trong trang trận) -> thử URL gốc trước, rồi bản đó.
       for (const candidate of [embed, `${embed}/off-tvc?is_off_add=false`]) {
         const urls = await resolveEmbedStream(candidate);
         if (urls.length) return { t, embed: candidate, urls };
+        // URL gốc vừa timeout / host đang bị ngắt -> bản /off-tvc cùng kênh cũng vô ích.
+        if (recentlyFailedEmbed(candidate) || isEmbedHostOpen(embedHostOf(candidate))) break;
       }
     }
     return null;
