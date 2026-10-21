@@ -1,20 +1,16 @@
-# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-19T12:42:55.425Z
+# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-21T13:29:58.830Z
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
-giovang=https://giovang.tax
-# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): giovang=https://giovang.bet
-gavang=https://gavanglinkv.tv
-# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): gavang=https://gavanglinkz.tv
+giovang=https://giovang.bet
+gavang=https://gavangzz.tv
 gavang33=https://gavang33.me
-saoke=https://vip3.saoketv40.xyz
-# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): saoke=https://vip4.saoketv40.xyz
+saoke=https://vip4.saoketv40.xyz
 bonglau=https://lau06.bonglautv1.org
-xoilac=https://xoilacxbr.tv
-# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): xoilac=https://xoilacxbn.tv
+xoilac=https://xoilacxbn.tv
 xoigac=https://xoigac.top
 xoiche=https://xoiche.live
 phalang=https://phalang2.live
 chuoichientv=https://live08.chuoichientv.me
-# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): chuoichientv=https://live09.chuoichientv.me
+# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): chuoichientv=https://live10.chuoichientv.me
 chuoichientv-player=https://live.chuoichien.tv
 saoke-player=https://sk.mediastation.live
 bonglau-player=https://live.chuoichien.tv
