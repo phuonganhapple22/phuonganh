@@ -506,36 +506,39 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
   return [];
 }
 
-async function fetchCommentatorsForMatch(match) {
-  const first = (match.blvLinks || [])[0];
-  const pageUrl = first?.url || match.detailUrl;
-  if (!pageUrl) return [];
-  let html = '';
-  try {
-    ({ data: html } = await client.get(pageUrl, { headers: { Referer: `${XOILAC_BASE_URL}/` } }));
-  } catch (error) {
-    console.error(`[xoilac] lỗi mở trang trận ${pageUrl}:`, error.message);
-    return [];
+// FIX (21/10/2026) — "trận đang live cứ 2 phút lại từ ĐÃ CÓ LINK thành CHƯA CÓ LINK rồi lại có":
+// Mỗi chu kỳ generate đều mở lại trang nhúng của TỪNG BLV từ đầu. Chỉ cần 1 lượt trang nhúng
+// timeout / trả lỗi / bị cầu dao ngắt (IP GitHub Actions hay bị CDN làm chậm) là BLV đó mất link,
+// trận tụt về "chưa có link" (hoặc bị loại hẳn khỏi danh sách), lượt sau thành công thì có lại.
+// Sửa: nhớ link tốt gần nhất theo từng BLV (matchId_idx):
+//   - còn "tươi" (mặc định 60s, XOILAC_LINK_FRESH_MS): dùng luôn, KHÔNG mở lại trang nhúng — 1 chu kỳ
+//     gọi getAllMatchesByTab ~20 lần (7 tab môn + từng nguồn) nên đỡ dội request, kết quả giữa các lần ổn định;
+//   - mở lại lỗi: dùng lại link cũ tối đa XOILAC_LINK_STALE_MAX_MS (mặc định 10 phút) thay vì rớt link.
+// (auth_key do server ký có hạn dài hơn nhiều so với 10 phút nên link cũ vẫn phát được.)
+const LINK_FRESH_MS = Number(process.env.XOILAC_LINK_FRESH_MS) >= 0 && process.env.XOILAC_LINK_FRESH_MS ? Number(process.env.XOILAC_LINK_FRESH_MS) : 60000;
+const LINK_STALE_MAX_MS = Number(process.env.XOILAC_LINK_STALE_MAX_MS) >= 0 && process.env.XOILAC_LINK_STALE_MAX_MS ? Number(process.env.XOILAC_LINK_STALE_MAX_MS) : 10 * 60 * 1000;
+const targetLinkCache = new Map(); // `${originalId}_${idx}` -> { at, name, embed, urls }
+const targetInflight = new Map(); // cùng khoá -> Promise (nhiều tab gọi cùng lúc chỉ mở 1 lần)
+
+function pruneTargetLinkCache() {
+  if (targetLinkCache.size <= 500) return;
+  const now = Date.now();
+  for (const [k, v] of targetLinkCache) if (now - v.at > LINK_STALE_MAX_MS) targetLinkCache.delete(k);
+}
+
+/** Link tốt cũ (≤ LINK_STALE_MAX_MS) của mọi BLV thuộc trận — dùng khi cả trang trận không mở được. */
+function staleTargetsFor(match) {
+  const prefix = `${match.originalId}_`;
+  const now = Date.now();
+  const out = [];
+  for (const [k, v] of targetLinkCache) {
+    if (!k.startsWith(prefix) || now - v.at > LINK_STALE_MAX_MS) continue;
+    out.push({ t: { idx: Number(k.slice(prefix.length)), name: v.name }, embed: v.embed, urls: v.urls });
   }
-  const list = parseListStream(html);
-  const names = parseBlvNames(html);
-  const targets = list.map((embeds, idx) => ({ idx, embeds, name: names[idx] || `BLV ${idx + 1}` })).filter((t) => t.embeds.length).slice(0, 5);
+  return out.sort((a, b) => a.t.idx - b.t.idx);
+}
 
-  const resolved = await mapPool(targets, 3, async (t) => {
-    for (const rawEmbed of t.embeds) {
-      const embed = applyEmbedDomain(rawEmbed);
-      // Trình duyệt thật nạp `<embed>/off-tvc?is_off_add=false` khi không có TVC
-      // (xem show_player() trong trang trận) -> thử URL gốc trước, rồi bản đó.
-      for (const candidate of [embed, `${embed}/off-tvc?is_off_add=false`]) {
-        const urls = await resolveEmbedStream(candidate);
-        if (urls.length) return { t, embed: candidate, urls };
-        // URL gốc vừa timeout / host đang bị ngắt -> bản /off-tvc cùng kênh cũng vô ích.
-        if (recentlyFailedEmbed(candidate) || isEmbedHostOpen(embedHostOf(candidate))) break;
-      }
-    }
-    return null;
-  });
-
+function buildCommentators(match, resolved) {
   const seenUrl = new Set();
   const out = [];
   for (const r of resolved) {
@@ -557,6 +560,66 @@ async function fetchCommentatorsForMatch(match) {
     });
   }
   return out;
+}
+
+async function resolveTarget(match, t) {
+  const cacheKey = `${match.originalId}_${t.idx}`;
+  const cached = targetLinkCache.get(cacheKey);
+  const now = Date.now();
+  if (cached && now - cached.at <= LINK_FRESH_MS) return { t, embed: cached.embed, urls: cached.urls };
+
+  if (targetInflight.has(cacheKey)) return targetInflight.get(cacheKey);
+  const job = (async () => {
+    for (const rawEmbed of t.embeds) {
+      const embed = applyEmbedDomain(rawEmbed);
+      // Trình duyệt thật nạp `<embed>/off-tvc?is_off_add=false` khi không có TVC
+      // (xem show_player() trong trang trận) -> thử URL gốc trước, rồi bản đó.
+      for (const candidate of [embed, `${embed}/off-tvc?is_off_add=false`]) {
+        const urls = await resolveEmbedStream(candidate);
+        if (urls.length) {
+          targetLinkCache.set(cacheKey, { at: Date.now(), name: t.name, embed: candidate, urls });
+          pruneTargetLinkCache();
+          return { t, embed: candidate, urls };
+        }
+        // URL gốc vừa timeout / host đang bị ngắt -> bản /off-tvc cùng kênh cũng vô ích.
+        if (recentlyFailedEmbed(candidate) || isEmbedHostOpen(embedHostOf(candidate))) break;
+      }
+    }
+    // Mở lại lỗi -> dùng link tốt gần nhất thay vì để BLV/trận rớt thành "chưa có link".
+    const prev = targetLinkCache.get(cacheKey);
+    if (prev && Date.now() - prev.at <= LINK_STALE_MAX_MS) {
+      console.warn(`[xoilac] ${cacheKey} mở trang nhúng lỗi -> dùng lại link tốt cách đây ${Math.round((Date.now() - prev.at) / 1000)}s`);
+      return { t, embed: prev.embed, urls: prev.urls };
+    }
+    return null;
+  })();
+  targetInflight.set(cacheKey, job);
+  try {
+    return await job;
+  } finally {
+    targetInflight.delete(cacheKey);
+  }
+}
+
+async function fetchCommentatorsForMatch(match) {
+  const first = (match.blvLinks || [])[0];
+  const pageUrl = first?.url || match.detailUrl;
+  if (!pageUrl) return [];
+  let html = '';
+  try {
+    ({ data: html } = await client.get(pageUrl, { headers: { Referer: `${XOILAC_BASE_URL}/` } }));
+  } catch (error) {
+    console.error(`[xoilac] lỗi mở trang trận ${pageUrl}:`, error.message);
+    // Trang trận lỗi tạm thời -> giữ link tốt gần nhất của trận (nếu có) để không rớt link.
+    return buildCommentators(match, staleTargetsFor(match));
+  }
+  const list = parseListStream(html);
+  const names = parseBlvNames(html);
+  const targets = list.map((embeds, idx) => ({ idx, embeds, name: names[idx] || `BLV ${idx + 1}` })).filter((t) => t.embeds.length).slice(0, 5);
+  if (!targets.length) return buildCommentators(match, staleTargetsFor(match));
+
+  const resolved = await mapPool(targets, 3, (t) => resolveTarget(match, t));
+  return buildCommentators(match, resolved);
 }
 
 function applyCommentators(match, commentators) {

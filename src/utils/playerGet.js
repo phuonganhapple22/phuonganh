@@ -241,6 +241,19 @@ const DEAD_STREAM_DOMAINS = [
   'livefeedtextbox.com'
 ];
 
+// FIX (21/10/2026) — "trận Xôi Lạc cứ 2 phút lại đã có link -> chưa có link":
+// CDN stream của Xôi Lạc hiện chạy trên live1.quickscoreboardz.com (trước là live2.domaincdn.cc) —
+// chính host player của site Xôi Lạc dùng. Nhưng 'quickscoreboardz.com' nằm trong DEAD_STREAM_DOMAINS
+// nên link bị loại ở normalizeStreamList(); chỉ khi nhánh dự phòng resolveStreams() -> getStreamLinks()
+// (KHÔNG qua bộ lọc) kịp trả về trong 4,5 giây thì mới "có link" -> lúc có lúc không theo từng chu kỳ.
+// Thêm danh sách HOST CỤ THỂ được miễn trừ (khớp chính xác hostname, không áp cho cả domain cha nên
+// các host khác của quickscoreboardz.com vẫn bị coi là chết). Đổi/tắt bằng biến môi trường
+// ALLOWED_STREAM_HOSTS (phân tách bằng dấu phẩy; đặt rỗng = tắt miễn trừ, quay về như cũ).
+const ALLOWED_STREAM_HOSTS = String(process.env.ALLOWED_STREAM_HOSTS ?? 'live1.quickscoreboardz.com')
+  .split(',')
+  .map((h) => h.trim().toLowerCase())
+  .filter(Boolean);
+
 export function isDeadStreamDomain(url) {
   if (!url || typeof url !== 'string') return false;
   let host = '';
@@ -249,6 +262,7 @@ export function isDeadStreamDomain(url) {
   } catch {
     return false;
   }
+  if (ALLOWED_STREAM_HOSTS.includes(host)) return false;
   return DEAD_STREAM_DOMAINS.some((d) => host === d || host.endsWith(`.${d}`));
 }
 

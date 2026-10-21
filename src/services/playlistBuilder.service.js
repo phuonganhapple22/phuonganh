@@ -60,7 +60,9 @@ const STREAM_RESOLVE_TIMEOUT_MS = 4500;
 const STREAM_RESOLVE_TIMEOUT_MS_BROWSER = 18000;
 // Xôi Gấc: tải trang chủ (dùng chung, cache 30s) + gọi /api/stream/info/ cho từng BLV
 // -> 4,5s không đủ (quá hạn là mất link, rơi về nhánh "chưa có link").
-const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000 };
+// FIX (21/10/2026): xoilac trước đây rơi vào mốc mặc định 4,5s — nhánh dự phòng getStreamLinks() phải tải lại
+// trang chủ + trang trận + trang nhúng nên thường vượt 4,5s -> mất link ở chu kỳ đó. Cho 20s (≥ timeout trang nhúng).
+const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000, xoilac: 20000 };
 const BROWSER_BASED_SOURCES = new Set(['giovang']);
 const STREAM_RESOLVE_CONCURRENCY = 12;
 // Riêng nguồn cần trình duyệt: giảm số tab mở song song — 12 tab Chrome
