@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T13:29:58.830Z",
+  "updatedAt": "2026-10-24T02:35:07.734Z",
   "domains": {
     "giovang": {
-      "url": "https://giovang.bet",
+      "url": "https://giovang.uno",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
-      "url": "https://gavangzz.tv",
+      "url": "https://gavang11.live",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
       "status": "moved",
@@ -27,7 +27,7 @@
       "url": "https://vip4.saoketv40.xyz",
       "envVar": "SAOKE_BASE_URL",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "bonglau": {
@@ -41,7 +41,7 @@
       "url": "https://xoilacxbn.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "blocked",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -262,6 +262,20 @@
       "source": "chuoichientv",
       "from": "https://live08.chuoichientv.me",
       "to": "https://live08.chuoichientv.me",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:35:07.734Z",
+      "source": "giovang",
+      "from": "https://giovang.bet",
+      "to": "https://giovang.uno",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:35:07.734Z",
+      "source": "gavang",
+      "from": "https://gavangzz.tv",
+      "to": "https://gavang11.live",
       "via": "chuyển hướng của chính trang"
     }
   ]
