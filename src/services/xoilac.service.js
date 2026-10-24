@@ -21,6 +21,27 @@ import { filterMinorLeagues } from '@/src/utils/leagueFilter';
 // theo kiểu "quét mọi URL .m3u8/.flv trong HTML/script/data-*" cho an toàn;
 // nếu trang đó chỉ nhúng <iframe> hoặc gọi API riêng, cần gửi thêm 1 bản
 // HTML (hoặc request bắt từ DevTools) của 1 trang link/N để chỉnh lại.
+// FIX (24/10/2026) — "một số trận đang live các môn không phải bóng đá bị lọc bỏ, kết thúc sớm quá":
+// isStaleLiveMatch() dùng trần chung (bóng rổ/bóng chuyền 3h, cầu lông 2,5h, tennis 6h) tính từ
+// GIỜ LỊCH (data-runtime). Với Xôi Lạc, mọi môn ngoài bóng đá/bóng rổ đều bị mapStatus() coi là
+// "đang đá" nên bộ lọc này là chốt chặn duy nhất — mà tennis/bóng chuyền/cầu lông/bóng rổ giải
+// lớn thường BẮT ĐẦU TRỄ hàng giờ so với giờ lịch (trận xếp nối tiếp trên sân, delay, kéo dài
+// nhiều set) nên trận còn đang live thật vẫn bị cắt. Sửa: nới trần riêng cho Xôi Lạc với các môn
+// ngoài bóng đá (bóng đá giữ nguyên 3,5h). Trận đã xong thật vẫn bị loại vì kênh không còn link
+// stream (bước lấy link BLV bên dưới bỏ trận live không có link) và bóng rổ có mã kết thúc (>=10).
+// Chỉnh bằng biến môi trường XOILAC_MAX_LIVE_HOURS_OTHER (giờ, áp cho mọi môn ngoài bóng đá;
+// để trống = dùng bảng mặc định bên dưới).
+const XOILAC_OTHER_SPORT_HOURS = Number(process.env.XOILAC_MAX_LIVE_HOURS_OTHER) > 0 ? Number(process.env.XOILAC_MAX_LIVE_HOURS_OTHER) : 0;
+const XOILAC_MAX_LIVE_HOURS = {
+  football: 3.5,
+  basketball: XOILAC_OTHER_SPORT_HOURS || 6,
+  volleyball: XOILAC_OTHER_SPORT_HOURS || 7,
+  badminton: XOILAC_OTHER_SPORT_HOURS || 8,
+  tennis: XOILAC_OTHER_SPORT_HOURS || 14,
+  esports: XOILAC_OTHER_SPORT_HOURS || 8,
+  default: XOILAC_OTHER_SPORT_HOURS || 10
+};
+
 const XOILAC_BASE_URL = String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '');
 
 const client = createHttpClient(
@@ -695,7 +716,7 @@ class XoilacService {
       filtered = filterMinorLeagues(filtered, 'xoilac');
 
       // Bỏ trận "live" đã quá giờ hợp lý (nguồn hay quên cập nhật trạng thái).
-      const stale = filtered.filter((m) => m.status.isLive && isStaleLiveMatch(m));
+      const stale = filtered.filter((m) => m.status.isLive && isStaleLiveMatch(m, XOILAC_MAX_LIVE_HOURS));
       if (stale.length) {
         console.log(`[xoilac] bỏ ${stale.length} trận "live" đã quá giờ: ${stale.map((m) => m.slug || m.matchId).join(', ')}`);
         filtered = filtered.filter((m) => !stale.includes(m));

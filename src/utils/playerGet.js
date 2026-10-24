@@ -487,15 +487,24 @@ export function isStaleUpcoming(match) {
 // dấu live thì nhiều khả năng trận đã kết thúc từ lâu và nguồn (hay gặp
 // nhất: Gà Vàng) chưa cập nhật lại trạng thái, chứ không phải trận thật sự
 // đang kéo dài. Để dư dả (hiệp phụ, luân lưu, delay bình luận viên...).
+//
+// FIX (24/10/2026) — "trận đang live các môn không phải bóng đá bị lọc bỏ, kết thúc sớm quá":
+// trần cũ (bóng rổ/bóng chuyền 3h, cầu lông 2,5h, tennis 6h, môn lạ 4h) tính từ GIỜ LỊCH nên cắt
+// nhầm các trận còn đang live thật — tennis/bóng chuyền/cầu lông/bóng rổ giải lớn thường bắt đầu
+// trễ hàng giờ so với giờ lịch (xếp nối tiếp trên sân, delay, nhiều set). Nới trần cho các môn
+// ngoài bóng đá; bóng đá giữ nguyên 3,5h. Trận đã xong thật vẫn bị loại ở bước sau vì không còn
+// link stream. Đổi nhanh bằng biến môi trường LIVE_MAX_HOURS_OTHER (giờ, áp cho mọi môn ngoài bóng đá).
+const OTHER_SPORT_OVERRIDE_HOURS = Number(process.env.LIVE_MAX_HOURS_OTHER) > 0 ? Number(process.env.LIVE_MAX_HOURS_OTHER) : 0;
 const MAX_LIVE_DURATION_HOURS = {
   football: 3.5,
-  basketball: 3,
-  volleyball: 3,
-  badminton: 2.5,
-  tennis: 6, // Grand Slam 5 set có thể kéo rất dài
-  esports: 5
+  basketball: OTHER_SPORT_OVERRIDE_HOURS || 6,
+  volleyball: OTHER_SPORT_OVERRIDE_HOURS || 7,
+  badminton: OTHER_SPORT_OVERRIDE_HOURS || 8,
+  tennis: OTHER_SPORT_OVERRIDE_HOURS || 14, // Grand Slam 5 set có thể kéo rất dài
+  f1: OTHER_SPORT_OVERRIDE_HOURS || 8,
+  esports: OTHER_SPORT_OVERRIDE_HOURS || 8
 };
-const DEFAULT_MAX_LIVE_DURATION_HOURS = 4;
+const DEFAULT_MAX_LIVE_DURATION_HOURS = OTHER_SPORT_OVERRIDE_HOURS || 10;
 
 /**
  * True khi trận đang đánh dấu "live" nhưng đã trôi qua quá lâu so với giờ
@@ -503,13 +512,18 @@ const DEFAULT_MAX_LIVE_DURATION_HOURS = 4;
  * do nguồn quên cập nhật trạng thái sang "kết thúc". Dùng để tự lọc bỏ thay
  * vì hiện nhầm 1 trận đã xong từ lâu là "đang live".
  */
-export function isStaleLiveMatch(match) {
+// FIX (24/10/2026): thêm tham số tuỳ chọn `limits` ({ football, basketball, ...,
+// default }) để từng nguồn tự nới trần thời lượng theo môn mà KHÔNG ảnh hưởng nguồn
+// khác. Không truyền `limits` thì dùng bảng mặc định MAX_LIVE_DURATION_HOURS ở trên.
+export function isStaleLiveMatch(match, limits = null) {
   const status = match?.status || {};
   if (!status.isLive) return false;
   const ms = toMatchTimeMs(match?.matchTimeTimestamp);
   if (!ms) return false; // không có giờ bóng lăn thì không đủ căn cứ để coi là cũ
   const sportKey = normalizeSport(match?.sport);
-  const maxHours = MAX_LIVE_DURATION_HOURS[sportKey] ?? DEFAULT_MAX_LIVE_DURATION_HOURS;
+  const table = limits || MAX_LIVE_DURATION_HOURS;
+  const fallback = limits?.default ?? DEFAULT_MAX_LIVE_DURATION_HOURS;
+  const maxHours = table[sportKey] ?? fallback;
   return Date.now() - ms > maxHours * 60 * 60 * 1000;
 }
 
