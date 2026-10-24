@@ -124,10 +124,13 @@ const MAJOR_LEAGUE_RE = new RegExp([
 ].join('|'));
 
 const FILTER_MODE = String(process.env.PHALANG_FILTER_MODE || 'major').toLowerCase();
+const HOT_BYPASS = String(process.env.PHALANG_HOT_BYPASS || '').toLowerCase() === 'on';
 
 // Trận giao hữu luôn được giữ, kiểm tra trên CẢ tên giải lẫn tiêu đề trận và
 // bỏ qua luật loại giải trẻ (xem FIX "bị mất các trận giao hữu").
-const FRIENDLY_RE = /giao huu|giao luu|friendl|\bclub friendly\b|\bint(?:ernational)? ?cf\b|quoc te|international/;
+// FIX (24/10/2026): bỏ chữ "international" trần (làm lọt "... International Tournament" của giải cỏ);
+// chỉ giữ các cụm giao hữu/quốc tế thật sự.
+const FRIENDLY_RE = /giao huu|giao luu|friendl|\bclub friendly\b|\bint(?:ernational)? ?cf\b|giao huu quoc te|\binternational (?:friendl\w*|champions cup|match(?:es)?)\b/;
 
 const VIETNAM_RE = /viet ?nam|sea games|\baff\b|asean|v-?league/;
 
@@ -193,6 +196,30 @@ const EXCLUDED_LEAGUE_NAMES = [
   'English FA Women\'s Super League'
 ];
 
+// FIX (24/10/2026) — "nguồn Phá Làng vẫn còn nhiều giải bé: Czech Third League, Italian Serie C,
+// French Division 1 Feminine, Belarusian Women's Premier League, Italian Campionato Primavera 1...":
+// luật GIỮ `is_hot` (và luật nữ có `!isHot`) chạy TRƯỚC luật loại hạng thấp nên mọi trận được API gắn
+// "hot" đều lọt, kể cả giải hạng 2-5/giải nữ/giải cỏ. Giờ nhóm HARD_MINOR_RE chạy TRƯỚC is_hot, giao hữu
+// và PHALANG_KEEP_LEAGUES. Chỉ miễn khi liên quan Việt Nam hoặc là giải quốc tế lớn (HARD_MINOR_EXEMPT_RE).
+// Thêm từ khoá loại riêng: PHALANG_BLOCK_LEAGUES (cũng chạy trước is_hot từ bản này).
+const HARD_MINOR_RE = new RegExp([
+  // hạng 2-5 (KHÔNG chặn "league 1"/"division 1" vì K League 1, Thai League 1, V.League 1 là giải đỉnh)
+  '\\b(second|third|fourth|fifth|2nd|3rd|4th|5th) (division|league|liga|tier|divisi)',
+  '\\bdivision (2|3|4|5|ii|iii|iv|two|three|four)\\b',
+  '\\bserie (b|c|d)\\b', '\\bliga (2|3|ii|iii)\\b', '\\b(ii|iii) liga\\b', 'nadeshiko', '\\bligue (2|3)\\b', '\\b(2|3)\\.? ?(bundesliga|liga)\\b',
+  '\\bleague (one|two|three|2|3)\\b', '\\b(j|k) ?league ?[234]\\b', '\\bj[234]\\b', '\\bk[34]\\b', '\\bd[2-5][a-z]?\\b',
+  '\\bsegunda\\b', '\\bprimera (b|rfef|federacion|nacional)\\b', '\\btercera\\b', '\\bnational league\\b', '\\bchampionnat national\\b',
+  '\\bregionalliga\\b', '\\bregional\\b', '\\boberliga\\b', '\\blandesliga\\b', '\\bverbandsliga\\b', '\\bkreisliga\\b', '\\bbezirksliga\\b', '\\bamateur\\b',
+  '\\bkakkonen\\b', '\\bkolmonen\\b', '\\bnelonen\\b', '\\bykkonen\\b', '\\bettan\\b', '\\btweede divisie\\b', '\\bdilettanti\\b', '\\bcampionato nazionale\\b',
+  '\\bpremier league 2\\b', '\\bdevelopment league\\b', '\\bu-?(21|22|23)\\b', '\\bunder ?(21|22|23)\\b',
+  // nữ (giữ riêng WOMEN_KEEP_RE bên dưới cho cúp quốc tế/đội tuyển)
+  'women', 'woman', 'femin', 'femenin', 'frauen', 'damallsvenskan', 'ladies', 'girls', '\\bnu\\b', '\\(w\\)',
+  // futsal/bãi biển/ảo
+  'futsal', 'beach soccer', 'beach football'
+].join('|'));
+// Miễn HARD_MINOR cho giải quốc tế lớn / đội tuyển (kể cả nữ, U23 Olympic/SEA Games/Asian Games).
+const HARD_MINOR_EXEMPT_RE = /uefa|fifa|world cup|wcq|olympic|asian games|sea games|asian cup|\bafc\b|champions league|nations league|\beuro\b|copa america|concacaf|gold cup|cup of nations|afcon|\bwsl\b|\bnwsl\b|women.?s super league|liga f\b|qualif|vong loai/;
+
 function normalizeLeagueName(name) {
   return stripDiacritics(name).replace(/[\u2018\u2019`]/g, "'").replace(/\s+/g, ' ').trim();
 }
@@ -218,10 +245,16 @@ function isNotableMatch(match) {
   // 1) LUẬT LOẠI chạy trước mọi luật giữ (trừ Việt Nam với giải trẻ).
   if (VIRTUAL_RE.test(text)) return false;
   if (YOUTH_RE.test(text) && !vietnam) return false;
-  if (WOMEN_RE.test(text) && !match?.isHot && !vietnam && !WOMEN_KEEP_RE.test(text) && !FRIENDLY_RE.test(text)) return false;
+  if (WOMEN_RE.test(text) && !vietnam && !WOMEN_KEEP_RE.test(text) && !FRIENDLY_RE.test(text)) return false;
+  // Hạng 2-5/giải cỏ/nữ/U21+ chạy TRƯỚC is_hot (xem HARD_MINOR_RE).
+  if (HARD_MINOR_RE.test(league) && !vietnam && !HARD_MINOR_EXEMPT_RE.test(text)) return false;
+  if (BLOCK_LEAGUES_RE && BLOCK_LEAGUES_RE.test(league) && !vietnam) return false;
 
   // 2) LUẬT GIỮ.
-  if (match?.isHot) return true;
+  // FIX (24/10/2026): is_hot KHÔNG còn tự động giữ trận ở chế độ mặc định 'major' — API gắn hot cho cả
+  // VĐQG nước nhỏ/cúp cỏ (Bhutan Premier League, Malaysian President Cup...) nên làm lọt giải cỏ.
+  // Bật lại bằng PHALANG_HOT_BYPASS=on; chế độ PHALANG_FILTER_MODE=block vẫn giữ hành vi cũ.
+  if (match?.isHot && (HOT_BYPASS || FILTER_MODE === 'block')) return true;
   if (!league) return true; // API không trả tên giải -> không đủ cơ sở để loại, giữ lại
   if (FRIENDLY_RE.test(text)) return true;
   if (vietnam) return true;
