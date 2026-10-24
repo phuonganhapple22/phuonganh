@@ -108,19 +108,38 @@ const MINOR_LEAGUE_RE = new RegExp([
 // Việt Nam, PHALANG_KEEP_LEAGUES. Lỗi mất International Friendly / Nations
 // League trước đó là do phân trang, KHÔNG phải do bộ lọc — 2 giải này vẫn giữ.
 // Chế độ "block" (PHALANG_FILTER_MODE=block) = hành vi cũ: giữ hết, chỉ loại giải nhỏ.
+// FIX (24/10/2026) — "vẫn còn nhiều giải bé: Romanian Super Liga...": danh sách cũ so khớp theo CHUỖI CON
+// nên 'super lig' (Thổ Nhĩ Kỳ) khớp luôn "Romanian/Serbian/Slovak Super Liga", 'bundesliga' khớp "Austrian
+// Bundesliga", 'ligue 1' khớp "Algerian/Tunisian Ligue 1", 'serie a' khớp "Ecuadorian Serie A", 'super cup'
+// khớp mọi Super Cup nhỏ, 'league cup'/'fa cup' khớp "Hong Kong League Cup"/"Welsh FA Cup"...
+// Giờ các VĐQG/cúp quốc nội lớn phải khớp TOÀN BỘ tên giải (neo ^...$) với tiền tố quốc gia cho phép rõ ràng;
+// chỉ các giải quốc tế/châu lục (UEFA, FIFA, World Cup, AFC...) mới còn so khớp chuỗi con.
+// Giải lớn nào Phá Làng đặt tên khác dạng dưới đây thì thêm vào PHALANG_KEEP_LEAGUES (từ khoá không dấu).
 const MAJOR_LEAGUE_RE = new RegExp([
+  // --- giải quốc tế / châu lục / đội tuyển (so khớp chuỗi con) ---
+  'cup c1', 'cup c2', 'champions league', '\\beuropa (league|conference)', 'conference league', 'uefa', 'nations league', '\\beuro\\b', 'euro 20',
+  'world cup', 'wcq', 'qualif', 'vong loai', 'asian cup', '\\bafc\\b', 'fifa', 'conmebol', 'concacaf', 'copa america', 'libertadores', 'sudamericana',
+  'olympic', 'gulf cup', 'waff', 'arab cup', 'cup of nations', 'afcon', 'cecafa', 'cosafa', 'baltic', 'kirin', 'gold cup', 'intercontinental',
+  'women.?s super league', '\\bwsl\\b', '\\bnwsl\\b', 'liga f\\b', 'ngoai hang anh',
+  'uefa super cup', '^super cup$', '(spanish|italian|german|french|english|saudi|egyptian|turkish) super ?cup', 'supercopa de espana', 'supercoppa', 'dfb supercup', 'trophee des champions', 'community shield',
+  // --- VĐQG / cúp quốc nội lớn (neo ^$, tiền tố quốc gia cho phép rõ ràng) ---
   // Anh
-  'women.?s super league', '\\bwsl\\b', '\\bnwsl\\b', 'liga f\\b', 'ngoai hang anh', 'cup c1', 'cup c2', '^(english |england )?premier league$', '^(english |england )?(efl )?championship$', '\\bfa cup\\b', 'efl cup', 'carabao', 'league cup', 'community shield',
+  '^(english |england |uk )?premier league$', '^(english |england )?(efl )?championship$', '^(english |england )?fa cup$', '^(english |england )?(efl|league|carabao) cup$', 'carabao',
   // Tây Ban Nha / Ý / Đức / Pháp
-  'la ?liga', 'copa del rey', 'supercopa', 'serie a', 'coppa italia', 'supercoppa', 'bundesliga', 'dfb', 'ligue 1', 'coupe de france', 'trophee des champions',
-  // châu Âu / thế giới / châu lục
-  'champions league', 'europa', 'conference league', 'uefa', 'nations league', '\\beuro\\b', 'euro 20', 'world cup', 'wcq', 'qualif', 'vong loai',
-  'asian cup', '\\bafc\\b', 'fifa', 'conmebol', 'concacaf', 'copa america', 'libertadores', 'sudamericana', 'olympic', 'super cup',
-  'gulf cup', 'waff', 'arab cup', 'cup of nations', 'afcon', 'cecafa', 'cosafa', 'baltic', 'kirin', 'gold cup', 'intercontinental',
+  '^(spanish |spain )?(la ?liga|primera division)( ea sports)?$', '^(spanish |spain )?copa del rey$',
+  '^(italian |italy )?serie a( enilive| tim)?$', '^(italian |italy )?coppa italia$',
+  '^(german |germany )?bundesliga$', '^(german |germany )?dfb ?-?pokal$',
+  '^(french |france )?ligue 1( uber eats| mcdonald.?s)?$', '^(french |france )?coupe de france$',
   // VĐQG lớn khác
-  'eredivisie', 'primeira liga', 'liga portugal', 'super lig', 'saudi pro league', 'saudi professional', '\\bj[-. ]?[123]? ?league', '\\bj1\\b', 'k ?league 1', '^k ?league$',
-  '\\bmls\\b', 'major league soccer', 'a-league', 'liga mx', 'brasileir', 'liga profesional', 'scottish premiership', 'jupiler', 'belgian pro league',
-  'russian premier league', 'chinese super league', 'china super league', 'thai league 1', 'greek super league', 'swiss super league', 'ukrainian premier league'
+  '^(dutch |netherlands )?eredivisie$', '^(portuguese |portugal )?(primeira liga|liga portugal( betclic)?)$', '^(turkish |turkey |turkiye )?super lig$',
+  '^(saudi |saudi arabian )?(pro|professional) league$|^saudi (pro|professional) league',
+  '^(japanese |japan )?j[-. ]?1? ?league$', '^(korean |south korean |korea )?k ?league( 1)?$',
+  '^(american |usa |us )?(mls|major league soccer)$', '^(australian |australia )?a-?league( men)?$',
+  '^(mexican |mexico )?liga mx$', '^(brazilian |brazil )?(campeonato brasileiro )?(serie a|brasileirao)( betano)?$|campeonato brasileiro serie a',
+  '^(argentine |argentina |argentinian )?(liga profesional|primera division)( de futbol)?$',
+  '^(scottish |scotland )?premiership$', '^(belgian |belgium )?(pro league|jupiler pro league|first division a)$',
+  '^(russian |russia )?premier league$', '^(chinese |china )?super league$', '^(thai |thailand )?league 1$',
+  '^(greek |greece )?super league( 1)?$', '^(swiss |switzerland )?super league$', '^(ukrainian |ukraine )?premier league$'
 ].join('|'));
 
 const FILTER_MODE = String(process.env.PHALANG_FILTER_MODE || 'major').toLowerCase();
@@ -206,7 +225,7 @@ const HARD_MINOR_RE = new RegExp([
   // hạng 2-5 (KHÔNG chặn "league 1"/"division 1" vì K League 1, Thai League 1, V.League 1 là giải đỉnh)
   '\\b(second|third|fourth|fifth|2nd|3rd|4th|5th) (division|league|liga|tier|divisi)',
   '\\bdivision (2|3|4|5|ii|iii|iv|two|three|four)\\b',
-  '\\bserie (b|c|d)\\b', '\\bliga (2|3|ii|iii)\\b', '\\b(ii|iii) liga\\b', 'nadeshiko', '\\bligue (2|3)\\b', '\\b(2|3)\\.? ?(bundesliga|liga)\\b',
+  '\\bserie (b|c|d)\\b', '\\bliga (2|3|ii|iii)\\b', '\\b(ii|iii) liga\\b', 'nadeshiko', '\\bliga portugal (2|3)\\b', '\\bsegunda liga\\b', '\\bligue (2|3)\\b', '\\b(2|3)\\.? ?(bundesliga|liga)\\b',
   '\\bleague (one|two|three|2|3)\\b', '\\b(j|k) ?league ?[234]\\b', '\\bj[234]\\b', '\\bk[34]\\b', '\\bd[2-5][a-z]?\\b',
   '\\bsegunda\\b', '\\bprimera (b|rfef|federacion|nacional)\\b', '\\btercera\\b', '\\bnational league\\b', '\\bchampionnat national\\b',
   '\\bregionalliga\\b', '\\bregional\\b', '\\boberliga\\b', '\\blandesliga\\b', '\\bverbandsliga\\b', '\\bkreisliga\\b', '\\bbezirksliga\\b', '\\bamateur\\b',
