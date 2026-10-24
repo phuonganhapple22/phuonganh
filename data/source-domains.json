@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T02:35:07.734Z",
+  "updatedAt": "2026-10-24T02:44:19.594Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.uno",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
       "url": "https://gavang11.live",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "gavang33": {
@@ -38,10 +38,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacxbn.tv",
+      "url": "https://xoilacxca.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "blocked",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -277,6 +277,13 @@
       "from": "https://gavangzz.tv",
       "to": "https://gavang11.live",
       "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:44:19.594Z",
+      "source": "xoilac",
+      "from": "https://xoilacxbn.tv",
+      "to": "https://xoilacxca.tv",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
     }
   ]
 }
