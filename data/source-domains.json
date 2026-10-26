@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T13:56:43.233Z",
+  "updatedAt": "2026-10-26T19:32:02.645Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.uno",
@@ -10,10 +10,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
-      "url": "https://gavang11.live",
+      "url": "https://gavangtv1.org",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "gavang33": {
@@ -325,6 +325,13 @@
       "from": "https://xoilacvbd.tv",
       "to": "https://xoilacvbe.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T19:32:02.645Z",
+      "source": "gavang",
+      "from": "https://gavang11.live",
+      "to": "https://gavangtv1.org",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
     }
   ]
 }
