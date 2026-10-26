@@ -1,0 +1,26 @@
+# Mỗi dòng: tên=domain. Dòng bắt đầu bằng # là ghi chú. Xoá/để trống 1 dòng = dùng domain mặc định trong code.
+# Quét tự động: workflow "Check Domains" sẽ tự sửa dòng nào có domain chết.
+# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-08T08:22:20.379Z
+# Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
+giovang=https://giovang.rent
+gavang=https://gavanglinkv.tv
+gavang33=https://gavang33.me
+saoke=https://vip3.saoketv40.xyz
+bonglau=https://lau06.bonglautv1.org
+xoilac=https://xoilacxbr.tv
+xoigac=https://xoigac.top
+phalang=https://phalang.live
+# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): phalang=https://phalang2.live
+# chuoichientv=https://live05.chuoichientv.me
+# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): chuoichientv=https://live08.chuoichientv.me
+chuoichientv-player=https://live.chuoichien.tv
+saoke-player=https://sk.mediastation.live
+bonglau-player=https://live.chuoichien.tv
+giovang-api=https://live-api.keonhacaitp.one
+saoke-api=https://skapi.66887979.xyz
+gavang33-api=https://gavangtv-api.adviceme.io
+phalang-api=https://api.plapi202624081158.com
+chuoichientv-api=https://api-v2.chuoichientv.net/v2
+xoilac-api=https://fb-api.sportliveapiz.com
+bonglau-api=https://api-v2.chuoichientv.net/v2
+xoiche=https://xoiche.live

@@ -1,0 +1,28 @@
+name: Cleanup old workflow runs
+
+# Tu dong xoa cac run cu hon 1 ngay cua workflow "Generate Playlists" (bao
+# gom ca run hien "Generate Playlists" lan run hien "Add files via upload"
+# - thuc ra la CUNG 1 workflow, chi khac ten hien thi theo commit message
+# gay ra run do: push code thi hien ten workflow, bot tu commit/push moi 2
+# phut thi GitHub lay dong commit message lam ten run). Dung action co san
+# Mattraks/delete-workflow-runs, tinh so ngay da luu cua tung run roi xoa
+# neu >= retain_days.
+on:
+  schedule:
+    - cron: '0 19 * * *'  # 19:00 UTC = 02:00 gio VN moi ngay
+  workflow_dispatch:       # cho phep bam tay "Run workflow" de test ngay
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write   # can quyen nay de goi API xoa workflow run
+      contents: read
+    steps:
+      - name: Delete runs older than 1 day
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 1        # xoa run da luu >= 1 ngay
+          keep_minimum_runs: 2  # luon giu it nhat 2 run gan nhat de con log doi chieu khi can debug
