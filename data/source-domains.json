@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T20:21:09.050Z",
+  "updatedAt": "2026-10-26T02:48:52.816Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.uno",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacvba.tv",
+      "url": "https://xoilacvbd.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -70,8 +70,7 @@
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
       "status": "moved",
-      "from": "mặc định",
-      "found": "https://live10.chuoichientv.me"
+      "from": "mặc định"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -305,6 +304,20 @@
       "from": "https://xoilacxcb.tv",
       "to": "https://xoilacvba.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T02:48:52.816Z",
+      "source": "xoilac",
+      "from": "https://xoilacvba.tv",
+      "to": "https://xoilacvbd.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T02:48:52.816Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
     }
   ]
 }
