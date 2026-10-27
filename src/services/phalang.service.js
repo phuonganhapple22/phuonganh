@@ -329,12 +329,9 @@ function phalangWatchUrl(id, home, away) {
 }
 
 /**
- * FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được", log: lilive1.eu.cc / pull.digitalcdn.net
- * đều là link TRẦN không token): trước đây Referer của MỌI link = URL trang xem trận (có slug đội, tự
- * ghép nên có thể sai). Khi player trên trang phalang.live gọi CDN KHÁC domain, trình duyệt (chính sách
- * mặc định strict-origin-when-cross-origin) chỉ gửi Referer = "https://phalang.live/" + Origin
- * "https://phalang.live" — không bao giờ gửi URL đầy đủ của trang. CDN kiểm tra Referer nghiêm ngặt sẽ
- * từ chối Referer lạ. Nên Referer mặc định của link Phá Làng là origin + "/".
+ * GHI CHÚ (27/10/2026): curl thật từ DevTools cho thấy trình duyệt gửi Referer = URL ĐẦY ĐỦ của trang xem
+ * trận (/truc-tiep/<đội1>-vs-<đội2>-<id>) + Origin = domain Phá Làng. Vì vậy Referer của link = URL trang
+ * xem trận (phalangWatchUrl). Hàm dưới chỉ còn là domain gốc, không dùng làm Referer chính nữa.
  */
 function phalangSiteReferer() {
   return `${PHALANG_SITE_ORIGIN}/`;
@@ -342,6 +339,52 @@ function phalangSiteReferer() {
 
 function slugifyName(text) {
   return stripDiacritics(text).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+
+// FIX (27/10/2026 — lilive1.eu.cc trả {"error":"Stream not found"}): `source` của /match/{id}/live có thể
+// trỏ tới luồng KHÔNG tồn tại trên CDN đó -> kênh chết trong playlist. Dò nhanh link (trừ digitalcdn: 403
+// từ IP CI nên không dò được) và BỎ link chắc chắn chết (HTTP 404 / JSON lỗi / không phải m3u8).
+// Lỗi mạng, timeout, 403, 5xx -> không kết luận được -> GIỮ link. Tắt: PHALANG_PROBE_ALIVE=off.
+const PHALANG_PROBE_ALIVE = String(process.env.PHALANG_PROBE_ALIVE || '').toLowerCase() !== 'off';
+const aliveCache = globalThis.__phalangAliveCache || new Map(); // url -> { at, alive }
+globalThis.__phalangAliveCache = aliveCache;
+const PHALANG_ALIVE_TTL_MS = 60 * 1000;
+
+async function isPhalangLinkAlive(url) {
+  if (!PHALANG_PROBE_ALIVE) return true;
+  let host = '';
+  try { host = new URL(url).hostname; } catch { return true; }
+  if (/digitalcdn/i.test(host)) return true;
+  const hit = aliveCache.get(url);
+  if (hit && Date.now() - hit.at < PHALANG_ALIVE_TTL_MS) return hit.alive;
+  const task = (async () => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    try {
+      const r = await fetch(url, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', Referer: `${PHALANG_SITE_ORIGIN}/`, Origin: PHALANG_SITE_ORIGIN },
+        signal: ctrl.signal
+      });
+      const body = (await r.text()).slice(0, 300);
+      if (r.status === 404) return false;
+      if (r.status === 200) return /#EXTM3U/.test(body);
+      return true; // 403/5xx...: không kết luận được
+    } catch {
+      return true;
+    } finally {
+      clearTimeout(timer);
+    }
+  })();
+  aliveCache.set(url, { at: Date.now(), alive: task });
+  const alive = await task;
+  if (!alive) console.warn(`[phalang] bỏ link chết (Stream not found/không phải m3u8): ${url}`);
+  return alive;
+}
+
+async function filterAliveLinks(urls) {
+  const flags = await Promise.all(urls.map((u) => isPhalangLinkAlive(u)));
+  return urls.filter((_, i) => flags[i]);
 }
 
 class PhalangService {
@@ -425,7 +468,7 @@ class PhalangService {
       // source_live vẫn null) — trận live luôn phải gọi getStreamLinks().
       streamUrl: skipBareLive ? '' : (m.source_live || ''),
       commentators: (m.source_live && !skipBareLive)
-        ? [{ id: `${m.id}_0`, name: m.blv || 'Server 1', avatar: '', streamUrl: m.source_live, isLive: true, cdn: this.detectCdn(m.source_live), referer: phalangSiteReferer() }]
+        ? [{ id: `${m.id}_0`, name: m.blv || 'Server 1', avatar: '', streamUrl: m.source_live, isLive: true, cdn: this.detectCdn(m.source_live), referer: phalangWatchUrl(m.id, homeName, awayName) }]
         : [],
       // FIX (23/09/2026 — "nguồn Phá Làng: trận chưa thi đấu không xuất
       // hiện trong all.m3u"): trước đây liveUrl luôn để '' (rỗng). Ở chế độ
@@ -850,7 +893,7 @@ class PhalangService {
    */
   buildLinkObjects(cleanId, urls, blvName, match, tokenized) {
     const watchUrl = phalangWatchUrl(cleanId, match?.homeTeam?.name, match?.awayTeam?.name);
-    const variantOn = String(process.env.PHALANG_NOREFERER_VARIANT || '').toLowerCase() !== 'off';
+    const variantOn = String(process.env.PHALANG_NOREFERER_VARIANT || '').toLowerCase() === 'on'; // mặc định TẮT: đã xác nhận lilive1 trả "Stream not found", header không phải nguyên nhân
     const baseNames = urls.map((_, i) => (urls.length > 1
       ? (blvName ? `${blvName} - Server ${i + 1}` : `Server ${i + 1}`)
       : (blvName || 'Server 1')));
@@ -871,7 +914,7 @@ class PhalangService {
         quality: 'HD',
         watchUrl
       };
-      out.push({ ...base, referer: tokenized && url === tokenized.url ? tokenized.referer : phalangSiteReferer() });
+      out.push({ ...base, referer: tokenized && url === tokenized.url ? tokenized.referer : watchUrl });
       if (variantOn && cdn !== 'DIGITALCDN' && !(tokenized && url === tokenized.url)) {
         const vName = `${name}-B`;
         out.push({
@@ -952,6 +995,7 @@ class PhalangService {
         finalUrls = [tokenized.url, ...rest];
       }
       finalUrls = this.withBackupUrl(finalUrls, sourceLive);
+      finalUrls = await filterAliveLinks(finalUrls);
       return this.buildLinkObjects(cleanId, finalUrls, blvName, match, tokenized);
     } catch (error) {
       // 404 EntityNotFound = trận chưa có link phát (chưa live/nguồn chưa
@@ -961,7 +1005,7 @@ class PhalangService {
         console.error('Error fetching Phalang stream links:', error.message);
       }
       // /live lỗi/404 nhưng danh sách trận có sẵn source_live -> vẫn trả link đó thay vì rỗng.
-      const fallbackOnly = this.withBackupUrl([], sourceLive);
+      const fallbackOnly = await filterAliveLinks(this.withBackupUrl([], sourceLive));
       return fallbackOnly.length ? this.buildLinkObjects(cleanId, fallbackOnly, blvName, match, null) : [];
     }
   }

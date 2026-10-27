@@ -331,6 +331,9 @@ async function resolveStreams(match) {
       } else if (source === 'phalang') {
         if (!matchId) return cardFallback;
         raw = await phalangService.getStreamLinks(matchId, match.stream?.streamerName, match);
+        // FIX (27/10/2026): trận live mà mọi link đã bị loại vì chết (lilive1 "Stream not found") thì KHÔNG
+        // quay về source_live trong danh sách (cũng chính là link chết đó).
+        if (!raw?.length && preferDetail) return [];
       } else if (source === 'gavang') {
         if (!matchId) return [];
         raw = await gavangService.getStreamLinks(matchId);
