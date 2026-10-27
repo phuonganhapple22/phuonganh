@@ -175,6 +175,11 @@ jobs:
           XOIGAC_DOMAIN: ${{ vars.XOIGAC_DOMAIN }}
           XOILAC_SCORE_API: ${{ vars.XOILAC_SCORE_API }}
           PHALANG_DOMAIN: ${{ vars.PHALANG_DOMAIN }}
+          # Phá Làng: log dò CDN (HTTP status theo từng kiểu header) — đang BẬT mặc định (=1) để chẩn đoán
+          # lỗi trận live. Tắt: tạo Variable PHALANG_DEBUG = off (Settings > Secrets and variables > Actions > Variables).
+          # PHALANG_MAX_SERVERS = số server tối đa xuất ra cho mỗi trận (mặc định 3, đặt 1 = như cũ).
+          PHALANG_DEBUG: ${{ vars.PHALANG_DEBUG || '1' }}
+          PHALANG_MAX_SERVERS: ${{ vars.PHALANG_MAX_SERVERS }}
           CHUOICHIENTV_WATCH_DOMAIN: ${{ vars.CHUOICHIENTV_WATCH_DOMAIN }}
           CHUOICHIENTV_PLAYER_DOMAIN: ${{ vars.CHUOICHIENTV_PLAYER_DOMAIN || secrets.CHUOICHIENTV_PLAYER_DOMAIN }}
           SAOKE_PLAYER_DOMAIN: ${{ vars.SAOKE_PLAYER_DOMAIN }}
