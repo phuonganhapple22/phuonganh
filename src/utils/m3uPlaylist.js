@@ -436,8 +436,13 @@ export function buildM3uPlaylist(entries = [], options = {}) {
     // đứng đầu sẽ bị đẩy xuống cuối danh sách, sau cả các trận ngày hôm sau.
     const time = formatKickoffHourFirst(match, { dateFirst: KICKOFF_DATE_FIRST }) || match?.timeFormatted || '';
     const title = getMatchTitle(match);
-    const streamer = stream.streamerName || stream.name || 'Server';
-    const nameParts = [time, getStatusDot(match), getSportIcon(match), title, `(${streamer})`].filter(Boolean);
+    let streamer = stream.streamerName || stream.name || 'Server';
+    // FIX (27/10/2026): Phá Làng chỉ xuất 1 kênh/trận (PHALANG_MAX_SERVERS=1) -> bỏ đuôi "Server N"/"Server N-B"
+    // khỏi tên kênh; không còn tên BLV thì không ghi ngoặc trống.
+    if (getSourceKey(match) === 'phalang' && PHALANG_MAX_SERVERS_PER_MATCH === 1) {
+      streamer = String(streamer).replace(/\s*-?\s*Server\s*\d+(-B)?\s*$/i, '').trim();
+    }
+    const nameParts = [time, getStatusDot(match), getSportIcon(match), title, streamer ? `(${streamer})` : ''].filter(Boolean);
     const displayName = nameParts.join(' ');
 
     // Dòng phân cách khi sang ngày mới (giờ Việt Nam) — chỉ để dễ đọc
