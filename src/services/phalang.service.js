@@ -773,11 +773,16 @@ class PhalangService {
     }
   }
 
-  async probeCdn(url) {
+  async probeCdn(url, watchUrl = '') {
     const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+    let host = '';
+    try { host = new URL(url).host; } catch { /* bỏ qua */ }
+    // Thứ tự: giống HỆT request của trình duyệt thật (Referer = trang xem trận, Origin = domain Phá Làng)
+    // trước, rồi mới tới các kiểu đơn giản hơn — để biết CDN đòi header nào.
     const combos = [
-      ['Referer+Origin', { Referer: `${PHALANG_SITE_ORIGIN}/`, Origin: PHALANG_SITE_ORIGIN }],
-      ['chỉ Referer', { Referer: PHALANG_SITE_ORIGIN }],
+      ['Referer=trang xem trận + Origin', { Referer: watchUrl || `${PHALANG_SITE_ORIGIN}/`, Origin: PHALANG_SITE_ORIGIN }],
+      ['Referer=trang chủ + Origin', { Referer: `${PHALANG_SITE_ORIGIN}/`, Origin: PHALANG_SITE_ORIGIN }],
+      ['chỉ Referer trang chủ', { Referer: `${PHALANG_SITE_ORIGIN}/` }],
       ['không header', {}]
     ];
     for (const [label, extra] of combos) {
@@ -789,13 +794,25 @@ class PhalangService {
         // Nếu CDN trả 3xx (chuyển sang link bọc 100ycdn có token) -> log đích, che giá trị query.
         const loc = r.headers.get('location');
         const locInfo = loc ? ` | Location: ${this.maskUrl(loc)}` : '';
-        console.log(`[phalang][probe] ${label}: HTTP ${r.status} | ${r.headers.get('content-type') || '?'}${locInfo} | ${body}`);
+        console.log(`[phalang][probe ${host}] ${label}: HTTP ${r.status} | ${r.headers.get('content-type') || '?'}${locInfo} | ${body}`);
       } catch (e) {
-        console.log(`[phalang][probe] ${label}: lỗi ${e.name === 'AbortError' ? 'timeout 6s' : e.message}`);
+        console.log(`[phalang][probe ${host}] ${label}: lỗi ${e.name === 'AbortError' ? 'timeout 6s' : e.message}`);
       } finally {
         clearTimeout(timer);
       }
     }
+  }
+
+  /** Mô tả NGẮN từng trường của /match/{id}/live (kiểu + host, KHÔNG lộ token) để biết vì sao có/không có link. */
+  describeFields(detail) {
+    return Object.entries(detail || {}).map(([k, v]) => {
+      if (v === null || v === undefined || v === '') return `${k}=rỗng`;
+      if (typeof v === 'string' && /^https?:\/\//i.test(v.trim())) {
+        try { return `${k}=url(${new URL(v.trim()).host})`; } catch { return `${k}=url`; }
+      }
+      if (typeof v === 'string') return `${k}=chuỗi(${v.length} ký tự, "${v.slice(0, 6)}…")`;
+      return `${k}=${Array.isArray(v) ? 'mảng' : typeof v}`;
+    }).join(', ');
   }
 
   /** Ghép link dự phòng `source_live` (lấy từ DANH SÁCH trận) vào sau các link chi tiết, bỏ trùng. */
@@ -850,22 +867,39 @@ class PhalangService {
       // Log chẩn đoán (tối đa 5 lần/tiến trình): cho biết response /live có
       // những trường nào và link có kèm token hay không — để lần sau biết
       // chính xác Phá Làng đang trả gì nếu link vẫn lỗi. Token được che.
+      // + Mô tả từng trường (rỗng/url(host)/chuỗi...) và log thêm mỗi KIỂU phản hồi mới (tối đa 10 kiểu)
+      // để thấy rõ trận nào chỉ có 1 link và vì sao (hd_/sd_ rỗng hay là dạng không phải URL).
       this._diagLogged = (this._diagLogged || 0);
-      if (this._diagLogged < 5) {
-        this._diagLogged += 1;
+      this._shapesSeen = this._shapesSeen || new Set();
+      {
         const d = this.unwrapDetail(data) || {};
-        console.log(
-          `[phalang] /match/${cleanId}/live -> trường: [${Object.keys(d).join(', ')}] | ` +
-          `${urls.length} link | token/query ghép thêm: ${this.buildTokenQuery(d) ? 'CÓ' : 'không'} | ` +
-          `mẫu: ${urls[0] ? this.maskUrl(urls[0]) : '(không có link)'}`
-        );
+        const shape = this.describeFields(d);
+        const isNewShape = !this._shapesSeen.has(shape) && this._shapesSeen.size < 10;
+        if (this._diagLogged < 5 || isNewShape) {
+          this._diagLogged += 1;
+          this._shapesSeen.add(shape);
+          console.log(
+            `[phalang] /match/${cleanId}/live -> ${shape} | ` +
+            `${urls.length} link | token/query ghép thêm: ${this.buildTokenQuery(d) ? 'CÓ' : 'không'} | ` +
+            `mẫu: ${urls[0] ? this.maskUrl(urls[0]) : '(không có link)'}`
+          );
+        }
       }
       // Thử trực tiếp link đầu tiên với vài kiểu header (tối đa 3 lần/tiến
       // trình) và log kết quả — để biết CDN từ chối vì Referer/Origin, IP
       // hay link hết hạn. Chỉ để chẩn đoán, không ảnh hưởng playlist.
-      if (PHALANG_DEBUG && urls[0] && (this._probeLogged || 0) < 3) {
-        this._probeLogged = (this._probeLogged || 0) + 1;
-        this.probeCdn(urls[0]).catch(() => {}); // không chờ: tránh làm chậm/quá hạn việc lấy link
+      if (PHALANG_DEBUG) {
+        this._probeByHost = this._probeByHost || new Map();
+        const watchUrlForProbe = phalangWatchUrl(cleanId, match?.homeTeam?.name, match?.awayTeam?.name);
+        const probeCandidates = this.withBackupUrl(urls, sourceLive);
+        for (const u of probeCandidates) {
+          let h = '';
+          try { h = new URL(u).host; } catch { continue; }
+          const used = this._probeByHost.get(h) || 0;
+          if (used >= 2) continue; // mỗi CDN dò tối đa 2 link/tiến trình cho đỡ ồn log
+          this._probeByHost.set(h, used + 1);
+          this.probeCdn(u, watchUrlForProbe).catch(() => {}); // không chờ: tránh làm chậm/quá hạn việc lấy link
+        }
       }
       // Bắt link BỌC có token thật (xem resolveTokenizedUrl) — đặt LÊN ĐẦU danh
       // sách, thay đúng link trần cùng đường dẫn; lỗi thì giữ nguyên link trần.
