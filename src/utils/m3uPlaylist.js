@@ -503,6 +503,10 @@ export function buildM3uPlaylist(entries = [], options = {}) {
   return lines.join('\n').trim() + '\n';
 }
 
+// Số server tối đa xuất ra cho MỖI trận Phá Làng (xem FIX 27/10/2026 trong matchesToPlaylistEntries).
+// Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
+const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 3);
+
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
 const ENRICH_TTL_MS = Number(process.env.ENRICH_CACHE_TTL_MS) > 0 ? Number(process.env.ENRICH_CACHE_TTL_MS) : 90 * 1000;
 const enrichCache = new Map();
@@ -544,11 +548,24 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     // stream CHẤT LƯỢNG CAO NHẤT (FHD > HD > SD, theo nhãn của nguồn — xem
     // utils/streamQuality.js); bằng điểm thì vẫn lấy cái đầu tiên như cũ nên
     // nguồn không có nhãn chất lượng không bị đổi hành vi.
-    const stream = pickBestStream(matchStreams.filter((s) => s?.m3u8Url || s?.flvUrl || s?.playUrl));
+    const playableStreams = matchStreams.filter((s) => s?.m3u8Url || s?.flvUrl || s?.playUrl);
+    const stream = pickBestStream(playableStreams);
     if (stream) {
-      const entry = { match, stream };
-      entries.push(entry);
-      pendingUpgrades.push(entry);
+      // FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được"): Phá Làng trả nhiều server
+      // (CDN) cho 1 trận mà ta KHÔNG thể biết trước server nào phát được trên máy người xem
+      // (token CDN gắn theo IP người xem, máy chủ CI không thử được). Chỉ giữ 1 link thì trúng
+      // server hỏng là mất cả trận. Với Phá Làng, xuất TỐI ĐA PHALANG_MAX_SERVERS_PER_MATCH server
+      // khác nhau (mỗi server 1 kênh, tên "BLV - Server N") để người xem đổi sang server khác khi
+      // 1 server lỗi. Link tốt nhất (theo nhãn chất lượng, bằng điểm thì giữ thứ tự gốc) đứng đầu.
+      // Nguồn khác giữ nguyên hành vi cũ (1 trận = 1 kênh) để không sinh kênh trùng.
+      const chosen = (getSourceKey(match) === 'phalang' && playableStreams.length > 1)
+        ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, PHALANG_MAX_SERVERS_PER_MATCH)
+        : [stream];
+      for (const chosenStream of chosen) {
+        const entry = { match, stream: chosenStream };
+        entries.push(entry);
+        pendingUpgrades.push(entry);
+      }
       continue;
     }
 

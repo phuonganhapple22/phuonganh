@@ -798,9 +798,52 @@ class PhalangService {
     }
   }
 
+  /** Ghép link dự phòng `source_live` (lấy từ DANH SÁCH trận) vào sau các link chi tiết, bỏ trùng. */
+  withBackupUrl(urls, backupUrl) {
+    const list = [...urls];
+    const backup = String(backupUrl || '').trim();
+    if (!/^https?:\/\//i.test(backup)) return list;
+    const pathOf = (u) => { try { return new URL(u).pathname; } catch { return u; } };
+    if (list.some((u) => u === backup || pathOf(u) === pathOf(backup))) return list;
+    list.push(backup);
+    return list;
+  }
+
+  /** Dựng danh sách đối tượng stream từ các link đã chọn (đặt tên Server rõ ràng khi có nhiều link). */
+  buildLinkObjects(cleanId, urls, blvName, match, tokenized) {
+    const watchUrl = phalangWatchUrl(cleanId, match?.homeTeam?.name, match?.awayTeam?.name);
+    const multiple = urls.length > 1;
+    return urls.map((url, i) => {
+      // 1 link: chỉ tên BLV (không thêm "(Server 1)" thừa trong ngoặc của tên kênh).
+      // Nhiều link: "BLV - Server 2" để người xem đổi sang server khác khi 1 server lỗi.
+      const name = multiple
+        ? (blvName ? `${blvName} - Server ${i + 1}` : `Server ${i + 1}`)
+        : (blvName || 'Server 1');
+      return {
+        referer: tokenized && url === tokenized.url ? tokenized.referer : watchUrl,
+        id: `${cleanId}_${i}`,
+        streamerId: `${cleanId}_${i}`,
+        name,
+        streamerName: name,
+        link: url,
+        m3u8Url: url,
+        playUrl: url,
+        format: 'hls',
+        cdn: this.detectCdn(url),
+        quality: 'HD'
+      };
+    });
+  }
+
   async getStreamLinks(matchId, blvName, match) {
     const cleanId = String(matchId || '').replace(/^pl_/, '');
     if (!cleanId) return [];
+    // FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được"): `source_live` trong danh sách
+    // trận (match.streamUrl) thường là CDN khác (vd lilive1.eu.cc) với link trang web THẬT SỰ phát ở
+    // /match/{id}/live (pull.digitalcdn.net...). Link chi tiết đứng ĐẦU, source_live chỉ làm server
+    // dự phòng đứng SAU (và là link duy nhất nếu /live lỗi/404) — trước đây ngược lại: có source_live
+    // là dùng luôn nó và bỏ qua hẳn /live.
+    const sourceLive = match?.streamUrl || '';
     try {
       const { data } = await this.client.get(`/match/${cleanId}/live`, { params: { _t: Date.now() } });
       const urls = this.extractStreamUrls(data);
@@ -818,8 +861,8 @@ class PhalangService {
         );
       }
       // Thử trực tiếp link đầu tiên với vài kiểu header (tối đa 3 lần/tiến
-      // trình) và log kết quả — để biết CDN từ chối vì Referer/Origin, IP hay
-      // link hết hạn. Chỉ để chẩn đoán, không ảnh hưởng playlist.
+      // trình) và log kết quả — để biết CDN từ chối vì Referer/Origin, IP
+      // hay link hết hạn. Chỉ để chẩn đoán, không ảnh hưởng playlist.
       if (PHALANG_DEBUG && urls[0] && (this._probeLogged || 0) < 3) {
         this._probeLogged = (this._probeLogged || 0) + 1;
         this.probeCdn(urls[0]).catch(() => {}); // không chờ: tránh làm chậm/quá hạn việc lấy link
@@ -838,19 +881,8 @@ class PhalangService {
         const rest = urls.filter((u) => { try { return !tokenPath.endsWith(new URL(u).pathname); } catch { return true; } });
         finalUrls = [tokenized.url, ...rest];
       }
-      return finalUrls.map((url, i) => ({
-        referer: tokenized && url === tokenized.url ? tokenized.referer : phalangWatchUrl(cleanId, match?.homeTeam?.name, match?.awayTeam?.name),
-        id: `${cleanId}_${i}`,
-        streamerId: `${cleanId}_${i}`,
-        name: blvName ? `${blvName} (Server ${i + 1})` : `Server ${i + 1}`,
-        streamerName: blvName ? `${blvName} (Server ${i + 1})` : `Server ${i + 1}`,
-        link: url,
-        m3u8Url: url,
-        playUrl: url,
-        format: 'hls',
-        cdn: this.detectCdn(url),
-        quality: 'HD'
-      }));
+      finalUrls = this.withBackupUrl(finalUrls, sourceLive);
+      return this.buildLinkObjects(cleanId, finalUrls, blvName, match, tokenized);
     } catch (error) {
       // 404 EntityNotFound = trận chưa có link phát (chưa live/nguồn chưa
       // cập nhật) — phản hồi HỢP LỆ của API, không phải lỗi thật, không log
@@ -858,7 +890,9 @@ class PhalangService {
       if (error.response?.status !== 404) {
         console.error('Error fetching Phalang stream links:', error.message);
       }
-      return [];
+      // /live lỗi/404 nhưng danh sách trận có sẵn source_live -> vẫn trả link đó thay vì rỗng.
+      const fallbackOnly = this.withBackupUrl([], sourceLive);
+      return fallbackOnly.length ? this.buildLinkObjects(cleanId, fallbackOnly, blvName, match, null) : [];
     }
   }
 }

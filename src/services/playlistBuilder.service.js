@@ -302,11 +302,22 @@ async function fetchUpcomingLists() {
 /** Mirror resolveStreams() from pages/index.jsx but calling services in-process. */
 async function resolveStreams(match) {
   const fromCard = streamsFromMatchCard(match);
-  if (fromCard?.length) return fromCard;
+
+  // FIX (27/10/2026 — "các trận live nguồn Phá Làng lỗi không xem được"): với Phá Làng, link
+  // `source_live` trong DANH SÁCH trận (đi qua streamsFromMatchCard) thường là 1 CDN khác
+  // (vd lilive1.eu.cc) KHÔNG phải link mà trang web thật sự phát — trình duyệt phát link ở
+  // /match/{id}/live (pull.digitalcdn.net, được CDN 302 sang link có token cho IP người xem).
+  // Trước đây có source_live là DỪNG NGAY ở đây, không bao giờ gọi /live nên playlist chỉ có
+  // đúng link không phát được. Giờ trận Phá Làng ĐANG LIVE bỏ qua lối tắt này, gọi /live trước
+  // (getStreamLinks vẫn giữ source_live làm server dự phòng); chỉ khi /live không trả gì mới
+  // dùng lại link từ danh sách như cũ.
+  const preferDetail = match?.source === 'phalang' && !!match?.status?.isLive;
+  if (fromCard?.length && !preferDetail) return fromCard;
+  const cardFallback = fromCard?.length ? fromCard : [];
 
   const matchId = match.matchId;
   const liveUrl = match.stream?.liveUrl;
-  if (!matchId && !liveUrl) return [];
+  if (!matchId && !liveUrl) return cardFallback;
 
   const source = match.source;
   const maxAttempts = 2;
@@ -318,7 +329,7 @@ async function resolveStreams(match) {
         if (!matchId) return [];
         raw = await chuoichientvService.getStreamLinks(matchId);
       } else if (source === 'phalang') {
-        if (!matchId) return [];
+        if (!matchId) return cardFallback;
         raw = await phalangService.getStreamLinks(matchId, match.stream?.streamerName, match);
       } else if (source === 'gavang') {
         if (!matchId) return [];
@@ -356,7 +367,7 @@ async function resolveStreams(match) {
     }
   }
 
-  return [];
+  return cardFallback;
 }
 
 function sortPlayable(list) {
