@@ -328,6 +328,18 @@ function phalangWatchUrl(id, home, away) {
   return `${PHALANG_SITE_ORIGIN}/truc-tiep/${slug}${id}`;
 }
 
+/**
+ * FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được", log: lilive1.eu.cc / pull.digitalcdn.net
+ * đều là link TRẦN không token): trước đây Referer của MỌI link = URL trang xem trận (có slug đội, tự
+ * ghép nên có thể sai). Khi player trên trang phalang.live gọi CDN KHÁC domain, trình duyệt (chính sách
+ * mặc định strict-origin-when-cross-origin) chỉ gửi Referer = "https://phalang.live/" + Origin
+ * "https://phalang.live" — không bao giờ gửi URL đầy đủ của trang. CDN kiểm tra Referer nghiêm ngặt sẽ
+ * từ chối Referer lạ. Nên Referer mặc định của link Phá Làng là origin + "/".
+ */
+function phalangSiteReferer() {
+  return `${PHALANG_SITE_ORIGIN}/`;
+}
+
 function slugifyName(text) {
   return stripDiacritics(text).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
@@ -413,7 +425,7 @@ class PhalangService {
       // source_live vẫn null) — trận live luôn phải gọi getStreamLinks().
       streamUrl: skipBareLive ? '' : (m.source_live || ''),
       commentators: (m.source_live && !skipBareLive)
-        ? [{ id: `${m.id}_0`, name: m.blv || 'Server 1', avatar: '', streamUrl: m.source_live, isLive: true, cdn: this.detectCdn(m.source_live), referer: phalangWatchUrl(m.id, homeName, awayName) }]
+        ? [{ id: `${m.id}_0`, name: m.blv || 'Server 1', avatar: '', streamUrl: m.source_live, isLive: true, cdn: this.detectCdn(m.source_live), referer: phalangSiteReferer() }]
         : [],
       // FIX (23/09/2026 — "nguồn Phá Làng: trận chưa thi đấu không xuất
       // hiện trong all.m3u"): trước đây liveUrl luôn để '' (rỗng). Ở chế độ
@@ -826,18 +838,27 @@ class PhalangService {
     return list;
   }
 
-  /** Dựng danh sách đối tượng stream từ các link đã chọn (đặt tên Server rõ ràng khi có nhiều link). */
+  /**
+   * Dựng danh sách đối tượng stream từ các link đã chọn (đặt tên Server rõ ràng khi có nhiều link).
+   *
+   * FIX (27/10/2026): máy chủ CI/Vercel không thử được CDN của Phá Làng (chặn IP datacenter, token gắn
+   * theo IP người xem) nên KHÔNG biết link trần như https://lilive1.eu.cc/live/<id>/playlist.m3u8 cần
+   * header nào để phát. Thay vì đoán 1 kiểu rồi mất cả trận khi đoán sai, với mỗi link KHÔNG phải
+   * digitalcdn (đã biết 403 giống hệt với/không Referer — xem hls.js) xuất THÊM 1 bản dự phòng
+   * `noReferer: true` (chỉ User-Agent, không Referer/Origin). Bản đầu = Referer/Origin chuẩn phalang.live.
+   * Người xem đổi sang "Server N-B" nếu "Server N" lỗi. Tắt bằng PHALANG_NOREFERER_VARIANT=off.
+   */
   buildLinkObjects(cleanId, urls, blvName, match, tokenized) {
     const watchUrl = phalangWatchUrl(cleanId, match?.homeTeam?.name, match?.awayTeam?.name);
-    const multiple = urls.length > 1;
-    return urls.map((url, i) => {
-      // 1 link: chỉ tên BLV (không thêm "(Server 1)" thừa trong ngoặc của tên kênh).
-      // Nhiều link: "BLV - Server 2" để người xem đổi sang server khác khi 1 server lỗi.
-      const name = multiple
-        ? (blvName ? `${blvName} - Server ${i + 1}` : `Server ${i + 1}`)
-        : (blvName || 'Server 1');
-      return {
-        referer: tokenized && url === tokenized.url ? tokenized.referer : watchUrl,
+    const variantOn = String(process.env.PHALANG_NOREFERER_VARIANT || '').toLowerCase() !== 'off';
+    const baseNames = urls.map((_, i) => (urls.length > 1
+      ? (blvName ? `${blvName} - Server ${i + 1}` : `Server ${i + 1}`)
+      : (blvName || 'Server 1')));
+    const out = [];
+    urls.forEach((url, i) => {
+      const name = baseNames[i];
+      const cdn = this.detectCdn(url);
+      const base = {
         id: `${cleanId}_${i}`,
         streamerId: `${cleanId}_${i}`,
         name,
@@ -846,10 +867,25 @@ class PhalangService {
         m3u8Url: url,
         playUrl: url,
         format: 'hls',
-        cdn: this.detectCdn(url),
-        quality: 'HD'
+        cdn,
+        quality: 'HD',
+        watchUrl
       };
+      out.push({ ...base, referer: tokenized && url === tokenized.url ? tokenized.referer : phalangSiteReferer() });
+      if (variantOn && cdn !== 'DIGITALCDN' && !(tokenized && url === tokenized.url)) {
+        const vName = `${name}-B`;
+        out.push({
+          ...base,
+          id: `${cleanId}_${i}b`,
+          streamerId: `${cleanId}_${i}b`,
+          name: vName,
+          streamerName: vName,
+          referer: null,
+          noReferer: true
+        });
+      }
     });
+    return out;
   }
 
   async getStreamLinks(matchId, blvName, match) {

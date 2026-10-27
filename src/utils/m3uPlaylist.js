@@ -505,7 +505,7 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 
 // Số server tối đa xuất ra cho MỖI trận Phá Làng (xem FIX 27/10/2026 trong matchesToPlaylistEntries).
 // Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
-const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 3);
+const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 5);
 
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
 const ENRICH_TTL_MS = Number(process.env.ENRICH_CACHE_TTL_MS) > 0 ? Number(process.env.ENRICH_CACHE_TTL_MS) : 90 * 1000;
@@ -663,8 +663,13 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
         // đúng giá trị tự dò cũ. Phải kiểm tra override TRƯỚC, cho MỌI nguồn, để
         // người dùng luôn ép được 1 Referer cụ thể bất kể service có tự dò được
         // hay không.
-        const overrideReferer = getOverrideReferer(sourceKey);
-        entry.iptvReferer = overrideReferer
+        // FIX (27/10/2026): bản dự phòng `noReferer` (Phá Làng, xem buildLinkObjects()) phải THẬT SỰ không
+        // gửi Referer/Origin -> bỏ qua cả override env lẫn dò Referer; iptvReferer = null (khác undefined
+        // nên vẫn ghi User-Agent, không ghi Referer/Origin).
+        const overrideReferer = entry.stream?.noReferer ? null : getOverrideReferer(sourceKey);
+        entry.iptvReferer = entry.stream?.noReferer
+          ? null
+          : overrideReferer
           ? overrideReferer
           : entry.stream?.referer
             ? entry.stream.referer
