@@ -1,4 +1,4 @@
-# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-27T23:22:46.636Z
+# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-10-28T20:36:59.744Z
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
 giovang=https://giovang.uno
 gavang=https://gavangtv1.org
@@ -10,6 +10,7 @@ xoigac=https://xoigac.top
 xoiche=https://xoiche.live
 phalang=https://phalang2.live
 # chuoichientv=https://live05.chuoichientv.me
+# TÌM THẤY domain mới (CHƯA áp dụng — bỏ dấu # rồi dán vào biến SOURCE_DOMAINS để dùng): chuoichientv=https://live10.chuoichientv.me
 chuoichientv-player=https://live.chuoichien.tv
 saoke-player=https://sk.mediastation.live
 bonglau-player=https://live.chuoichien.tv
