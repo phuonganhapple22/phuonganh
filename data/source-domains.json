@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-30T12:39:05.838Z",
+  "updatedAt": "2026-10-30T20:34:00.589Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.love",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
       "url": "https://gavang11.com",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "gavang33": {
@@ -70,7 +70,8 @@
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
       "status": "moved",
-      "from": "mặc định"
+      "from": "mặc định",
+      "found": "https://live11.chuoichientv.me"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -402,6 +403,13 @@
       "from": "https://giovang.uno",
       "to": "https://giovang.love",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-30T20:34:00.589Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
     }
   ]
 }
