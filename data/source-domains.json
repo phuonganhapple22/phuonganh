@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-30T07:06:03.841Z",
+  "updatedAt": "2026-10-30T12:39:05.838Z",
   "domains": {
     "giovang": {
-      "url": "https://giovang.uno",
+      "url": "https://giovang.love",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
@@ -395,6 +395,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-30T12:39:05.838Z",
+      "source": "giovang",
+      "from": "https://giovang.uno",
+      "to": "https://giovang.love",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
     }
   ]
 }
