@@ -20,10 +20,27 @@ export async function resolveRedirect(entry, currentUrl, { fetchImpl = globalThi
     });
   } catch (err) {
     const code = err?.cause?.code || err?.code || (err?.name === 'TimeoutError' || err?.name === 'AbortError' ? 'ETIMEDOUT' : 'UNKNOWN');
-    return { moved: false, reason: `không truy cập được (${code})` };
+    // Chỉ lỗi DNS/kết nối/chứng chỉ mới là domain chết thật; timeout có thể chỉ là mạng chậm -> không kết luận.
+    const dead = /^(ENOTFOUND|EAI_AGAIN|ECONNREFUSED|CERT_|ERR_TLS|UNABLE_TO_|DEPTH_ZERO|SELF_SIGNED|ERR_SSL)/i.test(String(code));
+    return { moved: false, unhealthy: dead, reason: `không truy cập được (${code})` };
   }
   const finalHost = normHost(hostOf(res.url || ''));
-  if (!finalHost || finalHost === curHost) return { moved: false };
+  if (!finalHost || finalHost === curHost) {
+    // FIX (31/10/2026): domain cũ trả 403/Cloudflare/5xx mà KHÔNG redirect (bot bị chặn) trước đây bị coi là "không có gì để làm"
+    // nên Generate cứ dùng mãi domain cũ. Giờ báo `unhealthy` để workflow nhờ Check Domains dò domain mới.
+    if (res.status >= 400) {
+      try { await res.text(); } catch { /* bỏ qua */ }
+      // 404/410 = domain không còn là trang nguồn (unhealthy). 401/403/429 = bị chặn bot (blockedStatus): chỉ nguồn plainHttp
+      // mới coi là hỏng (xem expand-source-domains.mjs). 5xx = có thể tạm thời -> không kết luận.
+      return {
+        moved: false,
+        unhealthy: res.status === 404 || res.status === 410,
+        blockedStatus: [401, 403, 429].includes(res.status) ? res.status : 0,
+        reason: `HTTP ${res.status} ở domain đang dùng (không chuyển hướng)`
+      };
+    }
+    return { moved: false };
+  }
 
   let body = '';
   try { body = String(await res.text()).slice(0, 300000); } catch { /* bỏ qua */ }

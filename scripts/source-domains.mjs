@@ -23,8 +23,8 @@
 // ---------------------------------------------------------------------------
 export const SOURCES = [
   { key: 'giovang', brand: 'giovang', label: 'Giờ Vàng', role: 'site', envVar: 'GIOVANG_DOMAIN', defaultUrl: 'https://giovang.blog', keywords: ['giovang', 'giờ vàng', 'gio vang'], candidates: ['https://giovang.cv', 'https://giovang.blog', 'https://giovang.city'], autoFix: true },
-  { key: 'gavang', brand: 'gavang', label: 'Gà Vàng', role: 'site', envVar: 'GAVANG_BASE_URL', defaultUrl: 'https://gavanglinkp.tv', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true },
-  { key: 'gavang33', brand: 'gavang', label: 'Gà Vàng 33', role: 'site', envVar: 'GAVANG33_DOMAIN', defaultUrl: 'https://gavang33.me', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true },
+  { key: 'gavang', brand: 'gavang', label: 'Gà Vàng', role: 'site', envVar: 'GAVANG_BASE_URL', defaultUrl: 'https://gavanglinkp.tv', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true, plainHttp: true },
+  { key: 'gavang33', brand: 'gavang', label: 'Gà Vàng 33', role: 'site', envVar: 'GAVANG33_DOMAIN', defaultUrl: 'https://gavang33.me', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true, plainHttp: true },
   { key: 'saoke', brand: 'saoke', label: 'Sao Kê', role: 'site', envVar: 'SAOKE_BASE_URL', defaultUrl: 'https://vip3.saoketv40.xyz', keywords: ['saoke', 'sao kê', 'sao ke'], autoFix: true },
   { key: 'bonglau', brand: 'bonglau', label: 'Bông Lau', role: 'site', envVar: 'BONGLAU_DOMAIN', defaultUrl: 'https://lau05.bonglautv1.pro', keywords: ['bonglau', 'bong lau', 'bóng lậu', 'bóng lầu', 'bòng lau'], autoFix: true },
   // Xôi Lạc xoay domain bằng cách ĐỔI CHỮ CÁI sau "xoilacx" (đã thấy: xoilacxc.tv -> xoilacxcw.tv -> xoilacxyc.io ->
@@ -34,6 +34,9 @@ export const SOURCES = [
   //               (chống trang nhái/trang cá cược cũng ghi chữ "xoilac" — rất nhiều trên mạng); chỉ áp cho domain
   //               ứng viên, KHÔNG dùng để kết luận domain đang chạy là hỏng.
   { key: 'xoilac', brand: 'xoilac', label: 'Xôi Lạc', role: 'site', envVar: 'XOILAC_DOMAIN', defaultUrl: 'https://xoilacxc.tv', keywords: ['xoilac', 'xôi lạc', 'xoi lac'], autoFix: true,
+    // plainHttp: nguồn chỉ gọi HTTP thuần (KHÔNG có trình duyệt headless dự phòng) -> domain trả 403/Cloudflare = dùng không được
+    // (FIX 31/10/2026). Nguồn khác (giovang, saoke...) có trình duyệt vượt Cloudflare nên 403 khi gọi thẳng KHÔNG có nghĩa là hỏng.
+    plainHttp: true,
     letterSwap: { prefixes: ['xoilacx'], tlds: ['tv', 'io', 'com', 'net', 'live', 'cc', 'xyz', 'me', 'vip', 'pro', 'top', 'site'], longTlds: ['tv', 'io'] },
     // FIX (24/10/2026): kiểm tra theo tên class/thuộc tính (main-grid-match + data-fid) từng CHẶN NHẦM trang Xôi Lạc thật
     // (xoilacxcb.tv). Giờ nhận khi có 1 trong 2 bằng chứng: (a) đúng cấu trúc service đọc, hoặc (b) >= 5 link trận có dạng

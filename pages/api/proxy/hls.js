@@ -235,7 +235,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // chứng mới, tránh lặp lại vòng dò mù đã từng tốn công ở Chuối Chiên.
   phalang: [`${REFERER_BY_SOURCE.phalang}/`, REFERER_BY_SOURCE.phalang, null], // có "/" cuối trước, giống trình duyệt thật (29/09/2026)
   gavang: [...GAVANG_ORIGINS, null],
-  xoilac: ['https://xl365.domainkqt.cc/', `${REFERER_BY_SOURCE.xoilac}/`, 'https://xoilacxcw.tv/', null],
+  xoilac: ['https://xl365.domainkqt.cc/', `${REFERER_BY_SOURCE.xoilac}/`, null], // FIX (31/10/2026): bỏ domain cũ cứng xoilacxcw.tv
   // Xoigac: request m3u8 thật (04/10/2026) tới AWS IVS (*.playlist.live-video.net) KHÔNG gửi Referer -> thử không Referer trước.
   xoigac: [null, `${REFERER_BY_SOURCE.xoigac}/`],
   xoiche: [null, `${REFERER_BY_SOURCE.xoiche}/`],

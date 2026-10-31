@@ -296,7 +296,7 @@ export async function verifyRedirectTarget(entry, targetUrl, prober, { sleep = d
 // trả 2xx/3xx, KHÔNG phải trang đỗ tên miền, và nội dung có tên nguồn (chống domain bị người khác mua).
 const LETTER_SHORT = 'đổi chữ cái trong tên (1-2 ký tự)';
 const LETTER_LONG = 'đổi chữ cái trong tên (3 ký tự)';
-export async function discover(entry, currentUrl, prober, { extra = [], previous = [], extraTlds = [], env = process.env } = {}) {
+export async function discover(entry, currentUrl, prober, { extra = [], previous = [], extraTlds = [], exclude = [], env = process.env } = {}) {
   const curHost = normHost(hostOf(currentUrl));
   const budgetRaw = Number(env.DISCOVER_BUDGET_MS);
   const budgetMs = Number.isFinite(budgetRaw) && budgetRaw > 0 ? budgetRaw : (entry.discoverBudgetMs || 150000); // mặc định 150 giây/nguồn (nguồn có letterSwap như Xôi Lạc: 240 giây)
@@ -316,7 +316,7 @@ export async function discover(entry, currentUrl, prober, { extra = [], previous
   const unverified = [];
   const rejected = []; // ứng viên có phản hồi nhưng bị LOẠI (trang cá cược, đỗ tên miền, nội dung lạ...) — để báo cáo
   let fallback = ''; // domain bị Cloudflare chặn bot NHƯNG phân giải DNS và tên miền chứa tên nguồn (dùng khi không còn cách nào khác)
-  const seen = new Set([curHost]);
+  const seen = new Set([curHost, ...exclude.map((d) => normHost(hostOf(d))).filter(Boolean)]); // exclude: domain đã bị trang nhúng/API từ chối -> không chọn lại
   let tried = 0;
   let timedOut = false;
   for (const [via, list] of groups) {
@@ -446,6 +446,14 @@ export async function run({ env = process.env, prober = createProber(), fetchImp
   const filter = only.length && !only.includes('all') ? (e) => only.some((k) => e.key === k || e.key.startsWith(`${k}-`)) : () => true;
   const extra = splitList(env.EXTRA_CANDIDATES);
   const extraTlds = splitList(env.EXTRA_TLDS);
+  // FIX (31/10/2026): FORCE_DISCOVER=<key,...> BẮT BUỘC dò domain mới dù domain hiện tại nhìn "sống" (domain cũ vẫn mở được trang chủ
+  // nhưng trang nhúng/API từ chối -> Check Domains trước đây coi là sống nên không bao giờ đổi). EXCLUDE_DOMAINS=<d1,d2> = domain không được chọn.
+  const forceKeys = new Set(splitList(env.FORCE_DISCOVER).map((k) => k.toLowerCase()));
+  const excludeHosts = splitList(env.EXCLUDE_DOMAINS).map((d) => normHost(hostOf(d))).filter(Boolean);
+  // BLOCKED_AUTO_SWITCH: nguồn bị Cloudflare/WAF chặn (403) có tự tìm domain thay thế ĐÃ XÁC MINH không?
+  //   plain (mặc định) = chỉ nguồn gọi HTTP thuần (plainHttp: xoilac, gavang, gavang33) — nguồn khác có trình duyệt headless vượt Cloudflare
+  //   nên 403 khi gọi thẳng không có nghĩa là hỏng; all = mọi nguồn; off = tắt.
+  const blockedMode = String(env.BLOCKED_AUTO_SWITCH ?? 'plain').trim().toLowerCase() || 'plain';
   const token = env.GH_VARIABLES_TOKEN || '';
   const repo = env.GITHUB_REPOSITORY || '';
 
@@ -494,14 +502,21 @@ export async function run({ env = process.env, prober = createProber(), fetchImp
 
     // FIX (05/10/2026): 'suspect' (domain còn trả HTTP 200 nhưng nội dung KHÔNG còn là nguồn — bị bán/đổi chủ/đổi nội dung)
     // cũng là domain chết đối với playlist, trước đây không tìm domain mới nên bị kẹt mãi ở domain cũ.
-    const needsNew = (res.state === 'down' || res.state === 'moved' || res.state === 'suspect') && entry.role === 'site';
+    const siteAuto = entry.role === 'site' && entry.autoFix;
+    const forced = siteAuto && forceKeys.has(entry.key);
+    const blockedSwitch = siteAuto && res.state === 'blocked' && (blockedMode === 'all' || (blockedMode === 'plain' && !!entry.plainHttp));
+    // softMode: domain hiện tại chưa chết hẳn (sống/bị chặn/lỗi tạm) nhưng cần tìm domain tốt hơn -> CHỈ nhận ứng viên đã xác minh đầy đủ.
+    const softMode = (forced || blockedSwitch) && !['down', 'moved', 'suspect'].includes(res.state);
+    const needsNew = ((res.state === 'down' || res.state === 'moved' || res.state === 'suspect') && entry.role === 'site') || forced || blockedSwitch;
     if (needsNew && pinnedKeys.has(entry.key)) {
       // FIX (08/10/2026 — giovang.rent từng bị báo nhầm rồi bị TỰ ĐỔI sang giovang.io): nguồn đã ghim thì tuyệt đối không tự đổi.
       row.action = `📌 đã ghim — chỉ báo cáo (${res.state}), KHÔNG tự đổi domain. Bỏ \`# pin\` / bỏ khỏi PINNED_SOURCES nếu muốn tự sửa lại`;
       log(`[${entry.key}] ${row.action}`);
     } else if (needsNew) {
       let found;
-      if (res.state === 'moved') {
+      if (res.state === 'moved' && excludeHosts.includes(normHost(hostOf(res.newOrigin)))) {
+        found = { url: null, rejectedRedirect: 'domain đích nằm trong exclude_domains (đã bị trang nhúng/API từ chối)', unverified: [] };
+      } else if (res.state === 'moved') {
         const v = await verifyRedirectTarget(entry, res.newOrigin, prober, { delayMs: moveDelayMs });
         if (v.ok) {
           found = { url: v.url, via: `chuyển hướng của chính trang (đã xác minh 2 lần: ${v.evidence})`, unverified: [] };
@@ -510,15 +525,26 @@ export async function run({ env = process.env, prober = createProber(), fetchImp
           found = { url: null, rejectedRedirect: v.reason, unverified: [] };
           log(`[${entry.key}] xác minh domain đích ${res.newOrigin}: KHÔNG ĐẠT — ${v.reason}`);
         }
-      } else found = await discover(entry, cur, prober, { extra, previous: previousFor(entry.key), extraTlds, env });
+      } else found = await discover(entry, cur, prober, { extra, previous: previousFor(entry.key), extraTlds, exclude: excludeHosts, env });
       // Không xác minh được nội dung (Cloudflare chặn IP GitHub) nhưng có domain mang tên nguồn đang sống DNS -> dùng tạm.
       // FIX (08/10/2026): domain CHƯA xác minh nội dung (bị Cloudflare chặn) chỉ được dùng khi domain hiện tại đã CHẾT HẲN.
       // Domain hiện tại còn trả nội dung (suspect/moved) mà đổi sang domain chưa xác minh thì quá rủi ro — từng đổi nhầm
       // giovang.rent -> giovang.io. Muốn nới thì đặt DISCOVER_ACCEPT_BLOCKED=always.
       const acceptBlocked = String(env.DISCOVER_ACCEPT_BLOCKED ?? '1').trim().toLowerCase() || '1';
       const blockedOk = acceptBlocked === 'always' || (!/^(0|false|no|off)$/.test(acceptBlocked) && res.state === 'down');
-      if (!found.url && found.fallback && blockedOk) {
+      if (!found.url && found.fallback && blockedOk && !softMode) {
         found = { ...found, url: `https://${found.fallback}`, via: 'tên miền chứa tên nguồn, bị Cloudflare chặn bot nên CHƯA xác minh nội dung' };
+      }
+      if (softMode && found.url) {
+        // Domain hiện tại chưa chết hẳn -> ứng viên phải qua đủ kiểm tra như khi domain cũ redirect (gọi lại 2 lần, bằng chứng mạnh...).
+        const v = await verifyRedirectTarget(entry, found.url, prober, { delayMs: moveDelayMs });
+        if (v.ok) {
+          found = { ...found, url: v.url, via: `${found.via} (đã xác minh 2 lần: ${v.evidence})` };
+          log(`[${entry.key}] xác minh domain thay thế ${v.url}: ĐẠT (${v.evidence})`);
+        } else {
+          log(`[${entry.key}] xác minh domain thay thế ${found.url}: KHÔNG ĐẠT — ${v.reason}`);
+          found = { ...found, url: null, softReject: `${found.url}: ${v.reason}` };
+        }
       }
       if (found.url) {
         row.newUrl = found.url;
@@ -534,6 +560,9 @@ export async function run({ env = process.env, prober = createProber(), fetchImp
           pendingItem = { row, url: found.url, via: found.via };
         }
         log(`[${entry.key}] domain mới: ${found.url} (${found.via})`);
+      } else if (softMode) {
+        row.action = `⚠️ ${forced ? 'được yêu cầu dò lại (force_discover)' : `domain đang ${res.state}`} nhưng CHƯA tìm được domain thay thế ĐÃ XÁC MINH — giữ nguyên ${cur}${found.softReject ? ` (ứng viên bị loại: ${found.softReject})` : ''}${found.rejected?.length ? ` (đã LOẠI: ${found.rejected.slice(0, 3).join('; ')})` : ''}${found.timedOut ? ' (hết thời gian tìm)' : ''}`;
+        log(`[${entry.key}] ${row.action}`);
       } else {
         row.action = found.rejectedRedirect
           ? `⚠️ ${cur} chuyển hướng sang ${res.newOrigin} nhưng CHƯA đủ tin cậy để tự ghi biến: ${found.rejectedRedirect}. Nếu bạn chắc đó là domain mới, thêm dòng \`${entry.key}=${res.newOrigin}\` vào biến ${SOURCE_DOMAINS_VAR}`

@@ -142,3 +142,18 @@ Nếu vẫn có lỗi:
 
 ### Cập nhật 27/10/2026 (lần 6)
 - `m3uPlaylist.js`: tên kênh Phá Làng bỏ đuôi "Server N" khi chỉ xuất 1 kênh/trận (không còn ngoặc trống nếu không có tên BLV).
+
+---
+
+## 31/10/2026 — Domain cũ đã chuyển hướng/bị 403 nhưng Generate vẫn quét domain cũ (Xôi Lạc mất trận live)
+- Log: `[xoilac] lỗi mở trang nhúng https://xl365.domainkqt.cc/... (Referer https://xoilacvbx.tv): ... 403`.
+- Gốc lỗi: domain Xôi Lạc chỉ đọc 1 lần lúc khởi động + Referer cứng domain cũ; Check Domains không đổi khi domain cũ "còn sống"/403.
+- `src/utils/liveDomains.js` (MỚI): nhớ domain thật học lúc chạy, đọc lịch sử domain, nhờ Check Domains dò lại.
+- `src/services/xoilac.service.js`: theo redirect + domain dự phòng, Referer/Origin = domain đang sống, bỏ domain cũ cứng, tự dò khi trang nhúng 403.
+- `src/utils/m3uPlaylist.js`, `pages/api/proxy/hls.js`: bỏ `xoilacxcw.tv` cứng.
+- `scripts/resolve-redirects.mjs`, `scripts/expand-source-domains.mjs`, `scripts/source-domains.mjs`: báo `unhealthy_keys` (cờ `plainHttp`).
+- `scripts/check-domains.mjs`: `FORCE_DISCOVER`, `EXCLUDE_DOMAINS`, `BLOCKED_AUTO_SWITCH`; ứng viên phải xác minh đủ.
+- `.github/workflows/validate-and-generate.yml`: gọi Check Domains cả khi domain bị lỗi/403 (restart_generator=true).
+- `.github/workflows/check-domains.yml`: thêm ô `force_discover`, `exclude_domains`.
+- Chi tiết: CHECK_DOMAINS.md mục 0g. Không xoá file nào.
+

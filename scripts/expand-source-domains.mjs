@@ -53,17 +53,24 @@ export function expand(env = process.env, { git = readGitDomainsText() } = {}) {
 export async function expandWithRedirects(env = process.env, { fetchImpl = globalThis.fetch, git } = {}) {
   const base = expand(env, git ? { git } : undefined);
   const off = /^(0|false|no|off)$/i.test(String(env.FOLLOW_REDIRECTS ?? '1').trim() || '1');
-  if (off) return { ...base, followed: [] };
+  if (off) return { ...base, followed: [], unhealthy: [] };
   const timeoutMs = Number(env.REDIRECT_TIMEOUT_MS) > 0 ? Number(env.REDIRECT_TIMEOUT_MS) : 10000;
   const pinnedKeys = parsePinnedKeys(env.SOURCE_DOMAINS, env.PINNED_SOURCES); // nguồn ghim: không tự theo redirect
   const targets = base.rows.filter((r) => r.entry.role === 'site' && r.entry.autoFix && !pinnedKeys.has(r.entry.key));
   const results = await Promise.all(targets.map((r) => resolveRedirect(r.entry, r.value, { fetchImpl, timeoutMs })));
   const warnings = [...base.warnings];
   const followed = [];
+  const unhealthy = [];
   const lineByVar = new Map(base.lines.map((l) => [l.slice(0, l.indexOf('=')), l]));
   targets.forEach((row, i) => {
     const res = results[i];
-    if (!res.moved) return;
+    if (!res.moved) {
+      if (res.unhealthy || (res.blockedStatus && row.entry.plainHttp)) {
+        unhealthy.push({ key: row.entry.key, url: row.value, reason: res.reason });
+        warnings.push(`${row.entry.key}: domain đang dùng ${row.value} ${res.reason} — sẽ nhờ workflow Check Domains dò domain mới (không cần chạy tay)`);
+      }
+      return;
+    }
     if (!res.accepted) {
       warnings.push(`${row.entry.key}: ${row.value} chuyển hướng sang ${res.newUrl} nhưng ${res.reason} — KHÔNG dùng, giữ domain đã khai báo`);
       return;
@@ -74,7 +81,7 @@ export async function expandWithRedirects(env = process.env, { fetchImpl = globa
     row.value = res.newUrl;
     lineByVar.set(row.entry.envVar, `${row.entry.envVar}=${res.newUrl}`);
   });
-  return { ...base, lines: [...lineByVar.values()], warnings, followed };
+  return { ...base, lines: [...lineByVar.values()], warnings, followed, unhealthy };
 }
 
 export function renderTable({ rows, warnings, format, gitPath = '' }) {
@@ -103,7 +110,8 @@ async function main() {
   if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, table);
   // FIX (24/10/2026): báo cho workflow biết nguồn nào VỪA được tự theo redirect (vd "xoilac,giovang") để bước sau
   // kích hoạt Check Domains ghi domain mới vào biến SOURCE_DOMAINS ngay, thay vì chờ lịch 03:00 hôm sau.
-  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `followed_keys=${(result.followed || []).map((f) => f.key).join(',')}\n`);
+  // FIX (31/10/2026): thêm unhealthy_keys = nguồn có domain đang dùng bị 403/chặn/không vào được mà KHÔNG redirect.
+  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `followed_keys=${(result.followed || []).map((f) => f.key).join(',')}\nunhealthy_keys=${(result.unhealthy || []).map((f) => f.key).join(',')}\n`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main().catch((e) => { console.error(e); process.exit(0); }); // không bao giờ làm hỏng workflow
