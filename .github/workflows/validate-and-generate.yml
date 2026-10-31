@@ -196,19 +196,27 @@ jobs:
       # domain moi cho lan chay nay. Neu co nguon vua duoc tu theo redirect thi goi Check Domains (chi cho nhung nguon do)
       # de xac minh ky domain dich va GHI vao bien SOURCE_DOMAINS ngay, khong cho lich 03:00 hom sau. restart_generator=false
       # vi job nay da dung domain moi roi. Bo qua neu Check Domains da chay/xep hang trong 30 phut qua (tranh goi lap moi lan job khoi dong).
-      - name: Trigger Check Domains (domain vua tu theo redirect)
-        if: ${{ steps.expand.outputs.followed_keys != '' }}
+      # FIX (31/10/2026 - "domain cu bi 403 nhung generate van quet domain cu, phai chay Check Domains tay"): truoc day chi
+      # goi Check Domains khi domain cu REDIRECT. Domain cu tra 403/Cloudflare/khong vao duoc ma KHONG redirect thi khong ai
+      # goi -> Generate dung mai domain cu. Gio expand cung bao `unhealthy_keys`; voi nhung nguon nay goi Check Domains
+      # (force_discover + restart_generator=true: tim domain moi da xac minh, ghi bien roi chay lai Generate).
+      - name: Trigger Check Domains (domain vua tu theo redirect / domain dang dung bi chan)
+        if: ${{ steps.expand.outputs.followed_keys != '' || steps.expand.outputs.unhealthy_keys != '' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KEYS: ${{ steps.expand.outputs.followed_keys }}
+          UNHEALTHY: ${{ steps.expand.outputs.unhealthy_keys }}
         run: |
           recent=$(gh run list --workflow check-domains.yml --limit 5 --json createdAt -q '[.[] | select((.createdAt | fromdateiso8601) > (now - 1800))] | length' 2>/dev/null || echo 0)
           if [ "${recent:-0}" -gt 0 ]; then
             echo "Check Domains da chay/xep hang trong 30 phut qua - bo qua, khong goi lai."
           else
-            echo "Goi Check Domains cho nguon: ${KEYS}"
-            gh workflow run check-domains.yml --ref "${{ github.ref_name }}" -f sources="${KEYS}" -f auto_fix=true -f restart_generator=false -f save_snapshot=true || echo "::warning::Khong goi duoc Check Domains tu dong (xem tab Actions > Check Domains va bam chay tay)"
+            ALL=$(printf '%s,%s' "${KEYS}" "${UNHEALTHY}" | tr ',' '\n' | sed '/^$/d' | sort -u | paste -sd, -)
+            RESTART=false
+            if [ -n "${UNHEALTHY}" ]; then RESTART=true; fi
+            echo "Goi Check Domains cho nguon: ${ALL} (domain bi chan/loi: ${UNHEALTHY:-khong}) restart_generator=${RESTART}"
+            gh workflow run check-domains.yml --ref "${{ github.ref_name }}" -f sources="${ALL}" -f auto_fix=true -f restart_generator="${RESTART}" -f save_snapshot=true -f force_discover="${UNHEALTHY}" || echo "::warning::Khong goi duoc Check Domains tu dong (xem tab Actions > Check Domains va bam chay tay)"
           fi
       - name: Install dependencies
         run: npm ci
