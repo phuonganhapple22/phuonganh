@@ -45,6 +45,14 @@ on:
         description: 'Đuôi tên miền muốn thử thêm (cách nhau dấu phẩy, vd lat,wiki) — thử trước danh sách có sẵn'
         type: string
         default: ''
+      force_discover:
+        description: 'Nguồn BẮT BUỘC dò domain mới dù domain hiện tại nhìn "sống" (cách nhau dấu phẩy, vd xoilac) — dùng khi domain cũ còn mở được trang chủ nhưng trang nhúng/API từ chối (403)'
+        type: string
+        default: ''
+      exclude_domains:
+        description: 'Domain KHÔNG được chọn làm domain mới (cách nhau dấu phẩy) — thường là domain đã bị từ chối'
+        type: string
+        default: ''
       restart_generator:
         description: 'Sau khi đổi biến, chạy lại Generate Playlists để dùng domain mới ngay'
         type: boolean
@@ -84,6 +92,8 @@ jobs:
           SOURCES: ${{ inputs.sources }}
           EXTRA_CANDIDATES: ${{ inputs.extra_candidates }}
           EXTRA_TLDS: ${{ inputs.extra_tlds }}
+          FORCE_DISCOVER: ${{ inputs.force_discover }}
+          EXCLUDE_DOMAINS: ${{ inputs.exclude_domains }}
           SAVE_SNAPSHOT: ${{ inputs.save_snapshot }}
           GH_VARIABLES_TOKEN: ${{ secrets.GH_VARIABLES_TOKEN }}
           SOURCE_DOMAINS: ${{ vars.SOURCE_DOMAINS }}
