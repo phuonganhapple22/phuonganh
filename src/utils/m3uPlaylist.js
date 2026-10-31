@@ -156,7 +156,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   xoilac: [
     getXoilacEmbedReferer(),
     `${String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '')}/`,
-    'https://xoilacxcw.tv/',
+    // FIX (31/10/2026): bỏ 'https://xoilacxcw.tv/' (domain cũ cứng) — Xôi Lạc xoay domain liên tục nên không còn domain cũ nào trong code.
     null
   ],
   // Xoigac TV (04/10/2026): request m3u8 thật tới AWS IVS (*.playlist.live-video.net)
