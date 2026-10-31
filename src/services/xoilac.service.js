@@ -2,6 +2,7 @@ import { load } from 'cheerio';
 import { createHttpClient } from '@/src/utils/httpClient';
 import { mapPool, isStaleLiveMatch } from '@/src/utils/playerGet';
 import { filterMinorLeagues } from '@/src/utils/leagueFilter';
+import { setLiveDomain, getLiveDomain, originFromResponse, originOf, historyDomains, requestDomainRecheck } from '@/src/utils/liveDomains';
 
 // Thêm nguồn Xôi Lạc TV (xoilacxc.tv / xoilacxcw.tv). Trang chủ render SẴN
 // toàn bộ danh sách trận trong HTML tĩnh (giống Gà Vàng) nên chỉ cần fetch
@@ -42,11 +43,24 @@ const XOILAC_MAX_LIVE_HOURS = {
   default: XOILAC_OTHER_SPORT_HOURS || 10
 };
 
-const XOILAC_BASE_URL = String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '');
+const XOILAC_CONFIGURED_URL = String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '');
+const XOILAC_KEY = 'xoilac';
+
+// FIX (31/10/2026 — "domain cũ đã chuyển hướng nhưng generate vẫn quét domain cũ; log: lỗi mở trang nhúng ...
+// (Referer https://xoilacvbx.tv): 403, phải chạy Check Domains tay rồi lưu domain mới mới hiện trận live"):
+// domain cấu hình chỉ là điểm BẮT ĐẦU. Domain THẬT đang dùng (xoilacBase) được học lúc chạy: theo redirect của
+// trang chủ, thử domain dự phòng khi trang chủ lỗi, và dùng chính nó làm Referer/Origin cho trang nhúng + API
+// tỉ số (trang nhúng chỉ nhận Referer là domain mới -> domain cũ bị 403 làm mất hết trận live).
+// Không còn domain cũ nào bị cứng trong code. Tuỳ chọn: XOILAC_FALLBACK_DOMAINS=d1,d2 (domain dự phòng thử khi
+// domain chính lỗi), XOILAC_EXTRA_REFERERS=d1,d2 (thêm Referer/Origin muốn thử).
+const splitEnvList = (v) => String(v || '').split(/[\s,;]+/).map((x) => originOf(x)).filter(Boolean);
+const XOILAC_FALLBACK_DOMAINS = splitEnvList(process.env.XOILAC_FALLBACK_DOMAINS);
+const XOILAC_EXTRA_REFERERS = splitEnvList(process.env.XOILAC_EXTRA_REFERERS);
+const xoilacBase = () => getLiveDomain(XOILAC_KEY, XOILAC_CONFIGURED_URL);
 
 const client = createHttpClient(
   {
-    baseURL: XOILAC_BASE_URL,
+    baseURL: XOILAC_CONFIGURED_URL,
     headers: {
       'User-Agent':
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -160,8 +174,9 @@ function applyEmbedDomain(url) {
 const XOILAC_SCORE_API = String(process.env.XOILAC_SCORE_API || 'https://fb-api.sportliveapiz.com').replace(/\/+$/, '');
 // Origin/Referer của API tỉ số theo domain site đang chạy (đã thấy xoilacxcw.tv
 // rồi xoilacxyc.io cùng gọi được) -> thử lần lượt, domain cấu hình lên đầu.
-const XOILAC_SCORE_ORIGIN = String(process.env.XOILAC_SCORE_ORIGIN || 'https://xoilacxyc.io').replace(/\/+$/, '');
-const SCORE_ORIGINS = [...new Set([XOILAC_SCORE_ORIGIN, XOILAC_BASE_URL, 'https://xoilacxyc.io', 'https://xoilacxcw.tv'])];
+// FIX (31/10/2026): không còn cứng xoilacxyc.io / xoilacxcw.tv (domain cũ). Origin API tỉ số = domain site đang sống.
+const XOILAC_SCORE_ORIGIN = String(process.env.XOILAC_SCORE_ORIGIN || '').replace(/\/+$/, '');
+const scoreOrigins = () => [...new Set([xoilacBase(), XOILAC_SCORE_ORIGIN, XOILAC_CONFIGURED_URL, ...XOILAC_EXTRA_REFERERS].map((o) => originOf(o)).filter(Boolean))];
 const scoreClient = createHttpClient(
   {
     baseURL: XOILAC_SCORE_API,
@@ -193,9 +208,10 @@ async function fetchLiveScoreResults() {
   if (scoreBlockedUntil > Date.now()) {
     throw new Error(`API tỉ số đang bị chặn (403), bỏ qua tới ${new Date(scoreBlockedUntil).toISOString()}`);
   }
-  const origins = lastGoodScoreOrigin
-    ? [lastGoodScoreOrigin, ...SCORE_ORIGINS.filter((o) => o !== lastGoodScoreOrigin)]
-    : SCORE_ORIGINS;
+  const all = scoreOrigins();
+  const origins = lastGoodScoreOrigin && all.includes(lastGoodScoreOrigin)
+    ? [lastGoodScoreOrigin, ...all.filter((o) => o !== lastGoodScoreOrigin)]
+    : all;
   let lastError = null;
   let all403 = true;
   for (const origin of origins) {
@@ -300,7 +316,7 @@ function mapStatus(sport, code) {
 function getFullUrl(url) {
   if (!url) return '';
   if (/^(https?:)?\/\//i.test(url) || url.startsWith('data:')) return url.startsWith('//') ? `https:${url}` : url;
-  return `${XOILAC_BASE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+  return `${xoilacBase()}${url.startsWith('/') ? '' : '/'}${url}`;
 }
 
 function textOf($el) {
@@ -382,7 +398,7 @@ function parseMatchCard($, el) {
     stream: {
       // Khác rỗng để trận chưa có link vẫn không bị loại khỏi playlist tĩnh
       // (xem FIX 23/09/2026 trong phalang.service.js).
-      liveUrl: detailUrl || XOILAC_BASE_URL,
+      liveUrl: detailUrl || xoilacBase(),
       streamerName: null,
       streamerAvatar: null
     },
@@ -476,6 +492,125 @@ function parseUrlStream(html) {
   return /^https?:\/\//i.test(url) ? url : '';
 }
 
+// ---------------------------------------------------------------------------
+// Domain động (FIX 31/10/2026) — xem chú thích ở XOILAC_CONFIGURED_URL.
+// ---------------------------------------------------------------------------
+let lastGoodEmbedReferer = '';
+const pageHintHosts = new Set(); // domain "xoilac..." thấy trong link trang chủ (thường là domain mới/mirror)
+const badBases = new Map(); // domain -> tới lúc nào bỏ qua (lỗi mạng/403/trang không có trận)
+const BAD_BASE_TTL_MS = Number(process.env.XOILAC_BAD_DOMAIN_TTL_MS) > 0 ? Number(process.env.XOILAC_BAD_DOMAIN_TTL_MS) : 10 * 60 * 1000;
+
+function embedReferers() {
+  return [...new Set([lastGoodEmbedReferer, xoilacBase(), XOILAC_CONFIGURED_URL, XOILAC_SCORE_ORIGIN, ...XOILAC_EXTRA_REFERERS].map((o) => originOf(o)).filter(Boolean))];
+}
+
+function adoptXoilacDomain(origin, why) {
+  const o = originOf(origin);
+  if (!o || o === xoilacBase()) return false;
+  console.log(`[xoilac] dùng domain thật: ${xoilacBase()} -> ${o} (${why})`);
+  setLiveDomain(XOILAC_KEY, o);
+  client.defaults.baseURL = o;
+  lastGoodEmbedReferer = '';
+  embedFailures.clear();
+  return true;
+}
+
+function rememberPageHints(html) {
+  const re = /https?:\/\/([a-z0-9-]*xoilac[a-z0-9-]*(?:\.[a-z0-9-]+)+)/gi;
+  let m;
+  let n = 0;
+  while ((m = re.exec(String(html || ''))) && n < 40) {
+    n += 1;
+    pageHintHosts.add(`https://${m[1].toLowerCase()}`);
+  }
+}
+
+const hasHomepageStructure = (html) => /main-grid-match/i.test(String(html || '')) || /data-fid=/i.test(String(html || ''));
+
+/**
+ * Lấy HTML trang chủ, thử lần lượt: domain đang dùng -> domain cấu hình -> XOILAC_FALLBACK_DOMAINS -> domain từng dùng
+ * (data/source-domains.json) -> domain thấy trong link trang. Theo redirect để biết domain THẬT sau chuyển hướng.
+ * Domain lỗi (403/mạng/trang nhái không có cấu trúc) bị bỏ qua BAD_BASE_TTL_MS để không thử lại mỗi chu kỳ.
+ */
+async function fetchHomepageHtml() {
+  const all = [...new Set([xoilacBase(), XOILAC_CONFIGURED_URL, ...XOILAC_FALLBACK_DOMAINS, ...historyDomains(XOILAC_KEY), ...pageHintHosts].map((o) => originOf(o)).filter(Boolean))];
+  const now = Date.now();
+  const usable = all.filter((b) => (badBases.get(b) || 0) <= now);
+  const order = usable.length ? usable : all; // tất cả đều "xấu" -> vẫn phải thử lại
+  let lastError = null;
+  let weakHtml = null;
+  for (const base of order) {
+    try {
+      const res = await client.get('/', { baseURL: base });
+      const html = typeof res.data === 'string' ? res.data : String(res.data || '');
+      rememberPageHints(html);
+      const finalOrigin = originFromResponse(res) || base;
+      if (!hasHomepageStructure(html)) {
+        // Trang 200 nhưng không phải trang Xôi Lạc thật (trang nhái/đỗ tên miền) -> không tin, thử domain khác.
+        badBases.set(base, Date.now() + BAD_BASE_TTL_MS);
+        if (!weakHtml) weakHtml = { html, finalOrigin };
+        lastError = new Error(`${base} trả trang không có cấu trúc Xôi Lạc`);
+        continue;
+      }
+      badBases.delete(base);
+      if (finalOrigin !== base) badBases.set(base, Date.now() + BAD_BASE_TTL_MS); // domain cũ đang redirect -> lần sau vào thẳng domain mới
+      adoptXoilacDomain(finalOrigin, finalOrigin !== base ? `${base} chuyển hướng sang` : 'domain dự phòng đang sống');
+      return html;
+    } catch (error) {
+      badBases.set(base, Date.now() + BAD_BASE_TTL_MS);
+      lastError = error;
+      console.warn(`[xoilac] trang chủ ${base} lỗi (${error?.response?.status || error?.code || error?.message}) — thử domain khác nếu có`);
+    }
+  }
+  if (weakHtml) return weakHtml.html; // không domain nào có cấu trúc: trả bản đầu để hành vi như cũ (parse ra 0 trận)
+  // Job chạy hơn 5 giờ nên domain có thể chết GIỮA CHỪNG (workflow chỉ kiểm tra domain lúc khởi động) -> nhờ Check Domains dò lại
+  // (có giới hạn tần suất, không chặn luồng chính, tắt bằng DOMAIN_RECHECK=off).
+  void requestDomainRecheck(XOILAC_KEY, order);
+  throw lastError || new Error('không có domain Xôi Lạc nào mở được');
+}
+
+let embedForbiddenCount = 0;
+let staleProbeAt = 0;
+let staleProbeRunning = false;
+const STALE_PROBE_GAP_MS = Number(process.env.XOILAC_STALE_PROBE_GAP_MS) > 0 ? Number(process.env.XOILAC_STALE_PROBE_GAP_MS) : 10 * 60 * 1000;
+
+/** Trang nhúng 403 với MỌI Referer đã thử: nhiều khả năng domain site đã xoay -> dò domain mới (không chặn luồng chính). */
+function onEmbedForbidden(embedUrl, triedReferers) {
+  embedForbiddenCount += 1;
+  if (embedForbiddenCount < 2 || staleProbeRunning || Date.now() - staleProbeAt < STALE_PROBE_GAP_MS) return;
+  staleProbeRunning = true;
+  staleProbeAt = Date.now();
+  handleStaleDomain(embedUrl, triedReferers)
+    .catch((e) => console.warn('[xoilac] dò domain mới lỗi:', e?.message || e))
+    .finally(() => { staleProbeRunning = false; embedForbiddenCount = 0; });
+}
+
+async function handleStaleDomain(sampleEmbed, triedReferers) {
+  const tried = new Set(triedReferers.map((o) => originOf(o)));
+  const cands = [...new Set([...XOILAC_FALLBACK_DOMAINS, ...historyDomains(XOILAC_KEY), ...pageHintHosts].map((o) => originOf(o)).filter(Boolean))].filter((o) => !tried.has(o));
+  console.warn(`[xoilac] trang nhúng từ chối mọi Referer (${[...tried].join(', ')}) — dò ${cands.length} domain dự phòng: ${cands.slice(0, 8).join(', ') || '(không có)'}`);
+  for (const cand of cands) {
+    try {
+      const res = await client.get('/', { baseURL: cand, timeout: 8000 });
+      const html = typeof res.data === 'string' ? res.data : String(res.data || '');
+      if (!hasHomepageStructure(html)) continue;
+      const finalOrigin = originFromResponse(res) || cand;
+      // Domain chỉ được nhận khi TRANG NHÚNG thật sự chấp nhận nó làm Referer (bằng chứng mạnh nhất).
+      const probe = await embedClient.get(sampleEmbed, { headers: { Referer: `${finalOrigin}/`, Origin: finalOrigin }, validateStatus: () => true });
+      if (probe.status >= 200 && probe.status < 400) {
+        adoptXoilacDomain(finalOrigin, 'trang nhúng chấp nhận Referer này');
+        lastGoodEmbedReferer = finalOrigin;
+        return;
+      }
+      tried.add(finalOrigin);
+    } catch {
+      /* thử domain tiếp */
+    }
+  }
+  // Không có domain dự phòng nào dùng được -> nhờ workflow Check Domains dò domain mới (loại các domain đã bị từ chối).
+  await requestDomainRecheck(XOILAC_KEY, [...tried, xoilacBase(), XOILAC_CONFIGURED_URL]);
+}
+
 /** Mở trang nhúng, lấy link stream (kể cả iframe lồng 1 cấp nếu không thấy gì). */
 async function resolveEmbedStream(embedUrl, depth = 0) {
   const host = embedHostOf(embedUrl);
@@ -486,8 +621,10 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
   // gửi (xoilacxcw.tv) — trang nhúng có thể kiểm tra Referer.
   // Site xoay domain (xoilacxc.tv -> xoilacxcw.tv -> xoilacxyc.io ...): thử cả
   // các domain đã thấy phòng khi trang nhúng chỉ nhận Referer trong danh sách.
-  const referers = [...new Set([XOILAC_BASE_URL, XOILAC_SCORE_ORIGIN, 'https://xoilacxyc.io'])];
+  // FIX (31/10/2026): Referer = domain THẬT đang sống trước, rồi domain cấu hình; KHÔNG còn domain cũ cứng trong code.
+  const referers = embedReferers();
   let timedOut = false;
+  let forbidden = 0;
   for (const ref of referers) {
     try {
       const extra = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
@@ -497,9 +634,9 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
       noteEmbedResponded(host);
       const body = typeof data === 'string' ? data : JSON.stringify(data);
       const direct = parseUrlStream(body);
-      if (direct) return [direct];
+      if (direct) { lastGoodEmbedReferer = ref; return [direct]; }
       const urls = parseStreamUrls(body);
-      if (urls.length) return urls;
+      if (urls.length) { lastGoodEmbedReferer = ref; return urls; }
       if (depth < 1) {
         const inner = body.match(/<iframe[^>]+src=["']([^"']+)["']/i);
         if (inner) {
@@ -516,6 +653,7 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
         break;
       }
       noteEmbedResponded(host); // có phản hồi HTTP (403/404...) = host vẫn sống
+      if (error?.response?.status === 403) forbidden += 1;
       console.error(`[xoilac] lỗi mở trang nhúng ${embedUrl} (Referer ${ref}):`, error.message);
     }
   }
@@ -523,6 +661,8 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
     embedFailures.set(embedUrl, Date.now() + EMBED_FAIL_TTL_MS);
   } else {
     console.error(`[xoilac] trang nhúng không có link stream: ${embedUrl}`);
+    // Mọi Referer đều bị 403 = trang nhúng không còn nhận domain site đang dùng (site đã xoay domain) -> tự dò domain mới.
+    if (forbidden > 0 && forbidden === referers.length) onEmbedForbidden(embedUrl, referers);
   }
   return [];
 }
@@ -628,7 +768,7 @@ async function fetchCommentatorsForMatch(match) {
   if (!pageUrl) return [];
   let html = '';
   try {
-    ({ data: html } = await client.get(pageUrl, { headers: { Referer: `${XOILAC_BASE_URL}/` } }));
+    ({ data: html } = await client.get(pageUrl, { headers: { Referer: `${xoilacBase()}/` } }));
   } catch (error) {
     console.error(`[xoilac] lỗi mở trang trận ${pageUrl}:`, error.message);
     // Trang trận lỗi tạm thời -> giữ link tốt gần nhất của trận (nếu có) để không rớt link.
@@ -692,7 +832,7 @@ function mapStreams(match) {
 
 class XoilacService {
   async fetchHomepageMatches() {
-    const { data: html } = await client.get('/');
+    const html = await fetchHomepageHtml();
     const matches = parseHomepage(html);
     // Tỉ số/trạng thái tươi hơn HTML tĩnh. Lỗi API này KHÔNG được làm hỏng
     // cả nguồn -> bỏ qua, dùng tạm trạng thái từ trang chủ.
