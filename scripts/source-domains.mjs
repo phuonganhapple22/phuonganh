@@ -22,7 +22,7 @@
 // khi trang chuyển hướng/đổi domain mà nội dung là SPA rỗng hoặc bị Cloudflare chặn (không đọc được chữ).
 // ---------------------------------------------------------------------------
 export const SOURCES = [
-  { key: 'giovang', brand: 'giovang', label: 'Giờ Vàng', role: 'site', envVar: 'GIOVANG_DOMAIN', defaultUrl: 'https://giovang.blog', keywords: ['giovang', 'giờ vàng', 'gio vang'], candidates: ['https://giovang.cv', 'https://giovang.blog', 'https://giovang.city'], autoFix: true },
+  { key: 'giovang', brand: 'giovang', label: 'Giờ Vàng', role: 'site', envVar: 'GIOVANG_DOMAIN', defaultUrl: 'https://giovang.love', keywords: ['giovang', 'giờ vàng', 'gio vang'], candidates: ['https://giovang.love', 'https://giovang.cv', 'https://giovang.blog', 'https://giovang.city'], autoFix: true },
   { key: 'gavang', brand: 'gavang', label: 'Gà Vàng', role: 'site', envVar: 'GAVANG_BASE_URL', defaultUrl: 'https://gavanglinkp.tv', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true, plainHttp: true },
   { key: 'gavang33', brand: 'gavang', label: 'Gà Vàng 33', role: 'site', envVar: 'GAVANG33_DOMAIN', defaultUrl: 'https://gavang33.me', keywords: ['gavang', 'gà vàng', 'ga vang'], autoFix: true, plainHttp: true },
   { key: 'saoke', brand: 'saoke', label: 'Sao Kê', role: 'site', envVar: 'SAOKE_BASE_URL', defaultUrl: 'https://vip3.saoketv40.xyz', keywords: ['saoke', 'sao kê', 'sao ke'], autoFix: true },
