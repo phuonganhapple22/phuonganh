@@ -423,7 +423,6 @@ class GiovangService {
       } catch (err) {
         console.warn('[giovang] cứu link bằng trình duyệt lỗi:', err.message);
       }
-      for (const dead of probe.dropped) qualityVariants(dead).forEach((u) => candidates.add(u));
       if (candidates.size) {
         const retry = await filterDeadHlsLinks([...candidates], { source: 'giovang', referer, enabled: true });
         // chỉ nhận link THẬT SỰ phát được (sống) — không nhận link "chưa rõ"/404 chưa xác nhận
