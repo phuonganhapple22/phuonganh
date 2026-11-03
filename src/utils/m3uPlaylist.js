@@ -119,7 +119,8 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null
   ],
   // FIX (30/09/2026): giovang.city đã redirect sang giovang.blog; giovang.cv là mirror còn nhắc trên trang.
-  giovang: [`${String(process.env.GIOVANG_DOMAIN || 'https://giovang.blog').replace(/\/+$/, '')}/`, 'https://giovang.cv/', null],
+  // FIX (03/11/2026): trang Giờ Vàng hiện là giovang.love (Referer trong playlist phải là https://giovang.love/).
+  giovang: [...new Set([`${String(process.env.GIOVANG_DOMAIN || 'https://giovang.love').replace(/\/+$/, '')}/`, 'https://giovang.love/', 'https://giovang.blog/', 'https://giovang.cv/'])].concat([null]),
   // FIX (29/09/2026): trình duyệt thật luôn gửi Referer có dấu "/" cuối
   // (https://phalang.live/) — đặt bản có "/" LÊN ĐẦU cho khớp CDN kiểm tra chuỗi chính xác.
   phalang: [`${String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, '')}/`, String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, ''), null],
@@ -510,6 +511,7 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 
 // Số server tối đa xuất ra cho MỖI trận Phá Làng (xem FIX 27/10/2026 trong matchesToPlaylistEntries).
 // Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
+const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 3);
 const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 1);
 
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
@@ -563,9 +565,14 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
       // khác nhau (mỗi server 1 kênh, tên "BLV - Server N") để người xem đổi sang server khác khi
       // 1 server lỗi. Link tốt nhất (theo nhãn chất lượng, bằng điểm thì giữ thứ tự gốc) đứng đầu.
       // Nguồn khác giữ nguyên hành vi cũ (1 trận = 1 kênh) để không sinh kênh trùng.
-      const chosen = (getSourceKey(match) === 'phalang' && playableStreams.length > 1)
+      // FIX (03/11/2026 — "các trận bóng đá live Giờ Vàng không xem được"): Giờ Vàng cũng trả nhiều server/trận
+      // -> xuất tối đa GIOVANG_MAX_SERVERS kênh ("... (Giovang 1)", "(Giovang 2)"...) để đổi server khi 1 server hỏng.
+      const srcKey = getSourceKey(match);
+      const chosen = (srcKey === 'phalang' && playableStreams.length > 1)
         ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, PHALANG_MAX_SERVERS_PER_MATCH)
-        : [stream];
+        : (srcKey === 'giovang' && playableStreams.length > 1)
+          ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, GIOVANG_MAX_SERVERS_PER_MATCH)
+          : [stream];
       for (const chosenStream of chosen) {
         const entry = { match, stream: chosenStream };
         entries.push(entry);
