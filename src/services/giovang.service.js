@@ -1,6 +1,7 @@
 import { createHttpClient } from '@/src/utils/httpClient';
 import { slugifyVi } from '@/src/utils/slug';
 import { fetchRenderedHtml, fetchFirstRequestHeaders } from '@/src/utils/browserFetch';
+import { filterDeadHlsLinks } from '@/src/utils/linkProbe';
 
 // Trang web: đổi tên miền tuỳ ý qua GIOVANG_DOMAIN (không cần sửa code).
 // API JSON danh sách trận lại nằm ở 1 domain CDN/backend riêng dùng chung
@@ -24,7 +25,15 @@ const DETECT_REFERER_TTL_MS = 2 * 60 * 60 * 1000; // domain player không đổi
 const DETECT_FAIL_BACKOFF_MS = 10 * 60 * 1000; // dò lỗi -> nghỉ 10 phút, không mở trình duyệt cho từng trận
 const detectCache = globalThis.__giovangRefererDetectCache || { value: null, detectedAt: 0, failedAt: 0, inFlight: null };
 globalThis.__giovangRefererDetectCache = detectCache;
+const diagLogged = globalThis.__giovangDiagLogged || new Set(); // mỗi link/trang chỉ log 1 lần/tiến trình (tối đa ~300 mục)
+globalThis.__giovangDiagLogged = diagLogged;
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
+// FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
+// link .m3u8 lấy từ trang trận có thể đã chết trên CDN. Dò nhanh từng link (kèm Referer thật) và BỎ link
+// trả 404/410 — chỉ khi chắc chắn (xem src/utils/linkProbe.js: lỗi mạng/403/timeout -> giữ link; và chỉ
+// bỏ khi đã thấy ≥1 link khác trên cùng CDN phát được, tránh làm rỗng cả nguồn nếu CI bị CDN chặn bằng 404).
+// Tắt hẳn: đặt biến GIOVANG_PROBE_ALIVE=off.
+const GIOVANG_PROBE_ALIVE = String(process.env.GIOVANG_PROBE_ALIVE || '').toLowerCase() !== 'off';
 const LIVE_JSON_PATH = '/storage/livestream/live.json';
 const ALL_JSON_PATH = '/storage/livestream/all.json';
 
@@ -284,6 +293,35 @@ class GiovangService {
     return [...new Set(found.map(cleanUrl))];
   }
 
+  /**
+   * Log CHẨN ĐOÁN (mỗi link/trang chỉ 1 lần): link .m3u8 nằm ở đâu trong trang (đoạn mã xung quanh),
+   * hoặc — nếu không có link — tiêu đề trang + các iframe. Giúp biết link hỏng/404 đến từ đâu mà khỏi đoán.
+   */
+  logLinkDiagnostics({ targetUrl, html, hlsUrls, via }) {
+    if (diagLogged.size > 300) return;
+    const text = cleanUrl(typeof html === 'string' ? html : '');
+    const once = (key, fn) => {
+      if (diagLogged.has(key)) return;
+      diagLogged.add(key);
+      fn();
+    };
+    const iframes = [...text.matchAll(/<iframe[^>]*?\ssrc=["']([^"']+)["']/gi)].map((m) => m[1]).slice(0, 3);
+    if (hlsUrls.length) {
+      for (const url of hlsUrls.slice(0, 3)) {
+        once(`url|${url}`, () => {
+          const i = text.indexOf(url);
+          const ctx = i >= 0 ? text.slice(Math.max(0, i - 90), i + url.length + 20).replace(/\s+/g, ' ') : '(không thấy nguyên văn trong HTML)';
+          console.log(`[giovang] link lấy từ ${via}: ${url}\n          ngữ cảnh trong trang: ${ctx}`);
+        });
+      }
+    } else {
+      once(`none|${targetUrl}`, () => {
+        const title = ((text.match(/<title[^>]*>([^<]{0,120})/i) || [])[1] || '').trim();
+        console.warn(`[giovang] KHÔNG tìm thấy link .m3u8 trong trang ${targetUrl} (HTML ${text.length} ký tự, tiêu đề: "${title}", iframe: ${iframes.join(' | ') || 'không có'})`);
+      });
+    }
+  }
+
   async getMatchDetail(idOrUrl) {
     await this.ensureSiteOrigin();
     const rawId = String(idOrUrl || '').replace(/^giovang_/, '');
@@ -316,6 +354,8 @@ class GiovangService {
       console.warn('[giovang] getMatchDetail HTTP lỗi:', err.message);
     }
 
+    let via = hlsUrls.length ? 'HTML (HTTP thường)' : 'none';
+
     // Không tìm thấy link m3u8 nào trong HTML thô (trận có thể lazy-load
     // player bằng JS) → dự phòng mở bằng trình duyệt headless để đọc DOM
     // đã render đầy đủ.
@@ -327,12 +367,15 @@ class GiovangService {
         });
         html = rendered.html || html;
         hlsUrls = this.extractHlsUrls(html);
+        if (hlsUrls.length) via = 'DOM trình duyệt headless';
         this.lastDiagnostics = { ...this.lastDiagnostics, detailBrowser: { status: rendered.status, htmlLength: html.length, foundAfterBrowser: hlsUrls.length } };
       } catch (err) {
         this.lastDiagnostics = { ...this.lastDiagnostics, detailBrowser: { error: err.message } };
         console.warn('[giovang] getMatchDetail fetchRenderedHtml lỗi:', err.message);
       }
     }
+
+    this.logLinkDiagnostics({ targetUrl, html, hlsUrls, via });
 
     // Referer gắn cho MỌI link của trận: Referer thật dò từ trình duyệt (nếu có),
     // không thì `${domain thật}/` (kiểu trình duyệt thật luôn có dấu "/" cuối).
@@ -341,7 +384,10 @@ class GiovangService {
       ? ((await this.detectPlayerReferer(targetUrl)) || `${this.siteOrigin}/`)
       : null;
 
-    const streams = hlsUrls.map((url, index) => ({
+    const probe = await filterDeadHlsLinks(hlsUrls, { source: 'giovang', referer, enabled: GIOVANG_PROBE_ALIVE });
+    this.lastDiagnostics = { ...this.lastDiagnostics, linkProbe: probe.stats };
+
+    const streams = probe.alive.map((url, index) => ({
       id: `giovang_${rawId}_${index + 1}`,
       streamerName: `Giovang ${index + 1}`,
       name: `Giovang ${index + 1}`,
