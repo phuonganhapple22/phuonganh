@@ -594,6 +594,11 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     // tra cứu) làm giá trị hiển thị/tham khảo, KHÔNG phải link phát —
     // player mở sẽ báo lỗi/không phát được cho tới khi có link thật, đúng
     // như đã thống nhất.
+    // FIX (03/11/2026): Giờ Vàng — trận live mà mọi link đã chết (404) và chạy playlist tĩnh (không baseUrl):
+    // KHÔNG ghi dòng "Chưa có link — chờ cập nhật" trỏ về trang web (player báo lỗi). Bỏ hẳn trận này,
+    // lần quét kế tiếp (~2 phút) có link thật thì tự xuất hiện lại.
+    if (source === 'giovang' && isLiveNoStream && !baseUrl) continue;
+
     const fallbackUrl = match?.stream?.liveUrl || '';
     const params = new URLSearchParams({
       source,
