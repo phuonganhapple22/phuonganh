@@ -18,7 +18,7 @@ import { filterDeadHlsLinks } from '@/src/utils/linkProbe';
 // còn nhận domain cũ làm Referer. Domain mặc định đổi sang giovang.blog; ngoài
 // ra ensureSiteOrigin() tự theo redirect để lần sau đổi domain KHÔNG cần sửa
 // code, và detectPlayerReferer() lấy Referer THẬT từ trình duyệt (xem dưới).
-const BASE_URL = String(process.env.GIOVANG_DOMAIN || 'https://giovang.blog').replace(/\/+$/, '');
+const BASE_URL = String(process.env.GIOVANG_DOMAIN || 'https://giovang.love').replace(/\/+$/, '');
 const SITE_CHECK_TTL_MS = 6 * 60 * 60 * 1000; // theo dõi redirect domain 6 tiếng/lần
 const DETECT_REFERER_TIMEOUT_MS = 12000; // ngắn để không kéo dài tổng thời gian quét
 const DETECT_REFERER_TTL_MS = 2 * 60 * 60 * 1000; // domain player không đổi liên tục cỡ phút
@@ -27,6 +27,13 @@ const detectCache = globalThis.__giovangRefererDetectCache || { value: null, det
 globalThis.__giovangRefererDetectCache = detectCache;
 const diagLogged = globalThis.__giovangDiagLogged || new Set(); // mỗi link/trang chỉ log 1 lần/tiến trình (tối đa ~300 mục)
 globalThis.__giovangDiagLogged = diagLogged;
+// FIX (03/11/2026 — "các trận bóng đá live Giờ Vàng không xem được, môn khác vẫn xem được"): trang đã đổi sang
+// https://giovang.love/ (CDN vcdn.cloud nhận Referer này). Domain mặc định đổi giovang.blog -> giovang.love;
+// ensureSiteOrigin() vẫn tự theo redirect nếu site đổi tiếp. Link .m3u8 trong HTML có thể nằm trong JSON/JS
+// (dấu & viết \\u0026, \\/ ...) nên extractHlsUrls() giờ giải mã đủ — trước đây link bị CẮT mất phần ?token.
+// Trận bóng đá thường có nhiều link (nhiều BLV/server): giữ tối đa GIOVANG_MAX_SERVERS server khác nhau
+// (mặc định 3) để khi server 1 hỏng thì đổi sang server khác, không chỉ xuất 1 link duy nhất.
+const GIOVANG_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 3);
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
 // FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
 // link .m3u8 lấy từ trang trận có thể đã chết trên CDN. Dò nhanh từng link (kèm Referer thật) và BỎ link
@@ -75,7 +82,10 @@ function cleanUrl(str) {
     .replace(/&amp;/gi, '&')
     .replace(/&#x2F;|&#0*47;/gi, '/')
     .replace(/\\\//g, '/')
-    .replace(/\\u002F/gi, '/');
+    .replace(/\\u002F/gi, '/')
+    .replace(/\\u0026/gi, '&')
+    .replace(/\\u003D/gi, '=')
+    .replace(/\\u003F/gi, '?');
 }
 
 // FIX (03/11/2026 — "trận live Giờ Vàng ghi 'Chưa có link — chờ cập nhật'"): link .m3u8 trong HTML trận
@@ -442,7 +452,16 @@ class GiovangService {
     }
     this.lastDiagnostics = { ...this.lastDiagnostics, linkRescue: rescued };
 
-    const streams = probe.alive.map((url, index) => ({
+    // Gộp link trùng (cùng đường dẫn, khác tham số vô nghĩa) rồi giữ tối đa GIOVANG_MAX_SERVERS server.
+    const seenPath = new Set();
+    const uniqueAlive = probe.alive.filter((u) => {
+      const k = String(u).split('?')[0];
+      if (seenPath.has(k)) return false;
+      seenPath.add(k);
+      return true;
+    }).slice(0, GIOVANG_MAX_SERVERS);
+
+    const streams = uniqueAlive.map((url, index) => ({
       id: `giovang_${rawId}_${index + 1}`,
       streamerName: `Giovang ${index + 1}`,
       name: `Giovang ${index + 1}`,
@@ -451,6 +470,20 @@ class GiovangService {
       format: 'hls',
       referer,
     }));
+    // Trận chỉ có 1 link: thêm bản dự phòng GỬI KHÔNG Referer/Origin (1 số CDN từ chối Referer lạ nhưng
+    // vẫn phát khi không có) để người xem có đường lùi khi bản có Referer báo lỗi.
+    if (uniqueAlive.length === 1 && GIOVANG_MAX_SERVERS > 1) {
+      streams.push({
+        id: `giovang_${rawId}_2`,
+        streamerName: 'Giovang 2 (dự phòng)',
+        name: 'Giovang 2 (dự phòng)',
+        m3u8Url: uniqueAlive[0],
+        playUrl: uniqueAlive[0],
+        format: 'hls',
+        referer: null,
+        noReferer: true,
+      });
+    }
 
     return {
       matchId: `giovang_${rawId}`,
