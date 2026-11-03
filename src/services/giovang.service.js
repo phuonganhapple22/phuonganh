@@ -33,7 +33,9 @@ const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keo
 // trả 404/410 — chỉ khi chắc chắn (xem src/utils/linkProbe.js: lỗi mạng/403/timeout -> giữ link; và chỉ
 // bỏ khi đã thấy ≥1 link khác trên cùng CDN phát được, tránh làm rỗng cả nguồn nếu CI bị CDN chặn bằng 404).
 // Tắt hẳn: đặt biến GIOVANG_PROBE_ALIVE=off.
-const GIOVANG_PROBE_ALIVE = String(process.env.GIOVANG_PROBE_ALIVE || '').toLowerCase() !== 'off';
+// FIX (03/11/2026, lần 3): dò từ IP máy chủ CI nhận 404 cho link mà trên web VẪN PHÁT (CDN chặn theo IP/Referer)
+// -> loại nhầm trận đang live. Mặc định giờ TẮT: giữ MỌI link lấy từ trang. Muốn bật lại lọc link chết: GIOVANG_PROBE_ALIVE=on.
+const GIOVANG_PROBE_ALIVE = String(process.env.GIOVANG_PROBE_ALIVE || '').toLowerCase() === 'on';
 const LIVE_JSON_PATH = '/storage/livestream/live.json';
 const ALL_JSON_PATH = '/storage/livestream/all.json';
 
