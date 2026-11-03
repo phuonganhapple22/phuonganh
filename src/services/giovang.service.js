@@ -34,6 +34,42 @@ globalThis.__giovangDiagLogged = diagLogged;
 // Trận bóng đá thường có nhiều link (nhiều BLV/server): giữ tối đa GIOVANG_MAX_SERVERS server khác nhau
 // (mặc định 3) để khi server 1 hỏng thì đổi sang server khác, không chỉ xuất 1 link duy nhất.
 const GIOVANG_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 3);
+// FIX (03/11/2026, lần 2 — log thật: mỗi BLV có 1 \"pc_stream_url\" dạng .../<id>_hd/<id>_hd@720p.m3u8 và <id> chính là
+// MỐC THỜI GIAN (giây, UNIX) lúc tạo luồng): trận 19:15 ngày 03/11 đang lấy link id 1793510867 = tạo lúc 12:27 ngày 01/11 —
+// luồng cũ đã chết từ 2 ngày trước (404), trong khi luồng mới của cùng trang có id 17937xxxxx (tạo 03/11). Trước đây code
+// lấy link ĐẦU TIÊN trong HTML nên trúng luồng cũ. Giờ: đọc mốc thời gian từ id, ưu tiên link MỚI NHẤT, bỏ link quá cũ
+// (mặc định > 30 giờ; đổi bằng GIOVANG_MAX_LINK_AGE_HOURS). Nếu TẤT CẢ link đều cũ vẫn giữ link mới nhất (không làm rỗng trận).
+const GIOVANG_MAX_LINK_AGE_MS = (Number(process.env.GIOVANG_MAX_LINK_AGE_HOURS) > 0 ? Number(process.env.GIOVANG_MAX_LINK_AGE_HOURS) : 30) * 60 * 60 * 1000;
+
+/** Mốc thời gian (ms) nhúng trong id luồng của link, hoặc 0 nếu không đọc được. */
+function streamCreatedAtMs(url) {
+  const m = String(url).match(/\/(1[5-9]\d{8})_(?:hd|sd|fhd)\b/i) || String(url).match(/\/(1[5-9]\d{8})\b/);
+  return m ? Number(m[1]) * 1000 : 0;
+}
+
+/** Cặp {tên BLV -> link} đọc từ JSON nhúng trong trang (\"blv_name\":\"..\",...,\"pc_stream_url\":\"..\"). */
+function extractBlvStreamNames(text) {
+  const names = new Map();
+  const re = /\"blv_name\"\s*:\s*\"((?:[^\"\\]|\\.)*)\"[^{}]*?\"(?:pc_stream_url|mobile_stream_url|link_stream_hd|link_stream_sd)\"\s*:\s*\"((?:[^\"\\]|\\.)*\.m3u8[^\"\\]*)\"/gi;
+  for (const m of String(text || '').matchAll(re)) {
+    let name = m[1];
+    try { name = JSON.parse(`"${m[1]}"`); } catch { /* giữ nguyên */ }
+    const url = cleanUrl(m[2]);
+    if (!names.has(url)) names.set(url, String(name).trim());
+  }
+  return names;
+}
+
+/** Sắp xếp link: mới nhất trước; bỏ link quá cũ nếu còn link mới. */
+function rankHlsByFreshness(urls) {
+  const now = Date.now();
+  const withTs = urls.map((url, i) => ({ url, i, ts: streamCreatedAtMs(url) }));
+  const fresh = withTs.filter((x) => !x.ts || now - x.ts <= GIOVANG_MAX_LINK_AGE_MS);
+  const pool = fresh.length ? fresh : withTs; // toàn bộ đều cũ -> vẫn giữ (không làm rỗng)
+  pool.sort((a, b) => (b.ts || now) - (a.ts || now) || a.i - b.i); // không đọc được mốc -> coi như mới, giữ thứ tự gốc
+  return { urls: pool.map((x) => x.url), droppedStale: withTs.length - pool.length, allStale: !fresh.length && withTs.length > 0 };
+}
+
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
 // FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
 // link .m3u8 lấy từ trang trận có thể đã chết trên CDN. Dò nhanh từng link (kèm Referer thật) và BỎ link
@@ -410,6 +446,16 @@ class GiovangService {
       }
     }
 
+    const blvNames = extractBlvStreamNames(html);
+    if (hlsUrls.length > 1 || hlsUrls.some((u) => streamCreatedAtMs(u))) {
+      const ranked = rankHlsByFreshness(hlsUrls);
+      if (ranked.droppedStale || ranked.urls[0] !== hlsUrls[0]) {
+        console.log(`[giovang] ${targetUrl}: xếp link theo độ mới (bỏ ${ranked.droppedStale} link cũ > ${Math.round(GIOVANG_MAX_LINK_AGE_MS / 3600000)}h${ranked.allStale ? '; TẤT CẢ đều cũ -> giữ link mới nhất' : ''}); dùng: ${ranked.urls[0]}`);
+      }
+      hlsUrls = ranked.urls;
+      this.lastDiagnostics = { ...this.lastDiagnostics, linkFreshness: { total: ranked.urls.length + ranked.droppedStale, droppedStale: ranked.droppedStale, allStale: ranked.allStale } };
+    }
+
     this.logLinkDiagnostics({ targetUrl, html, hlsUrls, via });
 
     // Referer gắn cho MỌI link của trận: Referer thật dò từ trình duyệt (nếu có),
@@ -461,10 +507,11 @@ class GiovangService {
       return true;
     }).slice(0, GIOVANG_MAX_SERVERS);
 
+    const labelFor = (url, index) => (blvNames.get(url) ? `Giovang ${index + 1} - ${blvNames.get(url)}` : `Giovang ${index + 1}`);
     const streams = uniqueAlive.map((url, index) => ({
       id: `giovang_${rawId}_${index + 1}`,
-      streamerName: `Giovang ${index + 1}`,
-      name: `Giovang ${index + 1}`,
+      streamerName: labelFor(url, index),
+      name: labelFor(url, index),
       m3u8Url: url,
       playUrl: url,
       format: 'hls',
