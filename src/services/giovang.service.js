@@ -68,7 +68,30 @@ const SPORT_TYPE_MAP = {
 };
 
 function cleanUrl(str) {
-  return String(str || '').replace(/\\\//g, '/').replace(/\\u002F/gi, '/');
+  return String(str || '')
+    .replace(/&quot;|&#0*34;|&#x0*22;/gi, '"')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#x2F;|&#0*47;/gi, '/')
+    .replace(/\\\//g, '/')
+    .replace(/\\u002F/gi, '/');
+}
+
+// FIX (03/11/2026 — "trận live Giờ Vàng ghi 'Chưa có link — chờ cập nhật'"): link .m3u8 trong HTML trận
+// (pc_stream_url) có thể 404 vì CDN chưa/không còn phát đúng id đó. Sinh thêm các biến thể chất lượng
+// cùng pattern CDN (…_hd/…_hd@720p.m3u8 -> _sd/@480p...) để dò thử; chỉ link nào dò ra m3u8 hợp lệ mới được dùng.
+function qualityVariants(url) {
+  const out = new Set();
+  const m = String(url).match(/^(.*\/)(\d+)_hd\/\2_hd@720p\.m3u8(\?.*)?$/i);
+  if (m) {
+    const [, base, id, q = ''] = m;
+    for (const [dir, res] of [['hd', '1080p'], ['hd', '480p'], ['sd', '480p'], ['sd', '360p']]) {
+      out.add(`${base}${id}_${dir}/${id}_${dir}@${res}.m3u8${q}`);
+    }
+    out.add(`${base}${id}_hd/playlist.m3u8${q}`);
+    out.add(`${base}${id}_hd/index.m3u8${q}`);
+  }
+  out.delete(url);
+  return [...out];
 }
 
 class GiovangService {
@@ -384,8 +407,39 @@ class GiovangService {
       ? ((await this.detectPlayerReferer(targetUrl)) || `${this.siteOrigin}/`)
       : null;
 
-    const probe = await filterDeadHlsLinks(hlsUrls, { source: 'giovang', referer, enabled: GIOVANG_PROBE_ALIVE });
+    let probe = await filterDeadHlsLinks(hlsUrls, { source: 'giovang', referer, enabled: GIOVANG_PROBE_ALIVE });
     this.lastDiagnostics = { ...this.lastDiagnostics, linkProbe: probe.stats };
+
+    // Mọi link trong HTML đều chết (404/410) -> thử CỨU trận thay vì bỏ trắng:
+    //  (1) mở trang bằng trình duyệt, bấm Play và bắt link .m3u8 THẬT mà player gọi (có thể khác pc_stream_url);
+    //  (2) thử các biến thể chất lượng của link đã chết.
+    // Link nào dò ra m3u8 hợp lệ mới được giữ; không cứu được thì trận không có stream (playlist sẽ bỏ trận này).
+    let rescued = 'no';
+    if (GIOVANG_PROBE_ALIVE && hlsUrls.length && !probe.alive.length && probe.dropped.length) {
+      const candidates = new Set();
+      try {
+        const found = await fetchFirstRequestHeaders(targetUrl, /\.m3u8(\?|$)/i, { timeoutMs: 20000 });
+        if (found?.url && !probe.dropped.includes(found.url)) candidates.add(found.url);
+      } catch (err) {
+        console.warn('[giovang] cứu link bằng trình duyệt lỗi:', err.message);
+      }
+      for (const dead of probe.dropped) qualityVariants(dead).forEach((u) => candidates.add(u));
+      if (candidates.size) {
+        const retry = await filterDeadHlsLinks([...candidates], { source: 'giovang', referer, enabled: true });
+        // chỉ nhận link THẬT SỰ phát được (sống) — không nhận link "chưa rõ"/404 chưa xác nhận
+        const confirmed = [];
+        for (const u of retry.alive) {
+          if (retry.unconfirmed.includes(u)) continue;
+          confirmed.push(u);
+        }
+        if (confirmed.length) {
+          probe = { ...retry, alive: confirmed };
+          rescued = 'yes';
+          console.log(`[giovang] cứu được ${confirmed.length} link cho ${targetUrl}: ${confirmed[0]}`);
+        }
+      }
+    }
+    this.lastDiagnostics = { ...this.lastDiagnostics, linkRescue: rescued };
 
     const streams = probe.alive.map((url, index) => ({
       id: `giovang_${rawId}_${index + 1}`,
