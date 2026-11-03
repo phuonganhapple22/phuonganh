@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-03T07:25:36.624Z",
+  "updatedAt": "2026-11-03T19:29:09.918Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.love",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacvbq.tv",
+      "url": "https://wbbpe.org",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -528,6 +528,13 @@
       "from": "https://xoilacvbl.tv",
       "to": "https://xoilacvbq.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-03T19:29:09.918Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbq.tv",
+      "to": "https://wbbpe.org",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
