@@ -1,4 +1,5 @@
 import { pickBestStream } from '@/src/utils/streamQuality';
+import { isDebugEnabledFor, debugOkTagEnabled, probeStreamForDebug, getDebugNotes } from '@/src/utils/streamDebug';
 import {
   formatKickoffHourFirst,
   toMatchTimeMs,
@@ -156,7 +157,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // bại. Xem getXoilacEmbedReferer() + nhánh riêng trong resolveIptvReferer(): xoilac KHÔNG dò nữa.
   xoilac: [
     getXoilacEmbedReferer(),
-    `${String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '')}/`,
+    `${String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacvau.tv').replace(/\/+$/, '')}/`,
     // FIX (31/10/2026): bỏ 'https://xoilacxcw.tv/' (domain cũ cứng) — Xôi Lạc xoay domain liên tục nên không còn domain cũ nào trong code.
     null
   ],
@@ -345,7 +346,14 @@ export async function preferHlsForIptv(stream) {
   const candidate = flvToM3u8Candidate(url);
   if (!candidate) return stream;
 
-  const ok = await verifyStreamUrlPlayable(candidate).catch(() => false);
+  // FIX (04/11/2026 — "toàn bộ trận Xôi Lạc không xem được"; lộ ra khi thêm debug trong playlist): verifyStreamUrlPlayable()
+  // coi link là "phát được" miễn KHÔNG trả HTML — kể cả 404 không có Content-Type, 403 dạng JSON hay TIMEOUT 3s (lỗi mạng
+  // nào ngoài DNS cũng trả true). Hậu quả: link FLV thật bị thay bằng bản .m3u8 ĐOÁN MÒ không tồn tại. Giờ chỉ nâng lên HLS khi
+  // bản đoán trả HTTP 2xx và nội dung đúng là playlist HLS (#EXTM3U), thử với đúng Referer của nguồn; mọi trường hợp còn lại
+  // (404/403/timeout/không rõ) GIỮ NGUYÊN link FLV gốc do nguồn cung cấp.
+  const ok = await probeStreamForDebug(candidate, { referer: stream?.referer || '' })
+    .then((r) => !!(r.ok && r.kind === 'hls'))
+    .catch(() => false);
   if (!ok) return stream;
 
   return { ...stream, playUrl: candidate, m3u8Url: candidate, format: 'hls' };
@@ -421,6 +429,36 @@ export function buildM3uPlaylist(entries = [], options = {}) {
   lines.push(`# ===== Tất cả trận, sắp theo giờ thi đấu thực — ${summary} =====`);
   lines.push('');
 
+  // DEBUG TÓM TẮT THEO NGUỒN: mỗi nguồn 1 dòng chú thích + 1 kênh "🔧 DEBUG ..." (tắt kênh: PLAYLIST_DEBUG_CHANNEL=off).
+  const dbgBySource = new Map();
+  for (const entry of withUrl) {
+    if (!entry.debug) continue;
+    const key = getSourceKey(entry.match) || entry?.match?.source || 'unknown';
+    const agg = dbgBySource.get(key) || { ok: 0, bad: 0, tags: new Map() };
+    if (entry.debug.ok) agg.ok += 1;
+    else { agg.bad += 1; agg.tags.set(entry.debug.tag, (agg.tags.get(entry.debug.tag) || 0) + 1); }
+    dbgBySource.set(key, agg);
+  }
+  if (dbgBySource.size) {
+    lines.push('# [debug] Phép thử chạy từ MÁY CHỦ TẠO PLAYLIST (đánh dấu (CI)); CDN gắn token theo IP có thể chặn máy chủ nhưng vẫn cho người xem. Tắt: PLAYLIST_DEBUG=off');
+    const showChannel = !['off', '0', 'false'].includes(String(process.env.PLAYLIST_DEBUG_CHANNEL ?? 'on').toLowerCase().trim());
+    for (const key of [...SOURCE_GROUP_ORDER.filter((k) => dbgBySource.has(k)), ...[...dbgBySource.keys()].filter((k) => !SOURCE_GROUP_ORDER.includes(k))]) {
+      const agg = dbgBySource.get(key);
+      const label = getSourceShortLabel(key);
+      const errs = [...agg.tags.entries()].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t}x${c}`).join(' ');
+      const notes = getDebugNotes(key);
+      lines.push(`# [debug] ${label}: ✅${agg.ok} ⚠️${agg.bad}${errs ? ` | lỗi: ${errs}` : ''}${notes.length ? ` | ghi chú: ${notes.join(' ; ')}` : ''}`);
+      if (showChannel) {
+        const verdict = agg.bad === 0 ? 'mọi link mở được' : agg.ok === 0 ? `TẤT CẢ ${agg.bad} link lỗi` : `${agg.bad}/${agg.ok + agg.bad} link lỗi`;
+        const short = `🔧 DEBUG ${label}: ${verdict}${errs ? ` ${errs}` : ''}${notes[0] ? ` | ${notes[0]}` : ''}`.slice(0, 150);
+        lines.push(`#EXTINF:-1 group-title="${label}" , ${short}`);
+        lines.push(`http://debug.invalid/${key}`);
+        lines.push('');
+      }
+    }
+    lines.push('');
+  }
+
   let lastDateStr = '';
   for (const entry of withUrl) {
     const { match, stream } = entry;
@@ -444,7 +482,11 @@ export function buildM3uPlaylist(entries = [], options = {}) {
       streamer = String(streamer).replace(/\s*-?\s*Server\s*\d+(-B)?\s*$/i, '').trim();
     }
     const nameParts = [time, getStatusDot(match), getSportIcon(match), title, streamer ? `(${streamer})` : ''].filter(Boolean);
-    const displayName = nameParts.join(' ');
+    // DEBUG TRONG PLAYLIST (04/11/2026 — áp dụng mọi nguồn): gắn kết quả thử link vào tên kênh (xem utils/streamDebug.js).
+    // Lỗi -> "⚠️403(CI)" ...; mở được -> "✅" (tắt bằng PLAYLIST_DEBUG_OK_TAG=off); PLAYLIST_DEBUG=off tắt hẳn.
+    const dbg = entry.debug || null;
+    const dbgTag = dbg ? (dbg.ok ? (debugOkTagEnabled() ? '✅' : '') : dbg.tag) : '';
+    const displayName = [nameParts.join(' '), dbgTag].filter(Boolean).join(' ');
 
     // Dòng phân cách khi sang ngày mới (giờ Việt Nam) — chỉ để dễ đọc
     // bằng mắt khi mở file .m3u dạng text, không ảnh hưởng player parse.
@@ -458,6 +500,11 @@ export function buildM3uPlaylist(entries = [], options = {}) {
     if (logo) attrs.push(`tvg-logo="${logo}"`);
     attrs.push(`group-title="${group}"`);
 
+    if (dbg) {
+      let host = '';
+      try { host = new URL(url).host; } catch { /* bỏ qua */ }
+      lines.push(`# [debug] ${getSourceKey(match)} | ${dbg.detail} | referer=${entry.iptvReferer || '(không gửi)'} | host=${host}`);
+    }
     lines.push(`${attrs.join(' ')} , ${displayName}`);
     // FIX 23/09/2026 (xem resolveIptvReferer() phía trên): referer đã được
     // DÒ THỬ THẬT và gắn sẵn vào entry.iptvReferer trong
@@ -694,7 +741,15 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
               ? await resolveIptvReferer(finalUrl, sourceKey)
               : null;
 
-        return { stream: entry.stream, iptvReferer: entry.iptvReferer };
+        // DEBUG: thử mở đúng link + Referer sẽ ghi ra file (xem utils/streamDebug.js). Không bao giờ ném lỗi.
+        let debug = null;
+        try {
+          if (finalUrl && isDebugEnabledFor(sourceKey)) {
+            debug = await probeStreamForDebug(finalUrl, { referer: entry.iptvReferer || '' });
+          }
+        } catch { debug = null; }
+
+        return { stream: entry.stream, iptvReferer: entry.iptvReferer, debug };
       })();
       cached = { at: now, promise };
       enrichCache.set(cacheKey, cached);
@@ -706,6 +761,7 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     const result = await cached.promise;
     entry.stream = { ...result.stream };
     entry.iptvReferer = result.iptvReferer;
+    entry.debug = result.debug || null;
   });
 
   return entries;
