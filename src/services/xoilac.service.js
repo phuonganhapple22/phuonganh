@@ -2,6 +2,7 @@ import { load } from 'cheerio';
 import { createHttpClient } from '@/src/utils/httpClient';
 import { mapPool, isStaleLiveMatch } from '@/src/utils/playerGet';
 import { filterMinorLeagues } from '@/src/utils/leagueFilter';
+import { debugNote } from '@/src/utils/streamDebug';
 import { setLiveDomain, getLiveDomain, originFromResponse, originOf, historyDomains, requestDomainRecheck } from '@/src/utils/liveDomains';
 
 // Thêm nguồn Xôi Lạc TV (xoilacxc.tv / xoilacxcw.tv). Trang chủ render SẴN
@@ -43,7 +44,7 @@ const XOILAC_MAX_LIVE_HOURS = {
   default: XOILAC_OTHER_SPORT_HOURS || 10
 };
 
-const XOILAC_CONFIGURED_URL = String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacxc.tv').replace(/\/+$/, '');
+const XOILAC_CONFIGURED_URL = String(process.env.XOILAC_DOMAIN || process.env.XOILAC_BASE_URL || 'https://xoilacvau.tv').replace(/\/+$/, '');
 const XOILAC_KEY = 'xoilac';
 
 // FIX (31/10/2026 — "domain cũ đã chuyển hướng nhưng generate vẫn quét domain cũ; log: lỗi mở trang nhúng ...
@@ -650,11 +651,13 @@ async function resolveEmbedStream(embedUrl, depth = 0) {
         timedOut = true;
         noteEmbedTimeout(host);
         console.warn(`[xoilac] trang nhúng timeout (${EMBED_TIMEOUT_MS}ms), bỏ qua kênh này ~${Math.round(EMBED_FAIL_TTL_MS / 1000)}s: ${embedUrl}`);
+        debugNote('xoilac', `trang nhúng timeout ${host}`);
         break;
       }
       noteEmbedResponded(host); // có phản hồi HTTP (403/404...) = host vẫn sống
       if (error?.response?.status === 403) forbidden += 1;
       console.error(`[xoilac] lỗi mở trang nhúng ${embedUrl} (Referer ${ref}):`, error.message);
+      debugNote('xoilac', `mở trang nhúng ${host} lỗi ${error?.response?.status || error.message} (Referer ${ref})`);
     }
   }
   if (timedOut) {
