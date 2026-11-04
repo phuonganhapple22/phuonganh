@@ -33,7 +33,7 @@ globalThis.__giovangDiagLogged = diagLogged;
 // (dấu & viết \\u0026, \\/ ...) nên extractHlsUrls() giờ giải mã đủ — trước đây link bị CẮT mất phần ?token.
 // Trận bóng đá thường có nhiều link (nhiều BLV/server): giữ tối đa GIOVANG_MAX_SERVERS server khác nhau
 // (mặc định 3) để khi server 1 hỏng thì đổi sang server khác, không chỉ xuất 1 link duy nhất.
-const GIOVANG_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 3);
+const GIOVANG_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1); // mặc định 1 link/trận (chất lượng tốt nhất)
 // FIX (03/11/2026, lần 2 — log thật: mỗi BLV có 1 \"pc_stream_url\" dạng .../<id>_hd/<id>_hd@720p.m3u8 và <id> chính là
 // MỐC THỜI GIAN (giây, UNIX) lúc tạo luồng): trận 19:15 ngày 03/11 đang lấy link id 1793510867 = tạo lúc 12:27 ngày 01/11 —
 // luồng cũ đã chết từ 2 ngày trước (404), trong khi luồng mới của cùng trang có id 17937xxxxx (tạo 03/11). Trước đây code
@@ -60,13 +60,26 @@ function extractBlvStreamNames(text) {
   return names;
 }
 
-/** Sắp xếp link: mới nhất trước; bỏ link quá cũ nếu còn link mới. */
+/** Điểm chất lượng từ đường dẫn: @1080p/@720p/..., _fhd > _hd > _sd. Cao hơn = tốt hơn. */
+function hlsQualityScore(url) {
+  const u = String(url);
+  const p = u.match(/@(\d{3,4})p/i) || u.match(/[_/](\d{3,4})p\b/i);
+  let score = p ? Number(p[1]) : 0;
+  if (!p) {
+    if (/_fhd\b/i.test(u)) score = 1080;
+    else if (/_hd\b/i.test(u)) score = 720;
+    else if (/_sd\b/i.test(u)) score = 480;
+  }
+  return score;
+}
+
+/** Sắp xếp link: bỏ link quá cũ (nếu còn link mới), rồi chất lượng cao nhất trước, cùng chất lượng thì mới nhất trước. */
 function rankHlsByFreshness(urls) {
   const now = Date.now();
   const withTs = urls.map((url, i) => ({ url, i, ts: streamCreatedAtMs(url) }));
   const fresh = withTs.filter((x) => !x.ts || now - x.ts <= GIOVANG_MAX_LINK_AGE_MS);
   const pool = fresh.length ? fresh : withTs; // toàn bộ đều cũ -> vẫn giữ (không làm rỗng)
-  pool.sort((a, b) => (b.ts || now) - (a.ts || now) || a.i - b.i); // không đọc được mốc -> coi như mới, giữ thứ tự gốc
+  pool.sort((a, b) => hlsQualityScore(b.url) - hlsQualityScore(a.url) || (b.ts || now) - (a.ts || now) || a.i - b.i); // không đọc được mốc -> coi như mới, giữ thứ tự gốc
   return { urls: pool.map((x) => x.url), droppedStale: withTs.length - pool.length, allStale: !fresh.length && withTs.length > 0 };
 }
 
