@@ -511,7 +511,7 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 
 // Số server tối đa xuất ra cho MỖI trận Phá Làng (xem FIX 27/10/2026 trong matchesToPlaylistEntries).
 // Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
-const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 3);
+const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1); // mặc định 1 link/trận
 const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 1);
 
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
