@@ -72,6 +72,9 @@ const ALLOW = [
   /\bmajor league soccer\b|^mls$/, /\bliga mx\b/, /\b(brazilian|brasileiro|brasileirao).*serie a\b|^campeonato brasileiro serie a$/,
   /\b(liga profesional|argentine primera|primera division argentina|argentine liga profesional)\b/,
   /\bcopa libertadores\b/, /\bcopa sudamericana\b/, /\bleagues cup\b/,
+  // FIX (03/11/2026): các cúp lớn bị bỏ nhầm khi test (Cúp Liên đoàn Anh, Cúp Vua TBN, Cúp QG Việt Nam, CONCACAF...)
+  /\bcup lien doan anh\b|\bcup vua tay ban nha\b|\bcup (qg|quoc gia) (anh|duc|phap|y|tay ban nha|viet nam)\b/,
+  /\bconcacaf champions (cup|league)\b/, /\bafc champions league elite\b/, /\bafc cup$/,
   // Tên tiếng Việt kiểu "VĐQG <nước>" cho các nước lớn
   /^vdqg (anh|tay ban nha|y|duc|phap|ha lan|bo dao nha|bi|tho nhi ky|scotland|viet nam|thai lan|nhat ban|han quoc|trung quoc|a rap xe ut|saudi arabia|my|mexico|brazil|argentina)$/
 ];
@@ -128,8 +131,16 @@ export function shouldDropMatch(match, source) {
 /** Lọc cả danh sách + log gọn các giải bị bỏ (để chỉnh LEAGUE_ALLOW nếu lỡ tay). */
 export function filterMinorLeagues(matches, source) {
   const dropped = new Map();
+  const keptLeagues = new Map();
+  let noLeague = 0;
   const kept = (matches || []).filter((m) => {
-    if (!shouldDropMatch(m, source)) return true;
+    if (!shouldDropMatch(m, source)) {
+      if (String(m?.sport || '').toLowerCase() === 'football') {
+        const nm = m?.competition?.name || m?.leagueName || '';
+        if (!String(nm).trim()) noLeague += 1; else keptLeagues.set(nm, (keptLeagues.get(nm) || 0) + 1);
+      }
+      return true;
+    }
     const name = m?.competition?.name || m?.leagueName || '(không tên)';
     dropped.set(name, (dropped.get(name) || 0) + 1);
     return false;
@@ -137,6 +148,10 @@ export function filterMinorLeagues(matches, source) {
   if (dropped.size) {
     const sample = [...dropped.entries()].slice(0, 12).map(([n, c]) => `${n} x${c}`).join('; ');
     console.log(`[leagueFilter:${source}] bỏ ${[...dropped.values()].reduce((a, b) => a + b, 0)} trận giải nhỏ: ${sample}${dropped.size > 12 ? '; ...' : ''}`);
+  }
+  if (keptLeagues.size || noLeague) {
+    const keptSample = [...keptLeagues.entries()].slice(0, 15).map(([n, c]) => `${n} x${c}`).join('; ');
+    console.log(`[leagueFilter:${source}] GIỮ giải: ${keptSample || '(không)'}${noLeague ? ` | ${noLeague} trận KHÔNG có tên giải (nên không lọc được)` : ''}`);
   }
   return kept;
 }
