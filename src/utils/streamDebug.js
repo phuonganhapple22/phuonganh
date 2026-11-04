@@ -11,7 +11,7 @@
 // nhưng nếu CẢ nguồn đều ⚠️ cùng 1 lỗi thì gần như chắc chắn lỗi nằm ở link/domain/Referer (xem chi tiết trong dòng debug).
 //
 // Biến môi trường:
-//   PLAYLIST_DEBUG=on|off            (mặc định on)  tắt hẳn: PLAYLIST_DEBUG=off
+//   PLAYLIST_DEBUG=on|off            (mặc định OFF từ 04/11/2026 — playlist sạch, không tag/dòng debug). Bật lại: PLAYLIST_DEBUG=on
 //   PLAYLIST_DEBUG_SOURCES=all|a,b   (mặc định all) chỉ bật cho vài nguồn, vd "xoilac,giovang"
 //   PLAYLIST_DEBUG_TIMEOUT_MS=5000   timeout mỗi phép thử (tối thiểu 1500)
 //   PLAYLIST_DEBUG_OK_TAG=on|off     (mặc định on) ghi ✅ cho kênh mở được; off = chỉ ghi khi có lỗi
@@ -21,7 +21,8 @@
 const DEBUG_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
 export function isDebugEnabledFor(source) {
-  const on = String(process.env.PLAYLIST_DEBUG ?? 'on').toLowerCase().trim();
+  const on = String(process.env.PLAYLIST_DEBUG ?? 'off').toLowerCase().trim();
+  if (!['on', '1', 'true', 'all'].includes(on)) return false; // mặc định TẮT (04/11/2026): chỉ bật khi đặt PLAYLIST_DEBUG=on
   if (['off', '0', 'false', 'none'].includes(on)) return false;
   const only = String(process.env.PLAYLIST_DEBUG_SOURCES || 'all').toLowerCase().trim();
   if (!only || only === 'all' || only === '*') return true;
