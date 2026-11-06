@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T10:07:31.467Z",
+  "updatedAt": "2026-11-06T15:41:59.341Z",
   "domains": {
     "giovang": {
-      "url": "https://giovang.love",
+      "url": "https://giovang.shop",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
@@ -619,6 +619,13 @@
       "from": "https://worldwideinterweb.com",
       "to": "https://sociableblog.com",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-06T15:41:59.341Z",
+      "source": "giovang",
+      "from": "https://giovang.love",
+      "to": "https://giovang.shop",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
     }
   ]
 }
