@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T04:33:33.505Z",
+  "updatedAt": "2026-11-06T10:07:31.467Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.love",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://worldwideinterweb.com",
+      "url": "https://sociableblog.com",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -612,6 +612,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-06T10:07:31.467Z",
+      "source": "xoilac",
+      "from": "https://worldwideinterweb.com",
+      "to": "https://sociableblog.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
