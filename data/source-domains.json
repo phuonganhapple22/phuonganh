@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-07T07:51:14.498Z",
+  "updatedAt": "2026-11-07T13:25:55.779Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.shop",
@@ -10,7 +10,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
-      "url": "https://gavangtv86.com",
+      "url": "https://gavang12.live",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
       "status": "moved",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilac365xa.cc",
+      "url": "https://xoilac365xb.cc",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -654,6 +654,20 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-07T13:25:55.779Z",
+      "source": "gavang",
+      "from": "https://gavangtv86.com",
+      "to": "https://gavang12.live",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-07T13:25:55.779Z",
+      "source": "xoilac",
+      "from": "https://xoilac365xa.cc",
+      "to": "https://xoilac365xb.cc",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
