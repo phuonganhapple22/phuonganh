@@ -1,0 +1,680 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-07T19:00:11.374Z",
+  "domains": {
+    "giovang": {
+      "url": "https://giovang.shop",
+      "envVar": "GIOVANG_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang": {
+      "url": "https://gavangtv1.link",
+      "envVar": "GAVANG_BASE_URL",
+      "role": "site",
+      "status": "moved",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang33": {
+      "url": "https://gavang33.me",
+      "envVar": "GAVANG33_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke": {
+      "url": "https://vip5.saoketv40.xyz",
+      "envVar": "SAOKE_BASE_URL",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau": {
+      "url": "https://lau06.bonglautv1.org",
+      "envVar": "BONGLAU_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoilac": {
+      "url": "https://xoilac365xb.cc",
+      "envVar": "XOILAC_DOMAIN",
+      "role": "site",
+      "status": "moved",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoigac": {
+      "url": "https://xoigac.top",
+      "envVar": "XOIGAC_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoiche": {
+      "url": "https://xoiche.live",
+      "envVar": "XOICHE_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "phalang": {
+      "url": "https://phalang2.live",
+      "envVar": "PHALANG_DOMAIN",
+      "role": "site",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "chuoichientv": {
+      "url": "https://live05.chuoichientv.me",
+      "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
+      "role": "site",
+      "status": "moved",
+      "from": "mặc định"
+    },
+    "chuoichientv-player": {
+      "url": "https://live.chuoichien.tv",
+      "envVar": "CHUOICHIENTV_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke-player": {
+      "url": "https://sk.mediastation.live",
+      "envVar": "SAOKE_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau-player": {
+      "url": "https://live.chuoichien.tv",
+      "envVar": "BONGLAU_PLAYER_DOMAIN",
+      "role": "player",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "giovang-api": {
+      "url": "https://live-api.keonhacaitp.one",
+      "envVar": "GIOVANG_LIVE_API_HOST",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "saoke-api": {
+      "url": "https://skapi.66887979.xyz",
+      "envVar": "SAOKE_API_DOMAIN",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "gavang33-api": {
+      "url": "https://gavangtv-api.adviceme.io",
+      "envVar": "GAVANG33_API_DOMAIN",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "phalang-api": {
+      "url": "https://api.plapi202624081158.com",
+      "envVar": "PHALANG_API_BASE",
+      "role": "api",
+      "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "chuoichientv-api": {
+      "url": "https://api-v2.chuoichientv.net/v2",
+      "envVar": "CHUOICHIENTV_API_BASE",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "xoilac-api": {
+      "url": "https://fb-api.sportliveapiz.com",
+      "envVar": "XOILAC_SCORE_API",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "bonglau-api": {
+      "url": "https://api-v2.chuoichientv.net/v2",
+      "envVar": "BONGLAU_API_BASE",
+      "role": "api",
+      "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-09T07:40:50.064Z",
+      "source": "(tất cả)",
+      "from": null,
+      "to": null,
+      "via": "tạo bản lưu đầu tiên"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "giovang",
+      "from": "https://giovang.rent",
+      "to": "https://giovang.tax",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "khandaitv",
+      "from": "https://khandai3.link",
+      "to": "https://khandai2.com",
+      "via": "biến thể tên/đuôi"
+    },
+    {
+      "at": "2026-10-09T20:05:44.617Z",
+      "source": "phalang",
+      "from": "https://phalang.live",
+      "to": "https://phalang2.live",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-10T20:05:14.680Z",
+      "source": "khandaitv",
+      "from": "https://khandai2.com",
+      "to": "https://khandaia.one",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-10T20:05:14.680Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live08.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "giovang",
+      "from": "https://giovang.tax",
+      "to": "https://giovang.tax",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "gavang",
+      "from": "https://gavanglinkv.tv",
+      "to": "https://gavanglinkv.tv",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "saoke",
+      "from": "https://vip3.saoketv40.xyz",
+      "to": "https://vip3.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "xoilac",
+      "from": "https://xoilacxbr.tv",
+      "to": "https://xoilacxbr.tv",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "xoiche",
+      "from": null,
+      "to": "https://xoiche.live",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-19T12:42:55.425Z",
+      "source": "chuoichientv",
+      "from": "https://live08.chuoichientv.me",
+      "to": "https://live08.chuoichientv.me",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-21T13:29:58.830Z",
+      "source": "giovang",
+      "from": "https://giovang.tax",
+      "to": "https://giovang.bet",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-21T13:29:58.830Z",
+      "source": "gavang",
+      "from": "https://gavanglinkv.tv",
+      "to": "https://gavangzz.tv",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-21T13:29:58.830Z",
+      "source": "saoke",
+      "from": "https://vip3.saoketv40.xyz",
+      "to": "https://vip4.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-21T13:29:58.830Z",
+      "source": "xoilac",
+      "from": "https://xoilacxbr.tv",
+      "to": "https://xoilacxbn.tv",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-21T13:29:58.830Z",
+      "source": "chuoichientv",
+      "from": "https://live08.chuoichientv.me",
+      "to": "https://live08.chuoichientv.me",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:35:07.734Z",
+      "source": "giovang",
+      "from": "https://giovang.bet",
+      "to": "https://giovang.uno",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:35:07.734Z",
+      "source": "gavang",
+      "from": "https://gavangzz.tv",
+      "to": "https://gavang11.live",
+      "via": "chuyển hướng của chính trang"
+    },
+    {
+      "at": "2026-10-24T02:44:19.594Z",
+      "source": "xoilac",
+      "from": "https://xoilacxbn.tv",
+      "to": "https://xoilacxca.tv",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-25T03:29:53.072Z",
+      "source": "xoilac",
+      "from": "https://xoilacxca.tv",
+      "to": "https://xoilacxcb.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-25T03:29:53.072Z",
+      "source": "chuoichientv",
+      "from": "https://live08.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-25T20:21:09.050Z",
+      "source": "xoilac",
+      "from": "https://xoilacxcb.tv",
+      "to": "https://xoilacvba.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T02:48:52.816Z",
+      "source": "xoilac",
+      "from": "https://xoilacvba.tv",
+      "to": "https://xoilacvbd.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T02:48:52.816Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-26T13:56:43.233Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbd.tv",
+      "to": "https://xoilacvbe.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-26T19:32:02.645Z",
+      "source": "gavang",
+      "from": "https://gavang11.live",
+      "to": "https://gavangtv1.org",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-26T20:29:18.989Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-27T10:27:18.383Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbe.tv",
+      "to": "https://bluecloudsolutions.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-27T10:27:18.383Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-27T20:33:34.965Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-27T23:22:46.636Z",
+      "source": "xoilac",
+      "from": "https://bluecloudsolutions.com",
+      "to": "https://xoilacvbc.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-27T23:22:46.636Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-28T20:36:59.744Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-30T07:06:03.841Z",
+      "source": "gavang",
+      "from": "https://gavangtv1.org",
+      "to": "https://gavang11.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-30T07:06:03.841Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-30T12:39:05.838Z",
+      "source": "giovang",
+      "from": "https://giovang.uno",
+      "to": "https://giovang.love",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-30T20:34:00.589Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-10-31T05:22:09.520Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbc.tv",
+      "to": "https://xoilacvbx.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-31T05:22:09.520Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-10-31T13:05:49.548Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbx.tv",
+      "to": "https://xoilacvbs.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-10-31T13:05:49.548Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-01T12:45:37.039Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbs.tv",
+      "to": "https://xoilacvbp.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-01T12:45:37.039Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-01T18:20:22.547Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbp.tv",
+      "to": "https://xoilacvbk.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-01T20:30:27.586Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-01T23:54:00.954Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbk.tv",
+      "to": "https://xoilacvbm.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-01T23:54:00.954Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-02T05:29:37.925Z",
+      "source": "saoke",
+      "from": "https://vip4.saoketv40.xyz",
+      "to": "https://vip5.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-02T11:03:47.824Z",
+      "source": "gavang",
+      "from": "https://gavang11.com",
+      "to": "https://gavangtv83.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-02T11:03:47.824Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbm.tv",
+      "to": "https://bluecloudsolutions.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-02T20:40:44.787Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-03T03:45:14.881Z",
+      "source": "xoilac",
+      "from": "https://bluecloudsolutions.com",
+      "to": "https://xoilacvbl.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-03T03:45:14.881Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-03T07:25:36.624Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbl.tv",
+      "to": "https://xoilacvbq.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-03T19:29:09.918Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbq.tv",
+      "to": "https://wbbpe.org",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-03T20:42:40.626Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-04T00:40:32.011Z",
+      "source": "xoilac",
+      "from": "https://wbbpe.org",
+      "to": "https://xoilacvau.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-04T00:40:32.011Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-04T13:32:33.366Z",
+      "source": "xoilac",
+      "from": "https://xoilacvau.tv",
+      "to": "https://xoilacvbb.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-04T20:48:56.568Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-05T11:49:59.387Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbb.tv",
+      "to": "https://lawupdates.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-05T11:49:59.387Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-05T17:23:57.609Z",
+      "source": "xoilac",
+      "from": "https://lawupdates.com",
+      "to": "https://xoilacvbo.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-05T20:45:10.678Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-06T04:33:33.505Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbo.tv",
+      "to": "https://worldwideinterweb.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-06T04:33:33.505Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-06T10:07:31.467Z",
+      "source": "xoilac",
+      "from": "https://worldwideinterweb.com",
+      "to": "https://sociableblog.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-06T15:41:59.341Z",
+      "source": "giovang",
+      "from": "https://giovang.love",
+      "to": "https://giovang.shop",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-06T20:43:07.717Z",
+      "source": "xoilac",
+      "from": "https://sociableblog.com",
+      "to": "https://xoilac365xa.cc",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-06T20:43:07.717Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-07T07:51:14.498Z",
+      "source": "gavang",
+      "from": "https://gavangtv83.com",
+      "to": "https://gavangtv86.com",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-07T07:51:14.498Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-07T13:25:55.779Z",
+      "source": "gavang",
+      "from": "https://gavangtv86.com",
+      "to": "https://gavang12.live",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-07T13:25:55.779Z",
+      "source": "xoilac",
+      "from": "https://xoilac365xa.cc",
+      "to": "https://xoilac365xb.cc",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-07T19:00:11.374Z",
+      "source": "gavang",
+      "from": "https://gavang12.live",
+      "to": "https://gavangtv1.link",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    }
+  ]
+}
