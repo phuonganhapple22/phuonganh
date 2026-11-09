@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T11:00:39.806Z",
+  "updatedAt": "2026-11-09T18:47:10.964Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.shop",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacvax.tv",
+      "url": "https://xoilac365j.mobi",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -56,6 +56,13 @@
       "envVar": "XOICHE_DOMAIN",
       "role": "site",
       "status": "alive",
+      "from": "SOURCE_DOMAINS"
+    },
+    "rerace": {
+      "url": "https://www.rerace.net",
+      "envVar": "RERACE_DOMAIN",
+      "role": "site",
+      "status": "chưa quét",
       "from": "SOURCE_DOMAINS"
     },
     "phalang": {
@@ -140,6 +147,34 @@
       "envVar": "BONGLAU_API_BASE",
       "role": "api",
       "status": "blocked",
+      "from": "SOURCE_DOMAINS"
+    },
+    "rerace-weelo": {
+      "url": "https://weelo.live",
+      "envVar": "RERACE_WEELO_DOMAIN",
+      "role": "api",
+      "status": "chưa quét",
+      "from": "SOURCE_DOMAINS"
+    },
+    "rerace-player": {
+      "url": "https://weellz.live",
+      "envVar": "RERACE_PLAYER_ORIGIN",
+      "role": "player",
+      "status": "chưa quét",
+      "from": "SOURCE_DOMAINS"
+    },
+    "rerace-embed": {
+      "url": "https://taifood-blog.asia",
+      "envVar": "RERACE_EMBED_ORIGIN",
+      "role": "player",
+      "status": "chưa quét",
+      "from": "SOURCE_DOMAINS"
+    },
+    "rerace-ppv-api": {
+      "url": "https://api.ppv.st/api/streams",
+      "envVar": "RERACE_PPV_API",
+      "role": "api",
+      "status": "chưa quét",
       "from": "SOURCE_DOMAINS"
     }
   },
@@ -724,6 +759,48 @@
       "from": "https://xoilac365xa.cc",
       "to": "https://xoilacvax.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "xoilac",
+      "from": "https://xoilacvax.tv",
+      "to": "https://xoilac365j.mobi",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "rerace",
+      "from": null,
+      "to": "https://www.rerace.net",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "rerace-weelo",
+      "from": null,
+      "to": "https://weelo.live",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "rerace-player",
+      "from": null,
+      "to": "https://weellz.live",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "rerace-embed",
+      "from": null,
+      "to": "https://taifood-blog.asia",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-09T18:47:10.964Z",
+      "source": "rerace-ppv-api",
+      "from": null,
+      "to": "https://api.ppv.st/api/streams",
+      "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
     }
   ]
 }
