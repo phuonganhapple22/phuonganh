@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T23:53:30.929Z",
+  "updatedAt": "2026-11-09T11:00:39.806Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.shop",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilac365xa.cc",
+      "url": "https://xoilacvax.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -717,6 +717,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-09T11:00:39.806Z",
+      "source": "xoilac",
+      "from": "https://xoilac365xa.cc",
+      "to": "https://xoilacvax.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
