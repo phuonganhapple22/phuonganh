@@ -118,7 +118,7 @@ function readDetectedReferers(source) {
 }
 
 const REFERER_BY_SOURCE = {
-  giovang: process.env.GIOVANG_DOMAIN || 'https://giovang.blog', // giovang.city đã redirect sang giovang.blog (30/09/2026)
+  giovang: process.env.GIOVANG_DOMAIN || 'https://giovang.love', // trang Giờ Vàng hiện là giovang.love (03/11/2026)
   // FIX (25/09/2026 — bắt được request THẬT từ DevTools, xem chú thích ở
   // REFERER_CANDIDATES_BY_SOURCE bên dưới): domain player CHUẨN không phải
   // live05.chuoichientv.me/chuoichientv.link như đoán trước đây, mà là
@@ -150,7 +150,9 @@ const REFERER_BY_SOURCE = {
   // Xoigac TV (04/10/2026) — xem xoigac.service.js.
   xoigac: String(process.env.XOIGAC_DOMAIN || process.env.XOIGAC_BASE_URL || 'https://xoigac.live').replace(/\/+$/, ''),
   // Xôi Chè TV (18/10/2026) — xem xoiche.service.js. CDN live.khoga.space; chưa biết có chặn hotlink không.
-  xoiche: String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')
+  xoiche: String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, ''),
+  // Rerace F1 (08/11/2026) — xem rerace.service.js. Player thật chạy ở weelo.live nhưng Referer CDN chưa xác nhận.
+  rerace: String(process.env.RERACE_DOMAIN || process.env.RERACE_BASE_URL || 'https://www.rerace.net').replace(/\/+$/, '')
 };
 // Gỡ Pháo Hoa/Khán Đài (18/10/2026): fallback cho nguồn không có entry riêng đổi sang Giờ Vàng (domain còn sống).
 const REFERER_FALLBACK = REFERER_BY_SOURCE.giovang;
@@ -239,6 +241,8 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // Xoigac: request m3u8 thật (04/10/2026) tới AWS IVS (*.playlist.live-video.net) KHÔNG gửi Referer -> thử không Referer trước.
   xoigac: [null, `${REFERER_BY_SOURCE.xoigac}/`],
   xoiche: [null, `${REFERER_BY_SOURCE.xoiche}/`],
+  // Bóng đá (DevTools 08/11/2026): m3u8 bharat.indianservers.st gửi Origin/Referer = https://taifood-blog.asia ; F1: weellz.live.
+  rerace: [`${String(process.env.RERACE_EMBED_ORIGIN || 'https://taifood-blog.asia').replace(/\/+$/, '')}/`, `${String(process.env.RERACE_PLAYER_ORIGIN || 'https://weellz.live').replace(/\/+$/, '')}/`, `${String(process.env.RERACE_WEELO_DOMAIN || 'https://weelo.live').replace(/\/+$/, '')}/`, `${REFERER_BY_SOURCE.rerace}/`, null],
   // FIX (24/09/2026 — "Sao Kê các trận lỗi không xem được" dù link .m3u8 có
   // #EXTVLCOPT Referer chuoichientv): trang Sao Kê tự phát bằng Referer LÀ
   // CHÍNH DOMAIN CỦA NÓ, nên Referer đúng phải là SAOKE_SITE — đặt LÊN ĐẦU.
@@ -272,6 +276,12 @@ function refererCandidatesFor(source, target) {
   } catch {
     // target không parse được thì bỏ qua bước ưu tiên theo cache, vẫn thử
     // tuần tự các ứng viên còn lại như bình thường.
+  }
+  // Rerace F1 (DevTools 08/11/2026): mọi request tới weelo.live (playlist/segment) và rewnd.live (key AES) mang
+  // Origin/Referer = https://weellz.live -> đặt LÊN ĐẦU (bóng đá thì vẫn taifood-blog.asia như cũ).
+  if (source === 'rerace' && /(^|\.)(weelo|weellz|rewnd)\.live$/i.test(host)) {
+    const playerRef = `${String(process.env.RERACE_PLAYER_ORIGIN || 'https://weellz.live').replace(/\/+$/, '')}/`;
+    list = [playerRef, ...list.filter((r) => r !== playerRef)];
   }
   const remembered = host && workingRefererByHost.has(host) ? workingRefererByHost.get(host) : undefined;
   if (remembered !== undefined && list.includes(remembered)) {
@@ -431,6 +441,17 @@ function rewriteM3u8(text, baseUrl, source) {
   return rewritten.join('\n');
 }
 
+// Rerace/weelo: segment đặt tên giả IMG_xxxx.jpg|png|webp (thực chất là MPEG-TS, có thể mã hoá AES-128 qua key rewnd.live).
+// Nếu CDN chèn "header ảnh" phía trước dữ liệu TS thì cắt bỏ tới chỗ có đồng bộ TS (0x47 mỗi 188 byte); không tìm thấy -> giữ nguyên.
+const TS_SNIFF_BYTES = 8192 + 400;
+function findTsStart(buf) {
+  const max = Math.min(buf.length - 377, 8192);
+  for (let i = 0; i < max; i += 1) {
+    if (buf[i] === 0x47 && buf[i + 188] === 0x47 && buf[i + 376] === 0x47) return i;
+  }
+  return 0;
+}
+
 export default async function handler(req, res) {
   // Gắn CORS ngay từ đầu, kể cả khi lỗi bên dưới, để không rơi vào tình
   // huống ẩn: proxy trả lỗi 4xx/5xx nhưng vẫn thiếu header CORS khiến
@@ -472,7 +493,11 @@ export default async function handler(req, res) {
     // hợp link .m3u8 ban đầu 302 sang domain CDN khác.
     const finalUrl = upstream.url || target;
     const looksLikeManifest =
-      /mpegurl/i.test(contentType) || /\.m3u8(\?|$)/i.test(finalUrl) || /\.m3u8(\?|$)/i.test(target);
+      /mpegurl/i.test(contentType) || /\.m3u8(\?|$)/i.test(finalUrl) || /\.m3u8(\?|$)/i.test(target)
+      // Rerace/weelo (08/11/2026): playlist HLS đặt tên weelo.live/<token a-p>/index.html (không có đuôi .m3u8).
+      || /\/[a-p]{16,}\/index\.html(\?|$)/i.test(finalUrl) || /\/[a-p]{16,}\/index\.html(\?|$)/i.test(target)
+      // playlist con/âm thanh của weelo đặt tên giả: <token>/tracks-v3a1/style.css, <token>/tracks-a1/style.css
+      || /\/tracks-[^/]+\/style\.css(\?|$)/i.test(finalUrl) || /\/tracks-[^/]+\/style\.css(\?|$)/i.test(target);
 
     if (looksLikeManifest) {
       const text = await upstream.text();
@@ -495,10 +520,13 @@ export default async function handler(req, res) {
 
     // Nhị phân (segment .ts, .key, .aac...) — stream thẳng, không buffer cả
     // file vào bộ nhớ, giữ nguyên header liên quan tới phát video/seek.
+    const isDisguisedSegment = /\/ingest\/[^/]+\/[^/?]+\.(jpe?g|png|webp|gif|bmp|ico)(\?|$)/i.test(finalUrl);
+    const stripPrefix = isDisguisedSegment && upstream.status === 200 && !req.headers.range;
     res.status(upstream.status);
-    if (contentType) res.setHeader('Content-Type', contentType);
+    if (isDisguisedSegment) res.setHeader('Content-Type', 'video/mp2t');
+    else if (contentType) res.setHeader('Content-Type', contentType);
     const contentLength = upstream.headers.get('content-length');
-    if (contentLength) res.setHeader('Content-Length', contentLength);
+    if (contentLength && !stripPrefix) res.setHeader('Content-Length', contentLength);
     const contentRange = upstream.headers.get('content-range');
     if (contentRange) res.setHeader('Content-Range', contentRange);
     res.setHeader('Accept-Ranges', 'bytes');
@@ -510,12 +538,17 @@ export default async function handler(req, res) {
     }
 
     const reader = upstream.body.getReader();
+    let head = stripPrefix ? Buffer.alloc(0) : null;
     // eslint-disable-next-line no-constant-condition
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-      res.write(Buffer.from(value));
+      const chunk = Buffer.from(value);
+      if (head === null) { res.write(chunk); continue; }
+      head = Buffer.concat([head, chunk]);
+      if (head.length >= TS_SNIFF_BYTES) { res.write(head.subarray(findTsStart(head))); head = null; }
     }
+    if (head && head.length) res.write(head.subarray(findTsStart(head)));
     res.end();
   } catch (err) {
     console.error('[api/proxy/hls]', err?.message, '| target:', target);

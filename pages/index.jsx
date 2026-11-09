@@ -322,6 +322,7 @@ const SOURCE_META = {
   giovang: { color: '#F5B301', icon: '🥇' },
   chuoichientv: { color: '#FFD23F', icon: '🍌' },
   phalang: { color: '#8E5CF7', icon: '⚡' },
+  rerace: { color: '#E10600', icon: '🏎️' }, // 09/11/2026: Rerace (F1/bóng đá) có màu riêng thay vì màu mặc định
   // FIX (20/09/2026): trước đây dùng SOURCE_META.phaohoa làm giá trị
   // dự phòng (fallback) mỗi khi gặp match.source lạ — Pháo Hoa đã bị loại
   // bỏ khỏi pipeline (domain chết) nên không còn hợp lý làm fallback nữa.

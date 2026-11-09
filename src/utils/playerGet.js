@@ -46,7 +46,9 @@ const SPORT_ALIASES = {
   'grand-prix': 'f1',
   duaxe: 'f1',
   'dua-xe': 'f1',
-  'dua-xe-f1': 'f1'
+  'dua-xe-f1': 'f1',
+  'motor-sports': 'f1',
+  motorsports: 'f1'
 };
 
 const SOURCE_LABELS = {
@@ -59,7 +61,8 @@ const SOURCE_LABELS = {
   bonglau: 'Bong Lau TV',
   xoilac: 'Xoi Lac TV',
   xoigac: 'Xoi Gac TV',
-  xoiche: 'Xoi Che TV'
+  xoiche: 'Xoi Che TV',
+  rerace: 'Rerace F1'
 };
 
 const SOURCE_SHORT = {
@@ -72,6 +75,7 @@ const SOURCE_SHORT = {
   bonglau: 'Bông Lau',
   xoilac: 'Xôi Lạc',
   xoiche: 'Xôi Chè',
+  rerace: 'Rerace F1',
   xoigac: 'Xôi Gấc' // FIX (05/10/2026): tên đúng là "Xôi Gấc" (trước ghi nhầm "Xôi Gác") — đây là tên group-title trong file .m3u
 };
 
@@ -85,7 +89,7 @@ const SOURCE_SHORT = {
 // FIX (27/09/2026 — theo yêu cầu, thêm Bông Lau TV): xem bonglau.service.js
 // — ĐÃ BÁO TRƯỚC nguồn này dùng CHUNG API/CDN/pool trận với chuoichientv
 // (chỉ khác domain/giao diện), người dùng vẫn muốn tách thành nguồn riêng.
-export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche'];
+export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche', 'rerace'];
 
 // Danh sách nguồn dùng để vẽ công tắc bật/tắt trên giao diện. Giữ đồng bộ
 // với SOURCE_GROUP_ORDER — mỗi nguồn 1 công tắc, người dùng tự chọn nguồn
@@ -130,7 +134,8 @@ export const SOURCE_TOGGLE_LIST = [
   { key: 'bonglau', label: 'Bông Lau' },
   { key: 'xoilac', label: 'Xôi Lạc' },
   { key: 'xoigac', label: 'Xôi Gấc' },
-  { key: 'xoiche', label: 'Xôi Chè' }
+  { key: 'xoiche', label: 'Xôi Chè' },
+  { key: 'rerace', label: 'Rerace F1' }
 ];
 
 // Bump the key once so an old browser setting cannot hide every source after
@@ -332,6 +337,7 @@ export function isPlayableStreamUrl(url) {
     u.includes('xl365') ||
     u.includes('golivenow') ||
     u.includes('vncdn') ||
+    u.includes('weelo.live') || // Rerace: weelo.live/<token>/index.html là playlist HLS (08/11/2026)
     u.includes('livestreambong') ||
     u.includes('/live/') ||
     u.includes('/stream/') ||
@@ -402,7 +408,7 @@ export function streamsFromMatchCard(match) {
     return list.length ? list : null;
   }
 
-  if (match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche') return null;
+  if (match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche' && match?.source !== 'rerace') return null;
 
   const fromCommentators = (match.commentators || match.streamers || [])
     .filter((c) => c.streamUrl || c.link || c.m3u8Url)

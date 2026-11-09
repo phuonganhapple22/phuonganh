@@ -157,3 +157,66 @@ Nếu vẫn có lỗi:
 - `.github/workflows/check-domains.yml`: thêm ô `force_discover`, `exclude_domains`.
 - Chi tiết: CHECK_DOMAINS.md mục 0g. Không xoá file nào.
 
+
+---
+## 08/11/2026 — Thêm nguồn Rerace F1 (rerace.net)
+- MỚI: `src/services/rerace.service.js`, `pages/api/rerace/live.js`, `pages/api/rerace/stream.js`.
+- Đăng ký thêm (chỉ thêm dòng, không xoá): `playerGet.js`, `playlistBuilder.service.js`, `pages/api/playlist/resolve.js`, `pages/api/proxy/hls.js`, `m3uPlaylist.js`, `env.example`, `source-domains.example.txt`, `scripts/source-domains.mjs`.
+- Parser trang chủ đã test trên file `nguon_F1.txt` thật (6 session F1 + thẻ trận).
+- ĐÃ XÁC NHẬN schema (mẫu user gửi 08/11/2026): `weelo.live/feed/events.json` (events[].sessions[startsAt,endsAt], streams[]), `api.ppv.st/api/streams` (iframe + substreams, embed taifood-blog.asia). Mặc định chỉ series f1 (RERACE_SERIES).
+- Header thật (curl DevTools): feed/ppv gửi Origin+Referer rerace.net; trang player weelo.live/<hash>/index.html gửi Origin+Referer weellz.live (RERACE_PLAYER_ORIGIN). Có thêm https://www.rerace.net/data/f1-schedule.json (chưa dùng).
+- CHƯA XÁC NHẬN: phần tử của `events[].streams[]` (mẫu đều rỗng), `players/state.json` và Referer CDN. Link m3u8 được quét chịu lỗi; không thấy thì trả rỗng.
+- (08/11/2026, theo app JS của rerace) Luồng phát: events[].streams[] = {id:"...-srcNNN", label, language, url:<iframe weellz.live>, kind:"iframe"} -> iframe gọi weelo.live/<token a-p>/index.html (Origin/Referer weellz.live), nhiều khả năng là playlist HLS đặt tên .html.
+- Rerace xuất TẤT CẢ server của 1 trận (RERACE_MAX_SERVERS, mặc định 24), mỗi server 1 kênh "Server N - <label>". Chỉ áp dụng cho nguồn rerace, các nguồn khác giữ nguyên.
+- Thêm: playerGet.knownCdn 'weelo.live'; proxy HLS nhận diện weelo.live/<token>/index.html là playlist.
+- CHƯA XÁC NHẬN: token có xuất hiện trong HTML iframe hay do JS sinh động (nếu JS sinh thì cần thêm bước), và Referer CDN của segment .ts.
+- (08/11/2026) Rerace lấy thêm BÓNG ĐÁ từ api.ppv.st/api/streams: mỗi trận = [chính, ...substreams] (iframe taifood-blog.asia/embed/...), nhãn server = source_tag ("HD | Movistar"), sắp xếp 4K/FHD/HD/SD. Mặc định RERACE_SPORTS=f1,motor-sports,football; bỏ bóng rổ + kênh 24/7; môn ngoài F1 chỉ lấy trận trong RERACE_UPCOMING_HOURS=24h tới.
+- CHƯA XÁC NHẬN: trang embed taifood-blog.asia có để lộ .m3u8 trong HTML hay phải chạy JS/đòi header riêng.
+- (08/11/2026) Bóng đá/môn khác trên rerace: mỗi trận chỉ 1 link chất lượng tốt nhất (RERACE_MAX_SERVERS_OTHER=1); F1 vẫn lấy tất cả server.
+- (08/11/2026) Link bóng đá thật có dạng bharat.indianservers.st/secure/<token>/<start>/<end>/.../mono.ts.m3u8 (token ký sẵn). stream.referer = origin trang iframe của từng server.
+- (08/11/2026) XÁC NHẬN bằng DevTools: m3u8 bóng đá (bharat.indianservers.st) gửi Origin=https://taifood-blog.asia, Referer=https://taifood-blog.asia/ -> thêm RERACE_EMBED_ORIGIN vào danh sách Referer. Còn mở: token /secure/ có gắn IP không; link có nằm sẵn trong HTML embed không.
+- (08/11/2026) ppv cũng có F1 (category Motorsports, tag "Formula 1", ~16 server theo ngôn ngữ, uri f1/2026/brazil/race): server ppv được gộp vào session weelo cùng giờ (±45 phút), bỏ bản trùng. Embed bóng đá dạng https://taifood-blog.asia/embed/<league>/<yyyy-mm-dd>/<home>-<away> (+ _540p là bản SD).
+
+---
+
+# Rerace (08/11/2026) — hoàn thiện nguồn bóng đá
+
+- `src/services/rerace.service.js`: thêm `extractM3u8()` + `scanEmbed()` quét trang embed `taifood-blog.asia/embed/<giải>/<ngày>/<nhà>-<khách>`:
+  m3u8 tuyệt đối / `\/` / tương đối, base64 (`atob(...)`, `"aHR0c..."`), `<iframe src>`, `<script src>` cùng site, endpoint `fetch()`/api trong script;
+  thử lần lượt Referer rerace.net -> taifood-blog.asia -> weellz.live. Luồng F1 (weelo.live/<token>/index.html) giữ nguyên.
+- `pages/api/rerace/debug.js` (MỚI): `GET /api/rerace/debug?id=<matchId>` trả trace từng bước (HTTP status, số byte, m3u8 tìm được).
+  Nếu trận bóng đá vẫn ra 0 link, mở endpoint này để biết trang embed trả 403 (chặn Referer), trang trống, hay link nằm trong JS/API khác.
+- Chưa xác nhận được mã nguồn thật của trang embed (site chặn bot) -> nếu cần, dán kết quả `/api/rerace/debug` để chỉnh tiếp.
+
+---
+
+# Rerace F1 (08/11/2026) — hoàn thiện luồng weelo.live (từ DevTools)
+
+Chuỗi thật: `events.json -> streams[].url = https://weellz.live/beta?stream=<token>&r=1`
+-> master `https://weelo.live/<token>/index.html` (#EXTM3U, không có đuôi .m3u8)
+-> playlist con/âm thanh đặt tên giả `<token>/tracks-v3a1|v2a1|a1/style.css`
+-> segment đặt tên giả `https://weelo.live/ingest/<uuid>/IMG_xxxx.jpg|png|webp`
+-> key AES `https://rewnd.live/k/<token>-<time>?t=...`. Mọi request mang Origin/Referer = https://weellz.live.
+
+- `src/services/rerace.service.js`: `weeloTokenOf()` lấy token ngay từ `?stream=` của iframe, tự dựng `weelo.live/<token>/index.html`, kiểm tra `#EXTM3U`
+  (404/410 = chưa phát -> bỏ; lỗi mạng/403 vẫn giữ link). Không cần đọc HTML trang iframe nữa. Bước quét embed/bóng đá giữ nguyên làm dự phòng.
+- `pages/api/proxy/hls.js`:
+  1. nhận diện playlist đặt tên `*/tracks-*/style.css` (trước đây bị coi là CSS nhị phân -> hls.js lỗi);
+  2. segment `/ingest/<uuid>/IMG_*.jpg|png|webp` trả `Content-Type: video/mp2t` + cắt "header ảnh" nếu có trước dữ liệu TS (không có/đã mã hoá AES -> giữ nguyên);
+  3. host weelo.live / weellz.live / rewnd.live (kể cả key AES) ưu tiên Referer+Origin = weellz.live.
+
+---
+
+# Rerace — theo dõi domain (09/11/2026)
+
+- `scripts/source-domains.mjs`: thêm 4 domain phụ vào danh sách quét (chỉ quét + báo cáo, không tự đổi): `rerace-weelo` (weelo.live), `rerace-player` (weellz.live), `rerace-embed` (taifood-blog.asia), `rerace-ppv-api` (api.ppv.st). Trang `rerace` đã có từ trước.
+- `source-domains.example.txt`: thêm 4 dòng tương ứng. Dán vào biến GitHub SOURCE_DOMAINS để workflow Check Domains báo cáo 4 domain này.
+- KHÔNG cần sửa `.github/workflows`: `expand-source-domains.mjs` mở mọi nguồn trong SOURCES thành biến môi trường chung.
+
+---
+
+# Rerace — cho bằng các nguồn cũ (09/11/2026)
+
+- `scripts/source-domains.mjs`: bật `autoFix` cho `rerace` (candidates: www.rerace.net, rerace.net). Domain đổi/chuyển hướng sang domain đúng nguồn (nội dung có "rerace" hoặc tên miền chứa "rerace") thì Generate Playlists tự dùng ngay, Check Domains tự ghi vào SOURCE_DOMAINS. Trang đỗ tên miền/rao bán/cá cược bị từ chối. Không đặt `plainHttp` nên 403 Cloudflare từ IP runner KHÔNG bị coi là hỏng.
+- `pages/api/static-playlist/[file].js` + `scripts/generate-playlists.js`: thêm `rerace` vào SOURCE_KEYS -> link tĩnh `source-rerace.m3u` dùng được qua route này.
+- `pages/index.jsx`: thêm màu/biểu tượng riêng cho Rerace trong SOURCE_META.

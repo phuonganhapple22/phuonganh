@@ -172,6 +172,13 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null,
     `${String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')}/`
   ],
+  rerace: [
+    `${String(process.env.RERACE_EMBED_ORIGIN || 'https://taifood-blog.asia').replace(/\/+$/, '')}/`, // bóng đá: Origin/Referer thật = taifood-blog.asia (DevTools 08/11/2026)
+    `${String(process.env.RERACE_PLAYER_ORIGIN || 'https://weellz.live').replace(/\/+$/, '')}/`,
+    `${String(process.env.RERACE_WEELO_DOMAIN || 'https://weelo.live').replace(/\/+$/, '')}/`,
+    `${String(process.env.RERACE_DOMAIN || process.env.RERACE_BASE_URL || 'https://www.rerace.net').replace(/\/+$/, '')}/`,
+    null
+  ],
   saoke: [
     // Referer/Origin thật của player (bắt từ DevTools 24/09/2026) — đặt LÊN ĐẦU.
     `${String(process.env.SAOKE_PLAYER_DOMAIN || 'https://sk.mediastation.live').replace(/\/+$/, '')}/`,
@@ -560,6 +567,8 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 // Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
 const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1); // mặc định 1 link/trận
 const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 1);
+// Rerace (08/11/2026): 1 trận live có NHIỀU server (events[].streams[]) -> xuất TẤT CẢ (mỗi server 1 kênh "Server N"). Mặc định tối đa 24.
+const RERACE_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.RERACE_MAX_SERVERS) || 24);
 
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
 const ENRICH_TTL_MS = Number(process.env.ENRICH_CACHE_TTL_MS) > 0 ? Number(process.env.ENRICH_CACHE_TTL_MS) : 90 * 1000;
@@ -615,7 +624,9 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
       // FIX (03/11/2026 — "các trận bóng đá live Giờ Vàng không xem được"): Giờ Vàng cũng trả nhiều server/trận
       // -> xuất tối đa GIOVANG_MAX_SERVERS kênh ("... (Giovang 1)", "(Giovang 2)"...) để đổi server khi 1 server hỏng.
       const srcKey = getSourceKey(match);
-      const chosen = (srcKey === 'phalang' && playableStreams.length > 1)
+      const chosen = (srcKey === 'rerace' && playableStreams.length > 1)
+        ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, RERACE_MAX_SERVERS_PER_MATCH)
+        : (srcKey === 'phalang' && playableStreams.length > 1)
         ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, PHALANG_MAX_SERVERS_PER_MATCH)
         : (srcKey === 'giovang' && playableStreams.length > 1)
           ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, GIOVANG_MAX_SERVERS_PER_MATCH)

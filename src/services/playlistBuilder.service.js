@@ -15,6 +15,7 @@ import bonglauService from '@/src/services/bonglau.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
+import reraceService from '@/src/services/rerace.service';
 import { shouldDropMatch } from '@/src/utils/leagueFilter';
 import {
   isWithinNextHours,
@@ -41,7 +42,7 @@ const XOICHE_UPCOMING_WINDOW_HOURS = (() => {
   const n = Number(process.env.XOICHE_UPCOMING_HOURS);
   return Number.isFinite(n) && n > 0 ? n : 48;
 })();
-const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS };
+const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS, rerace: 72 };
 // Do not let a slow streamer detail page delay the complete match list.
 // FIX (20/09/2026 — "Giờ Vàng đều bị 'chưa có link'"): mốc 4500ms này ban
 // đầu hợp lý cho những nguồn gọi thẳng 1 API JSON (chuoichientv, phalang).
@@ -62,7 +63,7 @@ const STREAM_RESOLVE_TIMEOUT_MS_BROWSER = 18000;
 // -> 4,5s không đủ (quá hạn là mất link, rơi về nhánh "chưa có link").
 // FIX (21/10/2026): xoilac trước đây rơi vào mốc mặc định 4,5s — nhánh dự phòng getStreamLinks() phải tải lại
 // trang chủ + trang trận + trang nhúng nên thường vượt 4,5s -> mất link ở chu kỳ đó. Cho 20s (≥ timeout trang nhúng).
-const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000, xoilac: 20000 };
+const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { xoigac: 15000, xoiche: 10000, xoilac: 20000, rerace: 20000 };
 const BROWSER_BASED_SOURCES = new Set(['giovang']);
 const STREAM_RESOLVE_CONCURRENCY = 12;
 // Riêng nguồn cần trình duyệt: giảm số tab mở song song — 12 tab Chrome
@@ -199,7 +200,7 @@ async function resolveWithinDeadline(match) {
 
 /** Mirror fetchLiveLists() from pages/index.jsx but calling services in-process. */
 async function fetchLiveLists() {
-  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive] = await Promise.all([
+  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive, reraceLive] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('live'), 'giovang:live'),
     safe(chuoichientvService.getAllMatchesByTab('live'), 'chuoichientv:live'),
     safe(phalangService.getAllMatchesByTab('live'), 'phalang:live'),
@@ -209,7 +210,8 @@ async function fetchLiveLists() {
     safe(bonglauService.getAllMatchesByTab('live'), 'bonglau:live'),
     safe(xoilacService.getAllMatchesByTab('live'), 'xoilac:live'),
     safe(xoigacService.getAllMatchesByTab('live', 'all', { prefetchIvs: true }), 'xoigac:live'),
-    safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live')
+    safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live'),
+    safe(reraceService.getAllMatchesByTab('live'), 'rerace:live')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -240,6 +242,7 @@ async function fetchLiveLists() {
   pushListNoFilter(xoilacLive, 'xoilac');
   pushListNoFilter(xoigacLive, 'xoigac');
   pushListNoFilter(xoicheLive, 'xoiche');
+  pushListNoFilter(reraceLive, 'rerace');
 
   return tagged;
 }
@@ -252,7 +255,7 @@ async function fetchLiveLists() {
  * moment the player actually opens the channel.
  */
 async function fetchUpcomingLists() {
-  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming] = await Promise.all([
+  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming, reraceUpcoming] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('upcoming'), 'giovang:upcoming'),
     safe(chuoichientvService.getAllMatchesByTab('upcoming'), 'chuoichientv:upcoming'),
     safe(phalangService.getAllMatchesByTab('upcoming'), 'phalang:upcoming'),
@@ -262,7 +265,8 @@ async function fetchUpcomingLists() {
     safe(bonglauService.getAllMatchesByTab('upcoming'), 'bonglau:upcoming'),
     safe(xoilacService.getAllMatchesByTab('upcoming'), 'xoilac:upcoming'),
     safe(xoigacService.getAllMatchesByTab('upcoming'), 'xoigac:upcoming'),
-    safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming')
+    safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming'),
+    safe(reraceService.getAllMatchesByTab('upcoming'), 'rerace:upcoming')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -295,6 +299,7 @@ async function fetchUpcomingLists() {
   pushListNoFilter(xoilacUpcoming, 'xoilac');
   pushListNoFilter(xoigacUpcoming, 'xoigac');
   pushListNoFilter(xoicheUpcoming, 'xoiche');
+  pushListNoFilter(reraceUpcoming, 'rerace');
 
   return tagged;
 }
@@ -355,6 +360,9 @@ async function resolveStreams(match) {
       } else if (source === 'xoiche') {
         if (!matchId) return [];
         raw = await xoicheService.getStreamLinks(matchId);
+      } else if (source === 'rerace') {
+        if (!matchId) return [];
+        raw = await reraceService.getStreamLinks(matchId);
       } else if (source === 'giovang') {
         if (!liveUrl && !matchId) return [];
         const detail = await giovangService.getMatchDetail(liveUrl || matchId);

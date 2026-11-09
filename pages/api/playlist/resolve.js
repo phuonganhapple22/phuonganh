@@ -8,6 +8,7 @@ import phalangService from '@/src/services/phalang.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
+import reraceService from '@/src/services/rerace.service';
 import { normalizeStreamList, isFlvUrl } from '@/src/utils/playerGet';
 import { preferHlsForIptv } from '@/src/utils/m3uPlaylist';
 import { buildProxyStreamUrl } from '@/src/utils/proxyUrl';
@@ -94,6 +95,10 @@ export default async function handler(req, res) {
           // Link HLS nằm sẵn trong __NUXT_DATA__ trang chủ (cache 45s) -> lấy lại lúc bấm xem cho chắc trạng thái BLV.
           if (!matchId) return notReadyYet();
           raw = await withDeadline(xoicheService.getStreamLinks(matchId), 12000);
+        } else if (source === 'rerace') {
+          // Rerace: quét m3u8 từ trang xem/player weelo -> lấy mới lúc bấm xem.
+          if (!matchId) return notReadyYet();
+          raw = await withDeadline(reraceService.getStreamLinks(matchId), 20000);
         } else if (source === 'giovang') {
           const id = url || matchId;
           if (!id) return notReadyYet();
