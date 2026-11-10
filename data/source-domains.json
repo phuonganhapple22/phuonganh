@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T18:47:10.964Z",
+  "updatedAt": "2026-11-10T02:37:31.551Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.shop",
@@ -41,7 +41,7 @@
       "url": "https://xoilac365j.mobi",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -62,7 +62,7 @@
       "url": "https://www.rerace.net",
       "envVar": "RERACE_DOMAIN",
       "role": "site",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "phalang": {
@@ -77,7 +77,8 @@
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
       "status": "moved",
-      "from": "mặc định"
+      "from": "mặc định",
+      "found": "https://live11.chuoichientv.me"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -153,28 +154,28 @@
       "url": "https://weelo.live",
       "envVar": "RERACE_WEELO_DOMAIN",
       "role": "api",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "rerace-player": {
       "url": "https://weellz.live",
       "envVar": "RERACE_PLAYER_ORIGIN",
       "role": "player",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "rerace-embed": {
       "url": "https://taifood-blog.asia",
       "envVar": "RERACE_EMBED_ORIGIN",
       "role": "player",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "rerace-ppv-api": {
       "url": "https://api.ppv.st/api/streams",
       "envVar": "RERACE_PPV_API",
       "role": "api",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     }
   },
@@ -801,6 +802,13 @@
       "from": null,
       "to": "https://api.ppv.st/api/streams",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-10T02:37:31.551Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
     }
   ]
 }
