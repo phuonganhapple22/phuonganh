@@ -47,7 +47,7 @@ export const SOURCES = [
     discoverBudgetMs: 240000 },
   { key: 'xoigac', brand: 'xoigac', label: 'Xôi Gấc', role: 'site', envVar: 'XOIGAC_DOMAIN', defaultUrl: 'https://xoigac.live', keywords: ['xoigac', 'xôi gấc', 'xôi gác', 'xoi gac'], candidates: ['https://xoigac.top', 'https://xoigac.live'], autoFix: true },
   { key: 'xoiche', brand: 'xoiche', label: 'Xôi Chè', role: 'site', envVar: 'XOICHE_DOMAIN', defaultUrl: 'https://xoiche.live', keywords: ['xoiche', 'xôi chè', 'xoi che'], candidates: ['https://xoiche.live', 'https://xoiche1.live', 'https://xoiche2.live'], autoFix: true },
-  { key: 'rerace', brand: 'rerace', label: 'Rerace F1', role: 'site', envVar: 'RERACE_DOMAIN', defaultUrl: 'https://www.rerace.net', keywords: ['rerace'], candidates: ['https://www.rerace.net', 'https://rerace.net'], autoFix: true },
+  { key: 'rerace', brand: 'rerace', label: 'Rerace', role: 'site', envVar: 'RERACE_DOMAIN', defaultUrl: 'https://www.rerace.net', keywords: ['rerace'], candidates: ['https://www.rerace.net', 'https://rerace.net'], autoFix: true },
   { key: 'phalang', brand: 'phalang', label: 'Phá Làng', role: 'site', envVar: 'PHALANG_DOMAIN', defaultUrl: 'https://phalang.live', keywords: ['phalang', 'phá làng', 'pha lang'], autoFix: true },
   // Chuối Chiên: code TỰ DÒ liveNN.chuoichientv.me; biến *_WATCH_DOMAIN sẽ ÉP cố định 1 domain
   // nên script KHÔNG tự ghi biến này (chỉ báo cáo).
@@ -63,8 +63,8 @@ export const SOURCES = [
   { key: 'xoilac-api', label: 'Xôi Lạc (API tỉ số)', role: 'api', envVar: 'XOILAC_SCORE_API', defaultUrl: 'https://fb-api.sportliveapiz.com', autoFix: false },
   { key: 'bonglau-api', label: 'Bông Lau (API)', role: 'api', envVar: 'BONGLAU_API_BASE', defaultUrl: 'https://api-v2.chuoichientv.net/v2', autoFix: false },
   // Rerace (08/11/2026): ngoài trang rerace.net còn 4 domain phụ mà code đọc (src/services/rerace.service.js) — chỉ quét + báo cáo, không tự đổi.
-  { key: 'rerace-weelo', label: 'Rerace F1 (weelo: feed + playlist)', role: 'api', envVar: 'RERACE_WEELO_DOMAIN', defaultUrl: 'https://weelo.live', autoFix: false },
-  { key: 'rerace-player', label: 'Rerace F1 (player/Referer weellz)', role: 'player', envVar: 'RERACE_PLAYER_ORIGIN', defaultUrl: 'https://weellz.live', autoFix: false },
+  { key: 'rerace-weelo', label: 'Rerace (weelo: feed + playlist)', role: 'api', envVar: 'RERACE_WEELO_DOMAIN', defaultUrl: 'https://weelo.live', autoFix: false },
+  { key: 'rerace-player', label: 'Rerace (player/Referer weellz)', role: 'player', envVar: 'RERACE_PLAYER_ORIGIN', defaultUrl: 'https://weellz.live', autoFix: false },
   { key: 'rerace-embed', label: 'Rerace bóng đá (embed/Referer)', role: 'player', envVar: 'RERACE_EMBED_ORIGIN', defaultUrl: 'https://taifood-blog.asia', autoFix: false },
   { key: 'rerace-ppv-api', label: 'Rerace (API ppv danh sách trận)', role: 'api', envVar: 'RERACE_PPV_API', defaultUrl: 'https://api.ppv.st/api/streams', autoFix: false }
 ];

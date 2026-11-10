@@ -23,7 +23,8 @@ import {
   matchCacheKey,
   sleep,
   streamsFromMatchCard,
-  tagMatchSource
+  tagMatchSource,
+  toMatchTimeMs
 } from '@/src/utils/playerGet';
 
 // Trận "sắp đá" chỉ lấy trong khoảng này để biết lịch thi đấu sắp tới —
@@ -37,12 +38,27 @@ const PHALANG_UPCOMING_WINDOW_HOURS = (() => {
   const n = Number(process.env.PHALANG_UPCOMING_HOURS);
   return Number.isFinite(n) && n > 0 ? n : 15;
 })();
-// Xôi Chè (18/10/2026): có lịch BLV nhiều ngày tới (xem xoiche.service.js) -> mặc định lấy 48h tới; đổi bằng XOICHE_UPCOMING_HOURS.
+// Xôi Chè (18/10/2026): có lịch BLV nhiều ngày tới (xem xoiche.service.js) -> đổi bằng XOICHE_UPCOMING_HOURS.
+// FIX (09/11/2026 — "xoiche quét OK 36+10 trận nhưng playlist 0 trận"): sau bộ lọc giải chỉ còn 2 trận upcoming, mà cửa sổ 48h
+// + điều kiện "giờ bóng lăn phải ở TƯƠNG LAI" loại nốt cả 2 (trận ngoài 48h, hoặc đã quá giờ bóng lăn nhưng site chưa chuyển
+// sang live). Giờ: mặc định 72h, và giữ trận quá giờ tối đa XOICHE_UPCOMING_GRACE_MIN phút (mặc định 180) mà site vẫn "scheduled".
 const XOICHE_UPCOMING_WINDOW_HOURS = (() => {
   const n = Number(process.env.XOICHE_UPCOMING_HOURS);
-  return Number.isFinite(n) && n > 0 ? n : 48;
+  return Number.isFinite(n) && n > 0 ? n : 72;
 })();
-const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS, rerace: 72 };
+const XOICHE_UPCOMING_GRACE_MS = (() => {
+  const n = Number(process.env.XOICHE_UPCOMING_GRACE_MIN);
+  return (Number.isFinite(n) && n >= 0 ? n : 180) * 60 * 1000;
+})();
+// Rerace (09/11/2026): cửa sổ "sắp diễn ra" tách theo môn. F1 = từng session của các chặng còn lại của mùa (events.json trả ~19 session).
+// FIX (09/11/2026 — "quét upcoming 19 trận mà playlist chỉ có 1 trận"): trước đây F1 bị cắt ở 168h (7 ngày) nên khi chặng kế tiếp
+// còn cách >7 ngày thì TOÀN BỘ session F1 bị loại, chỉ sót 1 trận bóng đá (cửa sổ 24h). Giờ F1 mặc định 168h (theo yêu cầu 09/11/2026; muốn lấy hết session còn lại thì đặt biến này lớn hơn, vd 2160)
+// (RERACE_F1_UPCOMING_HOURS). Môn khác (bóng đá...) theo RERACE_UPCOMING_HOURS
+// (mặc định 24h, cùng giá trị rerace.service.js đã lọc sẵn).
+const hoursEnv = (name, def) => { const n = Number(process.env[name]); return Number.isFinite(n) && n > 0 ? n : def; };
+const RERACE_F1_UPCOMING_WINDOW_HOURS = hoursEnv('RERACE_F1_UPCOMING_HOURS', 168);
+const RERACE_OTHER_UPCOMING_WINDOW_HOURS = hoursEnv('RERACE_UPCOMING_HOURS', 24);
+const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS };
 // Do not let a slow streamer detail page delay the complete match list.
 // FIX (20/09/2026 — "Giờ Vàng đều bị 'chưa có link'"): mốc 4500ms này ban
 // đầu hợp lý cho những nguồn gọi thẳng 1 API JSON (chuoichientv, phalang).
@@ -275,17 +291,44 @@ async function fetchUpcomingLists() {
   const tagged = [];
   const seen = new Set();
 
-  const withinWindow = (m, source) => isWithinNextHours(m, UPCOMING_WINDOW_HOURS_BY_SOURCE[source] || UPCOMING_WINDOW_HOURS);
+  const withinWindow = (m, source) => {
+    if (source === 'xoiche') {
+      const ms = toMatchTimeMs(m?.matchTimeTimestamp);
+      const now = Date.now();
+      return !!ms && ms > now - XOICHE_UPCOMING_GRACE_MS && ms <= now + XOICHE_UPCOMING_WINDOW_HOURS * 3600000;
+    }
+    return withinWindowDefault(m, source);
+  };
+  const withinWindowDefault = (m, source) => isWithinNextHours(m, source === 'rerace'
+    ? (m?.sport === 'f1' ? RERACE_F1_UPCOMING_WINDOW_HOURS : RERACE_OTHER_UPCOMING_WINDOW_HOURS)
+    : (UPCOMING_WINDOW_HOURS_BY_SOURCE[source] || UPCOMING_WINDOW_HOURS));
 
   const pushListNoFilter = (list, source) => {
+    const stat = { total: 0, kept: 0, sport: 0, league: 0, window: 0, dup: 0 };
+    let nextOut = null; // trận gần nhất nằm NGOÀI cửa sổ (để log lý do)
     for (const m of normalize(list)) {
-      if (isExcludedSport(m)) continue;
-      if (shouldDropMatch(m, source)) continue; // giải cỏ/hạng 2/nữ/trẻ (LEAGUE_FILTER_SOURCES)
-      if (!withinWindow(m, source)) continue;
+      stat.total += 1;
+      if (isExcludedSport(m)) { stat.sport += 1; continue; }
+      if (shouldDropMatch(m, source)) { stat.league += 1; continue; } // giải cỏ/hạng 2/nữ/trẻ (LEAGUE_FILTER_SOURCES)
+      if (!withinWindow(m, source)) {
+        stat.window += 1;
+        const t = toMatchTimeMs(m?.matchTimeTimestamp);
+        if (t > Date.now() && (!nextOut || t < nextOut.t)) nextOut = { t, m };
+        continue;
+      }
       const key = m.matchId || m.stream?.liveUrl;
-      if (!key || seen.has(`${source}:${key}`)) continue;
+      if (!key || seen.has(`${source}:${key}`)) { stat.dup += 1; continue; }
       seen.add(`${source}:${key}`);
       tagged.push(tagMatchSource(m, source));
+      stat.kept += 1;
+    }
+    if (source !== 'rerace' && stat.total) {
+      const nx2 = nextOut ? `; trận sớm nhất ngoài cửa sổ: "${nextOut.m.homeTeam?.name || ''} - ${nextOut.m.awayTeam?.name || ''}" lúc ${new Date(nextOut.t).toISOString()}` : '';
+      console.log(`[playlist-builder] ${source} upcoming: giữ ${stat.kept}/${stat.total} (ngoài cửa sổ: ${stat.window}, loại môn: ${stat.sport}, loại giải: ${stat.league}, trùng: ${stat.dup})${nx2}`);
+    }
+    if (source === 'rerace' && stat.total) {
+      const nx = nextOut ? `; trận sớm nhất ngoài cửa sổ: "${nextOut.m.homeTeam?.name || ''} ${nextOut.m.awayTeam?.name || ''}" lúc ${new Date(nextOut.t).toISOString()}` : '';
+      console.log(`[playlist-builder] rerace upcoming: giữ ${stat.kept}/${stat.total} (ngoài cửa sổ F1 ${RERACE_F1_UPCOMING_WINDOW_HOURS}h/khác ${RERACE_OTHER_UPCOMING_WINDOW_HOURS}h: ${stat.window}, loại môn: ${stat.sport}, loại giải: ${stat.league}, trùng: ${stat.dup})${nx}`);
     }
   };
 

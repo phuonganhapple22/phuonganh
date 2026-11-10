@@ -62,7 +62,7 @@ const SOURCE_LABELS = {
   xoilac: 'Xoi Lac TV',
   xoigac: 'Xoi Gac TV',
   xoiche: 'Xoi Che TV',
-  rerace: 'Rerace F1'
+  rerace: 'Rerace'
 };
 
 const SOURCE_SHORT = {
@@ -75,7 +75,7 @@ const SOURCE_SHORT = {
   bonglau: 'Bông Lau',
   xoilac: 'Xôi Lạc',
   xoiche: 'Xôi Chè',
-  rerace: 'Rerace F1',
+  rerace: 'Rerace',
   xoigac: 'Xôi Gấc' // FIX (05/10/2026): tên đúng là "Xôi Gấc" (trước ghi nhầm "Xôi Gác") — đây là tên group-title trong file .m3u
 };
 
@@ -135,7 +135,7 @@ export const SOURCE_TOGGLE_LIST = [
   { key: 'xoilac', label: 'Xôi Lạc' },
   { key: 'xoigac', label: 'Xôi Gấc' },
   { key: 'xoiche', label: 'Xôi Chè' },
-  { key: 'rerace', label: 'Rerace F1' }
+  { key: 'rerace', label: 'Rerace' }
 ];
 
 // Bump the key once so an old browser setting cannot hide every source after

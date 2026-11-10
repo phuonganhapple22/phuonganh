@@ -220,3 +220,24 @@ Chuỗi thật: `events.json -> streams[].url = https://weellz.live/beta?stream=
 - `scripts/source-domains.mjs`: bật `autoFix` cho `rerace` (candidates: www.rerace.net, rerace.net). Domain đổi/chuyển hướng sang domain đúng nguồn (nội dung có "rerace" hoặc tên miền chứa "rerace") thì Generate Playlists tự dùng ngay, Check Domains tự ghi vào SOURCE_DOMAINS. Trang đỗ tên miền/rao bán/cá cược bị từ chối. Không đặt `plainHttp` nên 403 Cloudflare từ IP runner KHÔNG bị coi là hỏng.
 - `pages/api/static-playlist/[file].js` + `scripts/generate-playlists.js`: thêm `rerace` vào SOURCE_KEYS -> link tĩnh `source-rerace.m3u` dùng được qua route này.
 - `pages/index.jsx`: thêm màu/biểu tượng riêng cho Rerace trong SOURCE_META.
+
+---
+
+# Rerace — ít trận "sắp diễn ra" trong playlist (09/11/2026)
+
+Log: `rerace:upcoming: 19 trận` nhưng playlist chỉ có 1. Nguyên nhân: `rerace.service.js` trả TẤT CẢ session F1 còn lại của mùa (không giới hạn thời gian),
+còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tới -> các session chặng xa bị lọc (đúng thiết kế, nhưng cửa sổ cứng và không có log lý do).
+- `src/services/playlistBuilder.service.js`: cửa sổ tách theo môn — F1 `RERACE_F1_UPCOMING_HOURS` (mặc định 168h), môn khác `RERACE_UPCOMING_HOURS` (mặc định 24h); thêm log
+  `[playlist-builder] rerace upcoming: giữ X/Y (ngoài cửa sổ..., loại môn..., loại giải..., trùng...)` kèm trận sớm nhất nằm ngoài cửa sổ.
+- `env.example`: thêm `RERACE_F1_UPCOMING_HOURS`.
+
+## 09/11/2026 — Rerace: playlist chỉ còn 1 trận dù quét được 19 trận upcoming
+- Nguyên nhân: `playlistBuilder.service.js` cắt session F1 ở 168h (7 ngày) -> chặng F1 kế tiếp cách >7 ngày bị loại hết, chỉ sót 1 trận bóng đá.
+- Sửa: `RERACE_F1_UPCOMING_HOURS` mặc định 168h (đặt vd 2160 nếu muốn lấy hết session F1 còn lại); bóng đá giữ `RERACE_UPCOMING_HOURS` (mặc định 24h).
+- Đổi tên nhóm/nhãn nguồn từ "Rerace F1" -> "Rerace" (`playerGet.js` SOURCE_LABELS/SOURCE_SHORT/SOURCE_TOGGLE_LIST, `scripts/source-domains.mjs`).
+
+## 09/11/2026 — Xôi Chè: quét OK 36+10 trận nhưng playlist 0 trận
+- Log: bộ lọc giải bỏ 11/13 trận bóng đá upcoming (Friendlies, giải nữ, J-League Cup...), còn 2 trận (AFCON Qualification, UEFA Nations League); rồi `playlistBuilder.service.js` loại nốt 2 trận này vì cửa sổ 48h + yêu cầu giờ bóng lăn phải ở tương lai.
+- Sửa: cửa sổ xoiche mặc định 72h (`XOICHE_UPCOMING_HOURS`), giữ trận quá giờ tối đa 180 phút mà site còn "scheduled" (`XOICHE_UPCOMING_GRACE_MIN`).
+- Thêm log `[playlist-builder] <nguồn> upcoming: giữ x/y (ngoài cửa sổ, loại môn, loại giải, trùng) + trận sớm nhất ngoài cửa sổ` cho MỌI nguồn để lần sau thấy ngay trận bị loại ở bước nào.
+- Muốn giữ cả "Friendlies" (giao hữu): đặt `LEAGUE_ALLOW=friendlies` (hoặc thêm `,friendlies` nếu đã có giá trị).
