@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-11T17:22:00.768Z",
+  "updatedAt": "2026-11-11T23:53:43.822Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.shop",
@@ -10,10 +10,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
-      "url": "https://gavangz.live",
+      "url": "https://gavangz.net",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "moved",
+      "status": "down",
       "from": "SOURCE_DOMAINS"
     },
     "gavang33": {
@@ -38,10 +38,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilac365j.mobi",
+      "url": "https://xoilacvbg.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -829,6 +829,20 @@
       "from": "https://gavang.mobi",
       "to": "https://gavangz.live",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-11T23:53:43.822Z",
+      "source": "gavang",
+      "from": "https://gavangz.live",
+      "to": "https://gavangz.net",
+      "via": "biến thể tên/đuôi"
+    },
+    {
+      "at": "2026-11-11T23:53:43.822Z",
+      "source": "xoilac",
+      "from": "https://xoilac365j.mobi",
+      "to": "https://xoilacvbg.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
