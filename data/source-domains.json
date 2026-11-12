@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-12T11:05:26.177Z",
+  "updatedAt": "2026-11-12T16:39:29.212Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.cam",
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://rslit.org",
+      "url": "https://xoilacvbi.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -871,6 +871,13 @@
       "from": "https://giovang.shop",
       "to": "https://giovang.cam",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-12T16:39:29.212Z",
+      "source": "xoilac",
+      "from": "https://rslit.org",
+      "to": "https://xoilacvbi.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
