@@ -527,8 +527,15 @@ export function buildM3uPlaylist(entries = [], options = {}) {
     // http-referrer chỉ ghi khi có Referer đã dò/chọn (không ép Referer sai
     // cho CDN không cần). Entry placeholder (trận chưa đá / chưa có link,
     // iptvReferer === undefined) không phải link phát -> không ghi.
+    // FIX (13/11/2026 — "link Rerace trong all.m3u vẫn không xem được"): CDN bóng đá của Rerace
+    // (*.indianservers.st/secure/<token>/...) chỉ chấp nhận request mang "Origin: https://taifood-blog.asia"
+    // (không Referer). #EXTVLCOPT KHÔNG có tuỳ chọn Origin nên bản .m3u (VLC) luôn bị CDN từ chối.
+    // => Với nguồn Rerace, ngay cả file .m3u thường (all.m3u...) cũng ghi link kiểu app:
+    //    "<url>|User-Agent=...&Origin=..." (giống all-app.m3u), KHÔNG dùng #EXTVLCOPT.
+    const isRerace = getSourceKey(match) === 'rerace';
+    const appStyleForEntry = useAppHeaderStyle || (isRerace && !useProxyStyle);
     if (entry.iptvReferer !== undefined) {
-      if (useAppHeaderStyle || useProxyStyle) {
+      if (appStyleForEntry || useProxyStyle) {
         // 'app': header gắn thẳng vào URL bằng dấu "|" (xem đoạn build outUrl
         // bên dưới). 'proxy': KHÔNG cần header gì cả (server tự gắn), URL
         // cũng được viết lại hoàn toàn bên dưới. Cả 2 format đều KHÔNG ghi
@@ -540,16 +547,24 @@ export function buildM3uPlaylist(entries = [], options = {}) {
       }
     }
     let outUrl = url;
-    if (useAppHeaderStyle && entry.iptvReferer !== undefined) {
+    if (appStyleForEntry && entry.iptvReferer !== undefined) {
       const headerParts = [`User-Agent=${IPTV_HEADER_UA}`];
-      if (entry.iptvReferer) headerParts.push(`Referer=${entry.iptvReferer}`);
+      // Rerace + CDN indianservers.st: trình duyệt thật CHỈ gửi Origin (không Referer) -> bắt chước y hệt.
+      let hostOfUrl = '';
+      try { hostOfUrl = new URL(url).hostname; } catch { /* url không parse được */ }
+      const originOnly = isRerace && /(^|\.)indianservers\.st$/i.test(hostOfUrl);
+      if (entry.iptvReferer && !originOnly) headerParts.push(`Referer=${entry.iptvReferer}`);
       // FIX (29-30/09/2026): CDN của Phá Làng (pull.digitalcdn.net) và Giờ Vàng
       // (vcdn.cloud) cần thêm Origin như trình duyệt thật — chỉ gắn cho 2 nguồn
       // này để không ảnh hưởng các nguồn đang chạy tốt.
       // FIX (13/11/2026 — "Rerace hiện trận live nhưng không xem được"): request thật của trình duyệt tới CDN bóng đá
       // (*.indianservers.st, vd netanyahu.indianservers.st/secure/<token>/<từ>/<đến>/bein4us/...) chỉ gửi
       // "Origin: https://taifood-blog.asia" (KHÔNG có Referer) -> thiếu Origin là bị từ chối.
-      if (entry.iptvReferer && ['phalang', 'giovang', 'rerace'].includes(getSourceKey(match))) {
+      if (originOnly) {
+        // Origin cố định = trang embed bóng đá (DevTools 13/11/2026), không phụ thuộc Referer dò được.
+        const embedOrigin = String(process.env.RERACE_EMBED_ORIGIN || 'https://taifood-blog.asia').replace(/\/+$/, '');
+        headerParts.push(`Origin=${embedOrigin}`);
+      } else if (entry.iptvReferer && ['phalang', 'giovang', 'rerace'].includes(getSourceKey(match))) {
         try { headerParts.push(`Origin=${new URL(entry.iptvReferer).origin}`); } catch { /* referer không hợp lệ -> bỏ Origin */ }
       }
       outUrl = `${url}|${headerParts.join('&')}`;
