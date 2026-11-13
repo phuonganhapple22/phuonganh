@@ -58,6 +58,10 @@ const XOICHE_UPCOMING_GRACE_MS = (() => {
 const hoursEnv = (name, def) => { const n = Number(process.env[name]); return Number.isFinite(n) && n > 0 ? n : def; };
 const RERACE_F1_UPCOMING_WINDOW_HOURS = hoursEnv('RERACE_F1_UPCOMING_HOURS', 168);
 const RERACE_OTHER_UPCOMING_WINDOW_HOURS = hoursEnv('RERACE_UPCOMING_HOURS', 24);
+const XOIGAC_UPCOMING_GRACE_MS = (() => {
+  const n = Number(process.env.XOIGAC_UPCOMING_GRACE_MIN);
+  return (Number.isFinite(n) && n >= 0 ? n : 180) * 60 * 1000;
+})();
 const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS };
 // Do not let a slow streamer detail page delay the complete match list.
 // FIX (20/09/2026 — "Giờ Vàng đều bị 'chưa có link'"): mốc 4500ms này ban
@@ -296,6 +300,13 @@ async function fetchUpcomingLists() {
       const ms = toMatchTimeMs(m?.matchTimeTimestamp);
       const now = Date.now();
       return !!ms && ms > now - XOICHE_UPCOMING_GRACE_MS && ms <= now + XOICHE_UPCOMING_WINDOW_HOURS * 3600000;
+    }
+    // FIX (13/11/2026): trận Xôi Gấc "chờ BLV" đã quá giờ bóng lăn -> isWithinNextHours (chỉ nhận giờ ở TƯƠNG LAI) loại mất,
+    // làm trận biến khỏi playlist đúng lúc đến giờ live. Cho phép quá giờ tối đa XOIGAC_UPCOMING_GRACE_MIN phút (mặc định 180).
+    if (source === 'xoigac') {
+      const ms = toMatchTimeMs(m?.matchTimeTimestamp);
+      const now = Date.now();
+      return !!ms && ms > now - XOIGAC_UPCOMING_GRACE_MS && ms <= now + UPCOMING_WINDOW_HOURS * 3600000;
     }
     return withinWindowDefault(m, source);
   };

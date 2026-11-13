@@ -104,6 +104,16 @@ function mapStatus(code, isLiveFlag) {
   return { isLive: false, isFinished: false, isUpcoming: true, isHalfTime: false };
 }
 
+// FIX (13/11/2026 — "đến giờ live là danh sách trận bị mất"): đến giờ đá, site đổi trận sang LIVE nhưng BLV thường
+// chưa bật phát (isStreamerLiveNow=false) -> trận không có link -> bị bộ lọc "live mà không có BLV thì bỏ" loại,
+// mà cũng không còn nằm ở tab "sắp diễn ra" => biến mất khỏi mọi danh sách. Giờ trận live CHƯA có BLV phát được
+// chuyển thành trạng thái "chờ BLV" (isUpcoming=true, isWaiting=true): vẫn nằm trong danh sách sắp diễn ra, và tự
+// nhảy sang LIVE ở lần quét sau khi BLV bật phát. Giữ tối đa XOIGAC_WAIT_MAX_MIN phút (mặc định 180) sau giờ bóng lăn.
+const WAIT_MAX_MS = (() => {
+  const n = Number(process.env.XOIGAC_WAIT_MAX_MIN);
+  return (Number.isFinite(n) && n > 0 ? n : 180) * 60 * 1000;
+})();
+
 function abs(url, base = XOIGAC_BASE_URL) {
   if (!url) return '';
   if (/^(https?:)?\/\//i.test(url)) return url.startsWith('//') ? `https:${url}` : url;
@@ -230,7 +240,11 @@ function buildMatches(records, cardAttrs, base = XOIGAC_BASE_URL) {
 
     // Ưu tiên bản ghi đang live nếu có (đỡ lấy nhầm NS khi cùng trận).
     const anyLive = rows.some((r) => r.isLive === true);
-    const status = mapStatus(first.status, anyLive);
+    let status = mapStatus(first.status, anyLive);
+    const anyStreamerLive = rows.some((r) => r.isStreamerLiveNow === true);
+    if (status.isLive && !anyStreamerLive) {
+      status = { isLive: false, isFinished: false, isUpcoming: true, isHalfTime: false, isWaiting: true };
+    }
 
     const matchDate = first.matchDate ? new Date(first.matchDate) : new Date();
     const ts = Number.isNaN(matchDate.getTime()) ? new Date() : matchDate;
@@ -281,8 +295,8 @@ function buildMatches(records, cardAttrs, base = XOIGAC_BASE_URL) {
       score: { home: Number(first.homeScore) || 0, away: Number(first.awayScore) || 0 },
       status: {
         ...status,
-        name: status.isLive ? (status.isHalfTime ? 'HT' : 'LIVE') : (status.isFinished ? 'FT' : 'Sắp diễn ra'),
-        text: status.isLive ? (status.isHalfTime ? 'HT' : (minute ? `${minute}'` : 'LIVE')) : (status.isFinished ? 'Kết thúc' : 'Sắp diễn ra'),
+        name: status.isLive ? (status.isHalfTime ? 'HT' : 'LIVE') : (status.isFinished ? 'FT' : (status.isWaiting ? 'Chờ BLV' : 'Sắp diễn ra')),
+        text: status.isLive ? (status.isHalfTime ? 'HT' : (minute ? `${minute}'` : 'LIVE')) : (status.isFinished ? 'Kết thúc' : (status.isWaiting ? 'Chờ BLV phát' : 'Sắp diễn ra')),
         elapsedTime: status.isLive && !status.isHalfTime ? minute : '',
         minutes: minute
       },
@@ -331,6 +345,7 @@ function mapStreams(commentators) {
 // tải lại cả trang chủ, dễ quá hạn 4,5s và dễ bị site chặn vì dội request. Giữ kết quả
 // 30s trong bộ nhớ, các lời gọi đồng thời dùng chung 1 request.
 const HOMEPAGE_TTL_MS = 45000;
+const STALE_MAX_MS = 10 * 60 * 1000;
 let preferredBase = '';
 let homepageCache = { at: 0, matches: null, pending: null };
 
@@ -402,6 +417,14 @@ class XoigacService {
         return matches;
       })
       .catch((error) => {
+        const stale = homepageCache.matches;
+        const age = Date.now() - homepageCache.at;
+        // Lỗi tạm thời (403/timeout) -> dùng lại danh sách tốt gần nhất (tối đa 10 phút) thay vì trả rỗng.
+        if (stale && age <= STALE_MAX_MS) {
+          console.error(`[xoigac] quét lỗi (${error.message}) — dùng lại danh sách cũ ${Math.round(age / 1000)}s`);
+          homepageCache = { at: homepageCache.at, matches: stale, pending: null };
+          return stale;
+        }
         homepageCache.pending = null;
         throw error;
       });
@@ -494,6 +517,8 @@ class XoigacService {
 
       // Trận live mà không có BLV nào đang phát/không có link thì bỏ (quy tắc chung của project).
       filtered = filtered.filter((m) => !m.status.isLive || m.commentators.length > 0);
+      // Trận "chờ BLV" (đã quá giờ đá mà chưa ai phát) chỉ giữ tối đa WAIT_MAX_MS.
+      filtered = filtered.filter((m) => !m.status.isWaiting || Date.now() - m.matchTimeTimestamp <= WAIT_MAX_MS);
 
       return { matches: filtered.map(({ _liveCommentators, _base, ...rest }) => rest), hasMore: false, totalCount: filtered.length };
     } catch (error) {

@@ -42,6 +42,7 @@ const client = createHttpClient(
 
 const MAX_RESOLVE_PER_MATCH = 6;
 const HOMEPAGE_TTL_MS = 45000;
+const STALE_MAX_MS = 10 * 60 * 1000;
 
 const SPORT_INFO = {
   football: { name: 'BÓNG ĐÁ', icon: 'fa-futbol' },
@@ -177,13 +178,27 @@ function leagueName(r) {
   return name;
 }
 
+// FIX (13/11/2026 — "đến giờ live là danh sách trận bị mất"): site đổi status sang 'live' ngay giờ bóng lăn nhưng BLV chưa
+// bật phát (commentator_streams[].is_live=false) -> không có link -> bị loại khỏi tab live, mà cũng không còn là
+// 'scheduled' nên rơi khỏi tab sắp diễn ra => mất hẳn. Giờ trận live CHƯA có link phát được chuyển thành "chờ BLV"
+// (isUpcoming + isWaiting) và tự thành LIVE ở lần quét sau khi BLV bật phát. Giữ tối đa XOICHE_WAIT_MAX_MIN phút (mặc định 180).
+const WAIT_MAX_MS = (() => {
+  const n = Number(process.env.XOICHE_WAIT_MAX_MIN);
+  return (Number.isFinite(n) && n > 0 ? n : 180) * 60 * 1000;
+})();
+
 function buildMatches(rawList, base = XOICHE_BASE_URL) {
   const out = [];
   for (const r of rawList) {
     if (r?.id === undefined || r?.id === null || r?.is_active === false) continue;
     const sport = String(r.sport_slug || r.sport?.slug || 'football').toLowerCase();
     const info = SPORT_INFO[sport] || { name: String(r.sport_name || sport).toUpperCase(), icon: 'fa-futbol' };
-    const status = mapStatus(r);
+    let status = mapStatus(r);
+    // Tính link phát sớm: trận live mà chưa có link nào thì coi là "chờ BLV" thay vì vứt.
+    const streamsNow = status.isLive ? pickStreams(r, base) : [];
+    if (status.isLive && !streamsNow.length) {
+      status = { isLive: false, isFinished: false, isUpcoming: true, isHalfTime: false, isWaiting: true };
+    }
 
     const d = r.start_time ? new Date(r.start_time) : new Date();
     const ts = Number.isNaN(d.getTime()) ? new Date() : d;
@@ -191,7 +206,7 @@ function buildMatches(rawList, base = XOICHE_BASE_URL) {
     const dateStr = ts.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
     const [, mo, da] = dateStr.split('-');
 
-    const commentators = status.isLive ? pickStreams(r, base) : [];
+    const commentators = status.isLive ? streamsNow : [];
     const firstBlv = (r.commentators && r.commentators[0]) || r.commentator_streams?.[0]?.commentator;
     const blvSlug = firstBlv?.slug ? `?blv=${firstBlv.slug}` : '';
     const detailUrl = `${base}/truc-tiep/${r.slug}${blvSlug}`;
@@ -213,8 +228,8 @@ function buildMatches(rawList, base = XOICHE_BASE_URL) {
       score: { home: Number(r.home_score) || 0, away: Number(r.away_score) || 0 },
       status: {
         ...status,
-        name: status.isLive ? (status.isHalfTime ? 'HT' : 'LIVE') : (status.isFinished ? 'FT' : 'Sắp diễn ra'),
-        text: status.isLive ? (status.isHalfTime ? 'HT' : (minute ? `${minute}'` : 'LIVE')) : (status.isFinished ? 'Kết thúc' : 'Sắp diễn ra'),
+        name: status.isLive ? (status.isHalfTime ? 'HT' : 'LIVE') : (status.isFinished ? 'FT' : (status.isWaiting ? 'Chờ BLV' : 'Sắp diễn ra')),
+        text: status.isLive ? (status.isHalfTime ? 'HT' : (minute ? `${minute}'` : 'LIVE')) : (status.isFinished ? 'Kết thúc' : (status.isWaiting ? 'Chờ BLV phát' : 'Sắp diễn ra')),
         elapsedTime: status.isLive && !status.isHalfTime ? minute : '',
         minutes: minute
       },
@@ -366,6 +381,14 @@ class XoicheService {
         return matches;
       })
       .catch((error) => {
+        const stale = homepageCache.matches;
+        const age = Date.now() - homepageCache.at;
+        // Lỗi tạm thời (Cloudflare/timeout) -> dùng lại danh sách tốt gần nhất (tối đa 10 phút) thay vì trả rỗng.
+        if (stale && age <= STALE_MAX_MS) {
+          console.error(`[xoiche] quét lỗi (${error.message}) — dùng lại danh sách cũ ${Math.round(age / 1000)}s`);
+          homepageCache = { at: homepageCache.at, matches: stale, pending: null };
+          return stale;
+        }
         homepageCache.pending = null;
         throw error;
       });
@@ -423,6 +446,7 @@ class XoicheService {
       filtered = filtered.filter((m) => !(m.status.isLive && isStaleLiveMatch(m)));
       // Trận live mà không có BLV nào đang phát/không có link thì bỏ (quy tắc chung của project).
       filtered = filtered.filter((m) => !m.status.isLive || m.commentators.length > 0);
+      filtered = filtered.filter((m) => !m.status.isWaiting || Date.now() - m.matchTimeTimestamp <= WAIT_MAX_MS);
 
       return { matches: filtered.map(({ _liveCommentators, _base, ...rest }) => rest), hasMore: false, totalCount: filtered.length };
     } catch (error) {
