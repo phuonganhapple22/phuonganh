@@ -621,7 +621,7 @@ async function captureJsonViaBrowser(url, predicate, opts = {}) {
  * @returns {Promise<{ found: {url:string, headers:Record<string,string>}[], seen: string[], title: string }>}
  */
 async function captureM3u8ViaBrowser(url, opts = {}) {
-  const { timeoutMs = 15000, referer, matchUrl = /\.m3u8(\?|$)|\/[a-p]{16,}\/index\.html(\?|$)/i, clickEveryMs = 2500 } = opts;
+  const { timeoutMs = 15000, referer, matchUrl = /^https?:\/\/(?:[^?#]*\.m3u8(?:[?#]|$)|[^/?#]*weelo\.live\/[a-p]{16,}\/index\.html(?:[?#]|$))/i, clickEveryMs = 2500 } = opts;
   const browser = await getBrowser();
   const page = await browser.newPage();
   const found = [];
@@ -646,7 +646,7 @@ async function captureM3u8ViaBrowser(url, opts = {}) {
     page.on('request', (request) => {
       try {
         const u = request.url();
-        if (matchUrl.test(u)) {
+        if (/^https?:/i.test(u) && matchUrl.test(u)) {
           if (!found.some((f) => f.url === u)) found.push({ url: u, headers: request.headers() });
         } else if (seen.length < 30 && ['xhr', 'fetch'].includes(request.resourceType())) {
           seen.push(u.slice(0, 140));

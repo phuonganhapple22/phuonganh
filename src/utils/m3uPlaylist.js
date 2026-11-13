@@ -546,7 +546,10 @@ export function buildM3uPlaylist(entries = [], options = {}) {
       // FIX (29-30/09/2026): CDN của Phá Làng (pull.digitalcdn.net) và Giờ Vàng
       // (vcdn.cloud) cần thêm Origin như trình duyệt thật — chỉ gắn cho 2 nguồn
       // này để không ảnh hưởng các nguồn đang chạy tốt.
-      if (entry.iptvReferer && ['phalang', 'giovang'].includes(getSourceKey(match))) {
+      // FIX (13/11/2026 — "Rerace hiện trận live nhưng không xem được"): request thật của trình duyệt tới CDN bóng đá
+      // (*.indianservers.st, vd netanyahu.indianservers.st/secure/<token>/<từ>/<đến>/bein4us/...) chỉ gửi
+      // "Origin: https://taifood-blog.asia" (KHÔNG có Referer) -> thiếu Origin là bị từ chối.
+      if (entry.iptvReferer && ['phalang', 'giovang', 'rerace'].includes(getSourceKey(match))) {
         try { headerParts.push(`Origin=${new URL(entry.iptvReferer).origin}`); } catch { /* referer không hợp lệ -> bỏ Origin */ }
       }
       outUrl = `${url}|${headerParts.join('&')}`;

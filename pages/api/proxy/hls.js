@@ -366,6 +366,11 @@ async function fetchUpstreamWithRefererFallback(target, source, rangeHeader) {
         // referer không phải URL hợp lệ (không nên xảy ra) -> bỏ qua Origin
       }
     }
+    // Rerace bóng đá (DevTools 13/11/2026): request m3u8 tới *.indianservers.st chỉ mang Origin = taifood-blog.asia,
+    // KHÔNG có Referer (trang embed đặt referrer-policy no-referrer) -> bắt chước y hệt trình duyệt.
+    try {
+      if (source === 'rerace' && /(^|\.)indianservers\.st$/i.test(new URL(target).hostname)) delete upstreamHeaders.Referer;
+    } catch { /* target không parse được -> giữ nguyên header */ }
     if (rangeHeader) upstreamHeaders.Range = rangeHeader;
 
     try {

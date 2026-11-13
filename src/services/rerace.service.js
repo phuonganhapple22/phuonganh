@@ -468,8 +468,10 @@ class ReraceService {
             const r = await captureM3u8ViaBrowser(tgt.url, { referer: tgt.referer || undefined, timeoutMs: BROWSER_TIMEOUT_MS });
             trace.push({ browser: tgt.url, found: r.found.map((f) => f.url).slice(0, 5), title: r.title, xhr: r.seen.slice(0, 8) });
             for (const f of r.found) {
-              if (/\.m3u8(\?|$)/i.test(f.url)) add(f.url, o, 'hls', f.headers?.referer || f.headers?.Referer || '');
-              else add(f.url, o, 'weelo', f.headers?.referer || f.headers?.Referer || '');
+              if (!/^https?:\/\//i.test(f.url)) continue; // chrome-extension://, blob:, data: ... không phải link phát
+              const ref = f.headers?.referer || f.headers?.Referer || '';
+              if (/\.m3u8(\?|#|$)/i.test(f.url)) add(f.url, o, 'hls', ref);
+              else if (f.url.startsWith(`${WEELO_BASE}/`)) add(f.url, o, 'weelo', ref);
             }
             if (!r.found.length) console.error(`[rerace] trình duyệt không bắt được m3u8 từ ${tgt.url} (title="${r.title}", xhr=${r.seen.length})`);
           } catch (e) {
