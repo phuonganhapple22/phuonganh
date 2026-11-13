@@ -21,7 +21,7 @@ const PPV_API = String(process.env.RERACE_PPV_API || 'https://api.ppv.st/api/str
 // Mặc định: F1/đua xe + bóng đá (trận ppv). Đổi bằng RERACE_SPORTS=f1,football,fight,hockey,... hoặc all. Bóng rổ luôn bị bỏ (như site).
 const UPCOMING_HOURS_OTHER = Math.max(1, Number(process.env.RERACE_UPCOMING_HOURS) || 24); // F1 luôn giữ cả cuối tuần; môn khác chỉ N giờ tới
 // Số server/trận: F1 lấy TẤT CẢ (MAX_STREAMS); bóng đá & môn khác chỉ lấy 1 link chất lượng tốt nhất (RERACE_MAX_SERVERS_OTHER, mặc định 1).
-const MAX_SERVERS_OTHER = Math.max(1, Number(process.env.RERACE_MAX_SERVERS_OTHER) || 1);
+const MAX_SERVERS_OTHER = Math.max(1, Number(process.env.RERACE_MAX_SERVERS_OTHER) || 3);
 const INCLUDE_247 = process.env.RERACE_INCLUDE_247 === '1'; // kênh 24/7 (always_live) mặc định bỏ
 const SPORTS_ENABLED = String(process.env.RERACE_SPORTS || 'f1,motor-sports,football').toLowerCase().split(/[,\s]+/).filter(Boolean);
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
@@ -32,7 +32,7 @@ const TTL_MS = 45000;
 // gửi Referer rerace.net), tự bấm Play và BẮT request m3u8 mà player gọi — kèm Referer/Origin thật để proxy dùng lại.
 // Tắt bằng RERACE_BROWSER=0; số lần mở trình duyệt tối đa / trận: RERACE_BROWSER_TRIES (mặc định 2).
 const BROWSER_ON = process.env.RERACE_BROWSER !== '0';
-const BROWSER_TRIES = Math.max(0, Number(process.env.RERACE_BROWSER_TRIES) || 2);
+const BROWSER_TRIES = Math.max(0, Number(process.env.RERACE_BROWSER_TRIES) || 3);
 const BROWSER_TIMEOUT_MS = Math.max(5000, Number(process.env.RERACE_BROWSER_TIMEOUT_MS) || 14000);
 const STATIC_SCAN_LIMIT_MS = 9000; // quét tĩnh (axios) quá ngần này thì bỏ qua, chuyển sang trình duyệt
 const withTimeout = (promise, ms, fallback) => {
@@ -462,7 +462,7 @@ class ReraceService {
         if (found.size === before && found.size < limit && BROWSER_ON && browserTries < BROWSER_TRIES) {
           browserTries += 1;
           const targets = [{ url: o.url, referer: `${RERACE_BASE}/` }];
-          if (browserTries > 1 && m.detailUrl) targets.push({ url: m.detailUrl, referer: '' }); // lượt 2: trang xem của rerace (iframe nằm trong ngữ cảnh thật)
+          if (browserTries === 2 && m.detailUrl) targets.push({ url: m.detailUrl, referer: '' }); // lượt 2: trang xem của rerace (iframe nằm trong ngữ cảnh thật)
           const tgt = targets[targets.length - 1];
           try {
             const r = await captureM3u8ViaBrowser(tgt.url, { referer: tgt.referer || undefined, timeoutMs: BROWSER_TIMEOUT_MS });

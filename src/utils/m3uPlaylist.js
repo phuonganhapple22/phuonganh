@@ -586,6 +586,17 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1); // mặc định 1 link/trận
 const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 1);
 // Rerace (08/11/2026): 1 trận live có NHIỀU server (events[].streams[]) -> xuất TẤT CẢ (mỗi server 1 kênh "Server N"). Mặc định tối đa 24.
+// FIX (13/11/2026 — "link nguồn Rerace đều lỗi, không xem được"): CDN bóng đá của Rerace
+// (*.indianservers.st/secure/<token>/<từ>/<đến>/<kênh>/index.m3u8) cấp token lúc máy chủ CI (GitHub Actions)
+// mở trang embed; token này nhiều khả năng GẮN VỚI IP máy lấy (cùng kiểu Phá Làng, xem FIX 27/10/2026 bên dưới)
+// => người xem ở IP khác luôn bị CDN từ chối dù header đúng. Playlist tĩnh (chỉ file trên GitHub, không có
+// server tra link lúc bấm xem) không thể đổi token theo IP người xem, nên KHÔNG ghi các link này ra playlist
+// (tránh kênh chết). MẶC ĐỊNH VẪN GIỮ các link này (người dùng muốn xem trận live); đặt RERACE_KEEP_SECURE=0 để ẩn.
+// Link F1 (weelo.live/<token a-p>/index.html) không thuộc dạng này nên giữ nguyên.
+const RERACE_KEEP_SECURE = process.env.RERACE_KEEP_SECURE !== '0'; // mặc định GIỮ (đặt 0 để ẩn)
+const RERACE_SECURE_URL_RE = /^https?:\/\/[^/]*indianservers\.st\/secure\/[^/]+\/\d{9,}\/\d{9,}\//i;
+const isReraceIpBoundStream = (s) => [s?.m3u8Url, s?.playUrl, s?.flvUrl, s?.link]
+  .some((u) => typeof u === 'string' && RERACE_SECURE_URL_RE.test(u));
 const RERACE_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.RERACE_MAX_SERVERS) || 24);
 
 // Bộ nhớ đệm kết quả nâng HLS + dò Referer (xem chú thích trong matchesToPlaylistEntries).
@@ -629,7 +640,9 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     // stream CHẤT LƯỢNG CAO NHẤT (FHD > HD > SD, theo nhãn của nguồn — xem
     // utils/streamQuality.js); bằng điểm thì vẫn lấy cái đầu tiên như cũ nên
     // nguồn không có nhãn chất lượng không bị đổi hành vi.
-    const playableStreams = matchStreams.filter((s) => s?.m3u8Url || s?.flvUrl || s?.playUrl);
+    const matchSourceKey = getSourceKey(match);
+    const playableStreams = matchStreams.filter((s) => (s?.m3u8Url || s?.flvUrl || s?.playUrl)
+      && !(matchSourceKey === 'rerace' && !RERACE_KEEP_SECURE && isReraceIpBoundStream(s)));
     const stream = pickBestStream(playableStreams);
     if (stream) {
       // FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được"): Phá Làng trả nhiều server
@@ -681,6 +694,8 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     // KHÔNG ghi dòng "Chưa có link — chờ cập nhật" trỏ về trang web (player báo lỗi). Bỏ hẳn trận này,
     // lần quét kế tiếp (~2 phút) có link thật thì tự xuất hiện lại.
     if (source === 'giovang' && isLiveNoStream && !baseUrl) continue;
+    // Rerace: live nhưng chỉ có link token gắn IP (đã lọc ở trên) -> không ghi dòng "chưa có link" trỏ về trang web.
+    if (source === 'rerace' && isLiveNoStream && !baseUrl && !RERACE_KEEP_SECURE) continue;
 
     const fallbackUrl = match?.stream?.liveUrl || '';
     const params = new URLSearchParams({
@@ -774,7 +789,10 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
         let debug = null;
         try {
           if (finalUrl && isDebugEnabledFor(sourceKey)) {
-            debug = await probeStreamForDebug(finalUrl, { referer: entry.iptvReferer || '' });
+            // Rerace + CDN indianservers.st: trình duyệt thật chỉ gửi Origin (không Referer) -> thử đúng như vậy.
+            let dbgOrigin = '';
+            try { if (sourceKey === 'rerace' && /(^|\.)indianservers\.st$/i.test(new URL(finalUrl).hostname)) dbgOrigin = String(process.env.RERACE_EMBED_ORIGIN || 'https://taifood-blog.asia').replace(/\/+$/, ''); } catch { /* bỏ qua */ }
+            debug = await probeStreamForDebug(finalUrl, dbgOrigin ? { referer: '', origin: dbgOrigin } : { referer: entry.iptvReferer || '' });
           }
         } catch { debug = null; }
 

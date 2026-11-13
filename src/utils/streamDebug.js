@@ -21,6 +21,11 @@
 const DEBUG_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
 export function isDebugEnabledFor(source) {
+  // 13/11/2026: riêng Rerace mặc định BẬT debug (link /secure/ nghi gắn IP) để biết vì sao không xem được.
+  // Tắt bằng PLAYLIST_DEBUG=off, hoặc RERACE_DEBUG=off nếu chỉ muốn tắt Rerace.
+  const reraceDefault = String(source || '').toLowerCase() === 'rerace' && process.env.PLAYLIST_DEBUG === undefined
+    && !['off', '0', 'false'].includes(String(process.env.RERACE_DEBUG ?? 'on').toLowerCase().trim());
+  if (reraceDefault) return true;
   const on = String(process.env.PLAYLIST_DEBUG ?? 'off').toLowerCase().trim();
   if (!['on', '1', 'true', 'all'].includes(on)) return false; // mặc định TẮT (04/11/2026): chỉ bật khi đặt PLAYLIST_DEBUG=on
   if (['off', '0', 'false', 'none'].includes(on)) return false;
@@ -122,6 +127,27 @@ async function fetchHead(u, headers, timeoutMs) {
   }
 }
 
+// IP công khai của máy chủ tạo playlist (GitHub Actions) — ghi vào dòng debug để đối chiếu với IP người xem.
+let runnerIpPromise = null;
+export function getRunnerIp() {
+  if (!runnerIpPromise) {
+    runnerIpPromise = (async () => {
+      for (const u of ['https://api.ipify.org', 'https://ifconfig.me/ip']) {
+        try {
+          const ctl = new AbortController();
+          const t = setTimeout(() => ctl.abort(), 3000);
+          const r = await fetch(u, { signal: ctl.signal }).finally(() => clearTimeout(t));
+          const ip = (await r.text()).trim();
+          if (/^[0-9a-f.:]{7,45}$/i.test(ip)) return ip;
+        } catch { /* thử nguồn kế */ }
+      }
+      return '?';
+    })();
+  }
+  return runnerIpPromise;
+}
+const SECURE_TOKEN_RE = /\/secure\/[^/]+\/\d{9,}\/\d{9,}\//;
+
 const isPlayable = (r) => r && !r.error && r.status >= 200 && r.status < 300 && ['flv', 'hls', 'video'].includes(r.kind);
 
 // ---------------------------------------------------------------------------------------------
@@ -145,7 +171,7 @@ function originOf(x) {
   try { return new URL(x).origin; } catch { return ''; }
 }
 
-function buildVariants(u, referer, userAgent, extraReferers = []) {
+function buildVariants(u, referer, userAgent, extraReferers = [], headersOrigin = '') {
   const list = [];
   const seen = new Set();
   const add = (label, h) => {
@@ -155,6 +181,7 @@ function buildVariants(u, referer, userAgent, extraReferers = []) {
     list.push({ label, headers: { Accept: '*/*', ...h } });
   };
   const refOrigin = originOf(referer);
+  if (headersOrigin) add('Origin-only', { 'User-Agent': userAgent, Origin: headersOrigin });
   add('bỏ-Referer', { 'User-Agent': userAgent });
   if (refOrigin) add('Referer+Origin', { 'User-Agent': userAgent, Referer: referer, Origin: refOrigin });
   const self = originOf(u);
@@ -166,11 +193,11 @@ function buildVariants(u, referer, userAgent, extraReferers = []) {
   add('UA-VLC', { 'User-Agent': VARIANT_UAS.vlc, ...(referer ? { Referer: referer } : {}) });
   add('UA-okhttp', { 'User-Agent': VARIANT_UAS.okhttp, ...(referer ? { Referer: referer } : {}) });
   add('UA-điện-thoại', { 'User-Agent': VARIANT_UAS.mobile, ...(referer ? { Referer: referer } : {}) });
-  return list.slice(0, 7);
+  return list.slice(0, 8);
 }
 
 /** @returns {Promise<{hint:string, worked:string[], sampled:boolean}|null>} null nếu không dò (tắt/hết hạn mức). */
-async function probeVariants(u, { referer, userAgent, extraReferers, timeoutMs }) {
+async function probeVariants(u, { referer, userAgent, extraReferers, timeoutMs, origin = '' }) {
   if (!variantsEnabled()) return null;
   let host = '';
   try { host = new URL(u).host; } catch { return null; }
@@ -186,7 +213,7 @@ async function probeVariants(u, { referer, userAgent, extraReferers, timeoutMs }
     return { hint: `mẫu lẫn lộn (${[...st.counts.entries()].map(([l, c]) => `${l}:${c}/${st.used}`).join(', ')}) -> chưa kết luận`, worked: [], sampled: true, mixed: true };
   }
   st.used += 1;
-  const variants = buildVariants(u, referer, userAgent, extraReferers);
+  const variants = buildVariants(u, referer, userAgent, extraReferers, origin);
   const results = await Promise.all(variants.map(async (v) => ({ label: v.label, r: await fetchHead(u, v.headers, timeoutMs) })));
   const worked = results.filter((x) => isPlayable(x.r)).map((x) => x.label);
   worked.forEach((w) => st.counts.set(w, (st.counts.get(w) || 0) + 1));
@@ -200,12 +227,12 @@ async function probeVariants(u, { referer, userAgent, extraReferers, timeoutMs }
  * @returns {Promise<{ok:boolean, tag:string, detail:string, status:number, kind:string, ms:number, variants?:object}>}
  * extraReferers: (tuỳ chọn) danh sách domain site để thử làm Referer khi link bị 401/403.
  */
-export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG_UA, extraReferers = [] } = {}) {
+export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG_UA, extraReferers = [], origin = '' } = {}) {
   const u = String(url || '');
   if (!/^https?:\/\//i.test(u)) return { ok: false, tag: '⚠️link-lạ', detail: 'không phải link http(s)', status: 0, kind: 'none', ms: 0 };
   if (/\/api\/playlist\/resolve/.test(u)) return { ok: false, tag: '⏳chưa-có-link', detail: 'kênh chờ resolver — chưa có link thật', status: 0, kind: 'resolver', ms: 0 };
 
-  const cacheKey = `${u}|${referer}`;
+  const cacheKey = `${u}|${referer}|${origin}`;
   const hit = probeCache.get(cacheKey);
   if (hit && Date.now() - hit.at < PROBE_TTL_MS) return hit.promise;
 
@@ -213,6 +240,7 @@ export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG
     const timeoutMs = Math.max(1500, Number(process.env.PLAYLIST_DEBUG_TIMEOUT_MS) || 5000);
     const headers = { 'User-Agent': userAgent, Accept: '*/*' };
     if (referer) headers.Referer = referer;
+    if (origin) headers.Origin = origin; // vd Rerace: CDN chỉ nhận Origin (không Referer) như trình duyệt thật
     const exp = tokenExpiryMs(u);
     const expired = exp && exp < Date.now();
     const expNote = exp ? (expired ? ' | TOKEN ĐÃ HẾT HẠN' : '') : '';
@@ -222,6 +250,11 @@ export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG
       return { ok: false, tag: `⚠️${r.error}(CI)`, detail: `lỗi kết nối: ${r.error} | ${r.ms}ms${expNote}`, status: 0, kind: 'error', ms: r.ms };
     }
     const base = `HTTP ${r.status} | ${r.ct.split(';')[0]} | ${r.kind} | ${r.ms}ms${expNote}`;
+    if (isPlayable(r) && SECURE_TOKEN_RE.test(u)) {
+      // Mở được TỪ MÁY CHỦ (đúng IP đã lấy token). Nếu người xem vẫn lỗi => token gắn IP (hoặc app không gửi đúng header Origin).
+      const ip = await getRunnerIp();
+      return { ok: true, tag: '✅', detail: `${base} | IP-CI=${ip} | /secure/ token: mở được từ IP CI; người xem lỗi => token gắn IP hoặc app không gửi Origin`, status: r.status, kind: r.kind, ms: r.ms };
+    }
     if (isPlayable(r)) return { ok: true, tag: '✅', detail: base, status: r.status, kind: r.kind, ms: r.ms };
     if (r.status >= 200 && r.status < 300) {
       const why = r.kind === 'html' ? 'trả trang web/JSON thay vì video' : r.kind === 'empty' ? 'phản hồi rỗng' : 'định dạng lạ';
@@ -233,13 +266,14 @@ export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG
     // Token đã hết hạn thì thử header cũng vô ích -> chỉ dò biến thể với 401/403 khi token còn hạn/không rõ hạn.
     if ((r.status === 401 || r.status === 403) && !expired) {
       try {
-        variants = await probeVariants(u, { referer, userAgent, extraReferers, timeoutMs });
+        variants = await probeVariants(u, { referer, userAgent, extraReferers, timeoutMs, origin });
       } catch { variants = null; }
       if (variants) {
         detail = `${base} | ${variants.hint}`;
         tag += variants.mixed ? '·mẫu-lẫn-lộn' : variants.worked.length ? `·đổi-header-được(${variants.worked[0]})` : '·mọi-header-đều-chặn';
       }
     }
+    if (SECURE_TOKEN_RE.test(u)) detail += ' | link /secure/<token>: token nghi GẮN IP máy tạo playlist';
     return { ok: false, tag, detail, status: r.status, kind: r.kind, ms: r.ms, variants: variants || undefined };
   })();
 

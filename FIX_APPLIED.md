@@ -1,3 +1,20 @@
+# FIX 13/11/2026 (lần 2) — Rerace: trận live bóng đá (/secure/<token>/) không xem được
+
+- Nghi vấn (CHƯA kiểm chứng): token `*.indianservers.st/secure/<token>/...` gắn IP máy chạy GitHub Actions -> IP khác bị từ chối.
+- Vì playlist tĩnh không đổi được token theo IP người xem, cách làm được chỉ bằng file Git là CHO NHIỀU SERVER / TRẬN:
+  `rerace.service.js`: RERACE_MAX_SERVERS_OTHER mặc định 1 -> 3, RERACE_BROWSER_TRIES 2 -> 3 (lượt 3 mở embed của server kế tiếp);
+  `playlistBuilder.service.js`: timeout resolve rerace 40s -> 60s. Người xem thử "Server 1/2/3" để chọn server chạy được.
+- `m3uPlaylist.js`: link /secure/ VẪN được ghi (RERACE_KEEP_SECURE mặc định bật; đặt 0 để ẩn các link này).
+- Nếu cả 3 server vẫn lỗi => token đúng là gắn IP; cần server lấy link lúc bấm xem (api/playlist/resolve), không làm được chỉ với Git.
+- DEBUG Rerace (mặc định BẬT, tắt: RERACE_DEBUG=off hoặc PLAYLIST_DEBUG=off): mỗi kênh Rerace được thử mở từ máy chạy Actions
+  đúng như app (chỉ Origin taifood-blog.asia, không Referer) rồi gắn vào TÊN KÊNH + dòng "# [debug]" trong file .m3u:
+    ✅                         mở được từ IP máy chạy Actions (kèm IP-CI=<ip>) -> nếu bạn vẫn không xem được: token gắn IP, hoặc app của bạn không gửi header Origin
+    ⚠️403(CI)·mọi-header-đều-chặn   CDN chặn mọi kiểu header -> token hết hạn/bị thu hồi/chặn IP
+    ⚠️403(CI)·đổi-header-được(X)    lỗi do header; X là kiểu header mở được
+    ⚠️token-hết-hạn(CI) / ⚠️timeout(CI) / ⚠️không-phải-video(CI)  tương ứng
+  Mở file all.m3u trên GitHub (dạng text) để đọc các dòng "# [debug]"; cuối mỗi nguồn có kênh "🔧 DEBUG Rerace: ..." tóm tắt.
+- Chỉ sửa file, không xóa file nào. Không cần sửa .github/workflows.
+
 # ✅ FIX ĐÃ ÁP DỤNG - Chuối Chiên Override Referer
 
 ## 🎯 Fix Được Áp Dụng
