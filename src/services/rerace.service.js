@@ -1,5 +1,6 @@
 import { load as cheerioLoad } from 'cheerio';
 import { createHttpClient } from '@/src/utils/httpClient';
+import { captureM3u8ViaBrowser } from '@/src/utils/browserFetch';
 
 // Nguồn Rerace (rerace.net) — trang F1 + thể thao khác, KHÔNG tự host video mà nhúng player bên thứ ba.
 // Thêm 08/11/2026. Dữ liệu lấy từ 3 chỗ (đã thấy trong Network của trang /watch/?e=f1-2026-r20&s=f1-2026-r20-src175):
@@ -25,6 +26,22 @@ const INCLUDE_247 = process.env.RERACE_INCLUDE_247 === '1'; // kênh 24/7 (alway
 const SPORTS_ENABLED = String(process.env.RERACE_SPORTS || 'f1,motor-sports,football').toLowerCase().split(/[,\s]+/).filter(Boolean);
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 const TTL_MS = 45000;
+// FIX (13/11/2026 — "[rerace] rr_32157/32158/32159: 0 link phát" dù có 3 trận live): trang embed bóng đá (iframe ppv)
+// dựng player bằng JS và giấu link m3u8 (mã hoá/gọi API sau khi chạy script) -> quét HTML tĩnh bằng axios không thấy
+// gì, hoặc bị chặn từ IP máy chủ. Khi quét tĩnh KHÔNG ra link thì mở trang embed bằng Chromium thật (như người xem,
+// gửi Referer rerace.net), tự bấm Play và BẮT request m3u8 mà player gọi — kèm Referer/Origin thật để proxy dùng lại.
+// Tắt bằng RERACE_BROWSER=0; số lần mở trình duyệt tối đa / trận: RERACE_BROWSER_TRIES (mặc định 2).
+const BROWSER_ON = process.env.RERACE_BROWSER !== '0';
+const BROWSER_TRIES = Math.max(0, Number(process.env.RERACE_BROWSER_TRIES) || 2);
+const BROWSER_TIMEOUT_MS = Math.max(5000, Number(process.env.RERACE_BROWSER_TIMEOUT_MS) || 14000);
+const STATIC_SCAN_LIMIT_MS = 9000; // quét tĩnh (axios) quá ngần này thì bỏ qua, chuyển sang trình duyệt
+const withTimeout = (promise, ms, fallback) => {
+  let timer;
+  return Promise.race([
+    Promise.resolve(promise).catch(() => fallback),
+    new Promise((resolve) => { timer = setTimeout(() => resolve(fallback), ms); })
+  ]).finally(() => clearTimeout(timer));
+};
 const MAX_STREAMS = Math.max(1, Number(process.env.RERACE_MAX_SERVERS) || 24); // lấy TẤT CẢ server của 1 trận (mặc định tối đa 24)
 
 const client = createHttpClient(
@@ -395,7 +412,8 @@ class ReraceService {
 
       const limit = m.sport === 'f1' ? MAX_STREAMS : MAX_SERVERS_OTHER; // objs đã sort chất lượng cao -> link đầu tiên tìm được là tốt nhất
       const found = new Map(); // url -> {obj, kind}
-      const add = (url, obj, kind) => { if (!found.has(url) && found.size < limit) found.set(url, { obj, kind }); };
+      const add = (url, obj, kind, referer = '') => { if (!found.has(url) && found.size < limit) found.set(url, { obj, kind, referer }); };
+      let browserTries = 0;
 
       for (const o of objs.slice(0, MAX_STREAMS)) {
         if (found.size >= limit) break;
@@ -420,22 +438,45 @@ class ReraceService {
             if (st !== 404 && st !== 410) { add(idx, o, 'weelo'); continue; }
           }
         }
+        const before = found.size;
         const refs = [`${RERACE_BASE}/`, `${EMBED_ORIGIN}/`, `${PLAYER_ORIGIN}/`];
-        // 1) quét trang embed (m3u8 trực tiếp / base64 / iframe / script / api)
         const trace = debug ? (debug.trace[o.url] = []) : [];
-        for (const u of await scanEmbed(o.url, refs, { trace })) add(u, o, 'hls');
-        // 2) luồng weelo.live/<token a-p>/index.html (F1) — playlist HLS đặt tên .html
-        if (found.size < limit) try {
-          const html = await getText(o.url, `${RERACE_BASE}/`);
-          const tokens = clean(html).match(TOKEN_RE) || [];
-          for (const t of new Set(tokens)) {
-            try {
-              const body = await getText(t);
-              if (/^\s*#EXTM3U/.test(body)) add(t, o, 'weelo');
-              else for (const u of findM3u8(body)) add(u, o, 'hls');
-            } catch (e) { console.error(`[rerace] ${t}: ${e.message}`); }
+        // Quét tĩnh (axios) có giới hạn thời gian để còn thời gian cho bước trình duyệt bên dưới.
+        await withTimeout((async () => {
+            // 1) quét trang embed (m3u8 trực tiếp / base64 / iframe / script / api)
+            for (const u of await scanEmbed(o.url, refs, { trace })) add(u, o, 'hls');
+          // 2) luồng weelo.live/<token a-p>/index.html (F1) — playlist HLS đặt tên .html
+          if (found.size < limit) try {
+            const html = await getText(o.url, `${RERACE_BASE}/`);
+            const tokens = clean(html).match(TOKEN_RE) || [];
+            for (const t of new Set(tokens)) {
+              try {
+                const body = await getText(t);
+                if (/^\s*#EXTM3U/.test(body)) add(t, o, 'weelo');
+                else for (const u of findM3u8(body)) add(u, o, 'hls');
+              } catch (e) { console.error(`[rerace] ${t}: ${e.message}`); }
+            }
+          } catch (e) { console.error(`[rerace] ${o.url}: ${e.message}`); }
+        })(), STATIC_SCAN_LIMIT_MS, null);
+        // 3) Không ra link -> mở trang embed bằng trình duyệt thật, bắt request m3u8 do player tự gọi.
+        if (found.size === before && found.size < limit && BROWSER_ON && browserTries < BROWSER_TRIES) {
+          browserTries += 1;
+          const targets = [{ url: o.url, referer: `${RERACE_BASE}/` }];
+          if (browserTries > 1 && m.detailUrl) targets.push({ url: m.detailUrl, referer: '' }); // lượt 2: trang xem của rerace (iframe nằm trong ngữ cảnh thật)
+          const tgt = targets[targets.length - 1];
+          try {
+            const r = await captureM3u8ViaBrowser(tgt.url, { referer: tgt.referer || undefined, timeoutMs: BROWSER_TIMEOUT_MS });
+            trace.push({ browser: tgt.url, found: r.found.map((f) => f.url).slice(0, 5), title: r.title, xhr: r.seen.slice(0, 8) });
+            for (const f of r.found) {
+              if (/\.m3u8(\?|$)/i.test(f.url)) add(f.url, o, 'hls', f.headers?.referer || f.headers?.Referer || '');
+              else add(f.url, o, 'weelo', f.headers?.referer || f.headers?.Referer || '');
+            }
+            if (!r.found.length) console.error(`[rerace] trình duyệt không bắt được m3u8 từ ${tgt.url} (title="${r.title}", xhr=${r.seen.length})`);
+          } catch (e) {
+            trace.push({ browser: tgt.url, error: e.message });
+            console.error(`[rerace] trình duyệt lỗi ${tgt.url}: ${e.message}`);
           }
-        } catch (e) { console.error(`[rerace] ${o.url}: ${e.message}`); }
+        }
       }
       // dự phòng: players/state.json
       if (!found.size) {
@@ -444,16 +485,16 @@ class ReraceService {
 
       // Player chạy trong iframe -> request m3u8/ts mang Referer = origin trang embed (weellz.live cho F1, taifood-blog.asia cho bóng đá...).
       const refererOf = (obj) => { try { return `${new URL(obj.url).origin}/`; } catch { return `${PLAYER_ORIGIN}/`; } };
-      const list = [...found.entries()].map(([url, { obj }], i) => {
+      const list = [...found.entries()].map(([url, { obj, referer: capturedRef }], i) => {
         const name = `Server ${i + 1}${obj.label ? ` - ${obj.label}` : ''}`;
         return {
           id: obj.id || `${m.originalId}_${i}`, streamerId: obj.id || `${m.originalId}_${i}`, name, streamerName: name,
           avatar: null, streamerAvatar: null, link: url, m3u8Url: url, playUrl: url, format: 'hls', cdn: 'HLS',
-          quality: /\b4K|UHD\b/i.test(name) ? '4K' : /\bSD\b/i.test(name) ? 'SD' : 'HD', language: obj.language || undefined, referer: refererOf(obj)
+          quality: /\b4K|UHD\b/i.test(name) ? '4K' : /\bSD\b/i.test(name) ? 'SD' : 'HD', language: obj.language || undefined, referer: capturedRef || refererOf(obj)
         };
       });
       if (debug) { debug.match = { id: m.matchId, title: `${m.homeTeam?.name} - ${m.awayTeam?.name}`, sport: m.sport, servers: objs.length }; debug.links = list.map((x) => ({ name: x.name, url: x.link, referer: x.referer })); }
-      console.log(`[rerace] ${matchId}: ${list.length} link phát`);
+      console.log(`[rerace] ${matchId}: ${list.length} link phát (${objs.length} server nguồn${objs.length ? '' : ' — trận KHÔNG có iframe/server nào từ ppv/events.json'})`);
       return list;
     } catch (error) {
       console.error('Error fetching Rerace stream links:', error.message);

@@ -98,7 +98,7 @@ export default async function handler(req, res) {
         } else if (source === 'rerace') {
           // Rerace: quét m3u8 từ trang xem/player weelo -> lấy mới lúc bấm xem.
           if (!matchId) return notReadyYet();
-          raw = await withDeadline(reraceService.getStreamLinks(matchId), 20000);
+          raw = await withDeadline(reraceService.getStreamLinks(matchId), 40000);
         } else if (source === 'giovang') {
           const id = url || matchId;
           if (!id) return notReadyYet();

@@ -609,7 +609,79 @@ async function captureJsonViaBrowser(url, predicate, opts = {}) {
   }
 }
 
+/**
+ * Mở 1 trang (thường là trang embed player) bằng trình duyệt thật và BẮT mọi request khớp `matchUrl` (mặc định .m3u8)
+ * mà player tự gọi — kể cả trong iframe lồng nhau. Khác fetchFirstRequestHeaders: có thể gửi `referer` khi điều hướng
+ * (nhiều trang embed chỉ chạy khi được nhúng từ site mẹ), tự bấm Play/giữa màn hình LẶP LẠI mỗi vài giây (player
+ * quảng cáo hay cần 2-3 lần bấm), tự đóng tab quảng cáo popup do CHÍNH trang này mở, và trả về danh sách request
+ * đã bắt (url + header Referer/Origin thật của trình duyệt) cùng vài request XHR/fetch đã thấy để chẩn đoán.
+ *
+ * @param {string} url
+ * @param {{ timeoutMs?: number, referer?: string, matchUrl?: RegExp, clickEveryMs?: number }} [opts]
+ * @returns {Promise<{ found: {url:string, headers:Record<string,string>}[], seen: string[], title: string }>}
+ */
+async function captureM3u8ViaBrowser(url, opts = {}) {
+  const { timeoutMs = 15000, referer, matchUrl = /\.m3u8(\?|$)|\/[a-p]{16,}\/index\.html(\?|$)/i, clickEveryMs = 2500 } = opts;
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  const found = [];
+  const seen = [];
+  const sleepMs = (ms) => new Promise((r) => setTimeout(r, ms));
+  // Chỉ đóng tab popup do CHÍNH page này mở (browser được dùng chung với các lượt khác đang chạy song song).
+  const onTarget = async (target) => {
+    try {
+      if (target.type() !== 'page' || target.opener() !== page.target()) return;
+      const popup = await target.page();
+      if (popup && popup !== page) await popup.close().catch(() => {});
+    } catch { /* bỏ qua */ }
+  };
+  browser.on('targetcreated', onTarget);
+  try {
+    try {
+      const real = await browser.userAgent();
+      await page.setUserAgent(String(real).replace(/HeadlessChrome/i, 'Chrome'));
+    } catch { /* dùng UA mặc định */ }
+    await page.setExtraHTTPHeaders({ 'Accept-Language': 'en-US,en;q=0.9' });
+    page.on('dialog', (d) => d.dismiss().catch(() => {}));
+    page.on('request', (request) => {
+      try {
+        const u = request.url();
+        if (matchUrl.test(u)) {
+          if (!found.some((f) => f.url === u)) found.push({ url: u, headers: request.headers() });
+        } else if (seen.length < 30 && ['xhr', 'fetch'].includes(request.resourceType())) {
+          seen.push(u.slice(0, 140));
+        }
+      } catch { /* bỏ qua */ }
+    });
+
+    const startedAt = Date.now();
+    page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs, ...(referer ? { referer } : {}) }).catch(() => {});
+
+    let lastClick = 0;
+    while (!found.length && Date.now() - startedAt < timeoutMs) {
+      await sleepMs(500);
+      if (Date.now() - lastClick < clickEveryMs || Date.now() - startedAt < 1500) continue;
+      lastClick = Date.now();
+      // Gọi .play() trên mọi <video> ở mọi frame (muted để qua chính sách autoplay), rồi bấm giữa màn hình.
+      for (const frame of page.frames()) {
+        frame.evaluate(() => {
+          document.querySelectorAll('video').forEach((v) => { try { v.muted = true; v.play?.().catch(() => {}); } catch {} });
+        }).catch(() => {});
+      }
+      await page.mouse.click(683, 384).catch(() => {});
+    }
+    // Đợi thêm chút để gom luôn request m3u8 thứ 2 (server khác/độ phân giải khác) nếu có.
+    if (found.length) await sleepMs(400);
+    const title = await page.title().catch(() => '');
+    return { found, seen, title };
+  } finally {
+    browser.off('targetcreated', onTarget);
+    await page.close().catch(() => {});
+  }
+}
+
 module.exports = {
+  captureM3u8ViaBrowser,
   captureJsonViaBrowser,
   fetchRenderedHtml,
   fetchApiViaBrowser,
