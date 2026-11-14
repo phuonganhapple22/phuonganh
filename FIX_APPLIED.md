@@ -1,3 +1,22 @@
+# FIX 14/11/2026 (lần 3) — Rerace bóng đá: KẾT LUẬN sau test thực tế
+
+- Trình duyệt Chrome của người dùng: 200. curl từ CÙNG máy/IP, token mới, đủ header (Origin, UA, Sec-Fetch-*): nginx 403 (cả khi bỏ/đủ Origin).
+  Token lấy bằng trình duyệt trên Actions: 404 ngay từ IP Actions. => link /secure/ chỉ sống trong phiên trình duyệt thật; không dùng được trong playlist tĩnh.
+- Mặc định giờ: ẨN các link /secure/ (RERACE_KEEP_SECURE=1 để ghi lại) và không mở Chromium cho trận bóng đá (đỡ tốn thời gian Actions).
+  F1 Rerace (weelo.live) không đổi. Bóng đá xem ở các nguồn khác (Xoilac, Giờ Vàng, Phá Làng...).
+- Chưa kiểm chứng được: có phải do HTTP/2 hay dấu vân tay TLS (curl Windows của người dùng chỉ có HTTP/1.1); app IPTV dùng HTTP/2 có thể khác.
+
+# FIX 14/11/2026 — Rerace: debug báo "⚠️404(CI)" (Kosovo vs Israel, cả Server 1 và 2)
+
+- 404 xảy ra NGAY TỪ IP máy chạy Actions (chính máy lấy token) => KHÔNG phải token gắn IP người xem. Nghĩa là CDN không có luồng đó
+  (chưa phát / token bị thu hồi sau khi trình duyệt đóng trang / phiên phát đã đóng). Gợi ý debug cũ "nghi gắn IP" chỉ còn áp dụng cho 401/403.
+- `browserFetch.js`: trình duyệt giờ ghi lại HTTP status thật của request m3u8 và chờ tới khi có link mở được (2xx/3xx).
+- `rerace.service.js`: link mà CHÍNH trình duyệt nhận 4xx/5xx bị bỏ (không ghi ra playlist), thử server kế tiếp; ghi chú vào kênh "🔧 DEBUG Rerace"
+  (vd "trình duyệt nhận HTTP 404 từ netanyahu.indianservers.st", "trình duyệt bắt ... status=200 header=[origin,...]").
+- `streamDebug.js`: 404 trên link /secure/ cũng dò biến thể header; thêm đoạn đầu nội dung lỗi (body="...") vào dòng "# [debug]".
+- Cách đọc: nếu trình duyệt status=200 nhưng CI thử lại sau đó 404 => token chỉ sống khi trang player còn mở (phiên gắn trình duyệt) -> không dùng được trong playlist tĩnh.
+  Nếu trình duyệt cũng 404 => luồng chưa có trên CDN lúc đó (thử lại ở chu kỳ sau).
+
 # FIX 13/11/2026 (lần 2) — Rerace: trận live bóng đá (/secure/<token>/) không xem được
 
 - Nghi vấn (CHƯA kiểm chứng): token `*.indianservers.st/secure/<token>/...` gắn IP máy chạy GitHub Actions -> IP khác bị từ chối.

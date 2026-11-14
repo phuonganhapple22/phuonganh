@@ -1,6 +1,7 @@
 import { load as cheerioLoad } from 'cheerio';
 import { createHttpClient } from '@/src/utils/httpClient';
 import { captureM3u8ViaBrowser } from '@/src/utils/browserFetch';
+import { debugNote } from '@/src/utils/streamDebug';
 
 // Nguồn Rerace (rerace.net) — trang F1 + thể thao khác, KHÔNG tự host video mà nhúng player bên thứ ba.
 // Thêm 08/11/2026. Dữ liệu lấy từ 3 chỗ (đã thấy trong Network của trang /watch/?e=f1-2026-r20&s=f1-2026-r20-src175):
@@ -34,6 +35,9 @@ const TTL_MS = 45000;
 const BROWSER_ON = process.env.RERACE_BROWSER !== '0';
 const BROWSER_TRIES = Math.max(0, Number(process.env.RERACE_BROWSER_TRIES) || 3);
 const BROWSER_TIMEOUT_MS = Math.max(5000, Number(process.env.RERACE_BROWSER_TIMEOUT_MS) || 14000);
+// 14/11/2026: bóng đá Rerace chỉ cho link /secure/ gắn phiên trình duyệt (không dùng được ngoài trình duyệt) -> mặc định không mở Chromium
+// cho trận bóng đá (đỡ tốn thời gian Actions). Bật lại: RERACE_KEEP_SECURE=1 hoặc RERACE_BROWSER_FOOTBALL=1. F1 (weelo) không bị ảnh hưởng.
+const BROWSER_FOOTBALL = process.env.RERACE_KEEP_SECURE === '1' || process.env.RERACE_BROWSER_FOOTBALL === '1';
 const STATIC_SCAN_LIMIT_MS = 9000; // quét tĩnh (axios) quá ngần này thì bỏ qua, chuyển sang trình duyệt
 const withTimeout = (promise, ms, fallback) => {
   let timer;
@@ -459,7 +463,7 @@ class ReraceService {
           } catch (e) { console.error(`[rerace] ${o.url}: ${e.message}`); }
         })(), STATIC_SCAN_LIMIT_MS, null);
         // 3) Không ra link -> mở trang embed bằng trình duyệt thật, bắt request m3u8 do player tự gọi.
-        if (found.size === before && found.size < limit && BROWSER_ON && browserTries < BROWSER_TRIES) {
+        if (found.size === before && found.size < limit && BROWSER_ON && browserTries < BROWSER_TRIES && (m.sport === 'f1' || BROWSER_FOOTBALL)) {
           browserTries += 1;
           const targets = [{ url: o.url, referer: `${RERACE_BASE}/` }];
           if (browserTries === 2 && m.detailUrl) targets.push({ url: m.detailUrl, referer: '' }); // lượt 2: trang xem của rerace (iframe nằm trong ngữ cảnh thật)
@@ -469,6 +473,15 @@ class ReraceService {
             trace.push({ browser: tgt.url, found: r.found.map((f) => f.url).slice(0, 5), title: r.title, xhr: r.seen.slice(0, 8) });
             for (const f of r.found) {
               if (!/^https?:\/\//i.test(f.url)) continue; // chrome-extension://, blob:, data: ... không phải link phát
+              // 14/11/2026: chính trình duyệt nhận 4xx/5xx từ link này (CDN chưa có luồng / token không hợp lệ) -> không ghi ra playlist.
+              let fHost = '';
+              try { fHost = new URL(f.url).host; } catch { /* bỏ qua */ }
+              if (typeof f.status === 'number' && f.status >= 400) {
+                trace.push({ browserLink: f.url.slice(0, 120), status: f.status });
+                debugNote('rerace', `trình duyệt nhận HTTP ${f.status} từ ${fHost} (link bỏ qua)`);
+                continue;
+              }
+              debugNote('rerace', `trình duyệt bắt ${fHost} status=${f.status ?? '?'} header=[${Object.keys(f.headers || {}).filter((k) => !/^(sec-|accept|user-agent)/i.test(k)).join(',')}]`);
               const ref = f.headers?.referer || f.headers?.Referer || '';
               if (/\.m3u8(\?|#|$)/i.test(f.url)) add(f.url, o, 'hls', ref);
               else if (f.url.startsWith(`${WEELO_BASE}/`)) add(f.url, o, 'weelo', ref);

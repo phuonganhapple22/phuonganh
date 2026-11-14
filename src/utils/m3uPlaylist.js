@@ -591,9 +591,11 @@ const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX
 // mở trang embed; token này nhiều khả năng GẮN VỚI IP máy lấy (cùng kiểu Phá Làng, xem FIX 27/10/2026 bên dưới)
 // => người xem ở IP khác luôn bị CDN từ chối dù header đúng. Playlist tĩnh (chỉ file trên GitHub, không có
 // server tra link lúc bấm xem) không thể đổi token theo IP người xem, nên KHÔNG ghi các link này ra playlist
-// (tránh kênh chết). MẶC ĐỊNH VẪN GIỮ các link này (người dùng muốn xem trận live); đặt RERACE_KEEP_SECURE=0 để ẩn.
+// (tránh kênh chết). 14/11/2026: test thực tế (curl từ máy người dùng, token mới, đủ header) -> CDN trả nginx 403 cho mọi kiểu gọi ngoài trình duyệt,
+// còn token lấy bằng trình duyệt trên Actions thì 404 ngay từ IP Actions => link /secure/ KHÔNG dùng được trong playlist tĩnh.
+// Mặc định ẨN các link này (không còn kênh chết). Đặt RERACE_KEEP_SECURE=1 để ghi lại.
 // Link F1 (weelo.live/<token a-p>/index.html) không thuộc dạng này nên giữ nguyên.
-const RERACE_KEEP_SECURE = process.env.RERACE_KEEP_SECURE !== '0'; // mặc định GIỮ (đặt 0 để ẩn)
+const RERACE_KEEP_SECURE = process.env.RERACE_KEEP_SECURE === '1'; // mặc định ẨN (14/11/2026); đặt 1 để ghi lại
 const RERACE_SECURE_URL_RE = /^https?:\/\/[^/]*indianservers\.st\/secure\/[^/]+\/\d{9,}\/\d{9,}\//i;
 const isReraceIpBoundStream = (s) => [s?.m3u8Url, s?.playUrl, s?.flvUrl, s?.link]
   .some((u) => typeof u === 'string' && RERACE_SECURE_URL_RE.test(u));

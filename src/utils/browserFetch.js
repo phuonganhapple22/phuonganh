@@ -654,11 +654,24 @@ async function captureM3u8ViaBrowser(url, opts = {}) {
       } catch { /* bỏ qua */ }
     });
 
+    // 14/11/2026: ghi lại HTTP status mà TRÌNH DUYỆT nhận được cho từng request m3u8 -> biết link bắt được có thật sự mở được không
+    // (trước đây chỉ bắt URL rồi đóng trang ngay; link 404 vẫn bị ghi ra playlist).
+    const statuses = new Map();
+    page.on('response', (res) => {
+      try { const u = res.url(); if (/^https?:/i.test(u) && matchUrl.test(u)) statuses.set(u, res.status()); } catch { /* bỏ qua */ }
+    });
+    const isGood = (f) => { const st = statuses.get(f.url); return st !== undefined && st < 400; };
+    let firstFoundAt = 0;
+
     const startedAt = Date.now();
     page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs, ...(referer ? { referer } : {}) }).catch(() => {});
 
     let lastClick = 0;
-    while (!found.length && Date.now() - startedAt < timeoutMs) {
+    while (Date.now() - startedAt < timeoutMs) {
+      if (found.some(isGood)) break; // có link trình duyệt mở được (2xx/3xx)
+      if (found.length && !firstFoundAt) firstFoundAt = Date.now();
+      // mọi link bắt được đều đã có phản hồi lỗi (404/403...) và đã chờ thêm 4s -> bỏ, khỏi chờ hết timeout
+      if (found.length && found.every((f) => statuses.has(f.url)) && Date.now() - firstFoundAt > 4000) break;
       await sleepMs(500);
       if (Date.now() - lastClick < clickEveryMs || Date.now() - startedAt < 1500) continue;
       lastClick = Date.now();
@@ -672,6 +685,7 @@ async function captureM3u8ViaBrowser(url, opts = {}) {
     }
     // Đợi thêm chút để gom luôn request m3u8 thứ 2 (server khác/độ phân giải khác) nếu có.
     if (found.length) await sleepMs(400);
+    for (const f of found) f.status = statuses.has(f.url) ? statuses.get(f.url) : null; // null = chưa thấy phản hồi
     const title = await page.title().catch(() => '');
     return { found, seen, title };
   } finally {

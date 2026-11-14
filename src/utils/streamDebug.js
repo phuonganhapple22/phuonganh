@@ -118,7 +118,8 @@ async function fetchHead(u, headers, timeoutMs) {
       await reader.cancel().catch(() => {});
     }
     const ct = res.headers.get('content-type') || '?';
-    return { status: res.status, ct, kind: classify(res.status, ct, head), ms: Date.now() - started };
+    const snip = res.status >= 400 ? head.toString('utf8').replace(/[^\x20-\x7e]+/g, ' ').trim().slice(0, 60) : '';
+    return { status: res.status, ct, kind: classify(res.status, ct, head), ms: Date.now() - started, snip };
   } catch (e) {
     const error = e?.name === 'AbortError' ? 'timeout' : (e?.cause?.code || e?.code || 'lỗi-mạng');
     return { error, ms: Date.now() - started };
@@ -260,11 +261,12 @@ export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG
       const why = r.kind === 'html' ? 'trả trang web/JSON thay vì video' : r.kind === 'empty' ? 'phản hồi rỗng' : 'định dạng lạ';
       return { ok: false, tag: expired ? '⚠️token-hết-hạn(CI)' : '⚠️không-phải-video(CI)', detail: `${base} | ${why}`, status: r.status, kind: r.kind, ms: r.ms };
     }
+    const isSecure = SECURE_TOKEN_RE.test(u);
     let tag = expired ? '⚠️token-hết-hạn(CI)' : `⚠️${r.status}(CI)`;
-    let detail = base;
+    let detail = r.snip ? `${base} | body="${r.snip}"` : base;
     let variants;
     // Token đã hết hạn thì thử header cũng vô ích -> chỉ dò biến thể với 401/403 khi token còn hạn/không rõ hạn.
-    if ((r.status === 401 || r.status === 403) && !expired) {
+    if ((r.status === 401 || r.status === 403 || (r.status === 404 && isSecure)) && !expired) {
       try {
         variants = await probeVariants(u, { referer, userAgent, extraReferers, timeoutMs, origin });
       } catch { variants = null; }
@@ -273,7 +275,11 @@ export async function probeStreamForDebug(url, { referer = '', userAgent = DEBUG
         tag += variants.mixed ? '·mẫu-lẫn-lộn' : variants.worked.length ? `·đổi-header-được(${variants.worked[0]})` : '·mọi-header-đều-chặn';
       }
     }
-    if (SECURE_TOKEN_RE.test(u)) detail += ' | link /secure/<token>: token nghi GẮN IP máy tạo playlist';
+    if (isSecure) {
+      detail += r.status === 404
+        ? ' | /secure/ 404 ngay từ IP máy tạo playlist => KHÔNG phải chặn IP: CDN chưa có luồng này / token đã bị thu hồi / phiên phát đã đóng'
+        : ' | /secure/ 401/403: token nghi gắn IP máy tạo playlist hoặc thiếu header';
+    }
     return { ok: false, tag, detail, status: r.status, kind: r.kind, ms: r.ms, variants: variants || undefined };
   })();
 
