@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Bảng điểm sân vận động ban đêm: nền xanh rêu-đen như mặt sân dưới
+       đèn pha, chữ trắng ngà ấm, điểm nhấn vàng đèn pha (primary) cho hành
+       động/CTA, đỏ truyền hình (destructive) dành riêng cho tín hiệu LIVE
+       để không lẫn với các nút thường. */
+    --background: 165 28% 6%;
+    --foreground: 45 25% 95%;
+
+    --card: 165 24% 8.5%;
+    --card-foreground: 45 25% 95%;
+
+    --popover: 165 26% 7%;
+    --popover-foreground: 45 25% 95%;
+
+    --primary: 42 92% 54%;
+    --primary-foreground: 165 30% 8%;
+
+    --secondary: 165 18% 15%;
+    --secondary-foreground: 45 20% 92%;
+
+    --muted: 165 16% 13%;
+    --muted-foreground: 165 8% 62%;
+
+    --accent: 165 18% 17%;
+    --accent-foreground: 45 20% 95%;
+
+    --destructive: 356 88% 56%;
+    --destructive-foreground: 45 25% 97%;
+
+    --border: 165 16% 17%;
+    --input: 165 16% 17%;
+    --ring: 42 92% 54%;
+
+    --turf-a: 165 26% 7.5%;
+    --turf-b: 165 26% 9%;
+
+    --radius: 0.6rem;
+  }
+
+  /* Không có công tắc sáng/tối trong giao diện — .dark giữ trùng :root để
+     tương thích nếu sau này bật lại theo hệ điều hành. */
+  .dark {
+    --background: 165 28% 6%;
+    --foreground: 45 25% 95%;
+    --card: 165 24% 8.5%;
+    --card-foreground: 45 25% 95%;
+    --popover: 165 26% 7%;
+    --popover-foreground: 45 25% 95%;
+    --primary: 42 92% 54%;
+    --primary-foreground: 165 30% 8%;
+    --secondary: 165 18% 15%;
+    --secondary-foreground: 45 20% 92%;
+    --muted: 165 16% 13%;
+    --muted-foreground: 165 8% 62%;
+    --accent: 165 18% 17%;
+    --accent-foreground: 45 20% 95%;
+    --destructive: 356 88% 56%;
+    --destructive-foreground: 45 25% 97%;
+    --border: 165 16% 17%;
+    --input: 165 16% 17%;
+    --ring: 42 92% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-feature-settings: 'tnum' 1;
+  }
+}
