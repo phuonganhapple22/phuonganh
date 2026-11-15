@@ -121,7 +121,7 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   ],
   // FIX (30/09/2026): giovang.city đã redirect sang giovang.blog; giovang.cv là mirror còn nhắc trên trang.
   // FIX (03/11/2026): trang Giờ Vàng hiện là giovang.love (Referer trong playlist phải là https://giovang.love/).
-  giovang: [...new Set([`${String(process.env.GIOVANG_DOMAIN || 'https://giovang.love').replace(/\/+$/, '')}/`, 'https://giovang.love/', 'https://giovang.blog/', 'https://giovang.cv/'])].concat([null]),
+  giovang: [...new Set([`${String(process.env.GIOVANG_DOMAIN || 'https://giovang.cam').replace(/\/+$/, '')}/`, 'https://giovang.cam/', 'https://giovang.love/', 'https://giovang.blog/', 'https://giovang.cv/'])].concat([null]),
   // FIX (29/09/2026): trình duyệt thật luôn gửi Referer có dấu "/" cuối
   // (https://phalang.live/) — đặt bản có "/" LÊN ĐẦU cho khớp CDN kiểm tra chuỗi chính xác.
   phalang: [`${String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, '')}/`, String(process.env.PHALANG_DOMAIN || 'https://phalang.live').replace(/\/+$/, ''), null],
@@ -583,7 +583,9 @@ export function buildM3uPlaylist(entries = [], options = {}) {
 
 // Số server tối đa xuất ra cho MỖI trận Phá Làng (xem FIX 27/10/2026 trong matchesToPlaylistEntries).
 // Đặt PHALANG_MAX_SERVERS=1 để quay về 1 trận = 1 kênh như trước.
-const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1); // mặc định 1 link/trận
+// FIX (15/11/2026): bóng đá giữ tới GIOVANG_FOOTBALL_MAX_SERVERS (mặc định 3) server để đổi khi server 1 lỗi; môn khác 1 link/trận như cũ.
+const GIOVANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.GIOVANG_MAX_SERVERS) || 1);
+const GIOVANG_FOOTBALL_MAX_SERVERS_PER_MATCH = Math.max(GIOVANG_MAX_SERVERS_PER_MATCH, Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 3));
 const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX_SERVERS) || 1);
 // Rerace (08/11/2026): 1 trận live có NHIỀU server (events[].streams[]) -> xuất TẤT CẢ (mỗi server 1 kênh "Server N"). Mặc định tối đa 24.
 // FIX (13/11/2026 — "link nguồn Rerace đều lỗi, không xem được"): CDN bóng đá của Rerace
@@ -662,7 +664,7 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
         : (srcKey === 'phalang' && playableStreams.length > 1)
         ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, PHALANG_MAX_SERVERS_PER_MATCH)
         : (srcKey === 'giovang' && playableStreams.length > 1)
-          ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, GIOVANG_MAX_SERVERS_PER_MATCH)
+          ? [stream, ...playableStreams.filter((s) => s !== stream)].slice(0, /basket|volley|badminton|tennis|f1|motor/i.test(`${match?.sport || ''}`) ? GIOVANG_MAX_SERVERS_PER_MATCH : GIOVANG_FOOTBALL_MAX_SERVERS_PER_MATCH)
           : [stream];
       for (const chosenStream of chosen) {
         const entry = { match, stream: chosenStream };

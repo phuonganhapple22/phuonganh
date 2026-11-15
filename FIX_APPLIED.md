@@ -1,3 +1,15 @@
+# FIX 15/11/2026 — Giờ Vàng: bóng đá không xem được, bóng rổ/bóng chuyền vẫn xem bình thường
+
+- Nguyên nhân (suy ra từ code + playlist, CHƯA test được trên site thật): cùng CDN vcdn.cloud, cùng Referer https://giovang.cam/, chỉ bóng đá hỏng
+  => không phải lỗi Referer/domain mà là LINK bóng đá đọc từ HTML trang trận không phải link player thật đang phát.
+- `giovang.service.js`: bóng đá mở trang trận bằng trình duyệt, bấm Play, bắt link .m3u8 thật (kèm Referer thật + status); link mở được (status < 400)
+  lên đầu (Giovang 1), link đọc từ HTML làm server dự phòng (Giovang 2, 3). Môn khác giữ nguyên cách cũ.
+  Domain mặc định giovang.love -> giovang.cam. Tắt: GIOVANG_FOOTBALL_BROWSER=off; chỉnh: GIOVANG_BROWSER_CAPTURE_MS, GIOVANG_FOOTBALL_MAX_SERVERS.
+- `m3uPlaylist.js`: bóng đá giữ tới 3 server/trận (môn khác 1); thêm giovang.cam vào danh sách Referer.
+- `playlistBuilder.service.js`: timeout resolve Giờ Vàng 18s -> 45s. `scripts/source-domains.mjs`: default giovang.cam.
+- Cách đọc log: tìm dòng "[giovang] ... trình duyệt bắt được N link thật" hoặc "KHÔNG bắt được link .m3u8 mở được".
+- Chỉ sửa file, không xóa file nào.
+
 # FIX 14/11/2026 (lần 3) — Rerace bóng đá: KẾT LUẬN sau test thực tế
 
 - Trình duyệt Chrome của người dùng: 200. curl từ CÙNG máy/IP, token mới, đủ header (Origin, UA, Sec-Fetch-*): nginx 403 (cả khi bỏ/đủ Origin).

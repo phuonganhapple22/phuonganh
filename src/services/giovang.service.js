@@ -1,6 +1,6 @@
 import { createHttpClient } from '@/src/utils/httpClient';
 import { slugifyVi } from '@/src/utils/slug';
-import { fetchRenderedHtml, fetchFirstRequestHeaders } from '@/src/utils/browserFetch';
+import { fetchRenderedHtml, fetchFirstRequestHeaders, captureM3u8ViaBrowser } from '@/src/utils/browserFetch';
 import { filterDeadHlsLinks } from '@/src/utils/linkProbe';
 
 // Trang web: đổi tên miền tuỳ ý qua GIOVANG_DOMAIN (không cần sửa code).
@@ -18,7 +18,7 @@ import { filterDeadHlsLinks } from '@/src/utils/linkProbe';
 // còn nhận domain cũ làm Referer. Domain mặc định đổi sang giovang.blog; ngoài
 // ra ensureSiteOrigin() tự theo redirect để lần sau đổi domain KHÔNG cần sửa
 // code, và detectPlayerReferer() lấy Referer THẬT từ trình duyệt (xem dưới).
-const BASE_URL = String(process.env.GIOVANG_DOMAIN || 'https://giovang.love').replace(/\/+$/, '');
+const BASE_URL = String(process.env.GIOVANG_DOMAIN || 'https://giovang.cam').replace(/\/+$/, '');
 const SITE_CHECK_TTL_MS = 6 * 60 * 60 * 1000; // theo dõi redirect domain 6 tiếng/lần
 const DETECT_REFERER_TIMEOUT_MS = 12000; // ngắn để không kéo dài tổng thời gian quét
 const DETECT_REFERER_TTL_MS = 2 * 60 * 60 * 1000; // domain player không đổi liên tục cỡ phút
@@ -83,6 +83,21 @@ function rankHlsByFreshness(urls) {
   return { urls: pool.map((x) => x.url), droppedStale: withTs.length - pool.length, allStale: !fresh.length && withTs.length > 0 };
 }
 
+// FIX (15/11/2026 — "nguồn Giờ Vàng: các trận bóng đá không xem được, bóng rổ/bóng chuyền vẫn xem bình thường"):
+// domain trang đã đổi sang https://giovang.cam (SOURCE_DOMAINS) -> đổi mặc định. Bóng rổ/bóng chuyền/... và bóng đá
+// cùng CDN (vcdn.cloud) và cùng Referer nhưng chỉ bóng đá hỏng => link đọc từ HTML trang trận (đoán theo
+// "pc_stream_url") của bóng đá không phải link mà player thật đang phát (trang bóng đá có nhiều BLV / link của trận
+// khác / link chưa lên sóng; link .m3u8 sai thì CDN trả 404/403 dù Referer đúng).
+// Cách sửa, CHỈ cho bóng đá (môn khác giữ nguyên cách cũ vì đang chạy tốt):
+//  (1) mở trang trận bằng trình duyệt headless, bấm Play, BẮT link .m3u8 THẬT mà player gọi (kèm Referer thật + HTTP status
+//      trình duyệt nhận) -> link này lên ĐẦU (Giovang 1), chỉ nhận link trình duyệt mở được (status < 400);
+//  (2) link đọc từ HTML vẫn giữ làm server dự phòng (Giovang 2, 3) -> khi server 1 lỗi thì đổi sang server khác;
+//  (3) nếu cuối cùng chỉ có 1 link thì thêm bản dự phòng không Referer (đã có sẵn từ trước, giờ bật cho bóng đá).
+// Tắt bước (1): GIOVANG_FOOTBALL_BROWSER=off. Đổi thời gian chờ trình duyệt: GIOVANG_BROWSER_CAPTURE_MS (mặc định 14000).
+// Số server tối đa/trận bóng đá: GIOVANG_FOOTBALL_MAX_SERVERS (mặc định 3).
+const GIOVANG_FOOTBALL_BROWSER = String(process.env.GIOVANG_FOOTBALL_BROWSER || 'on').toLowerCase() !== 'off';
+const GIOVANG_BROWSER_CAPTURE_MS = Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) > 0 ? Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) : 14000;
+const GIOVANG_FOOTBALL_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 3);
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
 // FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
 // link .m3u8 lấy từ trang trận có thể đã chết trên CDN. Dò nhanh từng link (kèm Referer thật) và BỎ link
@@ -471,6 +486,35 @@ class GiovangService {
 
     this.logLinkDiagnostics({ targetUrl, html, hlsUrls, via });
 
+    // Môn của trận: tra lại từ cache danh sách; không biết thì coi là bóng đá (môn mặc định của nguồn).
+    const cachedForSport = [...(this.cache.get('matches:live')?.value?.matches || []), ...(this.cache.get('matches:all')?.value?.matches || [])];
+    const matchForSport = cachedForSport.find((m) => m.stream?.liveUrl === targetUrl || m.originalId === rawId || m.matchId === `giovang_${rawId}`);
+    const isFootball = String(matchForSport?.sport || 'football').toLowerCase() === 'football';
+
+    // Bóng đá: bắt link .m3u8 THẬT của player (xem FIX 15/11/2026 ở đầu file). Link bắt được xếp lên đầu.
+    const capturedReferer = new Map(); // url -> Referer thật trình duyệt gửi cho CDN
+    if (isFootball && GIOVANG_FOOTBALL_BROWSER) {
+      try {
+        const cap = await captureM3u8ViaBrowser(targetUrl, { timeoutMs: GIOVANG_BROWSER_CAPTURE_MS });
+        const good = (cap?.found || [])
+          .map((f) => ({ url: cleanUrl(f.url), status: f.status, referer: f.headers?.referer || f.headers?.Referer || null }))
+          .filter((f) => /\.m3u8(\?|$)/i.test(f.url) && (f.status == null || f.status < 400));
+        good.sort((a, b) => (a.status === 200 ? 0 : 1) - (b.status === 200 ? 0 : 1)); // link trình duyệt đã mở được (200) đứng trước
+        for (const f of good) if (f.referer && /^https?:\/\//i.test(f.referer)) capturedReferer.set(f.url, f.referer);
+        if (good.length) {
+          hlsUrls = [...new Set([...good.map((f) => f.url), ...hlsUrls])];
+          via = 'trình duyệt bắt link player thật';
+          console.log(`[giovang] ${targetUrl}: trình duyệt bắt được ${good.length} link thật (status ${good.map((f) => f.status ?? '?').join(',')}); dùng: ${good[0].url} | Referer thật: ${good[0].referer || '(không có)'}`);
+        } else {
+          console.warn(`[giovang] ${targetUrl}: trình duyệt KHÔNG bắt được link .m3u8 mở được (thấy ${(cap?.found || []).length} link, tiêu đề trang: "${cap?.title || ''}") — dùng link đọc từ HTML`);
+        }
+        this.lastDiagnostics = { ...this.lastDiagnostics, footballBrowser: { found: (cap?.found || []).map((f) => ({ url: f.url, status: f.status })), kept: good.length } };
+      } catch (err) {
+        this.lastDiagnostics = { ...this.lastDiagnostics, footballBrowser: { error: err.message } };
+        console.warn('[giovang] bắt link bóng đá bằng trình duyệt lỗi (dùng link đọc từ HTML):', err.message);
+      }
+    }
+
     // Referer gắn cho MỌI link của trận: Referer thật dò từ trình duyệt (nếu có),
     // không thì `${domain thật}/` (kiểu trình duyệt thật luôn có dấu "/" cuối).
     // m3uPlaylist.js ưu tiên stream.referer này hơn danh sách ứng viên hardcode.
@@ -511,14 +555,15 @@ class GiovangService {
     }
     this.lastDiagnostics = { ...this.lastDiagnostics, linkRescue: rescued };
 
-    // Gộp link trùng (cùng đường dẫn, khác tham số vô nghĩa) rồi giữ tối đa GIOVANG_MAX_SERVERS server.
+    // Gộp link trùng (cùng đường dẫn, khác tham số vô nghĩa) rồi giữ tối đa GIOVANG_MAX_SERVERS server (bóng đá: GIOVANG_FOOTBALL_MAX_SERVERS).
+    const maxServers = isFootball ? Math.max(GIOVANG_MAX_SERVERS, GIOVANG_FOOTBALL_MAX_SERVERS) : GIOVANG_MAX_SERVERS;
     const seenPath = new Set();
     const uniqueAlive = probe.alive.filter((u) => {
       const k = String(u).split('?')[0];
       if (seenPath.has(k)) return false;
       seenPath.add(k);
       return true;
-    }).slice(0, GIOVANG_MAX_SERVERS);
+    }).slice(0, maxServers);
 
     const labelFor = (url, index) => (blvNames.get(url) ? `Giovang ${index + 1} - ${blvNames.get(url)}` : `Giovang ${index + 1}`);
     const streams = uniqueAlive.map((url, index) => ({
@@ -528,11 +573,11 @@ class GiovangService {
       m3u8Url: url,
       playUrl: url,
       format: 'hls',
-      referer,
+      referer: capturedReferer.get(url) || referer, // link bắt từ trình duyệt dùng đúng Referer trình duyệt đã gửi
     }));
     // Trận chỉ có 1 link: thêm bản dự phòng GỬI KHÔNG Referer/Origin (1 số CDN từ chối Referer lạ nhưng
     // vẫn phát khi không có) để người xem có đường lùi khi bản có Referer báo lỗi.
-    if (uniqueAlive.length === 1 && GIOVANG_MAX_SERVERS > 1) {
+    if (uniqueAlive.length === 1 && maxServers > 1) {
       streams.push({
         id: `giovang_${rawId}_2`,
         streamerName: 'Giovang 2 (dự phòng)',
