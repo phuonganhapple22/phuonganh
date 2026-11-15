@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T12:22:46.170Z",
+  "updatedAt": "2026-11-15T17:57:31.954Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.cam",
@@ -59,10 +59,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "rerace": {
-      "url": "https://www.rerace.net",
+      "url": "https://rerace.my",
       "envVar": "RERACE_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "down",
       "from": "SOURCE_DOMAINS"
     },
     "phalang": {
@@ -969,6 +969,13 @@
       "from": "https://xoilacvbn.tv",
       "to": "https://xoilacvbj.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-15T17:57:31.954Z",
+      "source": "rerace",
+      "from": "https://www.rerace.net",
+      "to": "https://rerace.my",
+      "via": "biến thể tên/đuôi"
     }
   ]
 }
