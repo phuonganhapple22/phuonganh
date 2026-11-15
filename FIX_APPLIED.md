@@ -1,3 +1,8 @@
+# FIX 15/11/2026 (lần 6) — Giờ Vàng: thêm dòng log chẩn đoán "[giovang][chọn-link]"
+
+- Mỗi trận in 1 dòng: môn, BLV được gán (từ live.json/all.json), danh sách BLV=id luồng có trong trang, link số 1 được chọn, URL trang trận.
+  "BLV gán=[TRỐNG]" nghĩa là danh sách trận không có field "blv" -> cần cách khác để biết BLV của trận.
+
 # FIX 15/11/2026 (lần 5) — fixture-detail KHÔNG có link phát
 
 - JSON thật của /api/fixture-detail/<id> chỉ gồm thông tin trận (đội, tỷ số, giải, trạng thái), không có .m3u8/BLV -> bước lần 4 tắt mặc định

@@ -587,6 +587,12 @@ class GiovangService {
       console.warn(`[giovang] ${targetUrl}: BLV được gán (${assignedKeys.join(',')}) không có trong trang (trang có: ${[...blvKeyed.keys()].join(',')}) — dùng thứ tự cũ`);
     }
     this.lastDiagnostics = { ...this.lastDiagnostics, blvAssigned: { assignedKeys, pageKeys: [...blvKeyed.keys()], used: assignedUrls.length } };
+    // Dòng chẩn đoán LUÔN in (mỗi trận 1 lần/tiến trình) để biết bản mới có chạy và vì sao chọn link này.
+    if (!diagLogged.has(`sel|${targetUrl}`) && diagLogged.size <= 300) {
+      diagLogged.add(`sel|${targetUrl}`);
+      const pageList = [...blvKeyed.entries()].map(([k, u]) => `${k}=${(String(u).match(/\/(\d{9,})_/) || [])[1] || '?'}`).join(' ');
+      console.log(`[giovang][chọn-link] môn=${matchForSport?.sport || '(không tra được trong cache)'} | BLV gán=[${assignedKeys.join(',') || 'TRỐNG'}] | BLV trong trang: ${pageList || '(không đọc được)'} | link số 1=${hlsUrls[0] || '(không có)'} | ${targetUrl}`);
+    }
 
     // Referer gắn cho MỌI link của trận: Referer thật dò từ trình duyệt (nếu có),
     // không thì `${domain thật}/` (kiểu trình duyệt thật luôn có dấu "/" cuối).
