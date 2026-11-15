@@ -112,6 +112,7 @@ function rankHlsByFreshness(urls) {
 // Số server tối đa/trận bóng đá: GIOVANG_FOOTBALL_MAX_SERVERS (mặc định 3).
 const GIOVANG_FOOTBALL_BROWSER = String(process.env.GIOVANG_FOOTBALL_BROWSER || 'off').toLowerCase() === 'on'; // mặc định TẮT (log 15/11/2026: trình duyệt headless không bắt được request .m3u8 nào của trang Giờ Vàng -> chỉ tốn thời gian); bật: GIOVANG_FOOTBALL_BROWSER=on
 const GIOVANG_BROWSER_CAPTURE_MS = Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) > 0 ? Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) : 14000;
+const GIOVANG_STRICT_BLV = String(process.env.GIOVANG_STRICT_BLV || 'on').toLowerCase() !== 'off';
 const GIOVANG_FOOTBALL_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 3);
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
 // FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
@@ -524,7 +525,10 @@ class GiovangService {
       }
     }
 
-    const blvNames = extractBlvStreamNames(html);
+    // FIX (15/11/2026): JSON trong trang viết dạng &quot;blv-can&quot;... (thực thể HTML) nên regex đọc BLV trên html thô KHÔNG khớp
+    // (log: "BLV trong trang: (không đọc được)", tên BLV trong nhãn kênh cũng không có). Đọc trên bản đã giải mã (cleanUrl).
+    const htmlClean = cleanUrl(typeof html === 'string' ? html : '');
+    const blvNames = extractBlvStreamNames(htmlClean);
     if (hlsUrls.length > 1 || hlsUrls.some((u) => streamCreatedAtMs(u))) {
       const ranked = rankHlsByFreshness(hlsUrls);
       if (ranked.droppedStale || ranked.urls[0] !== hlsUrls[0]) {
@@ -578,13 +582,20 @@ class GiovangService {
 
     // Link của đúng BLV được gán cho trận đứng ĐẦU (trước cả link trình duyệt bắt được, vì player có thể tự mở BLV mặc định).
     const assignedKeys = (matchForSport?.commentators || []).map((c) => String(c?.id || c?.name || '').toLowerCase()).filter(Boolean);
-    const blvKeyed = extractBlvKeyedStreams(html);
+    const blvKeyed = extractBlvKeyedStreams(htmlClean);
     const assignedUrls = [...new Set([...apiAssigned, ...assignedKeys.map((k) => blvKeyed.get(k)).filter(Boolean)])]; // link API tươi (đúng BLV) đứng trước link HTML
     if (assignedUrls.length) {
       hlsUrls = [...new Set([...assignedUrls, ...hlsUrls])];
       console.log(`[giovang] ${targetUrl}: BLV được gán ${assignedKeys.join(',')} -> ưu tiên link ${assignedUrls[0]}`);
     } else if (assignedKeys.length && blvKeyed.size) {
-      console.warn(`[giovang] ${targetUrl}: BLV được gán (${assignedKeys.join(',')}) không có trong trang (trang có: ${[...blvKeyed.keys()].join(',')}) — dùng thứ tự cũ`);
+      // Trận gán BLV X nhưng trang chỉ có luồng của BLV khác => đó là luồng của TRẬN KHÁC (trận cũ đã hết giờ, BLV chuyển sang phát môn khác
+      // mà danh sách trận vẫn ghi tên trận cũ) -> bỏ, không ghi kênh phát nhầm nội dung. Tắt: GIOVANG_STRICT_BLV=off.
+      if (GIOVANG_STRICT_BLV) {
+        console.warn(`[giovang] ${targetUrl}: BỎ trận — BLV được gán (${assignedKeys.join(',')}) không có luồng trong trang (trang chỉ có: ${[...blvKeyed.keys()].join(',')}); luồng đó thuộc trận khác`);
+        hlsUrls = [];
+      } else {
+        console.warn(`[giovang] ${targetUrl}: BLV được gán (${assignedKeys.join(',')}) không có trong trang (trang có: ${[...blvKeyed.keys()].join(',')}) — dùng thứ tự cũ`);
+      }
     }
     this.lastDiagnostics = { ...this.lastDiagnostics, blvAssigned: { assignedKeys, pageKeys: [...blvKeyed.keys()], used: assignedUrls.length } };
     // Dòng chẩn đoán LUÔN in (mỗi trận 1 lần/tiến trình) để biết bản mới có chạy và vì sao chọn link này.

@@ -1,3 +1,10 @@
+# FIX 15/11/2026 (lần 7) — Giờ Vàng: đọc BLV trong trang bị hỏng + bỏ luồng của trận khác
+
+- Log "[chọn-link] ... BLV trong trang: (không đọc được)": JSON trong trang viết bằng &quot; nên regex đọc BLV (cả nhãn "Giovang 1 - <BLV>") chưa từng khớp.
+  Giờ đọc trên bản đã giải mã. Trận gán BLV X mà trang chỉ có luồng BLV khác (vd trận cũ đã hết giờ, BLV chuyển sang phát môn khác nhưng
+  danh sách vẫn ghi tên trận cũ) -> BỎ trận (không ghi kênh phát nhầm). Tắt: GIOVANG_STRICT_BLV=off.
+- Môn 'bongchay' (bóng chày) có icon ⚾ thay vì ⚽.
+
 # FIX 15/11/2026 (lần 6) — Giờ Vàng: thêm dòng log chẩn đoán "[giovang][chọn-link]"
 
 - Mỗi trận in 1 dòng: môn, BLV được gán (từ live.json/all.json), danh sách BLV=id luồng có trong trang, link số 1 được chọn, URL trang trận.

@@ -86,6 +86,7 @@ function getSportIcon(match) {
   if (/badminton|cau-long|cầu lông/.test(raw)) return '🏸';
   if (/tennis/.test(raw)) return '🎾';
   if (/f1|motor|dua-xe|đua xe/.test(raw)) return '🏎️';
+  if (/bongchay|bong-chay|baseball|bóng chày/.test(raw)) return '⚾'; // FIX 15/11/2026: môn 'bongchay' (bóng chày) trước đây rơi về ⚽
   return '⚽';
 }
 
