@@ -1,3 +1,8 @@
+# FIX 15/11/2026 (lần 3) — Giờ Vàng: tắt mặc định bước trình duyệt bắt link bóng đá
+
+- Log thật: "mở trang bằng trình duyệt xong nhưng không bắt được request .m3u8 nào" -> headless không bắt được link player của trang này, chỉ tốn ~14s/trận.
+  Mặc định TẮT (bật lại: GIOVANG_FOOTBALL_BROWSER=on). Bản sửa chính là chọn link theo BLV được gán cho trận (lần 2).
+
 # FIX 15/11/2026 (lần 2) — Giờ Vàng: chọn đúng link theo BLV được gán cho trận
 
 - Log thật: trang trận liệt kê link của NHIỀU BLV (blv-cay, blv-sun, blv-can, blv-mason...), mỗi BLV 1 id luồng. Trước đây code lấy link

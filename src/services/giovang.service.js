@@ -108,9 +108,9 @@ function rankHlsByFreshness(urls) {
 //      trình duyệt nhận) -> link này lên ĐẦU (Giovang 1), chỉ nhận link trình duyệt mở được (status < 400);
 //  (2) link đọc từ HTML vẫn giữ làm server dự phòng (Giovang 2, 3) -> khi server 1 lỗi thì đổi sang server khác;
 //  (3) nếu cuối cùng chỉ có 1 link thì thêm bản dự phòng không Referer (đã có sẵn từ trước, giờ bật cho bóng đá).
-// Tắt bước (1): GIOVANG_FOOTBALL_BROWSER=off. Đổi thời gian chờ trình duyệt: GIOVANG_BROWSER_CAPTURE_MS (mặc định 14000).
+// Bước (1) mặc định TẮT từ lần sửa thứ 3 (xem dưới); bật lại: GIOVANG_FOOTBALL_BROWSER=on. Đổi thời gian chờ trình duyệt: GIOVANG_BROWSER_CAPTURE_MS (mặc định 14000).
 // Số server tối đa/trận bóng đá: GIOVANG_FOOTBALL_MAX_SERVERS (mặc định 3).
-const GIOVANG_FOOTBALL_BROWSER = String(process.env.GIOVANG_FOOTBALL_BROWSER || 'on').toLowerCase() !== 'off';
+const GIOVANG_FOOTBALL_BROWSER = String(process.env.GIOVANG_FOOTBALL_BROWSER || 'off').toLowerCase() === 'on'; // mặc định TẮT (log 15/11/2026: trình duyệt headless không bắt được request .m3u8 nào của trang Giờ Vàng -> chỉ tốn thời gian); bật: GIOVANG_FOOTBALL_BROWSER=on
 const GIOVANG_BROWSER_CAPTURE_MS = Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) > 0 ? Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) : 14000;
 const GIOVANG_FOOTBALL_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 3);
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
