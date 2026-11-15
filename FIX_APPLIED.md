@@ -1,3 +1,14 @@
+# FIX 15/11/2026 (lần 5) — fixture-detail KHÔNG có link phát
+
+- JSON thật của /api/fixture-detail/<id> chỉ gồm thông tin trận (đội, tỷ số, giải, trạng thái), không có .m3u8/BLV -> bước lần 4 tắt mặc định
+  (bật lại: GIOVANG_FIXTURE_API=on). Link phát vẫn nằm trong HTML trang trận (khối blv-xxx / pc_stream_url).
+
+# FIX 15/11/2026 (lần 4) — Giờ Vàng: lấy link từ API fixture-detail
+
+- DevTools: trang trận gọi GET https://live-api.keonhacaitp.one/api/fixture-detail/<id> (id chuỗi, vd en7upowohmwm; Origin/Referer giovang.cam).
+  Link trong HTML có thể là bản cache cũ -> `giovang.service.js` gọi thêm API này, ưu tiên link tươi của ĐÚNG BLV được gán, link HTML làm dự phòng.
+  Cấu trúc JSON chưa biết chắc nên đọc tổng quát; log "[giovang] fixture-detail <id>: HTTP ..., N link .m3u8, BLV: ...; trường: ..." để chỉnh tiếp.
+
 # FIX 15/11/2026 (lần 3) — Giờ Vàng: tắt mặc định bước trình duyệt bắt link bóng đá
 
 - Log thật: "mở trang bằng trình duyệt xong nhưng không bắt được request .m3u8 nào" -> headless không bắt được link player của trang này, chỉ tốn ~14s/trận.

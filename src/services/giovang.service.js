@@ -436,6 +436,41 @@ class GiovangService {
     }
   }
 
+  /**
+   * FIX (15/11/2026): trang trận gọi API GET {LIVE_API_HOST}/api/fixture-detail/<id> (DevTools của người dùng) để lấy dữ liệu trận.
+   * Link trong HTML trang có thể là bản cache cũ; API này là nguồn tươi. Gọi cùng Origin/Referer như trình duyệt.
+   * Trả { urls (mọi .m3u8 theo thứ tự xuất hiện), byBlv: Map key BLV -> link, status, keys, snippet } hoặc null khi lỗi/không có id.
+   * Cấu trúc JSON CHƯA biết chắc nên đọc tổng quát: duyệt mọi object; object nào có chuỗi .m3u8 và 1 chuỗi dạng "blv-xxx" thì ghép cặp.
+   */
+  async fetchFixtureDetail(apiId) {
+    if (!apiId) return null;
+    const url = `${LIVE_API_HOST}/api/fixture-detail/${encodeURIComponent(apiId)}?t=${Date.now()}`;
+    try {
+      const response = await this.client.get(url, { timeout: 10000, headers: { Accept: 'application/json, text/plain, */*', Origin: this.siteOrigin, Referer: `${this.siteOrigin}/` } });
+      const data = response.data;
+      const text = typeof data === 'string' ? data : JSON.stringify(data);
+      const urls = this.extractHlsUrls(text);
+      const byBlv = new Map();
+      const walk = (node) => {
+        if (Array.isArray(node)) { node.forEach(walk); return; }
+        if (!node || typeof node !== 'object') return;
+        const strs = Object.values(node).filter((v) => typeof v === 'string');
+        const link = strs.map(cleanUrl).find((v) => /\.m3u8(\?|$)/i.test(v));
+        const key = strs.find((v) => /^blv-[a-z0-9_-]+$/i.test(v));
+        if (link && key && !byBlv.has(key.toLowerCase())) byBlv.set(key.toLowerCase(), link);
+        Object.values(node).forEach(walk);
+      };
+      if (data && typeof data === 'object') walk(data);
+      const keys = data && typeof data === 'object' ? Object.keys(data.response && typeof data.response === 'object' ? data.response : data).slice(0, 25) : [];
+      const info = { status: response.status, urls, byBlv, keys, snippet: text.slice(0, 400) };
+      console.log(`[giovang] fixture-detail ${apiId}: HTTP ${info.status}, ${urls.length} link .m3u8, BLV: ${[...byBlv.keys()].join(',') || '(không ghép được)'}; trường: ${keys.join(',')}`);
+      return info;
+    } catch (err) {
+      console.warn(`[giovang] fixture-detail ${apiId} lỗi (dùng link từ HTML):`, err.response?.status || '', err.message);
+      return null;
+    }
+  }
+
   async getMatchDetail(idOrUrl) {
     await this.ensureSiteOrigin();
     const rawId = String(idOrUrl || '').replace(/^giovang_/, '');
@@ -530,10 +565,21 @@ class GiovangService {
       }
     }
 
+    // Link TƯƠI từ API fixture-detail (id chuỗi như "en7upowohmwm" = originalId trong live.json/all.json).
+    const apiId = matchForSport?.originalId || (/^https?:\/\//i.test(rawId) ? '' : rawId);
+    const api = String(process.env.GIOVANG_FIXTURE_API || 'off').toLowerCase() === 'on' ? await this.fetchFixtureDetail(apiId) : null; // mặc định TẮT: JSON fixture-detail chỉ có thông tin trận, KHÔNG có link phát (xác nhận 15/11/2026)
+    const apiAssigned = (matchForSport?.commentators || []).map((c) => api?.byBlv?.get(String(c?.id || c?.name || '').toLowerCase())).filter(Boolean);
+    if (api?.urls?.length) {
+      const first = apiAssigned.length ? apiAssigned : api.urls;
+      hlsUrls = [...new Set([...first, ...hlsUrls, ...api.urls])];
+      console.log(`[giovang] ${targetUrl}: dùng link từ API fixture-detail${apiAssigned.length ? ' (đúng BLV được gán)' : ' (chưa ghép được BLV)'}: ${first[0]}`);
+    }
+    this.lastDiagnostics = { ...this.lastDiagnostics, fixtureDetail: api ? { status: api.status, links: api.urls.length, blv: [...api.byBlv.keys()], snippet: api.snippet } : null };
+
     // Link của đúng BLV được gán cho trận đứng ĐẦU (trước cả link trình duyệt bắt được, vì player có thể tự mở BLV mặc định).
     const assignedKeys = (matchForSport?.commentators || []).map((c) => String(c?.id || c?.name || '').toLowerCase()).filter(Boolean);
     const blvKeyed = extractBlvKeyedStreams(html);
-    const assignedUrls = assignedKeys.map((k) => blvKeyed.get(k)).filter(Boolean);
+    const assignedUrls = [...new Set([...apiAssigned, ...assignedKeys.map((k) => blvKeyed.get(k)).filter(Boolean)])]; // link API tươi (đúng BLV) đứng trước link HTML
     if (assignedUrls.length) {
       hlsUrls = [...new Set([...assignedUrls, ...hlsUrls])];
       console.log(`[giovang] ${targetUrl}: BLV được gán ${assignedKeys.join(',')} -> ưu tiên link ${assignedUrls[0]}`);
