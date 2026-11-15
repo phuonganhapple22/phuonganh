@@ -60,6 +60,21 @@ function extractBlvStreamNames(text) {
   return names;
 }
 
+/**
+ * FIX (15/11/2026): trang trận liệt kê link của NHIỀU BLV ("blv-can" -> Cận, "blv-sun" -> Sún, ...), mỗi BLV 1 id luồng riêng.
+ * Trận chỉ phát trên BLV được gán cho nó (field "blv" trong live.json/all.json, vd ["blv-can"]); link của BLV khác
+ * (BLV khác đang phát trận khác / chưa lên sóng) mở ra lỗi. Đọc cặp {key BLV -> link} để chọn đúng link của trận.
+ */
+function extractBlvKeyedStreams(text) {
+  const map = new Map();
+  const re = /\"([A-Za-z0-9_-]+)\"\s*,\s*\"blv_name\"\s*:\s*\"((?:[^\"\\]|\\.)*)\"[^{}]*?\"(?:pc_stream_url|mobile_stream_url|link_stream_hd|link_stream_sd)\"\s*:\s*\"((?:[^\"\\]|\\.)*\.m3u8[^\"\\]*)\"/gi;
+  for (const m of String(text || '').matchAll(re)) {
+    const key = String(m[1]).toLowerCase();
+    if (!map.has(key)) map.set(key, cleanUrl(m[3]));
+  }
+  return map;
+}
+
 /** Điểm chất lượng từ đường dẫn: @1080p/@720p/..., _fhd > _hd > _sd. Cao hơn = tốt hơn. */
 function hlsQualityScore(url) {
   const u = String(url);
@@ -514,6 +529,18 @@ class GiovangService {
         console.warn('[giovang] bắt link bóng đá bằng trình duyệt lỗi (dùng link đọc từ HTML):', err.message);
       }
     }
+
+    // Link của đúng BLV được gán cho trận đứng ĐẦU (trước cả link trình duyệt bắt được, vì player có thể tự mở BLV mặc định).
+    const assignedKeys = (matchForSport?.commentators || []).map((c) => String(c?.id || c?.name || '').toLowerCase()).filter(Boolean);
+    const blvKeyed = extractBlvKeyedStreams(html);
+    const assignedUrls = assignedKeys.map((k) => blvKeyed.get(k)).filter(Boolean);
+    if (assignedUrls.length) {
+      hlsUrls = [...new Set([...assignedUrls, ...hlsUrls])];
+      console.log(`[giovang] ${targetUrl}: BLV được gán ${assignedKeys.join(',')} -> ưu tiên link ${assignedUrls[0]}`);
+    } else if (assignedKeys.length && blvKeyed.size) {
+      console.warn(`[giovang] ${targetUrl}: BLV được gán (${assignedKeys.join(',')}) không có trong trang (trang có: ${[...blvKeyed.keys()].join(',')}) — dùng thứ tự cũ`);
+    }
+    this.lastDiagnostics = { ...this.lastDiagnostics, blvAssigned: { assignedKeys, pageKeys: [...blvKeyed.keys()], used: assignedUrls.length } };
 
     // Referer gắn cho MỌI link của trận: Referer thật dò từ trình duyệt (nếu có),
     // không thì `${domain thật}/` (kiểu trình duyệt thật luôn có dấu "/" cuối).

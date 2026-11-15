@@ -1,3 +1,11 @@
+# FIX 15/11/2026 (lần 2) — Giờ Vàng: chọn đúng link theo BLV được gán cho trận
+
+- Log thật: trang trận liệt kê link của NHIỀU BLV (blv-cay, blv-sun, blv-can, blv-mason...), mỗi BLV 1 id luồng. Trước đây code lấy link
+  mới nhất/chất lượng cao nhất trong cả trang => trận bóng đá dễ lấy nhầm link của BLV khác (BLV đó không phát trận này) -> lỗi.
+- `giovang.service.js`: đọc cặp {key BLV -> link} trong trang, lấy key BLV của trận từ live.json/all.json (field "blv", vd ["blv-can"]) và
+  đặt link của ĐÚNG BLV đó lên đầu (trước cả link trình duyệt bắt được). Không tìm thấy BLV trong trang thì giữ thứ tự cũ.
+- Log: "[giovang] ...: BLV được gán blv-can -> ưu tiên link ..." hoặc "BLV được gán (...) không có trong trang (trang có: ...)".
+
 # FIX 15/11/2026 — Giờ Vàng: bóng đá không xem được, bóng rổ/bóng chuyền vẫn xem bình thường
 
 - Nguyên nhân (suy ra từ code + playlist, CHƯA test được trên site thật): cùng CDN vcdn.cloud, cùng Referer https://giovang.cam/, chỉ bóng đá hỏng
