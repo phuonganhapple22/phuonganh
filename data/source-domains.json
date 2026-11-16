@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T10:44:37.284Z",
+  "updatedAt": "2026-11-16T19:00:03.970Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.cam",
@@ -24,10 +24,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "saoke": {
-      "url": "https://vip5.saoketv40.xyz",
+      "url": "https://vip6.saoketv40.xyz",
       "envVar": "SAOKE_BASE_URL",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "bonglau": {
@@ -997,6 +997,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-16T19:00:03.970Z",
+      "source": "saoke",
+      "from": "https://vip5.saoketv40.xyz",
+      "to": "https://vip6.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
     }
   ]
 }
