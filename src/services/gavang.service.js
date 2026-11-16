@@ -60,7 +60,7 @@ function detectCdn(url, hintedCdn) {
 //      GAVANG_BROWSER_MAX trận/lần chạy, mặc định 8; tắt: GAVANG_BROWSER_FALLBACK=off);
 //  (4) log chẩn đoán "[gavang] ..." khi trận live không lấy được link (HTTP status, tiêu đề, có grid không, số lần thấy m3u8/flv...).
 const GAVANG_BROWSER_FALLBACK = String(process.env.GAVANG_BROWSER_FALLBACK || 'on').toLowerCase() !== 'off';
-let browserBudget = Math.max(0, Number(process.env.GAVANG_BROWSER_MAX) || 8);
+let browserBudget = Math.max(0, Number(process.env.GAVANG_BROWSER_MAX) || 3);
 // Log chi tiết từng trận chưa có link chỉ bật khi đặt GAVANG_DEBUG=on (mặc định tắt cho gọn log).
 let diagBudget = String(process.env.GAVANG_DEBUG || '').toLowerCase() === 'on' ? 6 : 0;
 const STREAM_RE = /https?:\/\/[^\s"'<>\\]+?\.(?:m3u8|flv)(?:\?[^\s"'<>\\]*)?/gi;
@@ -174,6 +174,15 @@ function parseMatchCard($, card) {
   const homeTeamLogo = getFullUrl($card.find('.bals-home-team-name').parent().find('img').attr('data-src'));
   const awayTeamLogo = getFullUrl($card.find('.bals-away-team-name').parent().find('img').attr('data-src'));
 
+  // Thẻ trận trên trang chủ liệt kê BLV bằng <img alt="Tên BLV"> (khác logo giải/đội/thẻ phạt/nhà cái).
+  // Trận không có ảnh BLV nào = chưa có ai phát => khỏi tốn request vào trang chi tiết.
+  const streamerNames = new Set();
+  $card.find('img[alt]').each((_, im) => {
+    const alt = ($(im).attr('alt') || '').trim();
+    if (!alt || /^league$/i.test(alt) || /\blogo$/i.test(alt) || /yellow cards?/i.test(alt) || /8xbet/i.test(alt)) return;
+    streamerNames.add(alt);
+  });
+
   const homeScore = parseInt(textOf($card.find('.bals-home-score')) || '0', 10) || 0;
   const awayScore = parseInt(textOf($card.find('.bals-away-score')) || '0', 10) || 0;
   const statusName = textOf($card.find('.bals-status-name'));
@@ -196,6 +205,7 @@ function parseMatchCard($, card) {
     matchId: `gv_${matchId}`,
     originalId: matchId,
     slug,
+    hasStreamers: streamerNames.size > 0,
     detailUrl: detailUrl ? toSiteUrl(detailUrl) : '',
     source: 'gavang',
     sport,
@@ -246,9 +256,14 @@ function parseMatchCard($, card) {
 function parseMatchListPage(html) {
   const $ = load(html);
   const matches = [];
+  const seenIds = new Set();
   $('.match-card[data-match-id]').each((_, card) => {
     const m = parseMatchCard($, card);
-    if (m) matches.push(m);
+    // Trang chủ lặp 1 trận ở nhiều tab/khối (vd bóng rổ xuất hiện 3 lần) -> chỉ giữ 1, đỡ request thừa.
+    if (m && !seenIds.has(m.originalId)) {
+      seenIds.add(m.originalId);
+      matches.push(m);
+    }
   });
   return matches;
 }
@@ -376,8 +391,12 @@ async function fetchLinkPage(url) {
   }
 }
 
+// Ngân sách thời gian cho cả lần quét (builder huỷ nguồn nếu quá 90s) — hết giờ thì bỏ qua trận còn lại, giữ kết quả đã có.
+let scanDeadline = 0;
+
 async function fetchCommentatorsForMatch(match) {
   if (!match.detailUrl) return [];
+  if (scanDeadline && Date.now() > scanDeadline) return [];
   let html = '';
   let status = 0;
   let via = 'HTTP';
@@ -416,9 +435,9 @@ async function fetchCommentatorsForMatch(match) {
 
   // Lấy thêm các server của từng BLV ở /link/N/ (nếu có) và gắn đúng tên BLV.
   if (list.length || html) {
-    const anchors = parseLinkAnchors(mainHtml || html).slice(0, 8);
+    const anchors = parseLinkAnchors(mainHtml || html).slice(0, 4);
     if (anchors.length) {
-      const pages = await mapPool(anchors, 4, (a) => fetchLinkPage(a.url));
+      const pages = await mapPool(anchors, 2, (a) => (scanDeadline && Date.now() > scanDeadline ? '' : fetchLinkPage(a.url)));
       const byUrl = new Map(list.map((c) => [c.streamUrl, c]));
       anchors.forEach((a, i) => {
         const found = pages[i] ? parseCommentatorsFromHtml(pages[i]) : [];
@@ -536,7 +555,16 @@ class GaVangService {
 
       const liveMatches = filtered.filter((m) => m.status.isLive);
       if (liveMatches.length) {
-        const commentatorsList = await mapPool(liveMatches, concurrency, (m) => fetchCommentatorsForMatch(m));
+        scanDeadline = Date.now() + 60000;
+        // Chỉ vào trang chi tiết các trận live đã có BLV trên trang chủ. Nếu KHÔNG trận nào có dấu hiệu BLV
+        // (có thể nguồn đổi giao diện) thì quay về hành vi cũ: thử tất cả.
+        const anyStreamerHint = liveMatches.some((m) => m.hasStreamers);
+        const toFetch = anyStreamerHint ? liveMatches.filter((m) => m.hasStreamers) : liveMatches;
+        const fetchedList = await mapPool(toFetch, Math.min(concurrency, 4), (m) => fetchCommentatorsForMatch(m));
+        const commentatorsList = liveMatches.map((m) => {
+          const k = toFetch.indexOf(m);
+          return k === -1 ? [] : (fetchedList[k] || []);
+        });
         const withStreams = new Set();
         liveMatches.forEach((m, i) => {
           const commentators = commentatorsList[i] || [];
