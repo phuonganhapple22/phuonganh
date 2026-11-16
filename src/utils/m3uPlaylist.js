@@ -133,7 +133,11 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // (GAVANG_DOMAIN) trước, kèm 2 mirror dự phòng, cuối cùng là không Referer.
   gavang: [
     ...new Set([
-      String(process.env.GAVANG_DOMAIN || process.env.GAVANG_BASE_URL || 'https://gavanglinkp.tv').replace(/\/+$/, ''),
+      // FIX (16/11/2026 lần 3): trình duyệt thật phát link qua iframe player https://playyyz4.cc/ nên Referer/Origin gửi tới CDN
+      // (playback.livetl00x.com) là origin của iframe, KHÔNG phải gavang13.live -> đặt LÊN ĐẦU (đổi bằng GAVANG_PLAYER_DOMAIN).
+      String(process.env.GAVANG_PLAYER_DOMAIN || 'https://playyyz4.cc').replace(/\/+$/, ''),
+      String(process.env.GAVANG_DOMAIN || process.env.GAVANG_BASE_URL || 'https://gavang13.live').replace(/\/+$/, ''),
+      'https://gavang13.live',
       'https://gavanglinkp.tv',
       'https://gavangtv.tv',
       'https://gavangtvv.cc'
