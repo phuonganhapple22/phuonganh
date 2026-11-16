@@ -1,12 +1,13 @@
 import { load } from 'cheerio';
 import { createHttpClient } from '@/src/utils/httpClient';
 import { mapPool, isStaleLiveMatch } from '@/src/utils/playerGet';
+import { fetchRenderedHtml } from '@/src/utils/browserFetch';
 
 // Domain nguồn lậu này cũng đổi thường xuyên (đã thấy nhiều domain mirror
 // cùng thương hiệu: gavangtv.tv, gavangtvv.cc, gavanglinkp.tv...) — override
 // qua biến môi trường GAVANG_DOMAIN trên Vercel/GitHub Actions khi cần,
 // không cần sửa code.
-const GAVANG_BASE_URL = process.env.GAVANG_DOMAIN || process.env.GAVANG_BASE_URL || 'https://gavanglinkp.tv';
+const GAVANG_BASE_URL = process.env.GAVANG_DOMAIN || process.env.GAVANG_BASE_URL || 'https://gavang13.live';
 
 // KHÁC HẲN Giờ Vàng/Khán Đài (phải chạy Puppeteer vì dữ liệu chỉ có sau khi
 // chạy JS): trang chủ Gà Vàng TV render SẴN toàn bộ danh sách trận (tên
@@ -47,6 +48,85 @@ function detectCdn(url, hintedCdn) {
   return 'HLS';
 }
 
+
+// FIX (16/11/2026 — "Gà Vàng không lấy được link các trận đang live, trước giờ đá vẫn hiện danh sách"): domain đã đổi
+// (gavanglinkp.tv -> gavangz.net -> gavang13.live, xem SOURCE_DOMAINS trên git). Danh sách trận (trang chủ) vẫn đọc được nhưng link phát nằm ở TRANG CHI TIẾT từng trận,
+// nơi code cũ chỉ đọc đúng 1 cấu trúc (#commentators-grid .commentator-card[data-stream-url]) và trận live không có link thì BỊ BỎ HẲN
+// => mất sạch trận live. Các lỗi có thể gặp khi đổi domain, đã xử lý:
+//  (1) href trận là URL TUYỆT ĐỐI trỏ domain cũ/mirror khác -> dựng lại trên domain đang dùng (toSiteUrl);
+//  (2) cấu trúc trang chi tiết đổi (khác tên class/thuộc tính) -> dự phòng: thuộc tính data-* bất kỳ chứa .m3u8/.flv, rồi quét regex toàn trang
+//      (đã giải mã &quot; \u0026 \/ );
+//  (3) trang chi tiết chặn HTTP thường (403/Cloudflare) hoặc chỉ có link sau khi chạy JS -> mở bằng trình duyệt headless (tối đa
+//      GAVANG_BROWSER_MAX trận/lần chạy, mặc định 8; tắt: GAVANG_BROWSER_FALLBACK=off);
+//  (4) log chẩn đoán "[gavang] ..." khi trận live không lấy được link (HTTP status, tiêu đề, có grid không, số lần thấy m3u8/flv...).
+const GAVANG_BROWSER_FALLBACK = String(process.env.GAVANG_BROWSER_FALLBACK || 'on').toLowerCase() !== 'off';
+let browserBudget = Math.max(0, Number(process.env.GAVANG_BROWSER_MAX) || 8);
+let diagBudget = 6;
+const STREAM_RE = /https?:\/\/[^\s"'<>\\]+?\.(?:m3u8|flv)(?:\?[^\s"'<>\\]*)?/gi;
+
+// FIX (16/11/2026): domain gavang13.live nhúng player qua iframe dạng
+// https://playyyz4.cc/e?hls=https%3A%2F%2Fplayback...m3u8&flv=...&cdn=tencent...
+// => link nằm trong query-string đã MÃ HÓA %3A%2F nên regex .m3u8/.flv cũ không bắt được.
+// safeDecodeURIComponent giải mã lại (lặp tối đa 2 lần, lỗi thì giữ nguyên).
+function safeDecodeURIComponent(v) {
+  let out = String(v || '');
+  for (let i = 0; i < 2; i += 1) {
+    try {
+      const d = decodeURIComponent(out);
+      if (d === out) break;
+      out = d;
+    } catch {
+      break;
+    }
+  }
+  return out;
+}
+
+// Rút link phát (hls/flv) từ 1 URL player kiểu ...?hls=<enc>&flv=<enc>&cdn=tencent
+function extractFromPlayerUrl(rawUrl) {
+  const decoded = decodeHtmlText(rawUrl);
+  let hls = '';
+  let flv = '';
+  let cdn = '';
+  try {
+    const u = new URL(decoded, GAVANG_BASE_URL);
+    hls = safeDecodeURIComponent(u.searchParams.get('hls') || u.searchParams.get('m3u8') || u.searchParams.get('url') || '');
+    flv = safeDecodeURIComponent(u.searchParams.get('flv') || '');
+    cdn = u.searchParams.get('cdn') || '';
+  } catch {
+    const mh = decoded.match(/[?&](?:hls|m3u8)=([^&\s"'<>]+)/i);
+    const mf = decoded.match(/[?&]flv=([^&\s"'<>]+)/i);
+    const mc = decoded.match(/[?&]cdn=([^&\s"'<>]+)/i);
+    hls = mh ? safeDecodeURIComponent(mh[1]) : '';
+    flv = mf ? safeDecodeURIComponent(mf[1]) : '';
+    cdn = mc ? mc[1] : '';
+  }
+  if (!/^https?:\/\//i.test(hls)) hls = '';
+  if (!/^https?:\/\//i.test(flv)) flv = '';
+  return { hls, flv, cdn };
+}
+
+function decodeHtmlText(t) {
+  return String(t || '')
+    .replace(/&quot;|&#0*34;|&#x0*22;/gi, '"')
+    .replace(/&amp;/gi, '&')
+    .replace(/\\u0026/gi, '&')
+    .replace(/\\u002f/gi, '/')
+    .replace(/\\\//g, '/');
+}
+
+function toSiteUrl(href) {
+  if (!href) return '';
+  try {
+    const base = new URL(GAVANG_BASE_URL);
+    const u = new URL(href, base);
+    if (u.host !== base.host) return `${base.origin}${u.pathname}${u.search}`; // domain cũ/mirror -> domain đang dùng
+    return u.toString();
+  } catch {
+    return getFullUrl(href);
+  }
+}
+
 function textOf($el) {
   return ($el.first().text() || '').replace(/\s+/g, ' ').trim();
 }
@@ -74,9 +154,9 @@ function parseMatchCard($, card) {
   // trang, không phải đoán mò.
   const sport = $card.attr('data-sport') === 'basketball' ? 'basketball' : 'football';
 
-  const link = $card.find('> .block a[href*="/truc-tiep/"]').first();
+  const link = $card.find('> .block a[href*="/truc-tiep/"], > .block a[href*="/basketball/"]').first();
   const detailUrl = link.attr('href') || '';
-  const slugMatch = detailUrl.match(/\/truc-tiep\/([^/]+)\/?/);
+  const slugMatch = detailUrl.match(/\/(?:truc-tiep|basketball)\/([^/]+)\/?/);
   const slug = slugMatch ? slugMatch[1] : '';
 
   const competitionName = textOf($card.find('.bals-competition-name'));
@@ -115,7 +195,7 @@ function parseMatchCard($, card) {
     matchId: `gv_${matchId}`,
     originalId: matchId,
     slug,
-    detailUrl: detailUrl ? getFullUrl(detailUrl) : '',
+    detailUrl: detailUrl ? toSiteUrl(detailUrl) : '',
     source: 'gavang',
     sport,
     sportName: sport === 'basketball' ? 'BÓNG RỔ' : 'BÓNG ĐÁ',
@@ -154,7 +234,7 @@ function parseMatchCard($, card) {
       // Placeholder khi chưa có link thật — KHÁC RỖNG để không bị loại khỏi
       // playlist tĩnh (xem FIX 23/09/2026 trong phalang.service.js, cùng
       // lỗi, cùng cách sửa).
-      liveUrl: detailUrl ? getFullUrl(detailUrl) : `${GAVANG_BASE_URL}/`,
+      liveUrl: detailUrl ? toSiteUrl(detailUrl) : `${GAVANG_BASE_URL}/`,
       streamerName: null,
       streamerAvatar: null
     },
@@ -177,44 +257,201 @@ function parseMatchListPage(html) {
  * trang chi tiết từng trận (#commentators-grid .commentator-card). Chỉ gọi
  * cho trận ĐANG LIVE (trận chưa đá không có gì để lấy, tốn request vô ích).
  */
-async function fetchCommentatorsForMatch(match) {
-  if (!match.detailUrl) return [];
-  try {
-    const { data: html } = await client.get(match.detailUrl);
-    const $ = load(html);
-    const commentators = [];
-    $('#commentators-grid .commentator-card').each((_, el) => {
+function parseCommentatorsFromHtml(html) {
+  const out = [];
+  const seen = new Set();
+  const push = (c) => {
+    if (!c.streamUrl || seen.has(c.streamUrl)) return;
+    seen.add(c.streamUrl);
+    out.push(c);
+  };
+  let $;
+  try { $ = load(html); } catch { return out; }
+
+  // (0) CẤU TRÚC MỚI (gavang13.live): iframe player có hls=/flv= trong query-string.
+  // Server mặc định = streamer đầu tiên; các server còn lại ở trang /link/N/ (xem fetchCommentatorsForMatch).
+  $('iframe[src], iframe[data-src], [data-src*="hls="], [src*="hls="]').each((_, el) => {
+    const raw = $(el).attr('src') || $(el).attr('data-src') || '';
+    if (!/[?&](hls|flv|m3u8)=/i.test(raw)) return;
+    const { hls, flv, cdn } = extractFromPlayerUrl(raw);
+    const best = hls || flv;
+    if (!best) return;
+    push({
+      id: `server_${out.length + 1}`,
+      name: `Server ${out.length + 1}`,
+      avatar: '',
+      streamUrl: best,
+      flvStreamUrl: flv,
+      isLive: true,
+      cdn: detectCdn(best, cdn)
+    });
+  });
+
+  // (1) Cấu trúc cũ đã biết.
+  $('#commentators-grid .commentator-card').each((_, el) => {
+    const $c = $(el);
+    const streamUrl = decodeHtmlText($c.attr('data-stream-url') || '');
+    const flvUrl = decodeHtmlText($c.attr('data-stream-url-flv') || '');
+    if (!streamUrl && !flvUrl) return;
+    const name = $c.attr('data-stream-name') || textOf($c.find('span').first()) || 'Server';
+    const avatarRaw = $c.find('img').attr('data-src') || $c.find('img').attr('src') || '';
+    push({
+      id: $c.attr('data-streamer-id') || name,
+      name,
+      avatar: getFullUrl(avatarRaw),
+      streamUrl: streamUrl || flvUrl,
+      flvStreamUrl: flvUrl,
+      isLive: true,
+      cdn: detectCdn(streamUrl || flvUrl, $c.attr('data-cdn'))
+    });
+  });
+
+  // (2) Dự phòng: phần tử bất kỳ có thuộc tính data-* chứa link .m3u8/.flv (đổi tên class/thuộc tính).
+  if (!out.length) {
+    $('*').each((_, el) => {
+      const attrs = el.attribs || {};
+      const urls = [];
+      for (const [k, v] of Object.entries(attrs)) {
+        if (!/^data-/i.test(k)) continue;
+        const found = decodeHtmlText(v).match(STREAM_RE);
+        if (found) urls.push(...found);
+      }
+      if (!urls.length) return;
       const $c = $(el);
-      const streamUrl = $c.attr('data-stream-url') || '';
-      const flvUrl = $c.attr('data-stream-url-flv') || '';
-      if (!streamUrl && !flvUrl) return;
-      const name = $c.attr('data-stream-name') || textOf($c.find('span').first()) || 'Server';
-      const avatarRaw = $c.find('img').attr('data-src') || $c.find('img').attr('src') || '';
-      commentators.push({
-        id: $c.attr('data-streamer-id') || name,
+      const best = urls.find((u) => /\.m3u8(\?|$)/i.test(u)) || urls[0];
+      const name = attrs['data-stream-name'] || attrs['data-name'] || attrs['data-blv'] || attrs.title || textOf($c.find('span').first()) || `Server ${out.length + 1}`;
+      push({
+        id: attrs['data-streamer-id'] || attrs['data-id'] || name,
         name,
-        avatar: getFullUrl(avatarRaw),
-        streamUrl: streamUrl || flvUrl,
-        flvStreamUrl: flvUrl,
+        avatar: getFullUrl($c.find('img').attr('data-src') || $c.find('img').attr('src') || ''),
+        streamUrl: best,
+        flvStreamUrl: urls.find((u) => /\.flv(\?|$)/i.test(u)) || '',
         isLive: true,
-        cdn: detectCdn(streamUrl || flvUrl, $c.attr('data-cdn'))
+        cdn: detectCdn(best, attrs['data-cdn'])
       });
     });
-    // FIX (24/09/2026 — "có trận xem được, có trận lỗi"): mỗi trận có nhiều
-    // BLV, mỗi BLV 1 link riêng; playlist chỉ lấy link ĐẦU TIÊN. Trước đây
-    // giữ nguyên thứ tự trên trang nên nhiều trận bị dồn vào link FLV (hoặc
-    // link không phải HLS) dù trận đó có sẵn link HLS — app IPTV/player web
-    // xử lý FLV kém hơn hẳn HLS. Xếp link HLS (.m3u8) lên trước, FLV/khác
-    // xuống sau (sort ổn định — giữ nguyên thứ tự BLV trong cùng nhóm).
-    const rank = (c) => (/\.m3u8(\?|$)/i.test(c.streamUrl) ? 0 : (/\.flv(\?|$)/i.test(c.streamUrl) ? 2 : 1));
-    return commentators
-      .map((c, i) => ({ c, i }))
-      .sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i)
-      .map(({ c }) => c);
+  }
+
+  // (3) Dự phòng cuối: quét mọi link .m3u8/.flv trong cả trang (script/JSON nhúng, đã giải mã &quot; \u0026 \/).
+  if (!out.length) {
+    const found = [...new Set([
+      ...(decodeHtmlText(html).match(STREAM_RE) || []),
+      // link bị mã hóa %3A%2F trong query-string của iframe/script
+      ...(safeDecodeURIComponent(decodeHtmlText(html)).match(STREAM_RE) || [])
+    ])];
+    found.forEach((u, i) => push({ id: `server_${i + 1}`, name: `Server ${i + 1}`, avatar: '', streamUrl: u, flvStreamUrl: /\.flv(\?|$)/i.test(u) ? u : '', isLive: true, cdn: detectCdn(u, '') }));
+  }
+  return out;
+}
+
+// FIX (16/11/2026): mỗi BLV/streamer có 1 trang riêng .../truc-tiep/<slug>/link/N/ (thẻ <a> tên BLV ở dưới khung player).
+// Trang chi tiết chính chỉ nhúng link của server mặc định, muốn đủ server phải vào từng /link/N/.
+function parseLinkAnchors(html) {
+  const out = [];
+  const seen = new Set();
+  let $;
+  try { $ = load(html); } catch { return out; }
+  $('a[href*="/link/"]').each((_, a) => {
+    const href = $(a).attr('href') || '';
+    const m = href.match(/\/(?:truc-tiep|basketball)\/[^/]+\/link\/(\d+)\/?/);
+    if (!m) return;
+    const url = toSiteUrl(href);
+    if (seen.has(url)) return;
+    seen.add(url);
+    const name = ($(a).text() || '').replace(/\s+/g, ' ').replace(/Profile/gi, ' ').replace(/\s+/g, ' ').trim()
+      || $(a).find('img').attr('alt') || `Server ${m[1]}`;
+    out.push({ url, name, index: Number(m[1]) });
+  });
+  return out.sort((a, b) => a.index - b.index);
+}
+
+async function fetchLinkPage(url) {
+  try {
+    const res = await client.get(url);
+    return typeof res.data === 'string' ? res.data : '';
   } catch (error) {
-    console.error(`Error fetching GaVang match detail (${match.slug}):`, error.message);
+    console.warn(`[gavang] trang link ${url} lỗi HTTP ${error.response?.status || error.code || ''}: ${error.message}`);
+    return typeof error.response?.data === 'string' ? error.response.data : '';
+  }
+}
+
+async function fetchCommentatorsForMatch(match) {
+  if (!match.detailUrl) return [];
+  let html = '';
+  let status = 0;
+  let via = 'HTTP';
+  try {
+    const res = await client.get(match.detailUrl);
+    html = typeof res.data === 'string' ? res.data : '';
+    status = res.status;
+  } catch (error) {
+    status = error.response?.status || 0;
+    html = typeof error.response?.data === 'string' ? error.response.data : '';
+    console.warn(`[gavang] trang chi tiết ${match.slug || match.matchId} lỗi HTTP ${status || error.code || ''}: ${error.message}`);
+  }
+
+  let list = html ? parseCommentatorsFromHtml(html) : [];
+  const mainHtml = html;
+
+  // Không có link (hoặc bị chặn / link chỉ có sau khi chạy JS) -> trình duyệt headless.
+  if (!list.length && GAVANG_BROWSER_FALLBACK && browserBudget > 0) {
+    browserBudget -= 1;
+    try {
+      const r = await fetchRenderedHtml(match.detailUrl, {
+        timeoutMs: 25000,
+        waitForSelector: 'iframe[src*="hls="], #commentators-grid .commentator-card',
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+      });
+      if (r?.html) {
+        html = r.html;
+        status = r.status || status;
+        via = 'trình duyệt headless';
+        list = parseCommentatorsFromHtml(html);
+      }
+    } catch (err) {
+      console.warn(`[gavang] trình duyệt headless lỗi (${match.slug || match.matchId}):`, err.message);
+    }
+  }
+
+  // Lấy thêm các server của từng BLV ở /link/N/ (nếu có) và gắn đúng tên BLV.
+  if (list.length || html) {
+    const anchors = parseLinkAnchors(mainHtml || html).slice(0, 8);
+    if (anchors.length) {
+      const pages = await mapPool(anchors, 4, (a) => fetchLinkPage(a.url));
+      const byUrl = new Map(list.map((c) => [c.streamUrl, c]));
+      anchors.forEach((a, i) => {
+        const found = pages[i] ? parseCommentatorsFromHtml(pages[i]) : [];
+        const first = found.find((c) => c.streamUrl);
+        if (!first) return;
+        const existing = byUrl.get(first.streamUrl);
+        if (existing) {
+          // link/1 thường trùng server mặc định: chỉ gắn lại tên BLV cho đúng
+          if (/^Server \d+$/i.test(existing.name)) { existing.name = a.name; existing.id = a.name; }
+          return;
+        }
+        const entry = { ...first, id: `${a.name}#${a.index}`, name: a.name };
+        byUrl.set(entry.streamUrl, entry);
+        list.push(entry);
+      });
+    }
+  }
+
+  if (!list.length) {
+    if (diagBudget > 0) {
+      diagBudget -= 1;
+      const title = (html.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || '';
+      const plain = decodeHtmlText(html);
+      console.warn(`[gavang] KHÔNG lấy được link trận live ${match.slug || match.matchId} (${match.detailUrl}) — ${via}, HTTP ${status}, độ dài ${html.length}, tiêu đề "${title.trim().slice(0, 80)}", có #commentators-grid=${/id=["']commentators-grid/i.test(html)}, thẻ commentator-card=${(html.match(/commentator-card/g) || []).length}, "m3u8"x${(plain.match(/m3u8/gi) || []).length}, "flv"x${(plain.match(/\.flv/gi) || []).length}, đầu trang: ${plain.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)}`);
+    }
     return [];
   }
+
+  // FIX (24/09/2026): xếp link HLS (.m3u8) lên trước, FLV/khác xuống sau (sort ổn định).
+  const rank = (c) => (/\.m3u8(\?|$)/i.test(c.streamUrl) ? 0 : (/\.flv(\?|$)/i.test(c.streamUrl) ? 2 : 1));
+  return list
+    .map((c, i) => ({ c, i }))
+    .sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i)
+    .map(({ c }) => c);
 }
 
 function applyCommentators(match, commentators) {
@@ -264,7 +501,14 @@ class GaVangService {
   /** Full scan 1 lần: lấy toàn bộ trận trên trang chủ (live + sắp đá trộn chung). */
   async fetchHomepageMatches() {
     const { data: html } = await client.get('/');
-    return parseMatchListPage(html);
+    const matches = parseMatchListPage(html);
+    if (!matches.length) {
+      // Domain mới có thể đổi cấu trúc (hoặc là SPA render bằng JS) -> không còn .match-card[data-match-id] trong HTML thô.
+      const text = typeof html === 'string' ? html : '';
+      const title = (text.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || '';
+      console.warn(`[gavang] trang chủ ${GAVANG_BASE_URL} KHÔNG có .match-card nào — độ dài ${text.length}, tiêu đề "${title.trim().slice(0, 80)}", match-card x${(text.match(/match-card/g) || []).length}, data-match-id x${(text.match(/data-match-id/g) || []).length}, "truc-tiep" x${(text.match(/truc-tiep/g) || []).length}, SPA(root/app)=${/id=["'](root|app|__next)["']/i.test(text)}, đầu trang: ${text.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160)}`);
+    }
+    return matches;
   }
 
   async getAllMatchesByTab(tab, sport = 'all', concurrency = 6) {
@@ -308,6 +552,7 @@ class GaVangService {
         // người xem, nguồn chưa phân công ai) trước đây vẫn hiện trong
         // playlist kèm dòng "Chưa có link — chờ cập nhật", giờ BỎ HẲN khỏi
         // danh sách luôn thay vì hiện placeholder không xem được.
+        console.log(`[gavang] trận live: ${liveMatches.length}, lấy được link: ${withStreams.size}, không có link (bị bỏ): ${liveMatches.length - withStreams.size}`);
         filtered = filtered.filter((m) => !m.status.isLive || withStreams.has(m.matchId));
       }
 

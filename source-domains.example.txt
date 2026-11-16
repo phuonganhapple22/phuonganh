@@ -3,7 +3,7 @@
 # Domain các nguồn hiện tại — cập nhật tay 04/11/2026: xoilac=xoilacvau.tv, giovang=giovang.love
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
 giovang=https://giovang.love
-gavang=https://gavanglinkv.tv
+gavang=https://gavang13.live
 gavang33=https://gavang33.me
 saoke=https://vip3.saoketv40.xyz
 bonglau=https://lau06.bonglautv1.org

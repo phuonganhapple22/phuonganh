@@ -1,3 +1,18 @@
+# FIX 16/11/2026 (lần 2) — Gà Vàng đổi domain sang https://gavang13.live
+
+- Đổi domain mặc định trong `gavang.service.js`, `scripts/source-domains.mjs`, danh sách Referer ở `m3uPlaylist.js`.
+- Thêm log "[gavang] trang chủ ... KHÔNG có .match-card nào ..." để biết nếu domain mới đổi cấu trúc / là SPA render bằng JS.
+
+# FIX 16/11/2026 — Gà Vàng: trận đang live mất link (trước giờ đá vẫn hiện danh sách)
+
+- Triệu chứng khớp code: danh sách trận (trang chủ / API) vẫn đọc được, nhưng trận live không lấy được link thì BỊ BỎ HẲN khỏi playlist.
+- `gavang.service.js` (gavangz.net, đọc HTML): (1) href trận tuyệt đối trỏ domain cũ -> dựng lại trên domain đang dùng; (2) đọc link trang chi tiết
+  nhiều tầng: cấu trúc cũ -> mọi thuộc tính data-* chứa .m3u8/.flv -> quét regex cả trang (giải mã &quot; \u0026 \/); (3) vẫn không có -> mở bằng
+  trình duyệt headless (tối đa GAVANG_BROWSER_MAX=8 trận/lần chạy; tắt GAVANG_BROWSER_FALLBACK=off); (4) log "[gavang] trận live: N, lấy được link: M"
+  và "[gavang] KHÔNG lấy được link trận live ..." (HTTP status, tiêu đề, có grid không, số lần thấy m3u8/flv). Domain mặc định gavang13.live (domain mới theo SOURCE_DOMAINS trên git; trước đó gavangz.net).
+- `gavang33.service.js`: KHÔNG thay đổi (người dùng xác nhận Gà Vàng 33 vẫn chạy tốt).
+- Chỉ sửa file, không xóa file nào.
+
 # FIX 15/11/2026 (lần 7) — Giờ Vàng: đọc BLV trong trang bị hỏng + bỏ luồng của trận khác
 
 - Log "[chọn-link] ... BLV trong trang: (không đọc được)": JSON trong trang viết bằng &quot; nên regex đọc BLV (cả nhãn "Giovang 1 - <BLV>") chưa từng khớp.
@@ -325,3 +340,10 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
 - Sửa: cửa sổ xoiche mặc định 72h (`XOICHE_UPCOMING_HOURS`), giữ trận quá giờ tối đa 180 phút mà site còn "scheduled" (`XOICHE_UPCOMING_GRACE_MIN`).
 - Thêm log `[playlist-builder] <nguồn> upcoming: giữ x/y (ngoài cửa sổ, loại môn, loại giải, trùng) + trận sớm nhất ngoài cửa sổ` cho MỌI nguồn để lần sau thấy ngay trận bị loại ở bước nào.
 - Muốn giữ cả "Friendlies" (giao hữu): đặt `LEAGUE_ALLOW=friendlies` (hoặc thêm `,friendlies` nếu đã có giá trị).
+
+## FIX 16/11/2026 — Gà Vàng không hiện trận live (domain gavang13.live)
+- Nguyên nhân: trang chi tiết trận đổi cấu trúc. Link phát không còn nằm trong `#commentators-grid .commentator-card[data-stream-url]`
+  mà nằm trong iframe `https://playyyz4.cc/e?hls=<m3u8 đã mã hóa %3A%2F>&flv=<flv>&cdn=tencent...`. Regex cũ tìm `.m3u8` thô nên không thấy
+  => trận live không có link bị loại hết.
+- Sửa `src/services/gavang.service.js`: đọc hls/flv từ iframe (giải mã %), quét thêm chuỗi đã giải mã %, lấy thêm các server BLV ở
+  `/truc-tiep/<slug>/link/N/`, nhận cả link `/basketball/`, đổi selector của trình duyệt headless.
