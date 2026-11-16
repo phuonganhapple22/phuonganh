@@ -347,3 +347,4 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
   => trận live không có link bị loại hết.
 - Sửa `src/services/gavang.service.js`: đọc hls/flv từ iframe (giải mã %), quét thêm chuỗi đã giải mã %, lấy thêm các server BLV ở
   `/truc-tiep/<slug>/link/N/`, nhận cả link `/basketball/`, đổi selector của trình duyệt headless.
+- Log gọn: chỉ in 1 dòng "[gavang] N trận chưa có BLV (bị bỏ), X/Y trận live có link". Muốn xem chi tiết từng trận: đặt GAVANG_DEBUG=on.

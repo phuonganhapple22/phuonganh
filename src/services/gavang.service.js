@@ -61,7 +61,8 @@ function detectCdn(url, hintedCdn) {
 //  (4) log chẩn đoán "[gavang] ..." khi trận live không lấy được link (HTTP status, tiêu đề, có grid không, số lần thấy m3u8/flv...).
 const GAVANG_BROWSER_FALLBACK = String(process.env.GAVANG_BROWSER_FALLBACK || 'on').toLowerCase() !== 'off';
 let browserBudget = Math.max(0, Number(process.env.GAVANG_BROWSER_MAX) || 8);
-let diagBudget = 6;
+// Log chi tiết từng trận chưa có link chỉ bật khi đặt GAVANG_DEBUG=on (mặc định tắt cho gọn log).
+let diagBudget = String(process.env.GAVANG_DEBUG || '').toLowerCase() === 'on' ? 6 : 0;
 const STREAM_RE = /https?:\/\/[^\s"'<>\\]+?\.(?:m3u8|flv)(?:\?[^\s"'<>\\]*)?/gi;
 
 // FIX (16/11/2026): domain gavang13.live nhúng player qua iframe dạng
@@ -552,7 +553,7 @@ class GaVangService {
         // người xem, nguồn chưa phân công ai) trước đây vẫn hiện trong
         // playlist kèm dòng "Chưa có link — chờ cập nhật", giờ BỎ HẲN khỏi
         // danh sách luôn thay vì hiện placeholder không xem được.
-        console.log(`[gavang] trận live: ${liveMatches.length}, lấy được link: ${withStreams.size}, không có link (bị bỏ): ${liveMatches.length - withStreams.size}`);
+        console.log(`[gavang] ${liveMatches.length - withStreams.size} trận chưa có BLV (bị bỏ), ${withStreams.size}/${liveMatches.length} trận live có link`);
         filtered = filtered.filter((m) => !m.status.isLive || withStreams.has(m.matchId));
       }
 
