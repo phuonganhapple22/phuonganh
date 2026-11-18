@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-18T04:25:43.247Z",
+  "updatedAt": "2026-11-18T21:07:31.587Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.cam",
@@ -10,10 +10,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
-      "url": "https://gavang13.live",
+      "url": "https://gavangz.link",
       "envVar": "GAVANG_BASE_URL",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "gavang33": {
@@ -1025,6 +1025,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-18T21:07:31.587Z",
+      "source": "gavang",
+      "from": "https://gavang13.live",
+      "to": "https://gavangz.link",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
     }
   ]
 }
