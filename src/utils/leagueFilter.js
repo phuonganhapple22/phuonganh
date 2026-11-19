@@ -79,6 +79,10 @@ const ALLOW = [
   /^vdqg (anh|tay ban nha|y|duc|phap|ha lan|bo dao nha|bi|tho nhi ky|scotland|viet nam|thai lan|nhat ban|han quoc|trung quoc|a rap xe ut|saudi arabia|my|mexico|brazil|argentina)$/
 ];
 
+// Giải luôn giữ dù tên dính BLOCK_LEAGUE (so khớp trên tên giải đã normalizeName: không dấu, chữ thường).
+// "women"/"u17..." trong tên giải vẫn bị loại vì regex bên dưới đòi đúng cụm "asean club championship" (không có chữ women xen giữa).
+const FORCE_ALLOW = [/\basean club championship\b/, /\bshopee cup\b/, /\basean championship\b/];
+
 const envList = (name) =>
   String(process.env[name] || '')
     .split(',')
@@ -98,12 +102,20 @@ export function judgeFootballLeague(leagueName, homeName = '', awayName = '') {
   const hitAllow = extraAllow.find((k) => league.includes(k));
   if (hitAllow) return { keep: true, reason: `LEAGUE_ALLOW "${hitAllow}"` };
 
-  const bl = BLOCK_LEAGUE.find((re) => re.test(league));
+  // FIX (19/11/2026 — "Xôi Chè bị lọc mất các trận ASEAN Club Championship", vd Công an Hà Nội vs Johor DT):
+  // tên giải chứa chữ "championship" nên dính BLOCK_LEAGUE (nhằm chặn English Championship = hạng 2 Anh) và bị loại
+  // TRƯỚC khi tới bước ALLOW. ASEAN Club Championship (tên cũ Shopee Cup) là cúp CLB Đông Nam Á có đội Việt Nam -> luôn giữ
+  // (bản nữ/trẻ vẫn bị bước chặn đội phía dưới loại như cũ).
+  const forceAllow = FORCE_ALLOW.some((re) => re.test(league));
+
+  const bl = forceAllow ? null : BLOCK_LEAGUE.find((re) => re.test(league));
   if (bl) return { keep: false, reason: `giải thấp/nữ/trẻ (${bl})` };
 
   const teams = [normalizeName(homeName), normalizeName(awayName)];
   const bt = BLOCK_TEAM.find((re) => teams.some((t) => re.test(t)));
   if (bt) return { keep: false, reason: `đội nữ/trẻ/dự bị (${bt})` };
+
+  if (forceAllow) return { keep: true, reason: 'FORCE_ALLOW cúp CLB Đông Nam Á' };
 
   const al = ALLOW.find((re) => re.test(league));
   if (al) return { keep: true, reason: 'giải lớn' };

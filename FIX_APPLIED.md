@@ -391,3 +391,10 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
 
 ## 19/11/2026 — Ghi chú quy tắc (FILE MỚI)
 - `HUONG_DAN_DEPLOY.md` (file mới): ghi chú ngắn — mỗi lần fix xong tự tạo folder `changed-files/` chứa file sửa + file mới (giữ nguyên đường dẫn), không xóa file, đóng gói zip.
+- (19/11/2026) Bảng tổng kết: giữ tới 600 ký tự mỗi dòng lỗi (trước 220) để không cắt mất phần chẩn đoán như "HTTP 200...".
+
+## FIX 19/11/2026 — Xôi Chè bị lọc mất trận ASEAN Club Championship (vd Công an Hà Nội vs Johor DT)
+- `src/utils/leagueFilter.js`: tên giải có chữ "championship" dính BLOCK_LEAGUE (để chặn English Championship = hạng 2 Anh) nên bị loại
+  TRƯỚC khi tới bước ALLOW ("bỏ N trận giải nhỏ: ASEAN Club Championship"). Thêm `FORCE_ALLOW` (ASEAN Club Championship / Shopee Cup / ASEAN Championship):
+  bỏ qua bước chặn giải nhưng VẪN áp bước chặn đội nữ/trẻ (U21, B, II...). English Championship vẫn bị chặn như cũ; bản nữ của ASEAN Club vẫn bị loại.
+- Áp dụng chung cho các nguồn đang bật lọc giải (mặc định xoilac, xoigac, xoiche).
