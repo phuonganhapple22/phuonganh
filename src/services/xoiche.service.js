@@ -240,9 +240,12 @@ function leagueName(r) {
   const want = TOP5_LEAGUE_IDS[name.toLowerCase()];
   const id = Number(r.tournament?.api_football_id);
   if (want && id && id !== want) {
-    const c = String(r.home_team?.country || r.away_team?.country || '').trim();
-    if (name.toLowerCase() === 'serie a' && /brazil/i.test(c)) return 'Brazilian Serie A';
-    return c && c !== 'intl' ? `${c} ${name}` : `${name} (giai khac)`;
+    // FIX (19/11/2026): đội nhà có country='intl' (vd Corinthians) làm `c` = 'intl' nên Serie A của Brazil bị gán nhầm "(giai khac)" và
+    // trận live bị bộ lọc giải nhỏ loại (tab live = 0 trận). Giờ lấy country KHÁC 'intl' của bất kỳ đội nào; Serie A id 99 = Brazil.
+    const countries = [r.home_team?.country, r.away_team?.country].map((x) => String(x || '').trim()).filter((x) => x && x.toLowerCase() !== 'intl');
+    const c = countries[0] || '';
+    if (name.toLowerCase() === 'serie a' && (/brazil/i.test(c) || id === 99)) return 'Brazilian Serie A';
+    return c ? `${c} ${name}` : `${name} (giai khac)`;
   }
   return name;
 }
