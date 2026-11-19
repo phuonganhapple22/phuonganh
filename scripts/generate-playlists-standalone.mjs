@@ -458,7 +458,7 @@ function recordIssue(args) {
     for (const key of SOURCE_LOG_ORDER) {
       if (head.includes(key) && !(key === 'gavang' && head.includes('gavang33'))) {
         const arr = scanIssues.get(key) || [];
-        if (arr.length < 3) arr.push(msg.slice(0, 220));
+        if (arr.length < 3) arr.push(msg.slice(0, 600)); // 600 ký tự để không cắt mất phần chẩn đoán (vd "HTTP 200...")
         scanIssues.set(key, arr);
         return;
       }
