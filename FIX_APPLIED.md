@@ -398,3 +398,17 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
   TRƯỚC khi tới bước ALLOW ("bỏ N trận giải nhỏ: ASEAN Club Championship"). Thêm `FORCE_ALLOW` (ASEAN Club Championship / Shopee Cup / ASEAN Championship):
   bỏ qua bước chặn giải nhưng VẪN áp bước chặn đội nữ/trẻ (U21, B, II...). English Championship vẫn bị chặn như cũ; bản nữ của ASEAN Club vẫn bị loại.
 - Áp dụng chung cho các nguồn đang bật lọc giải (mặc định xoilac, xoigac, xoiche).
+
+## FIX 19/11/2026 (lần 3) — Gà Vàng bị lọc mất trận Công an Hà Nội vs Johor DT (gavangz.link/truc-tiep/cong-an-ha-noi-fc-vs-johor-darul-tazim-fc-ngay-19-11-2026)
+- Bộ lọc giải (`src/utils/leagueFilter.js`) áp cho Gà Vàng khi `LEAGUE_FILTER_SOURCES` có `gavang` hoặc `all`. Gà Vàng đặt tên giải khác Xôi Chè
+  (vd \"AFC Champions League Two\" dính luật `league two`, tên có \"Championship\"...) nên trận bị loại ở bước CHẶN trước khi tới ALLOW.
+- Mở rộng `FORCE_ALLOW`: ASEAN Club*/ACCC/AFF Club/Cúp C1-C2 Đông Nam Á/Cúp C1-C2 châu Á/AFC Champions League Two|2|Elite/ACL2/AFC Cup/Cúp CLB châu Á.
+- Sửa thêm: FORCE_ALLOW trước đây bỏ qua cả luật nữ/trẻ trong tên giải (\"... Women\" lọt) -> thêm `BLOCK_ALWAYS` luôn loại nữ/trẻ/futsal/esports.
+- English Championship, League Two, Hạng 2, Serie C... vẫn bị chặn như cũ (đã chạy thử).
+- Nếu vẫn mất trận: xem log `[leagueFilter:gavang] bỏ N trận giải nhỏ: <tên giải> [lý do]`, rồi thêm tên giải vào biến `LEAGUE_ALLOW` (không cần sửa code).
+
+## 19/11/2026 (lần 4) — Gà Vàng: loại cả trận sắp đá chưa có BLV (theo yêu cầu)
+- `src/services/gavang.service.js`: trận live không có BLV/link vốn đã bị bỏ; giờ trận SẮP ĐÁ mà thẻ trận chưa có ảnh BLV cũng bị bỏ.
+  Nếu không trận sắp đá nào có ảnh BLV thì giữ nguyên + log cảnh báo (tránh mất sạch khi site đổi giao diện). Tắt: `GAVANG_UPCOMING_NEED_BLV=off`.
+- Lưu ý: tên giải \"Asean Club Championship Shopee Cup\" đã test -> bộ lọc giải GIỮ (FORCE_ALLOW). Nếu trận Công an Hà Nội vs Johor DT vẫn mất, nguyên nhân
+  không phải bộ lọc giải: xem log `[gavang] ... trận chưa có BLV (bị bỏ)` / `bỏ ... trận \"live\" đã quá giờ` / `KHÔNG lấy được link trận live`.

@@ -69,6 +69,8 @@ const GAVANG_DEBUG_ON = String(process.env.GAVANG_DEBUG || '').toLowerCase() ===
 let diagBudget = GAVANG_DEBUG_ON ? 8 : 3;
 const BROWSER_MAX = Math.max(0, Number(process.env.GAVANG_BROWSER_MAX) || 3);
 // Chỉ vào trang chi tiết những trận có ảnh BLV trên thẻ (hành vi cũ) khi đặt GAVANG_ONLY_BLV=on. Mặc định: thử TẤT CẢ trận live.
+// Trận sắp đá chưa có BLV trên thẻ -> bỏ (mặc định BẬT). Tắt: GAVANG_UPCOMING_NEED_BLV=off
+const GAVANG_UPCOMING_NEED_BLV = !/^(off|0|false|no)$/i.test(String(process.env.GAVANG_UPCOMING_NEED_BLV || 'on').trim());
 const GAVANG_ONLY_BLV = String(process.env.GAVANG_ONLY_BLV || '').toLowerCase() === 'on';
 // Cache link đã lấy được theo trận (để getStreamLinks() của builder không phải tải lại trang chi tiết).
 const STREAM_CACHE_TTL_MS = 3 * 60 * 1000;
@@ -693,6 +695,20 @@ class GaVangService {
         // danh sách luôn thay vì hiện placeholder không xem được.
         console.log(`[gavang] ${liveMatches.length - withStreams.size} trận chưa có BLV (bị bỏ), ${withStreams.size}/${liveMatches.length} trận live có link (nguồn ${GAVANG_BASE_URL})`);
         filtered = filtered.filter((m) => !m.status.isLive || withStreams.has(m.matchId));
+      }
+
+      // FIX (19/11/2026 — theo yêu cầu \"các trận không có BLV thì cũng loại\"): trận SẮP ĐÁ mà thẻ trận chưa có ảnh BLV nào cũng BỎ
+      // (trận live không có BLV/link đã bị bỏ ở trên). Tắt: GAVANG_UPCOMING_NEED_BLV=off.
+      // An toàn: nếu KHÔNG trận sắp đá nào có ảnh BLV (nghi site đổi giao diện, không phải do chưa phân công) thì giữ nguyên, chỉ log cảnh báo.
+      if (tab !== 'live' && GAVANG_UPCOMING_NEED_BLV) {
+        const upcoming = filtered.filter((m) => !m.status.isLive);
+        const withBlv = upcoming.filter((m) => m.hasStreamers);
+        if (upcoming.length && !withBlv.length) {
+          console.warn(`[gavang] ${upcoming.length} trận sắp đá nhưng KHÔNG trận nào có ảnh BLV trên thẻ -> giữ nguyên (nghi site đổi giao diện).`);
+        } else if (upcoming.length > withBlv.length) {
+          console.log(`[gavang] bỏ ${upcoming.length - withBlv.length}/${upcoming.length} trận sắp đá chưa có BLV`);
+          filtered = filtered.filter((m) => m.status.isLive || m.hasStreamers);
+        }
       }
 
       return { matches: filtered, hasMore: false, totalCount: filtered.length };

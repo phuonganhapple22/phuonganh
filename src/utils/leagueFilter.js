@@ -84,7 +84,13 @@ const ALLOW = [
 // FIX (19/11/2026 lần 2): Xôi Gác đặt tên giải khác Xôi Chè -> thêm các biến thể (ASEAN Club..., AFF Club..., tên tiếng Việt "Cúp CLB Đông Nam Á").
 const FORCE_ALLOW = [
   /\basean club\b/, /\bshopee cup\b/, /\basean championship\b/, /\baff club\b/,
-  /\b(cup|giai|cup c1|cup c2) (cac )?(clb|cau lac bo|club) (dong nam a|asean)\b/, /\b(clb|cau lac bo) dong nam a\b/, /\bdong nam a club\b/
+  /\b(cup|giai|cup c1|cup c2) (cac )?(clb|cau lac bo|club) (dong nam a|asean)\b/, /\b(clb|cau lac bo) dong nam a\b/, /\bdong nam a club\b/,
+  // FIX (19/11/2026 lần 3): Gà Vàng đặt tên giải kiểu khác (ghi tắt / không có chữ \"club\" / ACL Two...). Các tên này trước đây dính
+  // BLOCK_LEAGUE (\"championship\", \"league two\", \"cup 2\"...) nên trận Công an Hà Nội vs Johor DT bị lọc mất.
+  /\basean club\w*/, /\baccc\b/, /\baff (club|champions)\b/, /\bcup (c1|c2) dong nam a\b/, /\bcup dong nam a\b/,
+  /\bdong nam a (champions|championship|cup)\b/, /\basean (cup|champions)\b/, /\bgiai (vo dich )?cac clb dong nam a\b/,
+  /\bafc champions league (two|2|elite)\b/, /\bacl ?(2|two|elite)\b/, /\bafc cup\b/, /\bcup c2 chau a\b|\bcup c1 chau a\b/,
+  /\b(cup|giai) (vo dich )?(cac )?(clb|cau lac bo) chau a\b/
 ];
 
 const envList = (name) =>
@@ -112,7 +118,9 @@ export function judgeFootballLeague(leagueName, homeName = '', awayName = '') {
   // (bản nữ/trẻ vẫn bị bước chặn đội phía dưới loại như cũ).
   const forceAllow = FORCE_ALLOW.some((re) => re.test(league));
 
-  const bl = forceAllow ? null : BLOCK_LEAGUE.find((re) => re.test(league));
+  // FORCE_ALLOW chỉ bỏ qua luật \"hạng thấp\"; bản nữ/trẻ/futsal ghi ngay trong tên giải vẫn bị loại.
+  const BLOCK_ALWAYS = /\b(u|under) ?(1[4-9]|2[0-3])\b|\byouth\b|\bjunior|\bacademy\b|\bwomen\b|\bwoman\b|\bfemin|\bfemen|\bladies\b|\bnu\b|\bfutsal\b|\bbeach\b|\besports?\b|\bvirtual\b/;
+  const bl = forceAllow ? (BLOCK_ALWAYS.test(league) ? BLOCK_ALWAYS : null) : BLOCK_LEAGUE.find((re) => re.test(league));
   if (bl) return { keep: false, reason: `giải thấp/nữ/trẻ (${bl})` };
 
   const teams = [normalizeName(homeName), normalizeName(awayName)];
