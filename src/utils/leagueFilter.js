@@ -81,7 +81,11 @@ const ALLOW = [
 
 // Giải luôn giữ dù tên dính BLOCK_LEAGUE (so khớp trên tên giải đã normalizeName: không dấu, chữ thường).
 // "women"/"u17..." trong tên giải vẫn bị loại vì regex bên dưới đòi đúng cụm "asean club championship" (không có chữ women xen giữa).
-const FORCE_ALLOW = [/\basean club championship\b/, /\bshopee cup\b/, /\basean championship\b/];
+// FIX (19/11/2026 lần 2): Xôi Gác đặt tên giải khác Xôi Chè -> thêm các biến thể (ASEAN Club..., AFF Club..., tên tiếng Việt "Cúp CLB Đông Nam Á").
+const FORCE_ALLOW = [
+  /\basean club\b/, /\bshopee cup\b/, /\basean championship\b/, /\baff club\b/,
+  /\b(cup|giai|cup c1|cup c2) (cac )?(clb|cau lac bo|club) (dong nam a|asean)\b/, /\b(clb|cau lac bo) dong nam a\b/, /\bdong nam a club\b/
+];
 
 const envList = (name) =>
   String(process.env[name] || '')
@@ -143,6 +147,7 @@ export function shouldDropMatch(match, source) {
 /** Lọc cả danh sách + log gọn các giải bị bỏ (để chỉnh LEAGUE_ALLOW nếu lỡ tay). */
 export function filterMinorLeagues(matches, source) {
   const dropped = new Map();
+  const droppedWhy = new Map();
   const keptLeagues = new Map();
   let noLeague = 0;
   const kept = (matches || []).filter((m) => {
@@ -155,10 +160,12 @@ export function filterMinorLeagues(matches, source) {
     }
     const name = m?.competition?.name || m?.leagueName || '(không tên)';
     dropped.set(name, (dropped.get(name) || 0) + 1);
+    // Ghi lại LÝ DO bị bỏ (lần đầu của mỗi giải) để biết ngay luật nào chặn khi lỡ tay.
+    if (!droppedWhy.has(name)) droppedWhy.set(name, judgeFootballLeague(name, m?.homeTeam?.name, m?.awayTeam?.name).reason);
     return false;
   });
   if (dropped.size) {
-    const sample = [...dropped.entries()].slice(0, 12).map(([n, c]) => `${n} x${c}`).join('; ');
+    const sample = [...dropped.entries()].slice(0, 12).map(([n, c]) => `${n} x${c} [${String(droppedWhy.get(n) || '').slice(0, 60)}]`).join('; ');
     console.log(`[leagueFilter:${source}] bỏ ${[...dropped.values()].reduce((a, b) => a + b, 0)} trận giải nhỏ: ${sample}${dropped.size > 12 ? '; ...' : ''}`);
   }
   if (keptLeagues.size || noLeague) {
