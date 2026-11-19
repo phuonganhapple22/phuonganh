@@ -380,3 +380,14 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
   = `https://livecdn321.cdnfastter.xyz/live/live_xxx/index.m3u8?token=...&expires=...` (CDN mới cdnfastter.xyz, có token). Danh sách trang chủ/lịch không kèm link này.
   -> `xoiche.service.js` giờ GET thẳng trang trận (axios, không cần trình duyệt), giải mã `__NUXT_DATA__` và lấy link; API đoán + trình duyệt chỉ còn là dự phòng.
   Player của site đặt `referrerpolicy="no-referrer"` nên link xoiche KHÔNG còn bị ép Referer cứng (m3uPlaylist tự dò [không Referer, site]).
+- (19/11/2026) Log "Quét nguồn xoiche:live: 0 trận" dù có trận live: `leagueName()` lấy country của đội nhà = 'intl' (Corinthians) nên Serie A Brazil bị đổi thành
+  "Serie A (giai khac)" và bị bộ lọc giải nhỏ loại. Sửa: lấy country KHÁC 'intl' của bất kỳ đội nào; Serie A id 99 = "Brazilian Serie A" (được giữ).
+
+## 19/11/2026 — Tổng kết trạng thái từng nguồn khi generate (CHỈ log, không đụng playlist)
+- `scripts/generate-playlists-standalone.mjs`: cuối mỗi lượt quét in bảng từng nguồn: ✅ OK / ⚠️ CẢNH BÁO / ❌ LỖI / ⚪ TRỐNG, kèm số trận live có link/tổng, sắp đá và LÝ DO
+  (lấy từ chính các dòng log lỗi của nguồn đó, vd "0 trận live có link", "quá 90s không phản hồi", "KHÔNG lấy được link trận live ...").
+- Hiện cả trong GitHub Step Summary (ghi khi số liệu đổi) và annotation ::error/::warning trên trang chạy workflow (chỉ khi trạng thái ĐỔI, không spam mỗi 2 phút).
+- KHÔNG ghi bất cứ thông báo nào vào file .m3u / tên kênh / link trận — app IPTV không thấy gì thêm.
+
+## 19/11/2026 — Ghi chú quy tắc (FILE MỚI)
+- `HUONG_DAN_DEPLOY.md` (file mới): ghi chú ngắn — mỗi lần fix xong tự tạo folder `changed-files/` chứa file sửa + file mới (giữ nguyên đường dẫn), không xóa file, đóng gói zip.

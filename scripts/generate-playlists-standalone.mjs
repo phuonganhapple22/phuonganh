@@ -53,7 +53,7 @@ import fs from 'fs';
 import path from 'path';
 import { execSync, execFileSync } from 'child_process';
 import { buildAggregatedMatches } from '@/src/services/playlistBuilder.service';
-import { filterBySportTab, filterBySource, getSourceKey, getSourceLabel, SOURCE_GROUP_ORDER } from '@/src/utils/playerGet';
+import { filterBySportTab, filterBySource, getSourceKey, getSourceLabel, SOURCE_GROUP_ORDER, streamsFromMatchCard } from '@/src/utils/playerGet';
 import { matchesToPlaylistEntries, buildM3uPlaylist } from '@/src/utils/m3uPlaylist';
 
 // FIX (20/09/2026 — "OUTPUT_DIR sai đường dẫn sau khi bundle"): trước đây
@@ -442,35 +442,108 @@ function writeState(state) {
 // (GITHUB_STEP_SUMMARY có sẵn, biến do chính GitHub tự tiêm vào, không cần
 // khai báo gì thêm), in luôn ra dạng bảng markdown, hiện thẳng ngay trên
 // trang tóm tắt của lượt chạy đó, khỏi cần mở log ra tìm.
+// FIX (19/11/2026 — "hiển thị luôn trong lúc generate chạy và báo lỗi rõ ràng từng nguồn"):
+// bảng tổng kết giờ có TRẠNG THÁI từng nguồn (OK / CẢNH BÁO / LỖI) + LÝ DO, lấy từ chính các dòng log lỗi của nguồn đó trong lượt quét
+// (bắt console.error/warn có tiền tố nguồn). CHỈ ghi vào log + GitHub Step Summary + annotation của lượt chạy —
+// TUYỆT ĐỐI KHÔNG ghi gì vào file .m3u (tên kênh/link/tiêu đề trận), để app IPTV không hiện thông báo lạ.
+const SOURCE_LOG_ORDER = ['gavang33', ...SOURCE_GROUP_ORDER.filter((k) => k !== 'gavang33')]; // gavang33 kiểm tra trước để không bị nhầm với gavang
+const scanIssues = new Map(); // key nguồn -> [các dòng lỗi/cảnh báo gần nhất của lượt quét hiện tại]
+function recordIssue(args) {
+  try {
+    const msg = args.map((a) => (a instanceof Error ? a.message : (typeof a === 'string' ? a : ''))).join(' ').replace(/\s+/g, ' ').trim();
+    if (!msg) return;
+    const head = msg.toLowerCase().slice(0, 90);
+    // Bỏ các dòng thông tin (không phải lỗi) có chứa chữ "lỗi" nhưng là log bình thường: chỉ nhận dòng có dấu hiệu lỗi/cảnh báo rõ ràng.
+    if (!/(lỗi|failed|error|không lấy được|không có|quá \d+s|timeout|chặn|403|404|429|5\d\d)/i.test(msg)) return;
+    for (const key of SOURCE_LOG_ORDER) {
+      if (head.includes(key) && !(key === 'gavang' && head.includes('gavang33'))) {
+        const arr = scanIssues.get(key) || [];
+        if (arr.length < 3) arr.push(msg.slice(0, 220));
+        scanIssues.set(key, arr);
+        return;
+      }
+    }
+  } catch { /* không để việc ghi nhận làm hỏng luồng chính */ }
+}
+for (const level of ['error', 'warn']) {
+  const original = console[level].bind(console);
+  console[level] = (...args) => { recordIssue(args); original(...args); };
+}
+
 let lastSummarySig = '';
+const lastStatusByKey = new Map(); // key -> 'OK' | 'CẢNH BÁO' | 'LỖI' (chỉ phát annotation khi đổi trạng thái, tránh spam mỗi 2 phút)
+const lastLiveByKey = new Map();
 function logSourceSummary(matches) {
-  const counts = Object.fromEntries(SOURCE_GROUP_ORDER.map((key) => [key, 0]));
+  const stats = Object.fromEntries(SOURCE_GROUP_ORDER.map((key) => [key, { total: 0, live: 0, liveLink: 0, upcoming: 0 }]));
   for (const match of matches) {
     const key = getSourceKey(match);
-    if (key in counts) counts[key] += 1;
+    if (!(key in stats)) continue;
+    const st = stats[key];
+    st.total += 1;
+    if (match?.status?.isLive) {
+      st.live += 1;
+      let links = 0;
+      try { links = (streamsFromMatchCard(match) || []).length; } catch { links = 0; }
+      if (links > 0) st.liveLink += 1;
+    } else if (!match?.status?.isFinished) {
+      st.upcoming += 1;
+    }
   }
 
   console.log('[generate-playlists] Tổng kết theo nguồn:');
   const rows = SOURCE_GROUP_ORDER.map((key) => {
-    const count = counts[key];
+    const st = stats[key];
     const label = getSourceLabel(key);
-    const flag = count > 0 ? '' : '  ⚠️  0 trận — xem log lỗi phía trên (nếu có) để biết vì sao';
-    console.log(`  - ${label} (${key}): ${count} trận${flag}`);
-    return { key, label, count };
+    const issues = scanIssues.get(key) || [];
+    let status = 'OK';
+    const notes = [];
+    if (st.total === 0) {
+      // 0 trận mà KHÔNG có dòng lỗi nào = thường là nguồn đang không có trận (ban đêm/nghỉ) -> 'TRỐNG', không báo động.
+      status = issues.length ? 'LỖI' : 'TRỐNG';
+      notes.push(issues.length ? `không lấy được trận nào — ${issues[issues.length - 1]}` : '0 trận (nguồn đang trống; nếu giờ này đáng lẽ có trận thì site có thể đã đổi cấu trúc hoặc bộ lọc loại hết)');
+    } else {
+      if (st.live > 0 && st.liveLink === 0) {
+        status = 'LỖI';
+        notes.push(`${st.live} trận live nhưng 0 link phát được (site có thể đổi cách phát/token/chặn IP)`);
+      } else if (st.live > st.liveLink) {
+        status = 'CẢNH BÁO';
+        notes.push(`${st.live - st.liveLink}/${st.live} trận live thiếu link`);
+      }
+      if (issues.length) {
+        if (status === 'OK') status = 'CẢNH BÁO';
+        notes.push(issues[issues.length - 1]);
+      }
+    }
+    const prevLive = lastLiveByKey.get(key);
+    if (prevLive > 0 && st.live === 0) notes.push(`live giảm từ ${prevLive} về 0 so với lượt trước (có thể trận đã hết)`);
+    lastLiveByKey.set(key, st.live);
+
+    const icon = status === 'OK' ? '✅' : (status === 'LỖI' ? '❌' : (status === 'TRỐNG' ? '⚪' : '⚠️'));
+    console.log(`  ${icon} ${label} (${key}): live ${st.liveLink}/${st.live} có link, sắp đá ${st.upcoming}${notes.length ? ` — ${notes.join(' | ')}` : ''}`);
+
+    // Annotation hiện ngay trên trang kết quả của workflow — chỉ khi trạng thái ĐỔI.
+    if (lastStatusByKey.get(key) !== status) {
+      if (status === 'LỖI') console.log(`::error title=Nguồn ${label} LỖI::${notes.join(' | ').replace(/\n/g, ' ')}`);
+      else if (status === 'CẢNH BÁO') console.log(`::warning title=Nguồn ${label} cảnh báo::${notes.join(' | ').replace(/\n/g, ' ')}`);
+      else if (status === 'OK' && lastStatusByKey.has(key) && lastStatusByKey.get(key) !== 'TRỐNG') console.log(`::notice title=Nguồn ${label} đã hoạt động lại::live ${st.liveLink}/${st.live} có link`);
+      lastStatusByKey.set(key, status);
+    }
+    return { key, label, st, status, icon, notes };
   });
 
-  // FIX (09/10/2026): trước đây ghi thêm 1 bảng vào Step Summary MỖI chu kỳ 2 phút (~170 bảng/job,
-  // giới hạn 1MiB/step, phình log vô ích). Giờ chỉ ghi lần đầu và khi số trận theo nguồn thay đổi.
-  const sig = rows.map((r) => r.count).join(',');
+  // Chỉ ghi Step Summary lần đầu và khi số liệu/trạng thái thay đổi (giới hạn 1MiB/step — xem FIX 09/10/2026).
+  const sig = rows.map((r) => `${r.st.total}/${r.st.live}/${r.st.liveLink}/${r.status}`).join(',');
   const summaryPath = sig === lastSummarySig ? '' : process.env.GITHUB_STEP_SUMMARY;
   lastSummarySig = sig;
   if (summaryPath) {
+    const vn = new Date().toLocaleTimeString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', hour12: false });
+    const esc = (t) => String(t).replace(/\|/g, '\\|').replace(/\n/g, ' ');
     const lines = [
-      '### Tổng kết theo nguồn',
+      `### Tổng kết theo nguồn (${vn} giờ VN)`,
       '',
-      '| Nguồn | Số trận |',
-      '| --- | --- |',
-      ...rows.map((r) => `| ${r.label} (\`${r.key}\`) | ${r.count > 0 ? r.count : '⚠️ 0'} |`),
+      '| Nguồn | Trạng thái | Live (có link/tổng) | Sắp đá | Ghi chú |',
+      '| --- | --- | --- | --- | --- |',
+      ...rows.map((r) => `| ${r.label} (\`${r.key}\`) | ${r.icon} ${r.status} | ${r.st.liveLink}/${r.st.live} | ${r.st.upcoming} | ${esc(r.notes.join(' — ') || '')} |`),
       ''
     ];
     try {
@@ -552,6 +625,7 @@ async function scanWithDeadline() {
 async function generateOnce() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+  scanIssues.clear(); // gom lại lỗi của riêng lượt quét này (xem logSourceSummary)
   console.log('[generate-playlists] Đang tự quét toàn bộ nguồn (không qua server nào)...');
   const matches = await scanWithDeadline(); // 1 lần quét DUY NHẤT, tái dùng cho mọi file bên dưới — tránh quét lại nhiều lần gây chậm/dội nguồn.
   console.log(`[generate-playlists] Quét xong — ${matches.length} trận (live + sắp đấu trong 24h).`);
