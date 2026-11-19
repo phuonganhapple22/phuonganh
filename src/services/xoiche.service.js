@@ -1,7 +1,7 @@
 import { createHttpClient } from '@/src/utils/httpClient';
 import { isStaleLiveMatch } from '@/src/utils/playerGet';
 import { filterMinorLeagues } from '@/src/utils/leagueFilter';
-import { fetchPageGlobal } from '@/src/utils/browserFetch';
+import { fetchPageGlobal, captureM3u8ViaBrowser } from '@/src/utils/browserFetch';
 
 // Nguồn Xôi Chè TV (xoiche.live — canonical hiện tại: xoiche1.live).
 // Site là Nuxt 3 (SSR). Toàn bộ dữ liệu trang chủ nằm trong
@@ -119,35 +119,104 @@ async function fetchRawMatchesViaBrowser(base) {
   return parseNuxtPayload(data);
 }
 
-function pickStreams(raw, base) {
+// FIX (19/11/2026 — "không lấy được link các trận live"): trang trận hiện có bộ chọn chất lượng FHD/HD/SD và nạp luồng SAU khi tải
+// ("Đang tải luồng phát..."), nên link không còn chắc nằm ở field `stream_url` như trước. Bản cũ chỉ đọc đúng `stream_url` -> trận live
+// không có link -> bị chuyển thành "Chờ BLV" rồi mất khỏi tab live. Giờ quét SÂU mọi field của BLV để tìm link .m3u8/.flv (field nào
+// cũng được: hls_url, fhd/hd/sd, urls{...}, streams[...]), ưu tiên FHD > HD > SD, bỏ rtmp/backup/push.
+const STREAM_URL_RE = /^(?:https?:)?\/\/[^\s"'<>]+?\.(?:m3u8|flv)(?:\?[^\s"'<>]*)?$|^(?:https?:)?\/\/[^\s"'<>]+\/index\.m3u8(?:\?[^\s"'<>]*)?$/i;
+const BAD_KEY_RE = /(backup|rtmp|push|publish|ingest|thumb|avatar|logo|image|poster)/i;
+function qualityRank(path) {
+  const k = String(path).toLowerCase();
+  if (/(fhd|1080|full_?hd)/.test(k)) return 0;
+  if (/(^|[^a-z])hd([^a-z]|$)|720/.test(k)) return 1;
+  if (/(^|[^a-z])sd([^a-z]|$)|480|360/.test(k)) return 3;
+  return 2;
+}
+function extractStreamUrls(obj, base = XOICHE_BASE_URL) {
+  const found = [];
+  const walk = (v, path, depth) => {
+    if (depth > 6 || v === null || v === undefined) return;
+    if (typeof v === 'string') {
+      const t = v.trim().replace(/\\\//g, '/');
+      if (STREAM_URL_RE.test(t) || (/^\/[^\s]*\.m3u8(\?|$)/i.test(t))) found.push({ url: abs(t, base), path });
+      return;
+    }
+    if (Array.isArray(v)) { v.forEach((x, i) => walk(x, `${path}[${i}]`, depth + 1)); return; }
+    if (typeof v === 'object') {
+      for (const [k, x] of Object.entries(v)) {
+        if (BAD_KEY_RE.test(k)) continue;
+        walk(x, `${path}.${k}`, depth + 1);
+      }
+    }
+  };
+  walk(obj, '', 0);
+  const seen = new Set();
+  return found
+    .map((f, i) => ({ ...f, i, rank: qualityRank(f.path) + (/\.m3u8(\?|$)|\/index\.m3u8/i.test(f.url) ? 0 : 0.5) }))
+    .sort((a, b) => a.rank - b.rank || a.i - b.i)
+    .filter((f) => (seen.has(f.url) ? false : (seen.add(f.url), true)))
+    .map((f) => f.url);
+}
+
+// Link đã lấy được riêng cho từng trận (từ API chi tiết / trình duyệt) — nhớ vài phút để khỏi lấy lại mỗi lượt quét.
+const resolvedLinks = new Map(); // `${id}` -> { at, urls: [], ok }
+const RESOLVED_TTL_MS = 3 * 60 * 1000;
+const RESOLVED_FAIL_TTL_MS = 60 * 1000;
+
+function pickStreams(raw, base, { ignoreLiveFlag = false } = {}) {
   const list = [];
   const seen = new Set();
   const push = (c, bio) => {
-    const url = abs(c?.stream_url || '', base);
-    if (!/^https?:\/\//i.test(url) || seen.has(url)) return;
-    seen.add(url);
     const who = c.commentator || c || {};
-    const name = who.name || bio || `BLV ${list.length + 1}`;
+    const direct = abs(c?.stream_url || '', base);
+    const urls = [];
+    if (/^https?:\/\//i.test(direct) && /\.(?:m3u8|flv)(?:\?|$)/i.test(direct)) urls.push(direct);
+    // stream_url có thể là link không đuôi (token) -> vẫn nhận như bản cũ nếu là http(s).
+    else if (/^https?:\/\//i.test(direct)) urls.push(direct);
+    for (const u of extractStreamUrls(c, base)) if (!urls.includes(u)) urls.push(u);
+    const best = urls.find((u) => /\.m3u8(\?|$)|\/index\.m3u8/i.test(u)) || urls[0];
+    if (!best || seen.has(best)) return;
+    seen.add(best);
+    const flv = c.flv_stream_url || who.flv_stream_url || urls.find((u) => /\.flv(\?|$)/i.test(u)) || '';
     list.push({
       id: `${raw.id}_${who.slug || who.id || list.length}`,
-      name,
+      name: who.name || bio || `BLV ${list.length + 1}`,
       avatar: who.avatar_url || who.avatar ? abs(who.avatar_url || who.avatar, base) : null,
-      streamUrl: url,
-      flvStreamUrl: c.flv_stream_url || who.flv_stream_url || '',
+      streamUrl: best,
+      flvStreamUrl: flv ? abs(flv, base) : '',
       isLive: true,
       cdn: 'HLS',
-      referer: `${base}/`
+      // Player của site đặt referrerpolicy="no-referrer" (xem trang trận) -> KHÔNG ép Referer; m3uPlaylist tự dò ([null, site]).
+      referer: null
     });
   };
   for (const cs of raw.commentator_streams || []) {
-    // BLV chưa bật phát (is_live=false) thì link chưa có luồng -> bỏ.
-    if (cs?.is_live === false) continue;
+    // BLV chưa bật phát (is_live=false) thì link chưa có luồng -> bỏ (trừ lượt dự phòng ignoreLiveFlag).
+    if (cs?.is_live === false && !ignoreLiveFlag) continue;
     push(cs);
   }
   if (!list.length) {
     for (const c of raw.commentators || []) {
-      if (c?.is_live === false) continue;
+      if (c?.is_live === false && !ignoreLiveFlag) continue;
       push(c);
+    }
+  }
+  // Link đã lấy riêng cho trận này (API chi tiết / trình duyệt) — gắn cho BLV đầu tiên của trận.
+  if (!list.length) {
+    const r = resolvedLinks.get(String(raw.id));
+    if (r?.ok && r.urls.length) {
+      const who = raw.commentator_streams?.[0]?.commentator || raw.commentators?.[0] || {};
+      const best = r.urls.find((u) => /\.m3u8(\?|$)|\/index\.m3u8/i.test(u)) || r.urls[0];
+      list.push({
+        id: `${raw.id}_${who.slug || 'blv'}`,
+        name: who.name || 'BLV',
+        avatar: who.avatar_url || who.avatar ? abs(who.avatar_url || who.avatar, base) : null,
+        streamUrl: best,
+        flvStreamUrl: r.urls.find((u) => /\.flv(\?|$)/i.test(u)) || '',
+        isLive: true,
+        cdn: 'HLS',
+        referer: null
+      });
     }
   }
   return list;
@@ -195,7 +264,11 @@ function buildMatches(rawList, base = XOICHE_BASE_URL) {
     const info = SPORT_INFO[sport] || { name: String(r.sport_name || sport).toUpperCase(), icon: 'fa-futbol' };
     let status = mapStatus(r);
     // Tính link phát sớm: trận live mà chưa có link nào thì coi là "chờ BLV" thay vì vứt.
-    const streamsNow = status.isLive ? pickStreams(r, base) : [];
+    let streamsNow = status.isLive ? pickStreams(r, base) : [];
+    // Dự phòng: site báo trận 'live' nhưng cờ is_live của BLV sai/đổi nghĩa -> thử lại bỏ qua cờ đó (XOICHE_STRICT_LIVE=on để tắt).
+    if (status.isLive && !streamsNow.length && String(process.env.XOICHE_STRICT_LIVE || '').toLowerCase() !== 'on') {
+      streamsNow = pickStreams(r, base, { ignoreLiveFlag: true });
+    }
     if (status.isLive && !streamsNow.length) {
       status = { isLive: false, isFinished: false, isUpcoming: true, isHalfTime: false, isWaiting: true };
     }
@@ -367,6 +440,156 @@ function mergeRaw(primary, extra) {
   return [...primary, ...extra.filter((r) => !seen.has(String(r.id)))];
 }
 
+
+// --- Lấy link cho trận live mà danh sách KHÔNG có link ----------------------------------------
+// (1) Thử vài API JSON chi tiết trận (đoán đường dẫn, quét sâu tìm .m3u8/.flv), (2) mở trang trận bằng trình duyệt thật rồi bắt request
+// .m3u8 mà player tự gọi. Có ngân sách thời gian/số trận để không kéo dài lượt quét (builder giới hạn 90s/nguồn).
+const RESOLVE_BUDGET_MS = intEnv('XOICHE_RESOLVE_BUDGET_SEC', 55, 5) * 1000;
+const BROWSER_MAX = intEnv('XOICHE_BROWSER_MAX', 4, 0);
+let diagLogged = 0;
+
+function slimForLog(v) {
+  try { return JSON.stringify(v, (k, x) => (typeof x === 'string' && x.length > 90 ? `${x.slice(0, 90)}…` : x)).slice(0, 600); } catch { return ''; }
+}
+
+// FIX (19/11/2026): trang trận (SSR) CÓ SẴN dữ liệu đầy đủ trong <script id="__NUXT_DATA__"> ->
+//   data['match-detail-<slug>'].match.commentator_streams[].stream_url = https://livecdn321.cdnfastter.xyz/live/live_xxx/index.m3u8?token=...&expires=...
+// (danh sách trang chủ/lịch không kèm link có token nên trận live bị coi là thiếu link). Chỉ cần GET trang trận bằng axios, KHÔNG cần trình duyệt.
+async function tryDetailPage(base, r) {
+  const blv = r.commentator_streams?.[0]?.commentator?.slug || r.commentators?.[0]?.slug || '';
+  const url = `${base}/truc-tiep/${r.slug}${blv ? `?blv=${blv}` : ''}`;
+  try {
+    const res = await client.get(url, { headers: { Referer: `${base}/` }, timeout: 12000, validateStatus: () => true });
+    const html = typeof res.data === 'string' ? res.data : '';
+    const payload = extractPayloadFromHtml(html);
+    if (!payload) return { note: `trang trận HTTP ${res.status}, không có __NUXT_DATA__ (dài ${html.length})` };
+    const root = decodeNuxtData(JSON.parse(payload));
+    const data = root?.data || {};
+    const key = Object.keys(data).find((k) => k.startsWith('match-detail-'));
+    const m = key ? (data[key]?.match || data[key]) : null;
+    if (!m) return { note: `__NUXT_DATA__ không có match-detail-* (keys: ${Object.keys(data).slice(0, 6).join(',')})` };
+    const patch = { commentator_streams: m.commentator_streams || [], commentators: m.commentators || [] };
+    const probe = { id: r.id, ...patch };
+    if (!pickStreams(probe, base, { ignoreLiveFlag: true }).length) return { note: `trang trận có ${patch.commentator_streams.length} BLV nhưng không có link phát` };
+    return { patch };
+  } catch (e) {
+    return { note: `lỗi tải trang trận: ${e.code || e.message}` };
+  }
+}
+
+function applyResolvedPatch(r) {
+  const hit = resolvedLinks.get(String(r.id));
+  if (hit?.ok && hit.patch && Date.now() - hit.at < RESOLVED_TTL_MS) {
+    r.commentator_streams = hit.patch.commentator_streams;
+    r.commentators = hit.patch.commentators;
+    return true;
+  }
+  return false;
+}
+
+async function tryDetailApis(base, r) {
+  const id = r.id;
+  const slug = r.slug;
+  const cands = [
+    `/api/matches/${id}/`,
+    slug ? `/api/matches/${slug}/` : '',
+    `/api/matches/${id}/streams/`,
+    `/api/matches/${id}/stream/`,
+    `/api/matches/${id}/live/`
+  ].filter(Boolean);
+  const notes = [];
+  for (const path of cands) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      const res = await apiClient.get(`${base}${path}`, { headers: { Referer: `${base}/truc-tiep/${slug || ''}` }, timeout: 6000, validateStatus: () => true });
+      const body = typeof res.data === 'string' ? (() => { try { return JSON.parse(res.data); } catch { return null; } })() : res.data;
+      notes.push(`${res.status} ${path}`);
+      if (res.status >= 200 && res.status < 300 && body) {
+        const urls = extractStreamUrls(body, base);
+        if (urls.length) return { urls, via: `API ${path}`, notes };
+      }
+    } catch (e) {
+      notes.push(`lỗi ${path}: ${e.code || e.message}`);
+    }
+  }
+  return { urls: [], notes };
+}
+
+async function resolveOne(base, r, state) {
+  const key = String(r.id);
+  const hit = resolvedLinks.get(key);
+  if (hit && Date.now() - hit.at < (hit.ok ? RESOLVED_TTL_MS : RESOLVED_FAIL_TTL_MS)) return;
+  if (Date.now() > state.deadline) return;
+
+  const page = await tryDetailPage(base, r);
+  if (page.patch) {
+    resolvedLinks.set(key, { at: Date.now(), ok: true, urls: [], patch: page.patch });
+    r.commentator_streams = page.patch.commentator_streams;
+    r.commentators = page.patch.commentators;
+    console.log(`[xoiche] ${r.slug || r.id}: lấy link từ trang trận (__NUXT_DATA__), ${page.patch.commentator_streams.length} BLV`);
+    return;
+  }
+  const apiRes = await tryDetailApis(base, r);
+  apiRes.notes = [page.note, ...(apiRes.notes || [])].filter(Boolean);
+  if (apiRes.urls.length) {
+    resolvedLinks.set(key, { at: Date.now(), ok: true, urls: apiRes.urls, referer: `${base}/` });
+    console.log(`[xoiche] ${r.slug || r.id}: lấy được ${apiRes.urls.length} link qua ${apiRes.via}`);
+    return;
+  }
+
+  let browserNote = 'không dùng trình duyệt';
+  if (process.env.XOICHE_BROWSER !== '0' && state.browserLeft > 0 && Date.now() < state.deadline) {
+    state.browserLeft -= 1;
+    const blv = r.commentator_streams?.[0]?.commentator?.slug || r.commentators?.[0]?.slug || '';
+    const target = `${base}/truc-tiep/${r.slug}${blv ? `?blv=${blv}` : ''}`;
+    try {
+      const cap = await captureM3u8ViaBrowser(target, {
+        timeoutMs: Math.min(22000, Math.max(6000, state.deadline - Date.now())),
+        referer: `${base}/`,
+        matchUrl: /^https?:\/\/(?:[^?#]*\.m3u8(?:[?#]|$)|[^?#]*\.flv(?:[?#]|$))/i
+      });
+      const good = (cap.found || []).filter((f) => f.status == null || f.status < 400).map((f) => f.url);
+      if (good.length) {
+        let refOrigin = `${base}/`;
+        const h = cap.found.find((f) => f.url === good[0])?.headers || {};
+        if (h.referer) refOrigin = h.referer;
+        resolvedLinks.set(key, { at: Date.now(), ok: true, urls: good, referer: refOrigin });
+        console.log(`[xoiche] ${r.slug || r.id}: trình duyệt bắt được ${good.length} link (${good[0].slice(0, 90)})`);
+        return;
+      }
+      browserNote = `trình duyệt không bắt được .m3u8 (tiêu đề "${cap.title}", request thấy: ${(cap.seen || []).slice(0, 6).join(' | ') || 'không'})`;
+    } catch (e) {
+      browserNote = `trình duyệt lỗi: ${e.message}`;
+    }
+  }
+  resolvedLinks.set(key, { at: Date.now(), ok: false, urls: [] });
+  if (diagLogged < 3) {
+    diagLogged += 1;
+    const cs = r.commentator_streams?.[0] || r.commentators?.[0] || null;
+    console.warn(`[xoiche] KHÔNG lấy được link trận live ${r.slug || r.id}: API chi tiết [${(apiRes.notes || []).join(', ')}]; ${browserNote}; keys BLV=${cs ? Object.keys(cs).join(',') : 'không có BLV'}; mẫu=${slimForLog(cs)}`);
+  }
+}
+
+/** Với trận 'live' mà danh sách không có link phát -> lấy link riêng (gắn vào resolvedLinks, pickStreams sẽ dùng). */
+async function resolveMissingLinks(rawList, base) {
+  for (const r of rawList) { if (String(r?.status || '').toLowerCase() === 'live' && !pickStreams(r, base, { ignoreLiveFlag: true }).length) applyResolvedPatch(r); }
+  const need = rawList.filter((r) => String(r?.status || '').toLowerCase() === 'live'
+    && hasBlv(r) && !pickStreams(r, base, { ignoreLiveFlag: true }).length && !(resolvedLinks.get(String(r.id))?.ok));
+  if (!need.length) return;
+  diagLogged = 0;
+  const state = { deadline: Date.now() + RESOLVE_BUDGET_MS, browserLeft: BROWSER_MAX };
+  console.log(`[xoiche] ${need.length} trận live thiếu link trong danh sách -> thử API chi tiết/trình duyệt (tối đa ${BROWSER_MAX} trận mở trình duyệt)`);
+  let next = 0;
+  const worker = async () => {
+    while (next < need.length) {
+      const r = need[next]; next += 1;
+      // eslint-disable-next-line no-await-in-loop
+      await resolveOne(base, r, state).catch((e) => console.error(`[xoiche] resolve ${r.id}: ${e.message}`));
+    }
+  };
+  await Promise.all([worker(), worker()]);
+}
+
 let preferredBase = '';
 let homepageCache = { at: 0, matches: null, pending: null };
 
@@ -409,7 +632,9 @@ class XoicheService {
         preferredBase = base;
         const extra = await fetchScheduleRaw(base);
         console.log(`[xoiche] OK ${base} (axios): ${raw.length} trận trang chủ + ${extra.length} trận lịch các ngày sau`);
-        return buildMatches(mergeRaw(raw, extra), base);
+        const merged = mergeRaw(raw, extra);
+        await resolveMissingLinks(merged, base);
+        return buildMatches(merged, base);
       } catch (error) {
         lastError = error;
         console.error(`[xoiche] ${base} lỗi: ${error.message}`);
@@ -424,7 +649,9 @@ class XoicheService {
           if (!raw.length) throw new Error('rawMatches rỗng');
           preferredBase = base;
           const extra = await fetchScheduleRaw(base);
-          return buildMatches(mergeRaw(raw, extra), base);
+          const merged = mergeRaw(raw, extra);
+          await resolveMissingLinks(merged, base);
+          return buildMatches(merged, base);
         } catch (error) {
           lastError = error;
           console.error(`[xoiche] trình duyệt ${base} lỗi: ${error.message}`);

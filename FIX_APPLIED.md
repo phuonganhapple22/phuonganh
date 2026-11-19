@@ -350,3 +350,33 @@ còn `playlistBuilder.service.js` chỉ giữ trận bắt đầu trong 72h tớ
 - Log gọn: chỉ in 1 dòng "[gavang] N trận chưa có BLV (bị bỏ), X/Y trận live có link". Muốn xem chi tiết từng trận: đặt GAVANG_DEBUG=on.
 - Giảm tải (log timeout 8000ms / "quá 90s không phản hồi"): chỉ vào trang chi tiết các trận live ĐÃ có BLV trên trang chủ, bỏ trận trùng lặp,
   tối đa 4 trang /link/N/ mỗi trận, headless tối đa 3 trận/lần (GAVANG_BROWSER_MAX), hết 60s thì dừng và giữ kết quả đã lấy.
+
+## FIX 16/11/2026 (lần 3) — Gà Vàng (gavang13.live) vẫn không hiện link trận đang live
+(Chỉ Gà Vàng — KHÔNG đụng Gà Vàng 33 / gavang33.service.js.)
+- API `seo.alpro-api-service.com/v1/match-details?uuid=...` chỉ trả tỉ số/odds/thống kê, KHÔNG chứa link phát. Link nằm ở iframe player
+  `https://playyyz4.cc/e?hls=<m3u8>&flv=<flv>` -> CDN `playback.livetl004.com/live/<id>.m3u8|.flv`.
+- `gavang.service.js`:
+  1. Quét link: giải mã TỪNG token `%3A%2F` (bản cũ decodeURIComponent cả trang, gặp "%" lẻ là hỏng -> không bắt được link mã hóa), bỏ URL trang player.
+  2. Trang chi tiết gửi kèm Referer; nếu iframe player không kèm hls=/flv= thì mở thẳng iframe và quét link trong đó.
+  3. Không còn bỏ qua trận live không có ảnh BLV trên thẻ (trước đây có 1 trận có BLV là các trận kia bị bỏ hẳn). `GAVANG_ONLY_BLV=on` để quay lại kiểu cũ.
+  4. Nhận trận live rộng hơn (class có "live", trạng thái 1H/2H/HT/ET..., có phút thi đấu).
+  5. `getStreamLinks()` (builder gọi sau) đặt lại hạn 25s + ngân sách headless và dùng cache 3 phút (trước đây scanDeadline cũ đã hết hạn nên trả rỗng).
+  6. Log chẩn đoán mặc định BẬT cho tối đa 3 trận không lấy được link (kèm URL iframe).
+- Referer/Origin phát link: thêm `https://playyyz4.cc/` (origin iframe thật, đổi bằng `GAVANG_PLAYER_DOMAIN`) lên đầu ở `m3uPlaylist.js` và `pages/api/proxy/hls.js`;
+  link lấy từ iframe còn gắn sẵn `referer` đúng origin iframe.
+- `playlistBuilder.service.js`: timeout resolve cho gavang 25s (mặc định 4,5s không đủ khi phải tải lại trang chi tiết).
+
+## FIX 19/11/2026 — Xôi Chè (xoiche.live) không lấy được link các trận live
+- Trang trận hiện có bộ chọn chất lượng FHD/HD/SD và nạp luồng SAU khi tải ("Đang tải luồng phát..."), nên link không còn chắc nằm ở field `stream_url`.
+  Bản cũ chỉ đọc `stream_url` -> trận live không có link bị chuyển thành "Chờ BLV" rồi mất khỏi tab live.
+- Sửa `src/services/xoiche.service.js`:
+  1. Quét SÂU mọi field của BLV tìm link .m3u8/.flv (hls_url, fhd/hd/sd, object/mảng lồng nhau...), ưu tiên FHD > HD > SD, bỏ rtmp/backup/push.
+  2. Cờ `is_live=false` của BLV: nếu trận site báo 'live' mà không còn link nào thì thử lại bỏ qua cờ (đặt `XOICHE_STRICT_LIVE=on` để tắt).
+  3. Trận live mà danh sách không có link: thử vài API chi tiết `/api/matches/<id>/...` (quét sâu), rồi mở trang trận bằng trình duyệt headless
+     (kèm `?blv=`) và bắt request .m3u8 player gọi. Giới hạn: `XOICHE_BROWSER_MAX` (mặc định 4 trận/lượt), `XOICHE_RESOLVE_BUDGET_SEC` (mặc định 55s),
+     `XOICHE_BROWSER=0` để tắt trình duyệt. Kết quả nhớ 3 phút (thất bại nhớ 1 phút).
+  4. Log chẩn đoán "[xoiche] KHÔNG lấy được link trận live ..." (HTTP của từng API đã thử, keys + mẫu field BLV) tối đa 3 trận/lượt.
+- (19/11/2026, bổ sung sau khi có HTML trang trận thật) Link nằm trong `__NUXT_DATA__` của TRANG TRẬN: `data['match-detail-<slug>'].match.commentator_streams[].stream_url`
+  = `https://livecdn321.cdnfastter.xyz/live/live_xxx/index.m3u8?token=...&expires=...` (CDN mới cdnfastter.xyz, có token). Danh sách trang chủ/lịch không kèm link này.
+  -> `xoiche.service.js` giờ GET thẳng trang trận (axios, không cần trình duyệt), giải mã `__NUXT_DATA__` và lấy link; API đoán + trình duyệt chỉ còn là dự phòng.
+  Player của site đặt `referrerpolicy="no-referrer"` nên link xoiche KHÔNG còn bị ép Referer cứng (m3uPlaylist tự dò [không Referer, site]).

@@ -51,7 +51,8 @@ const DEFAULT_UA =
 // service), các mirror còn lại chỉ là ứng viên dự phòng cho CDN kiểm tra
 // Referer theo domain khác. GIỮ ĐỒNG BỘ với m3uPlaylist.js.
 const GAVANG_MAIN = String(process.env.GAVANG_DOMAIN || process.env.GAVANG_BASE_URL || 'https://gavanglinkp.tv').replace(/\/+$/, '');
-const GAVANG_ORIGINS = [...new Set([GAVANG_MAIN, 'https://gavanglinkp.tv', 'https://gavangtv.tv', 'https://gavangtvv.cc'])].map((d) => `${d}/`);
+const GAVANG_PLAYER = String(process.env.GAVANG_PLAYER_DOMAIN || 'https://playyyz4.cc').replace(/\/+$/, ''); // origin iframe player thật (16/11/2026)
+const GAVANG_ORIGINS = [...new Set([GAVANG_PLAYER, GAVANG_MAIN, 'https://gavanglinkp.tv', 'https://gavangtv.tv', 'https://gavangtvv.cc'])].map((d) => `${d}/`);
 
 // Sao Kê dùng CHUNG 2 CDN với Chuối Chiến (hdplaylink.com, edgemaxcdn.org — xem
 // saoke.service.js) nên thử domain thật của Sao Kê (SAOKE_DOMAIN) TRƯỚC, rồi mới tới
