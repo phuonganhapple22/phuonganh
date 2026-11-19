@@ -113,7 +113,11 @@ function rankHlsByFreshness(urls) {
 const GIOVANG_FOOTBALL_BROWSER = String(process.env.GIOVANG_FOOTBALL_BROWSER || 'off').toLowerCase() === 'on'; // mặc định TẮT (log 15/11/2026: trình duyệt headless không bắt được request .m3u8 nào của trang Giờ Vàng -> chỉ tốn thời gian); bật: GIOVANG_FOOTBALL_BROWSER=on
 const GIOVANG_BROWSER_CAPTURE_MS = Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) > 0 ? Number(process.env.GIOVANG_BROWSER_CAPTURE_MS) : 14000;
 const GIOVANG_STRICT_BLV = String(process.env.GIOVANG_STRICT_BLV || 'on').toLowerCase() !== 'off';
-const GIOVANG_FOOTBALL_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 3);
+// FIX (19/11/2026 — "Giờ Vàng: mỗi trận chỉ để 1 link thôi, bỏ link dự phòng"): bóng đá trước đây giữ tới 3 server và tự thêm
+// "Giovang 2 (dự phòng)" (cùng link, không Referer) -> 1 trận ra 2-3 dòng. Mặc định giờ 1 link/trận (link đầu tiên = tốt nhất, đã xếp mới nhất lên đầu).
+// Muốn nhiều link lại: GIOVANG_FOOTBALL_MAX_SERVERS=3 và/hoặc GIOVANG_BACKUP_LINK=on.
+const GIOVANG_FOOTBALL_MAX_SERVERS = Math.max(1, Number(process.env.GIOVANG_FOOTBALL_MAX_SERVERS) || 1);
+const GIOVANG_BACKUP_LINK = String(process.env.GIOVANG_BACKUP_LINK || '').toLowerCase() === 'on';
 const LIVE_API_HOST = process.env.GIOVANG_LIVE_API_HOST || 'https://live-api.keonhacaitp.one';
 // FIX (03/11/2026 — "các trận live Giờ Vàng báo HTTP 404, link không còn tồn tại - CDN đã gỡ/đã đổi url"):
 // link .m3u8 lấy từ trang trận có thể đã chết trên CDN. Dò nhanh từng link (kèm Referer thật) và BỎ link
@@ -667,7 +671,7 @@ class GiovangService {
     }));
     // Trận chỉ có 1 link: thêm bản dự phòng GỬI KHÔNG Referer/Origin (1 số CDN từ chối Referer lạ nhưng
     // vẫn phát khi không có) để người xem có đường lùi khi bản có Referer báo lỗi.
-    if (uniqueAlive.length === 1 && maxServers > 1) {
+    if (GIOVANG_BACKUP_LINK && uniqueAlive.length === 1 && maxServers > 1) {
       streams.push({
         id: `giovang_${rawId}_2`,
         streamerName: 'Giovang 2 (dự phòng)',
