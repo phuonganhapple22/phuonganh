@@ -1,0 +1,6 @@
+CONG TAC TU DONG CHAY LAI Generate Playlists KHI DOI FILE
+- Sua file data/auto-rerun.txt: chi 1 chu "on" hoac "off".
+- off: push file len main KHONG lam workflow chay lai (job dang chay giu nguyen).
+- on : push file => chay lai nhu binh thuong.
+- Cach dung: sua thanh off -> up het file -> sua thanh on (luc nay no tu chay lai 1 lan de dung code moi).
+- Luu y: workflow Check Domains / Watch SOURCE_DOMAINS va nut Run workflow bang tay van chay lai binh thuong.

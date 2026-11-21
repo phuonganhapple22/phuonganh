@@ -1,0 +1,20 @@
+GO NGUON RERACE - cach deploy len git
+
+1) Copy toan bo noi dung folder changed-files/ len GOC repo (giu nguyen duong dan), chon Replace/Ghi de:
+     src/services/playlistBuilder.service.js
+     src/utils/m3uPlaylist.js
+     src/utils/playerGet.js
+     src/utils/streamDebug.js
+     src/utils/browserFetch.js
+     pages/api/proxy/hls.js
+     pages/api/playlist/resolve.js
+     pages/api/static-playlist/[file].js
+     pages/index.jsx
+     scripts/generate-playlists.js
+     scripts/source-domains.mjs
+     source-domains.example.txt
+     env.example
+     FIX_APPLIED.md
+     HUONG_DAN.txt
+2) XOA cac file Rerace tren git (ghi de khong xoa duoc) - xem DELETE_ON_GIT.txt, hoac chay: bash delete-on-git.sh (trong thu muc goc repo).
+3) Commit + push, roi chay lai workflow.
