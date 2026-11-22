@@ -222,6 +222,12 @@ export function isFlvUrl(url) {
   return /\.flv(\?|$)/i.test(url);
 }
 
+/** DASH manifest (.mpd) — dùng bởi SportlinkTV (kèm ClearKey), app IPTV như OTT Navigator/TiviMate phát được. */
+export function isMpdUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  return /\.mpd(\?|$)/i.test(url);
+}
+
 /** HLS twin of an FLV path, when the CDN happens to expose one at the same path. */
 export function flvToM3u8Candidate(url) {
   if (!isFlvUrl(url)) return '';
@@ -320,7 +326,7 @@ export function isPlayableStreamUrl(url) {
   if (!url || typeof url !== 'string') return false;
   if (!/^https?:\/\//i.test(url)) return false;
   if (isDeadStreamDomain(url)) return false;
-  if (isM3u8Url(url) || isFlvUrl(url)) return true;
+  if (isM3u8Url(url) || isFlvUrl(url) || isMpdUrl(url)) return true; // FIX (22/11/2026): thêm .mpd cho SportlinkTV
   // Chấp nhận URL CDN stream hợp lệ không có phần mở rộng .m3u8/.flv
   // (Tencent liveplay, Alibaba/AliCDN, phaohoa, và các CDN phổ biến khác)
   const u = url.toLowerCase();
@@ -351,7 +357,7 @@ export function isPlayableStreamUrl(url) {
 export function normalizeStreamList(list = []) {
   return (list || [])
     .map((s) => {
-      const raw = s.m3u8Url || s.link || s.streamUrl || s.flvUrl || '';
+      const raw = s.m3u8Url || s.link || s.streamUrl || s.flvUrl || s.playUrl || '';
       const flvUrl = s.flvUrl || (isFlvUrl(raw) ? raw : '');
       let m3u8Url = '';
       if (isM3u8Url(s.m3u8Url)) m3u8Url = s.m3u8Url;
@@ -365,7 +371,7 @@ export function normalizeStreamList(list = []) {
         || m3u8Url
         || raw;
 
-      const format = isM3u8Url(playUrl) ? 'hls' : (isFlvUrl(playUrl) ? 'flv' : 'url');
+      const format = isM3u8Url(playUrl) ? 'hls' : (isFlvUrl(playUrl) ? 'flv' : (isMpdUrl(playUrl) ? 'dash' : 'url'));
 
       return {
         ...s,

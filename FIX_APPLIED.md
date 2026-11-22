@@ -1,3 +1,25 @@
+# FIX SPORTLINKTV KHONG GHI DUOC LINK TRAN VAO PLAYLIST — 22/11/2026
+
+Loi: tran SportlinkTV tra ra sai form so voi cac nguon khac nen bi rot o playlistBuilder/m3uPlaylist.
+
+## Nguyen nhan
+- `homeTeam`/`awayTeam` la chuoi (cac nguon khac la `{ name, logo }`) -> ten tran thanh "Home", logo/loc giai hong.
+- Thieu `matchTimeTimestamp`/`dateStr`/`timeStr` -> tran sap da bi loai khoi cua so 24h, gio trong, sort sai.
+- Stream DASH (.mpd) khong co field `link` va .mpd khong nam trong `isPlayableStreamUrl` -> bi loc het, tran khong co link.
+- Phan `|Referer=...&User-Agent=...` sau link bi cat bo roi vut -> CDN chan hotlink.
+- Goi `buildMatchSlug` sai chu ky (3 tham so thay vi 1 object) -> slug sai.
+
+## Da sua (de len git, ghi de) — co ban sao trong folder `changed-files/`
+- `src/services/sportlinktv.service.js`: dung form tran chung (homeTeam/awayTeam object, matchTimeTimestamp, dateStr, timeStr, competition, status.isFinished); giu Referer/Origin tu link; link HLS xep truoc DASH; ho tro timestamp epoch; gom code stream thanh 1 ham dung chung cho danh sach + getStreamLinks; khong ghi kenh gia khi tran khong co link.
+- `src/utils/playerGet.js`: them `isMpdUrl`, `isPlayableStreamUrl` nhan .mpd, `normalizeStreamList` nhan `playUrl` va dat format `dash`.
+- `src/utils/m3uPlaylist.js`: link DASH kem ClearKey ghi them `#KODIPROP` (manifest_type/license_type/license_key); SportlinkTV uu tien HLS neu tran co ca HLS lan DASH.
+
+## Luu y
+- Da chay thu pipeline (service -> playlistBuilder util -> m3uPlaylist) bang esbuild + du lieu gia, ca file vlc lan -app: ghi du tran live/sap da. Chua test voi JSON that (sandbox khong truy cap duoc sonujson-v6.pages.dev).
+- Khong xoa file nao.
+
+---
+
 # GO NGUON RERACE — 21/11/2026
 
 Yeu cau: go bo hoan toan nguon Rerace (rerace.net / weelo / strmfree) khoi project.

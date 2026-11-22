@@ -11,6 +11,14 @@
 //   - key: "kid:key" (ClearKey cho DASH, có thể rỗng)
 //   - Thời gian có thể mang suffix IST (+05:30) hoặc UTC.
 //
+// FIX (22/11/2026 — "sportlink không ghi được link trận đấu vào playlist"): trận trả ra SAI FORM so với các nguồn khác nên
+// bị rớt ở các bước phía sau playlistBuilder/m3uPlaylist:
+//   - homeTeam/awayTeam là chuỗi (các nguồn khác là { name, logo }) -> tên trận thành "Home", logo/lọc giải hỏng;
+//   - thiếu matchTimeTimestamp/dateStr/timeStr -> trận sắp đá bị loại khỏi cửa sổ 24h, giờ trống, sort sai;
+//   - stream DASH (.mpd) không có field `link` + .mpd không nằm trong isPlayableStreamUrl -> bị lọc hết, trận không có link;
+//   - phần "|Referer=...&User-Agent=..." sau link bị cắt bỏ rồi vứt luôn (CDN chặn hotlink -> không phát);
+//   - gọi buildMatchSlug sai chữ ký (truyền 3 tham số thay vì 1 object).
+// Giờ trận có đủ field như các nguồn khác, giữ header Referer/Origin từ link, link HLS xếp trước DASH.
 // Chỉ lấy bóng đá (football.json đã filter sẵn).
 // Trận live: startTime <= now <= endTime (mặc định endTime = startTime + 3h).
 // Trận sắp đấu: startTime trong 24h tới.
@@ -25,6 +33,14 @@ const UPCOMING_WINDOW_MS = 24 * 60 * 60 * 1000; // 24h
 /** Phân tích chuỗi thời gian theo cùng logic trang sportlinktv.pages.dev. */
 function parseDate(value) {
   if (!value) return null;
+  // Số epoch (giây hoặc mili-giây) — nguồn đôi khi trả timestamp thay vì chuỗi ngày.
+  if (typeof value === 'number' || /^\d{10,13}$/.test(String(value).trim())) {
+    const n = Number(value);
+    if (Number.isFinite(n) && n > 0) {
+      const dtNum = new Date(n < 99999999999 ? n * 1000 : n);
+      if (!isNaN(dtNum.getTime())) return dtNum;
+    }
+  }
   let s = String(value).trim();
   if (!s || s === 'null' || s === 'undefined') return null;
 
@@ -98,6 +114,62 @@ async function fetchRaw() {
   return rawCache.pending;
 }
 
+/**
+ * Chuẩn hóa danh sách stream thô của 1 trận.
+ * - Tách header sau dấu "|" trong link ("url|Referer=...&User-Agent=...&Origin=...").
+ * - Link HLS xếp trước DASH (app IPTV phát HLS ổn định hơn), tối đa 3 link.
+ * - Luôn có `link` (normalizeStreamList() đọc field này) và `referer` nếu nguồn có kèm.
+ */
+function buildStreams(rawStreams) {
+  const list = Array.isArray(rawStreams) ? rawStreams : [];
+  const seen = new Set();
+  const out = [];
+  list.forEach((s, i) => {
+    if (!s) return;
+    const full = String(s.link || s.url || s.stream || '').trim();
+    const [urlPart, ...headerParts] = full.split('|');
+    const link = String(urlPart || '').trim();
+    if (!link || !/^https?:\/\//i.test(link)) return;
+    if (seen.has(link)) return;
+    const t = String(s.type || '').toLowerCase();
+    const isDash = t === 'dash' || /\.mpd(\?|$)/i.test(link);
+    const isHls = t === 'hls' || t === '0' || /\.m3u8(\?|$)/i.test(link);
+    if (!isDash && !isHls) return;
+    seen.add(link);
+
+    // Header đi kèm: sau dấu "|" hoặc field riêng (referer/origin/headers).
+    const headers = {};
+    String(headerParts.join('|') || '').split('&').forEach((kv) => {
+      const idx = kv.indexOf('=');
+      if (idx <= 0) return;
+      const val = kv.slice(idx + 1).trim();
+      let decoded = val;
+      try { decoded = decodeURIComponent(val); } catch { /* giữ nguyên giá trị thô */ }
+      headers[kv.slice(0, idx).trim().toLowerCase()] = decoded;
+    });
+    const extra = (s.headers && typeof s.headers === 'object') ? s.headers : {};
+    Object.keys(extra).forEach((k) => { if (!headers[k.toLowerCase()]) headers[k.toLowerCase()] = String(extra[k]); });
+    const referer = String(headers.referer || headers.referrer || s.referer || s.referrer || headers.origin || s.origin || '').trim();
+    const title = String(s.title || s.name || `Stream ${i + 1}`).trim();
+
+    out.push({
+      title,
+      name: title,
+      streamerName: title,
+      link,
+      m3u8Url: isHls ? link : undefined,
+      playUrl: link,
+      format: isDash ? 'dash' : 'hls',
+      clearKey: String(s.api || s.key || s.clearKey || '').trim() || undefined,
+      referer: referer ? (/^https?:\/\//i.test(referer) ? referer.replace(/\/*$/, '/') : referer) : undefined,
+      cdn: ''
+    });
+  });
+  // HLS trước, DASH sau (sort ổn định giữ nguyên thứ tự gốc trong từng nhóm).
+  out.sort((a, b) => (a.format === 'hls' ? 0 : 1) - (b.format === 'hls' ? 0 : 1));
+  return out.slice(0, 3);
+}
+
 /** Chuẩn hóa 1 raw item thành match card theo format chung của project. */
 function normalizeItem(item, index) {
   try {
@@ -108,57 +180,57 @@ function normalizeItem(item, index) {
     let en = parseDate(info.endTimeIST) || parseDate(info.endTime) || parseDate(item.endTime);
     if (!en || en <= st) en = new Date(st.getTime() + DURATION_MS);
 
-    const rawStreams = Array.isArray(item.streams) ? item.streams : [];
-    const seen = new Set();
-    const streams = [];
-    rawStreams.forEach((s, i) => {
-      if (!s) return;
-      if (streams.length >= 3) return; // chỉ lấy tối đa 3 stream chất lượng nhất
-      const link = String(s.link || s.url || '').split('|')[0].trim();
-      if (!link || !/^https?:\/\//i.test(link)) return;
-      if (seen.has(link)) return;
-      const t = String(s.type || '').toLowerCase();
-      const isDash = t === 'dash' || /\.mpd(\?|$)/i.test(link);
-      const isHls = t === 'hls' || t === '0' || /\.m3u8(\?|$)/i.test(link);
-      if (!isDash && !isHls) return;
-      seen.add(link);
-      streams.push({
-        title: String(s.title || s.name || `Stream ${i + 1}`).trim(),
-        m3u8Url: isHls ? link : undefined,
-        playUrl: link,
-        format: isDash ? 'dash' : 'hls',
-        clearKey: String(s.api || s.key || '').trim() || undefined
-      });
-    });
+    const streams = buildStreams(item.streams);
 
     const id = String(item.id ?? index);
-    const homeTeam = String(info.teamA || info.home || '').trim();
-    const awayTeam = String(info.teamB || info.away || '').trim();
-    const tournament = String(info.type || info.name || item.title || '').trim();
+    const homeName = String(info.teamA || info.home || '').trim() || 'Home';
+    const awayName = String(info.teamB || info.away || '').trim() || 'Away';
+    const homeLogo = String(info.teamAFlag || info.homeFlag || '').trim() || undefined;
+    const awayLogo = String(info.teamBFlag || info.awayFlag || '').trim() || undefined;
+    const tournament = String(info.category || info.league || info.tournament || info.type || info.name || item.title || '').trim();
     const now = Date.now();
     const isLive = now >= st.getTime() && now <= en.getTime();
     const isUpcoming = now < st.getTime() && st.getTime() - now <= UPCOMING_WINDOW_MS;
+    const isFinished = now > en.getTime();
+
+    // Giờ/ngày theo giờ Việt Nam (cùng định dạng các nguồn khác: dateStr = yyyy-mm-dd).
+    const timeStr = st.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Ho_Chi_Minh' });
+    const dateStr = st.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
+    const [, mo, da] = dateStr.split('-');
 
     return {
       matchId: `sportlinktv_${id}`,
+      originalId: id,
+      source: 'sportlinktv',
       sport: 'football',
       sportCategory: 'football',
-      homeTeam,
-      awayTeam,
+      sportName: 'BÓNG ĐÁ',
+      competition: { name: tournament, logo: '', icon: '' },
+      homeTeam: { name: homeName, logo: homeLogo },
+      awayTeam: { name: awayName, logo: awayLogo },
       tournament,
+      matchTime: st.getTime(),
+      matchTimeTimestamp: st.getTime(),
       startTime: st.getTime(),
       endTime: en.getTime(),
-      homeFlag: String(info.teamAFlag || info.homeFlag || '').trim() || undefined,
-      awayFlag: String(info.teamBFlag || info.awayFlag || '').trim() || undefined,
+      timeFormatted: `${timeStr} - ${da}/${mo}`,
+      dateStr,
+      timeStr,
+      homeFlag: homeLogo,
+      awayFlag: awayLogo,
       status: {
         isLive,
         isUpcoming,
-        isDone: now > en.getTime(),
+        isFinished,
+        isDone: isFinished,
+        name: isLive ? 'LIVE' : (isFinished ? 'FT' : 'Sắp diễn ra'),
+        text: isLive ? 'LIVE' : (isFinished ? 'Kết thúc' : 'Sắp diễn ra'),
         raw: isLive ? 'live' : isUpcoming ? 'upcoming' : 'done'
       },
       streams,
-      source: 'sportlinktv',
-      slug: buildMatchSlug(homeTeam, awayTeam, st)
+      // Không đặt stream.liveUrl: nguồn này không có trang chi tiết từng trận; thiếu link thì không ghi kênh giả vào playlist.
+      stream: { streamerName: streams[0]?.title || null },
+      slug: buildMatchSlug({ homeTeam: { name: homeName }, awayTeam: { name: awayName }, matchTimeTimestamp: st.getTime() })
     };
   } catch {
     return null;
@@ -203,32 +275,9 @@ class SportlinkTvService {
   async getStreamLinks(matchId) {
     const rawId = String(matchId || '').replace(/^sportlinktv_/, '');
     const list = await fetchRaw();
-    const item = list.find((x, i) => String(x.id ?? i) === rawId);
+    const item = list.find((x, i) => String(x?.id ?? i) === rawId);
     if (!item) return [];
-
-    const rawStreams = Array.isArray(item.streams) ? item.streams : [];
-    const seen = new Set();
-    const streams = [];
-    rawStreams.forEach((s, i) => {
-      if (!s) return;
-      if (streams.length >= 3) return; // chỉ lấy tối đa 3 stream chất lượng nhất
-      const link = String(s.link || s.url || '').split('|')[0].trim();
-      if (!link || !/^https?:\/\//i.test(link)) return;
-      if (seen.has(link)) return;
-      const t = String(s.type || '').toLowerCase();
-      const isDash = t === 'dash' || /\.mpd(\?|$)/i.test(link);
-      const isHls = t === 'hls' || t === '0' || /\.m3u8(\?|$)/i.test(link);
-      if (!isDash && !isHls) return;
-      seen.add(link);
-      streams.push({
-        title: String(s.title || s.name || `Stream ${i + 1}`).trim(),
-        m3u8Url: isHls ? link : undefined,
-        playUrl: link,
-        format: isDash ? 'dash' : 'hls',
-        clearKey: String(s.api || s.key || '').trim() || undefined
-      });
-    });
-    return streams;
+    return buildStreams(item.streams);
   }
 }
 
