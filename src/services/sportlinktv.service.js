@@ -18,17 +18,18 @@
 //   - stream DASH (.mpd) không có field `link` + .mpd không nằm trong isPlayableStreamUrl -> bị lọc hết, trận không có link;
 //   - phần "|Referer=...&User-Agent=..." sau link bị cắt bỏ rồi vứt luôn (CDN chặn hotlink -> không phát);
 //   - gọi buildMatchSlug sai chữ ký (truyền 3 tham số thay vì 1 object).
-// Giờ trận có đủ field như các nguồn khác, giữ header Referer/Origin từ link, link HLS xếp trước DASH.
+// Giờ trận có đủ field như các nguồn khác, giữ header Referer/Origin từ link, link DASH xếp trước HLS.
 // Chỉ lấy bóng đá (football.json đã filter sẵn).
 // Trận live: startTime <= now <= endTime (mặc định endTime = startTime + 3h).
-// Trận sắp đấu: startTime trong 24h tới.
+// Trận sắp đấu: startTime trong 36h tới.
 
 import axios from 'axios';
 import { buildMatchSlug } from '@/src/utils/slug';
 
 const DATA_URL = process.env.SPORTLINKTV_DATA_URL || 'https://sonujson-v6.pages.dev/Data/events/football.json';
 const DURATION_MS = 3 * 60 * 60 * 1000; // 3h mặc định nếu không có endTime
-const UPCOMING_WINDOW_MS = 24 * 60 * 60 * 1000; // 24h
+// 36h theo yêu cầu 22/11/2026 (đổi bằng SPORTLINKTV_UPCOMING_HOURS) — phải khớp UPCOMING_WINDOW_HOURS_BY_SOURCE trong playlistBuilder.service.js.
+const UPCOMING_WINDOW_MS = (Number(process.env.SPORTLINKTV_UPCOMING_HOURS) > 0 ? Number(process.env.SPORTLINKTV_UPCOMING_HOURS) : 36) * 60 * 60 * 1000;
 
 /** Phân tích chuỗi thời gian theo cùng logic trang sportlinktv.pages.dev. */
 function parseDate(value) {
@@ -165,8 +166,8 @@ function buildStreams(rawStreams) {
       cdn: ''
     });
   });
-  // HLS trước, DASH sau (sort ổn định giữ nguyên thứ tự gốc trong từng nhóm).
-  out.sort((a, b) => (a.format === 'hls' ? 0 : 1) - (b.format === 'hls' ? 0 : 1));
+  // DASH trước, HLS sau (theo yêu cầu 22/11/2026; sort ổn định giữ thứ tự gốc trong từng nhóm).
+  out.sort((a, b) => (a.format === 'dash' ? 0 : 1) - (b.format === 'dash' ? 0 : 1));
   return out.slice(0, 3);
 }
 
@@ -228,8 +229,12 @@ function normalizeItem(item, index) {
         raw: isLive ? 'live' : isUpcoming ? 'upcoming' : 'done'
       },
       streams,
-      // Không đặt stream.liveUrl: nguồn này không có trang chi tiết từng trận; thiếu link thì không ghi kênh giả vào playlist.
-      stream: { streamerName: streams[0]?.title || null },
+      // Trận SẮP ĐÁ chưa có link vẫn phải nằm trong playlist (m3uPlaylist chỉ ghi kênh chờ khi có liveUrl) -> đặt liveUrl.
+      // Trận đang live mà không có link thì KHÔNG đặt, tránh ghi kênh giả.
+      stream: {
+        liveUrl: (!streams.length && !isLive) ? 'https://sportlinktv.pages.dev/' : undefined,
+        streamerName: streams[0]?.title || null
+      },
       slug: buildMatchSlug({ homeTeam: { name: homeName }, awayTeam: { name: awayName }, matchTimeTimestamp: st.getTime() })
     };
   } catch {

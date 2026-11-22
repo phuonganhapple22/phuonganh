@@ -54,7 +54,12 @@ const XOIGAC_UPCOMING_GRACE_MS = (() => {
   const n = Number(process.env.XOIGAC_UPCOMING_GRACE_MIN);
   return (Number.isFinite(n) && n >= 0 ? n : 180) * 60 * 1000;
 })();
-const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS };
+// SportlinkTV (22/11/2026): trận sắp đá trong 36h tới (SPORTLINKTV_UPCOMING_HOURS).
+const SPORTLINKTV_UPCOMING_WINDOW_HOURS = (() => {
+  const n = Number(process.env.SPORTLINKTV_UPCOMING_HOURS);
+  return Number.isFinite(n) && n > 0 ? n : 36;
+})();
+const UPCOMING_WINDOW_HOURS_BY_SOURCE = { phalang: PHALANG_UPCOMING_WINDOW_HOURS, xoiche: XOICHE_UPCOMING_WINDOW_HOURS, sportlinktv: SPORTLINKTV_UPCOMING_WINDOW_HOURS };
 // Do not let a slow streamer detail page delay the complete match list.
 // FIX (20/09/2026 — "Giờ Vàng đều bị 'chưa có link'"): mốc 4500ms này ban
 // đầu hợp lý cho những nguồn gọi thẳng 1 API JSON (chuoichientv, phalang).

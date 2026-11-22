@@ -620,12 +620,12 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
     // utils/streamQuality.js); bằng điểm thì vẫn lấy cái đầu tiên như cũ nên
     // nguồn không có nhãn chất lượng không bị đổi hành vi.
     const playableStreams = matchStreams.filter((s) => s?.m3u8Url || s?.flvUrl || s?.playUrl);
-    // FIX (22/11/2026 — SportlinkTV): có cả HLS lẫn DASH(+ClearKey) thì ưu tiên HLS (app IPTV nào cũng phát được);
-    // chỉ có DASH thì dùng DASH kèm khoá. Nguồn khác giữ nguyên cách chọn theo nhãn chất lượng.
-    const hlsOnlyForSportlink = getSourceKey(match) === 'sportlinktv'
-      ? playableStreams.filter((s) => s?.format !== 'dash' && !/\.mpd(\?|$)/i.test(s?.playUrl || s?.m3u8Url || ''))
+    // FIX (22/11/2026 — SportlinkTV): có cả DASH lẫn HLS thì ƯU TIÊN DASH (theo yêu cầu); chỉ khi không có DASH mới dùng HLS.
+    // Nguồn khác giữ nguyên cách chọn theo nhãn chất lượng.
+    const dashOnlyForSportlink = getSourceKey(match) === 'sportlinktv'
+      ? playableStreams.filter((s) => s?.format === 'dash' || /\.mpd(\?|$)/i.test(s?.playUrl || s?.m3u8Url || ''))
       : [];
-    const stream = pickBestStream(hlsOnlyForSportlink.length ? hlsOnlyForSportlink : playableStreams);
+    const stream = pickBestStream(dashOnlyForSportlink.length ? dashOnlyForSportlink : playableStreams);
     if (stream) {
       // FIX (27/10/2026 — "các trận live Phá Làng lỗi không xem được"): Phá Làng trả nhiều server
       // (CDN) cho 1 trận mà ta KHÔNG thể biết trước server nào phát được trên máy người xem
