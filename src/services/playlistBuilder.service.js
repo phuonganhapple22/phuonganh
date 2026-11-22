@@ -15,6 +15,7 @@ import bonglauService from '@/src/services/bonglau.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
+import sportlinktvService from '@/src/services/sportlinktv.service';
 import { shouldDropMatch } from '@/src/utils/leagueFilter';
 import {
   isWithinNextHours,
@@ -211,7 +212,7 @@ async function resolveWithinDeadline(match) {
 
 /** Mirror fetchLiveLists() from pages/index.jsx but calling services in-process. */
 async function fetchLiveLists() {
-  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive] = await Promise.all([
+  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive, sportlinktvLive] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('live'), 'giovang:live'),
     safe(chuoichientvService.getAllMatchesByTab('live'), 'chuoichientv:live'),
     safe(phalangService.getAllMatchesByTab('live'), 'phalang:live'),
@@ -221,7 +222,8 @@ async function fetchLiveLists() {
     safe(bonglauService.getAllMatchesByTab('live'), 'bonglau:live'),
     safe(xoilacService.getAllMatchesByTab('live'), 'xoilac:live'),
     safe(xoigacService.getAllMatchesByTab('live', 'all', { prefetchIvs: true }), 'xoigac:live'),
-    safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live')
+    safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live'),
+    safe(sportlinktvService.getAllMatchesByTab('live'), 'sportlinktv:live')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -252,6 +254,7 @@ async function fetchLiveLists() {
   pushListNoFilter(xoilacLive, 'xoilac');
   pushListNoFilter(xoigacLive, 'xoigac');
   pushListNoFilter(xoicheLive, 'xoiche');
+  pushListNoFilter(sportlinktvLive, 'sportlinktv');
 
   return tagged;
 }
@@ -264,7 +267,7 @@ async function fetchLiveLists() {
  * moment the player actually opens the channel.
  */
 async function fetchUpcomingLists() {
-  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming] = await Promise.all([
+  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming, sportlinktvUpcoming] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('upcoming'), 'giovang:upcoming'),
     safe(chuoichientvService.getAllMatchesByTab('upcoming'), 'chuoichientv:upcoming'),
     safe(phalangService.getAllMatchesByTab('upcoming'), 'phalang:upcoming'),
@@ -274,7 +277,8 @@ async function fetchUpcomingLists() {
     safe(bonglauService.getAllMatchesByTab('upcoming'), 'bonglau:upcoming'),
     safe(xoilacService.getAllMatchesByTab('upcoming'), 'xoilac:upcoming'),
     safe(xoigacService.getAllMatchesByTab('upcoming'), 'xoigac:upcoming'),
-    safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming')
+    safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming'),
+    safe(sportlinktvService.getAllMatchesByTab('upcoming'), 'sportlinktv:upcoming')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -335,6 +339,7 @@ async function fetchUpcomingLists() {
   pushListNoFilter(xoilacUpcoming, 'xoilac');
   pushListNoFilter(xoigacUpcoming, 'xoigac');
   pushListNoFilter(xoicheUpcoming, 'xoiche');
+  pushListNoFilter(sportlinktvUpcoming, 'sportlinktv');
 
   return tagged;
 }

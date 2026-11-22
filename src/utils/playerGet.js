@@ -61,7 +61,8 @@ const SOURCE_LABELS = {
   bonglau: 'Bong Lau TV',
   xoilac: 'Xoi Lac TV',
   xoigac: 'Xoi Gac TV',
-  xoiche: 'Xoi Che TV'
+  xoiche: 'Xoi Che TV',
+  sportlinktv: 'SportlinkTV'
 };
 
 const SOURCE_SHORT = {
@@ -74,7 +75,8 @@ const SOURCE_SHORT = {
   bonglau: 'Bông Lau',
   xoilac: 'Xôi Lạc',
   xoiche: 'Xôi Chè',
-  xoigac: 'Xôi Gấc' // FIX (05/10/2026): tên đúng là "Xôi Gấc" (trước ghi nhầm "Xôi Gác") — đây là tên group-title trong file .m3u
+  xoigac: 'Xôi Gấc', // FIX (05/10/2026): tên đúng là "Xôi Gấc" (trước ghi nhầm "Xôi Gác") — đây là tên group-title trong file .m3u
+  sportlinktv: 'SportlinkTV'
 };
 
 // Thứ tự nhóm theo nguồn dùng chung cho danh sách trên trang quét lẫn file
@@ -87,7 +89,7 @@ const SOURCE_SHORT = {
 // FIX (27/09/2026 — theo yêu cầu, thêm Bông Lau TV): xem bonglau.service.js
 // — ĐÃ BÁO TRƯỚC nguồn này dùng CHUNG API/CDN/pool trận với chuoichientv
 // (chỉ khác domain/giao diện), người dùng vẫn muốn tách thành nguồn riêng.
-export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche'];
+export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche', 'sportlinktv'];
 
 // Danh sách nguồn dùng để vẽ công tắc bật/tắt trên giao diện. Giữ đồng bộ
 // với SOURCE_GROUP_ORDER — mỗi nguồn 1 công tắc, người dùng tự chọn nguồn
@@ -132,7 +134,8 @@ export const SOURCE_TOGGLE_LIST = [
   { key: 'bonglau', label: 'Bông Lau' },
   { key: 'xoilac', label: 'Xôi Lạc' },
   { key: 'xoigac', label: 'Xôi Gấc' },
-  { key: 'xoiche', label: 'Xôi Chè' }
+  { key: 'xoiche', label: 'Xôi Chè' },
+  { key: 'sportlinktv', label: 'SportlinkTV' }
 ];
 
 // Bump the key once so an old browser setting cannot hide every source after

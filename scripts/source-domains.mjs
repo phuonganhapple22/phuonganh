@@ -60,7 +60,9 @@ export const SOURCES = [
   { key: 'phalang-api', label: 'Phá Làng (API)', role: 'api', envVar: 'PHALANG_API_BASE', defaultUrl: 'https://api.plapi202624081158.com', autoFix: false },
   { key: 'chuoichientv-api', label: 'Chuối Chiên (API)', role: 'api', envVar: 'CHUOICHIENTV_API_BASE', defaultUrl: 'https://api-v2.chuoichientv.net/v2', autoFix: false },
   { key: 'xoilac-api', label: 'Xôi Lạc (API tỉ số)', role: 'api', envVar: 'XOILAC_SCORE_API', defaultUrl: 'https://fb-api.sportliveapiz.com', autoFix: false },
-  { key: 'bonglau-api', label: 'Bông Lau (API)', role: 'api', envVar: 'BONGLAU_API_BASE', defaultUrl: 'https://api-v2.chuoichientv.net/v2', autoFix: false }
+  { key: 'bonglau-api', label: 'Bông Lau (API)', role: 'api', envVar: 'BONGLAU_API_BASE', defaultUrl: 'https://api-v2.chuoichientv.net/v2', autoFix: false },
+  // SportlinkTV: JSON host tĩnh Cloudflare Pages, không đổi domain, không cần autoFix
+  { key: 'sportlinktv-data', label: 'SportlinkTV (data JSON)', role: 'api', envVar: 'SPORTLINKTV_DATA_URL', defaultUrl: 'https://sonujson-v6.pages.dev/Data/events/football.json', autoFix: false }
 ];
 
 

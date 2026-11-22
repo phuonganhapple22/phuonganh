@@ -8,6 +8,7 @@ import phalangService from '@/src/services/phalang.service';
 import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
+import sportlinktvService from '@/src/services/sportlinktv.service';
 import { normalizeStreamList, isFlvUrl } from '@/src/utils/playerGet';
 import { preferHlsForIptv } from '@/src/utils/m3uPlaylist';
 import { buildProxyStreamUrl } from '@/src/utils/proxyUrl';
@@ -99,6 +100,10 @@ export default async function handler(req, res) {
           if (!id) return notReadyYet();
           const detail = await withDeadline(giovangService.getMatchDetail(id), attemptTimeoutMs);
           raw = detail?.streams || [];
+        } else if (source === 'sportlinktv') {
+          // Link từ JSON tĩnh cache 20s — lấy lại lúc bấm xem cho đúng trạng thái mới nhất.
+          if (!matchId) return notReadyYet();
+          raw = await withDeadline(sportlinktvService.getStreamLinks(matchId), 15000);
         } else {
           return notReadyYet();
         }

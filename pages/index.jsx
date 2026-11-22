@@ -326,6 +326,7 @@ const SOURCE_META = {
   // dự phòng (fallback) mỗi khi gặp match.source lạ — Pháo Hoa đã bị loại
   // bỏ khỏi pipeline (domain chết) nên không còn hợp lý làm fallback nữa.
   // Thêm 1 mục "default" trung tính riêng cho việc này.
+  sportlinktv: { color: '#00E5B0', icon: '⚡' },
   default: { color: '#9CA3AF', icon: '📺' }
 };
 
