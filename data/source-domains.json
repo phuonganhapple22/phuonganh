@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T18:29:52.867Z",
+  "updatedAt": "2026-11-23T00:41:22.571Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.gold",
@@ -41,7 +41,7 @@
       "url": "https://xoilacvbf.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -70,7 +70,8 @@
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
       "status": "moved",
-      "from": "mặc định"
+      "from": "mặc định",
+      "found": "https://live12.chuoichientv.me"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -146,7 +147,7 @@
       "url": "https://sonujson-v6.pages.dev/Data/events/football.json",
       "envVar": "SPORTLINKTV_DATA_URL",
       "role": "api",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "mặc định"
     }
   },
@@ -1116,6 +1117,13 @@
       "from": null,
       "to": "https://sonujson-v6.pages.dev/Data/events/football.json",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-23T00:41:22.571Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
     }
   ]
 }
