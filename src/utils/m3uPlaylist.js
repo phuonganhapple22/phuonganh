@@ -582,6 +582,20 @@ const PHALANG_MAX_SERVERS_PER_MATCH = Math.max(1, Number(process.env.PHALANG_MAX
 const ENRICH_TTL_MS = Number(process.env.ENRICH_CACHE_TTL_MS) > 0 ? Number(process.env.ENRICH_CACHE_TTL_MS) : 90 * 1000;
 const enrichCache = new Map();
 
+// FIX (22/11/2026 — chỉ áp dụng cho SportlinkTV): nhãn cho trận CHƯA CÓ LINK trong playlist tĩnh.
+// Link của nguồn này chỉ có/mở được đúng giờ bóng lăn, nên thay vì "Chưa có link — chờ cập nhật" thì hiện
+// đếm ngược tới giờ đá (trước giờ) hoặc "Đang chờ link" (sau giờ đá) — trận vẫn nằm yên 1 chỗ trong playlist
+// và tự chuyển thành link phát được ở chu kỳ có link (số phút chỉ đổi mỗi lần playlist tạo lại, ~2 phút).
+function sportlinktvWaitLabel(match) {
+  const t = Number(match?.matchTimeTimestamp) || 0;
+  const diffMin = t ? Math.ceil((t - Date.now()) / 60000) : 0;
+  if (!t || diffMin <= 0) return '⏳ Đang chờ link';
+  if (diffMin < 60) return `⏳ Còn ${diffMin} phút`;
+  const h = Math.floor(diffMin / 60);
+  const m = String(diffMin % 60).padStart(2, '0');
+  return `⏳ Còn ${h}h${m}`;
+}
+
 /**
  * Flatten matches into playlist entries.
  * - Live match (has a resolved stream): one match → one stream (first m3u8
@@ -698,7 +712,7 @@ export async function matchesToPlaylistEntries(matches = [], { baseUrl = '' } = 
         m3u8Url: resolverUrl,
         streamerName: baseUrl
           ? (isLiveNoStream ? 'Đang tải link...' : formatUpcomingBadge(match))
-          : 'Chưa có link — chờ cập nhật'
+          : (source === 'sportlinktv' ? sportlinktvWaitLabel(match) : 'Chưa có link — chờ cập nhật')
       }
     });
   }

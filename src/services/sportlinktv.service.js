@@ -31,6 +31,9 @@ const DURATION_MS = 3 * 60 * 60 * 1000; // 3h mặc định nếu không có end
 // 36h theo yêu cầu 22/11/2026 (đổi bằng SPORTLINKTV_UPCOMING_HOURS) — phải khớp UPCOMING_WINDOW_HOURS_BY_SOURCE trong playlistBuilder.service.js.
 const UPCOMING_WINDOW_MS = (Number(process.env.SPORTLINKTV_UPCOMING_HOURS) > 0 ? Number(process.env.SPORTLINKTV_UPCOMING_HOURS) : 36) * 60 * 60 * 1000;
 
+// Giữ kênh "đang chờ link" tối đa bao nhiêu phút SAU giờ bóng lăn (đổi bằng SPORTLINKTV_WAIT_MINUTES).
+const WAIT_AFTER_KICKOFF_MS = (Number(process.env.SPORTLINKTV_WAIT_MINUTES) > 0 ? Number(process.env.SPORTLINKTV_WAIT_MINUTES) : 30) * 60 * 1000;
+
 /** Phân tích chuỗi thời gian theo cùng logic trang sportlinktv.pages.dev. */
 function parseDate(value) {
   if (!value) return null;
@@ -229,10 +232,11 @@ function normalizeItem(item, index) {
         raw: isLive ? 'live' : isUpcoming ? 'upcoming' : 'done'
       },
       streams,
-      // Trận SẮP ĐÁ chưa có link vẫn phải nằm trong playlist (m3uPlaylist chỉ ghi kênh chờ khi có liveUrl) -> đặt liveUrl.
-      // Trận đang live mà không có link thì KHÔNG đặt, tránh ghi kênh giả.
+      // Trận chưa có link vẫn phải nằm trong playlist (m3uPlaylist chỉ ghi kênh chờ khi có liveUrl) -> đặt liveUrl:
+      //  - trận SẮP ĐÁ: luôn giữ (nhãn đếm ngược "⏳ Còn N phút");
+      //  - trận vừa bóng lăn mà link chưa về: giữ thêm tối đa WAIT phút sau giờ đá ("⏳ Đang chờ link") rồi bỏ, tránh để kênh chết nằm cả trận.
       stream: {
-        liveUrl: (!streams.length && !isLive) ? 'https://sportlinktv.pages.dev/' : undefined,
+        liveUrl: (!streams.length && (!isLive || now - st.getTime() <= WAIT_AFTER_KICKOFF_MS)) ? 'https://sportlinktv.pages.dev/' : undefined,
         streamerName: streams[0]?.title || null
       },
       slug: buildMatchSlug({ homeTeam: { name: homeName }, awayTeam: { name: awayName }, matchTimeTimestamp: st.getTime() })

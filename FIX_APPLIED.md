@@ -18,9 +18,12 @@ Loi: tran SportlinkTV tra ra sai form so voi cac nguon khac nen bi rot o playlis
 
 - Cap nhat 22/11 (lan 3): cua so tran SAP DA cua SportlinkTV 36h (sportlinktv.service.js + playlistBuilder.service.js; doi bang bien moi truong SPORTLINKTV_UPCOMING_HOURS).
 
+- Cap nhat 22/11 (lan 4, CHI ap dung SportlinkTV): tran chua co link hien nhan dem nguoc `⏳ Con N phut` / `⏳ Dang cho link` thay cho "Chua co link — cho cap nhat"; tran vua bong lan ma link chua ve duoc GIU trong playlist toi da 30 phut sau gio da (doi bang SPORTLINKTV_WAIT_MINUTES) roi moi bo. Sua o m3uPlaylist.js (sportlinktvWaitLabel) + sportlinktv.service.js (liveUrl). Nguon khac khong doi.
+
 ## Luu y
 - Da chay thu pipeline (service -> playlistBuilder util -> m3uPlaylist) bang esbuild + du lieu gia, ca file vlc lan -app: ghi du tran live/sap da. Chua test voi JSON that (sandbox khong truy cap duoc sonujson-v6.pages.dev).
 - Khong xoa file nao.
+- Nhip tao playlist giu nguyen 2 phut/chu ky (khong quet day hon de tranh pham gioi han cron/commit cua GitHub Actions); link tran SportlinkTV vao playlist o chu ky ke tiep sau khi nguon co link.
 
 ---
 
