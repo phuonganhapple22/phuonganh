@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:24:37.405Z",
+  "updatedAt": "2026-11-24T01:05:59.303Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.guru",
@@ -38,10 +38,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacvbf.tv",
+      "url": "https://xoilacvce.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "xoigac": {
@@ -1144,6 +1144,13 @@
       "from": "https://giovang.gold",
       "to": "https://giovang.guru",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-24T01:05:59.303Z",
+      "source": "xoilac",
+      "from": "https://xoilacvbf.tv",
+      "to": "https://xoilacvce.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]
 }
