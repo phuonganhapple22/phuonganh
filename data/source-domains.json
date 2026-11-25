@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T15:49:12.727Z",
+  "updatedAt": "2026-11-25T02:57:07.551Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.guru",
@@ -24,10 +24,10 @@
       "from": "SOURCE_DOMAINS"
     },
     "saoke": {
-      "url": "https://vip6.saoketv40.xyz",
+      "url": "https://vip7.saoketv40.xyz",
       "envVar": "SAOKE_BASE_URL",
       "role": "site",
-      "status": "alive",
+      "status": "moved",
       "from": "SOURCE_DOMAINS"
     },
     "bonglau": {
@@ -38,7 +38,7 @@
       "from": "SOURCE_DOMAINS"
     },
     "xoilac": {
-      "url": "https://xoilacvcm.tv",
+      "url": "https://xoilacvcl.tv",
       "envVar": "XOILAC_DOMAIN",
       "role": "site",
       "status": "moved",
@@ -1185,6 +1185,20 @@
       "source": "xoilac",
       "from": "https://xoilacvcl.tv",
       "to": "https://xoilacvcm.tv",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
+    },
+    {
+      "at": "2026-11-25T02:57:07.551Z",
+      "source": "saoke",
+      "from": "https://vip6.saoketv40.xyz",
+      "to": "https://vip7.saoketv40.xyz",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn)"
+    },
+    {
+      "at": "2026-11-25T02:57:07.551Z",
+      "source": "xoilac",
+      "from": "https://xoilacvcm.tv",
+      "to": "https://xoilacvcl.tv",
       "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tên miền chứa tên nguồn, tiêu đề nhắc tên nguồn, đủ cấu trúc trang thật)"
     }
   ]

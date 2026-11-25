@@ -1,11 +1,11 @@
-# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-11-24T15:49:12.727Z
+# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-11-25T02:57:07.551Z
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
 giovang=https://giovang.guru
 gavang=https://gavangz.link
 gavang33=https://gavang33.me
-saoke=https://vip6.saoketv40.xyz
+saoke=https://vip7.saoketv40.xyz
 bonglau=https://lau06.bonglautv1.org
-xoilac=https://xoilacvcm.tv
+xoilac=https://xoilacvcl.tv
 xoigac=https://xoigac.top
 xoiche=https://xoiche.live
 phalang=https://phalang.com
