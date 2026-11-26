@@ -128,9 +128,18 @@ async function scrapeSite(baseUrl) {
     try {
       const schedMap = collectById(got.schedule);
       const liveMap = collectById(got.live);
+      // FIX (26/11/2026 — "có trận bóng chuyền đang live nhưng bị lọc mất, 24/24 trận đều thành upcoming"):
+      // bản trước CHỈ hỏi streamUrl những trận có hasLiveSource=true trong JSON. Nếu cờ này trong cms-schedule.json
+      // không bật (hoặc feed cms-match-live đọc không ra) thì trận đang đá không bao giờ được hỏi -> không có link -> bị
+      // coi là upcoming. Giờ hỏi MỌI trận đang đá / sắp đá (trong [-3h, +4h] quanh giờ hiện tại), ưu tiên gần giờ nhất.
+      const nowMs = Date.now();
+      const startOf = (m) => { const n = Number(m.timestamp ?? m.start_time ?? 0); return !Number.isFinite(n) || n <= 0 ? 0 : (n < 1e12 ? n * 1000 : n); };
+      const flagged = (m) => m.hasLiveSource === true || m.hasLiveSource === 1 || m.hasLiveSource === 'true';
       const wanted = [...schedMap.entries()]
-        .filter(([id, m]) => liveMap.has(id) || m.hasLiveSource === true || m.hasLiveSource === 1 || m.hasLiveSource === 'true')
-        .map(([id]) => id)
+        .map(([id, m]) => ({ id, ts: startOf(m), m }))
+        .filter(({ id, ts, m }) => liveMap.has(id) || flagged(m) || (ts && nowMs >= ts - 3 * 3600000 && nowMs <= ts + 4 * 3600000))
+        .sort((a, b) => Math.abs((a.ts || nowMs) - nowMs) - Math.abs((b.ts || nowMs) - nowMs))
+        .map(({ id }) => id)
         .slice(0, KD_MAX_MATCHES);
       for (let i = 0; i < wanted.length; i += KD_CONCURRENCY) {
         const chunk = wanted.slice(i, i + KD_CONCURRENCY);
@@ -220,9 +229,13 @@ class KhanDaiTvService {
               (challenge ? ' [NGHI NGỜ kẹt Cloudflare]' : ' [không đọc được cms-schedule.json / cms-home-matches — schema có thể đã đổi tiếp]') +
               (r.seen?.length ? ` | request: ${r.seen.join(' | ')}` : ''))
         );
-      } else if (process.env.KHANDAITV_DEBUG === '1') {
+      } else {  // luôn in log chẩn đoán (không cần biến môi trường)
         const withStream = out.filter((m) => m.streams.length).length;
         console.log(`[khandaitv] ${label}: ${out.length} trận, live=${out.filter((m) => m.isLive).length}, có link phát sẵn=${withStream}, live-feed=${r.live ? 'có' : 'KHÔNG'}, kd_source=${(r.kd || []).length}`);
+        const nowMs = Date.now();
+        for (const m of out.filter((x) => x.startMs && x.startMs <= nowMs && !x.isFinished)) {
+          console.log(`[khandaitv] ĐÃ ĐÁ: ${m.sport} "${m.home} - ${m.away}" bắt đầu ${Math.round((nowMs - m.startMs) / 60000)}p trước | hasLiveSource=${m.hasLiveSource} | link=${m.streams.length} | isLive=${m.isLive}`);
+        }
         if (r.live && !withStream) console.log(`[khandaitv] mẫu cms-match-live: ${JSON.stringify(r.live).slice(0, 600)}`);
       }
       return out;
