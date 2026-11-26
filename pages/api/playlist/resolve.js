@@ -9,6 +9,7 @@ import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
 import sportlinktvService from '@/src/services/sportlinktv.service';
+import khandaitvService from '@/src/services/khandaitv.service';
 import { normalizeStreamList, isFlvUrl } from '@/src/utils/playerGet';
 import { preferHlsForIptv } from '@/src/utils/m3uPlaylist';
 import { buildProxyStreamUrl } from '@/src/utils/proxyUrl';
@@ -104,6 +105,10 @@ export default async function handler(req, res) {
           // Link từ JSON tĩnh cache 20s — lấy lại lúc bấm xem cho đúng trạng thái mới nhất.
           if (!matchId) return notReadyYet();
           raw = await withDeadline(sportlinktvService.getStreamLinks(matchId), 15000);
+        } else if (source === 'khandaitv') {
+          // Link nằm sẵn trong dữ liệu trận (cache 20s, lấy qua trình duyệt) — lấy lại lúc bấm xem cho đúng trạng thái BLV.
+          if (!matchId) return notReadyYet();
+          raw = await withDeadline(khandaitvService.getStreamLinks(matchId), 20000);
         } else {
           return notReadyYet();
         }

@@ -1,3 +1,26 @@
+# THEM NGUON KHAN DAI (khandaia.one) — 26/11/2026
+
+Yeu cau: them nguon Khan Dai (https://khandaia.one/, giao dien NemBienTV) vao du an nhu 1 nguon rieng.
+
+## Nguyen nhan chua co
+- `src/services/khandaitv.service.js` van con trong project nhung KHONG duoc goi o playlistBuilder / resolve / playerGet nen khong tran nao cua Khan Dai vao playlist; domain mac dinh con la khandai3.link (da chet — data/source-domains.json ghi domain doi khandai3.link -> khandai2.com -> khandaia.one); scripts/source-domains.mjs con danh dau khandaitv la "retired" nen Check Domains bo qua.
+
+## Da sua (de len git, ghi de) — co ban sao trong folder `changed-files/`
+- `src/services/khandaitv.service.js`: domain mac dinh -> https://khandaia.one (doi bang KHANDAITV_DOMAIN hoac `khandaitv=...` trong SOURCE_DOMAINS).
+- `src/services/playlistBuilder.service.js`: import khandaitvService; quet tab live + upcoming (24h) cung cac nguon khac; them nhanh khandaitv trong resolveStreams; timeout resolve rieng 18s (du lieu lay qua trinh duyet headless, cache dung chung 20s).
+- `src/utils/playerGet.js`: them 'khandaitv' vao SOURCE_LABELS, SOURCE_SHORT ("Khán Đài"), SOURCE_GROUP_ORDER, SOURCE_TOGGLE_LIST; streamsFromMatchCard doc link tu commentators cua khandaitv.
+- `pages/api/playlist/resolve.js`: them nhanh source=khandaitv (tran sap da -> lay link luc bam xem).
+- `pages/index.jsx`: mau/icon nhom Khan Dai tren web.
+- `scripts/source-domains.mjs`: go khandaitv khoi RETIRED_SOURCE_NAMES, khai bao nguon khandaitv (site, autoFix) de workflow Check Domains theo doi/tu sua domain.
+- `data/source-domains.txt`, `env.example`: them dong khandaitv=https://khandaia.one va khoi bien KHANDAITV_*.
+
+## Luu y
+- Da chay thu pipeline (service -> playerGet -> m3uPlaylist) bang esbuild + du lieu gia dung schema Khan Dai: tran live ra link .m3u8 dung group-title "Khán Đài", tran sap da ra link /api/playlist/resolve. CHUA test voi du lieu that (sandbox khong truy cap duoc khandaia.one).
+- Khan Dai bi Cloudflare chan HTTP thuong nen lay du lieu bang trinh duyet headless (doc window.__NUXT__). Neu log Generate Playlists bao "0 tran" cho [khandaitv], dong chan doan trong log se chi ro: ket Cloudflare, domain sai, hay site doi schema (khong con window.__NUXT__).
+- Khong xoa file nao. Nhip tao playlist giu nguyen 2 phut/chu ky.
+
+---
+
 # FIX SPORTLINKTV KHONG GHI DUOC LINK TRAN VAO PLAYLIST — 22/11/2026
 
 Loi: tran SportlinkTV tra ra sai form so voi cac nguon khac nen bi rot o playlistBuilder/m3uPlaylist.

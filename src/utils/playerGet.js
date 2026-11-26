@@ -62,7 +62,8 @@ const SOURCE_LABELS = {
   xoilac: 'Xoi Lac TV',
   xoigac: 'Xoi Gac TV',
   xoiche: 'Xoi Che TV',
-  sportlinktv: 'SportlinkTV'
+  sportlinktv: 'SportlinkTV',
+  khandaitv: 'Khan Dai TV'
 };
 
 const SOURCE_SHORT = {
@@ -76,7 +77,8 @@ const SOURCE_SHORT = {
   xoilac: 'Xôi Lạc',
   xoiche: 'Xôi Chè',
   xoigac: 'Xôi Gấc', // FIX (05/10/2026): tên đúng là "Xôi Gấc" (trước ghi nhầm "Xôi Gác") — đây là tên group-title trong file .m3u
-  sportlinktv: 'SportlinkTV'
+  sportlinktv: 'SportlinkTV',
+  khandaitv: 'Khán Đài'
 };
 
 // Thứ tự nhóm theo nguồn dùng chung cho danh sách trên trang quét lẫn file
@@ -89,7 +91,7 @@ const SOURCE_SHORT = {
 // FIX (27/09/2026 — theo yêu cầu, thêm Bông Lau TV): xem bonglau.service.js
 // — ĐÃ BÁO TRƯỚC nguồn này dùng CHUNG API/CDN/pool trận với chuoichientv
 // (chỉ khác domain/giao diện), người dùng vẫn muốn tách thành nguồn riêng.
-export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche', 'sportlinktv'];
+export const SOURCE_GROUP_ORDER = ['giovang', 'chuoichientv', 'phalang', 'gavang', 'saoke', 'gavang33', 'bonglau', 'xoilac', 'xoigac', 'xoiche', 'sportlinktv', 'khandaitv'];
 
 // Danh sách nguồn dùng để vẽ công tắc bật/tắt trên giao diện. Giữ đồng bộ
 // với SOURCE_GROUP_ORDER — mỗi nguồn 1 công tắc, người dùng tự chọn nguồn
@@ -135,7 +137,8 @@ export const SOURCE_TOGGLE_LIST = [
   { key: 'xoilac', label: 'Xôi Lạc' },
   { key: 'xoigac', label: 'Xôi Gấc' },
   { key: 'xoiche', label: 'Xôi Chè' },
-  { key: 'sportlinktv', label: 'SportlinkTV' }
+  { key: 'sportlinktv', label: 'SportlinkTV' },
+  { key: 'khandaitv', label: 'Khán Đài' }
 ];
 
 // Bump the key once so an old browser setting cannot hide every source after
@@ -413,7 +416,7 @@ export function streamsFromMatchCard(match) {
     return list.length ? list : null;
   }
 
-  if (match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche') return null;
+  if (match?.source !== 'chuoichientv' && match?.source !== 'phalang' && match?.source !== 'gavang' && match?.source !== 'saoke' && match?.source !== 'gavang33' && match?.source !== 'bonglau' && match?.source !== 'xoilac' && match?.source !== 'xoigac' && match?.source !== 'xoiche' && match?.source !== 'khandaitv') return null;
 
   const fromCommentators = (match.commentators || match.streamers || [])
     .filter((c) => c.streamUrl || c.link || c.m3u8Url)

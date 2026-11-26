@@ -16,6 +16,7 @@ import xoilacService from '@/src/services/xoilac.service';
 import xoigacService from '@/src/services/xoigac.service';
 import xoicheService from '@/src/services/xoiche.service';
 import sportlinktvService from '@/src/services/sportlinktv.service';
+import khandaitvService from '@/src/services/khandaitv.service';
 import { shouldDropMatch } from '@/src/utils/leagueFilter';
 import {
   isWithinNextHours,
@@ -80,7 +81,7 @@ const STREAM_RESOLVE_TIMEOUT_MS_BROWSER = 18000;
 // -> 4,5s không đủ (quá hạn là mất link, rơi về nhánh "chưa có link").
 // FIX (21/10/2026): xoilac trước đây rơi vào mốc mặc định 4,5s — nhánh dự phòng getStreamLinks() phải tải lại
 // trang chủ + trang trận + trang nhúng nên thường vượt 4,5s -> mất link ở chu kỳ đó. Cho 20s (≥ timeout trang nhúng).
-const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { gavang: 25000, xoigac: 15000, xoiche: 10000, xoilac: 20000, giovang: 45000 }; // giovang 45s (15/11/2026): bóng đá mở thêm trình duyệt bắt link thật
+const STREAM_RESOLVE_TIMEOUT_MS_BY_SOURCE = { gavang: 25000, xoigac: 15000, xoiche: 10000, xoilac: 20000, giovang: 45000, khandaitv: 18000 }; // giovang 45s (15/11/2026): bóng đá mở thêm trình duyệt bắt link thật
 const BROWSER_BASED_SOURCES = new Set(['giovang']);
 const STREAM_RESOLVE_CONCURRENCY = 12;
 // Riêng nguồn cần trình duyệt: giảm số tab mở song song — 12 tab Chrome
@@ -217,7 +218,7 @@ async function resolveWithinDeadline(match) {
 
 /** Mirror fetchLiveLists() from pages/index.jsx but calling services in-process. */
 async function fetchLiveLists() {
-  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive, sportlinktvLive] = await Promise.all([
+  const [giovangLive, chuoichientvLive, phalangLive, gavangLive, saokeLive, gavang33Live, bonglauLive, xoilacLive, xoigacLive, xoicheLive, sportlinktvLive, khandaitvLive] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('live'), 'giovang:live'),
     safe(chuoichientvService.getAllMatchesByTab('live'), 'chuoichientv:live'),
     safe(phalangService.getAllMatchesByTab('live'), 'phalang:live'),
@@ -228,7 +229,8 @@ async function fetchLiveLists() {
     safe(xoilacService.getAllMatchesByTab('live'), 'xoilac:live'),
     safe(xoigacService.getAllMatchesByTab('live', 'all', { prefetchIvs: true }), 'xoigac:live'),
     safe(xoicheService.getAllMatchesByTab('live'), 'xoiche:live'),
-    safe(sportlinktvService.getAllMatchesByTab('live'), 'sportlinktv:live')
+    safe(sportlinktvService.getAllMatchesByTab('live'), 'sportlinktv:live'),
+    safe(khandaitvService.getAllMatchesByTab('live'), 'khandaitv:live')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -260,6 +262,7 @@ async function fetchLiveLists() {
   pushListNoFilter(xoigacLive, 'xoigac');
   pushListNoFilter(xoicheLive, 'xoiche');
   pushListNoFilter(sportlinktvLive, 'sportlinktv');
+  pushListNoFilter(khandaitvLive, 'khandaitv');
 
   return tagged;
 }
@@ -272,7 +275,7 @@ async function fetchLiveLists() {
  * moment the player actually opens the channel.
  */
 async function fetchUpcomingLists() {
-  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming, sportlinktvUpcoming] = await Promise.all([
+  const [giovangUpcoming, chuoichientvUpcoming, phalangUpcoming, gavangUpcoming, saokeUpcoming, gavang33Upcoming, bonglauUpcoming, xoilacUpcoming, xoigacUpcoming, xoicheUpcoming, sportlinktvUpcoming, khandaitvUpcoming] = await Promise.all([
     safe(giovangService.getAllMatchesByTab('upcoming'), 'giovang:upcoming'),
     safe(chuoichientvService.getAllMatchesByTab('upcoming'), 'chuoichientv:upcoming'),
     safe(phalangService.getAllMatchesByTab('upcoming'), 'phalang:upcoming'),
@@ -283,7 +286,8 @@ async function fetchUpcomingLists() {
     safe(xoilacService.getAllMatchesByTab('upcoming'), 'xoilac:upcoming'),
     safe(xoigacService.getAllMatchesByTab('upcoming'), 'xoigac:upcoming'),
     safe(xoicheService.getAllMatchesByTab('upcoming'), 'xoiche:upcoming'),
-    safe(sportlinktvService.getAllMatchesByTab('upcoming'), 'sportlinktv:upcoming')
+    safe(sportlinktvService.getAllMatchesByTab('upcoming'), 'sportlinktv:upcoming'),
+    safe(khandaitvService.getAllMatchesByTab('upcoming'), 'khandaitv:upcoming')
   ]);
 
   const normalize = (res) => (Array.isArray(res) ? res : (res?.matches || res?.data || []));
@@ -345,6 +349,7 @@ async function fetchUpcomingLists() {
   pushListNoFilter(xoigacUpcoming, 'xoigac');
   pushListNoFilter(xoicheUpcoming, 'xoiche');
   pushListNoFilter(sportlinktvUpcoming, 'sportlinktv');
+  pushListNoFilter(khandaitvUpcoming, 'khandaitv');
 
   return tagged;
 }
@@ -405,6 +410,9 @@ async function resolveStreams(match) {
       } else if (source === 'xoiche') {
         if (!matchId) return [];
         raw = await xoicheService.getStreamLinks(matchId);
+      } else if (source === 'khandaitv') {
+        if (!matchId) return [];
+        raw = await khandaitvService.getStreamLinks(matchId);
       } else if (source === 'giovang') {
         if (!liveUrl && !matchId) return [];
         const detail = await giovangService.getMatchDetail(liveUrl || matchId);

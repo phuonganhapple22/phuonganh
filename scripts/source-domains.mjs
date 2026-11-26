@@ -47,6 +47,9 @@ export const SOURCES = [
     discoverBudgetMs: 240000 },
   { key: 'xoigac', brand: 'xoigac', label: 'Xôi Gấc', role: 'site', envVar: 'XOIGAC_DOMAIN', defaultUrl: 'https://xoigac.live', keywords: ['xoigac', 'xôi gấc', 'xôi gác', 'xoi gac'], candidates: ['https://xoigac.top', 'https://xoigac.live'], autoFix: true },
   { key: 'xoiche', brand: 'xoiche', label: 'Xôi Chè', role: 'site', envVar: 'XOICHE_DOMAIN', defaultUrl: 'https://xoiche.live', keywords: ['xoiche', 'xôi chè', 'xoi che'], candidates: ['https://xoiche.live', 'https://xoiche1.live', 'https://xoiche2.live'], autoFix: true },
+  // Khán Đài TV (khandaia.one — giao diện NemBienTV): domain xoay khandai3.link -> khandai2.com -> khandaia.one.
+  // Bị Cloudflare chặn HTTP thường nhưng khandaitv.service.js có trình duyệt headless dự phòng nên KHÔNG đặt plainHttp.
+  { key: 'khandaitv', brand: 'khandai', label: 'Khán Đài', role: 'site', envVar: 'KHANDAITV_DOMAIN', defaultUrl: 'https://khandaia.one', keywords: ['khandai', 'khán đài', 'khan dai', 'nembien', 'ném biên'], candidates: ['https://khandaia.one', 'https://khandai2.com', 'https://khandai3.link'], autoFix: true },
   { key: 'phalang', brand: 'phalang', label: 'Phá Làng', role: 'site', envVar: 'PHALANG_DOMAIN', defaultUrl: 'https://phalang.live', keywords: ['phalang', 'phá làng', 'pha lang'], autoFix: true },
   // Chuối Chiên: code TỰ DÒ liveNN.chuoichientv.me; biến *_WATCH_DOMAIN sẽ ÉP cố định 1 domain
   // nên script KHÔNG tự ghi biến này (chỉ báo cáo).
@@ -70,7 +73,8 @@ import fs from 'node:fs';
 
 const norm = (s) => String(s || '').trim().toLowerCase();
 // Tên nguồn đã gỡ khỏi dự án (không còn trong SOURCES) — thêm vào đây khi gỡ nguồn khác.
-const RETIRED_SOURCE_NAMES = new Set(['khandaitv', 'khandai', 'khandaitv-player', 'khandaitv-api', 'khandaitv-domain', 'khandaitv-base-url', 'khandai-domain']);
+// (26/11/2026: Khán Đài đã được thêm lại làm nguồn 'khandaitv' -> không còn trong danh sách gỡ.)
+const RETIRED_SOURCE_NAMES = new Set([]);
 const stripSlash = (u) => String(u || '').trim().replace(/\/+$/, '');
 
 // tên (key ngắn / tên biến, không phân biệt hoa thường, "_" ~ "-") -> nguồn

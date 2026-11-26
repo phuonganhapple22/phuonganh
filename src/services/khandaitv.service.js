@@ -30,7 +30,10 @@ import { fetchPageGlobal } from '@/src/utils/browserFetch';
 // hết hạn (RAW_CACHE_TTL_MS), sau đó MỌI hàm bên dưới (getMatchesByTab,
 // getCounts, findRawMatch...) đều lọc lại từ danh sách đã lấy sẵn trong bộ
 // nhớ, thay vì tự gọi mạng riêng như các nguồn khác.
-const KHANDAITV_BASE_URL = process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandai3.link';
+// FIX (26/11/2026 — theo yêu cầu "thêm nguồn Khán Đài"): domain hiện tại là https://khandaia.one (giao diện NemBienTV,
+// đổi từ khandai3.link -> khandai2.com -> khandaia.one, xem data/source-domains.json). Đổi tiếp bằng KHANDAITV_DOMAIN /
+// khandaitv=... trong SOURCE_DOMAINS, không cần sửa code.
+const KHANDAITV_BASE_URL = process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandaia.one';
 
 // Domain Khán Đài chỉ dùng ĐÚNG 1 giá trị khai báo (khandaitv=... trong SOURCE_DOMAINS, hoặc KHANDAITV_BASE_URL).
 const KHANDAITV_CANDIDATES = [KHANDAITV_BASE_URL.replace(/\/+$/, '')];

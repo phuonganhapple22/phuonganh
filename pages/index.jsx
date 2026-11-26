@@ -327,6 +327,7 @@ const SOURCE_META = {
   // bỏ khỏi pipeline (domain chết) nên không còn hợp lý làm fallback nữa.
   // Thêm 1 mục "default" trung tính riêng cho việc này.
   sportlinktv: { color: '#00E5B0', icon: '⚡' },
+  khandaitv: { color: '#FF5A5F', icon: '🏟️' },
   default: { color: '#9CA3AF', icon: '📺' }
 };
 
