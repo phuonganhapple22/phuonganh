@@ -233,8 +233,9 @@ class KhanDaiTvService {
         const withStream = out.filter((m) => m.streams.length).length;
         console.log(`[khandaitv] ${label}: ${out.length} trận, live=${out.filter((m) => m.isLive).length}, có link phát sẵn=${withStream}, live-feed=${r.live ? 'có' : 'KHÔNG'}, kd_source=${(r.kd || []).length}`);
         const nowMs = Date.now();
-        for (const m of out.filter((x) => x.startMs && x.startMs <= nowMs && !x.isFinished)) {
-          console.log(`[khandaitv] ĐÃ ĐÁ: ${m.sport} "${m.home} - ${m.away}" bắt đầu ${Math.round((nowMs - m.startMs) / 60000)}p trước | hasLiveSource=${m.hasLiveSource} | link=${m.streams.length} | isLive=${m.isLive}`);
+        // Chỉ in chi tiết cho trận ĐÃ ĐÁ nhưng CHƯA lên live (bất thường); trận live bình thường thì không in.
+        for (const m of out.filter((x) => x.startMs && x.startMs <= nowMs && !x.isFinished && !x.isLive)) {
+          console.log(`[khandaitv] CHƯA LÊN LIVE: ${m.sport} "${m.home} - ${m.away}" bắt đầu ${Math.round((nowMs - m.startMs) / 60000)}p trước | hasLiveSource=${m.hasLiveSource} | link=${m.streams.length} | isLive=${m.isLive}`);
         }
         if (r.live && !withStream) console.log(`[khandaitv] mẫu cms-match-live: ${JSON.stringify(r.live).slice(0, 600)}`);
       }
