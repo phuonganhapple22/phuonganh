@@ -1,5 +1,5 @@
 import { buildMatchSlug, slugifyVi } from '@/src/utils/slug';
-import { fetchPageGlobal } from '@/src/utils/browserFetch';
+import { fetchPageGlobal, captureAllJsonViaBrowser } from '@/src/utils/browserFetch';
 
 // KhanDaiTV (tên gọi khác: "Khán Đài TV") — đã xác nhận qua bản HTML lấy từ
 // site (window.__NUXT__/__NUXT_DATA__, 08/09/2026): cùng schema trận đấu
@@ -90,6 +90,73 @@ function collectRawMatches(node, seen, out, depth = 0) {
   }
 }
 
+
+/** Mảng object đầu tiên trong 1 cây JSON (chỉ dùng để chẩn đoán khi schema lạ). */
+function findFirstObjectArray(node, depth = 0) {
+  if (!node || depth > 4) return null;
+  if (Array.isArray(node)) {
+    if (node.length && node[0] && typeof node[0] === 'object' && !Array.isArray(node[0])) return node;
+    for (const item of node) {
+      const r = findFirstObjectArray(item, depth + 1);
+      if (r) return r;
+    }
+    return null;
+  }
+  if (typeof node === 'object') {
+    for (const key of Object.keys(node)) {
+      const r = findFirstObjectArray(node[key], depth + 1);
+      if (r) return r;
+    }
+  }
+  return null;
+}
+
+/**
+ * FIX (26/11/2026 — log thật: \"khandaia.one: 0 trận (HTTP 200) ... không thấy window.__NUXT__ có trận\"): domain mới
+ * khandaia.one (giao diện NemBienTV) KHÔNG còn nhúng dữ liệu trận vào window.__NUXT__ — danh sách trận được trang tự
+ * tải sau bằng fetch/XHR (các tab Trực tiếp/Hôm nay/Ngày mai). Cách mới: mở trang bằng trình duyệt thật rồi BẮT mọi
+ * response JSON có chứa object trận (nhận dạng theo HÌNH DẠNG dữ liệu, không phụ thuộc domain/đường dẫn API nên API
+ * đổi chỗ vẫn bắt được), gom tất cả các response (mỗi tab 1 API). Cách cũ (window.__NUXT__) vẫn giữ làm dự phòng.
+ * Khi bắt được JSON nhưng KHÁC schema, log in keys + 1 object mẫu để biết đúng chỗ cần sửa normalizeMatch().
+ */
+async function captureMatchesFromNetwork(baseUrl, label) {
+  let sample = null;
+  const predicate = (body, u) => {
+    const tmp = [];
+    collectRawMatches(body, new Set(), tmp);
+    if (tmp.length) return true;
+    if (!sample) {
+      const arr = findFirstObjectArray(body);
+      if (arr) sample = { url: u, keys: Object.keys(arr[0]).slice(0, 30), first: JSON.stringify(arr[0]).slice(0, 700) };
+    }
+    return false;
+  };
+  try {
+    const { found, seen, navStatus, title } = await captureAllJsonViaBrowser(`${baseUrl}/`, predicate, {
+      timeoutMs: 35000,
+      captureWaitMs: 18000,
+      settleMs: 4000,
+      // Đoán đường dẫn API (chỉ dùng nếu trang không tự gọi gì) — API cũ của khandai3.link.
+      pageFetchUrls: [`${baseUrl}/api/matches/?ordering=smart&page_size=100`, `${baseUrl}/api/matches/`]
+    });
+    const out = [];
+    const dedupe = new Set();
+    for (const f of found) collectRawMatches(f.body, dedupe, out);
+    if (out.length) {
+      console.log(`[khandaitv] ${label}: bắt được ${out.length} trận từ ${found.length} API (${found.map((f) => f.url.slice(0, 90)).join(' | ')})`);
+      return out;
+    }
+    console.error(
+      `[khandaitv] ${label}: không bắt được API trận (HTTP ${navStatus || 'n/a'}, title="${title}"). ` +
+      `Request fetch/XHR trang đã gọi: ${seen.slice(0, 15).join(' | ') || '(không có)'}` +
+      (sample ? ` — CÓ JSON nhưng KHÁC schema: ${sample.url} keys=[${sample.keys.join(',')}] mẫu=${sample.first}` : '')
+    );
+  } catch (err) {
+    console.error(`[khandaitv] ${label}: lỗi khi bắt API qua trình duyệt: ${err.message}`);
+  }
+  return [];
+}
+
 let rawMatchesCache = { data: null, fetchedAt: 0, pending: null };
 const RAW_CACHE_TTL_MS = 20 * 1000; // đủ nhanh cho tỉ số live, đủ lâu để đỡ mở trình duyệt liên tục
 
@@ -152,9 +219,13 @@ class KhanDaiTvService {
     // ra rỗng — để log lần sau chỉ thẳng ĐÚNG nguyên nhân (còn kẹt Cloudflare
     // hay domain đã đổi/chết) thay vì chỉ thấy mỗi "0 trận".
     const attemptFetch = async (attemptLabel, baseUrl) => {
+      // Cách 1 (domain mới khandaia.one): bắt JSON API trang tự gọi. Cách 2 (bên dưới): đọc window.__NUXT__ như cũ.
+      const captured = await captureMatchesFromNetwork(baseUrl, attemptLabel);
+      if (captured.length) return captured;
+
       const { data, status, diagnostic } = await fetchPageGlobal(`${baseUrl}/`, {
         evalExpr: 'window.__NUXT__',
-        timeoutMs: 28000,
+        timeoutMs: 12000,
         bailOnTitle: /^(?!.*(trực tiếp|xem bóng)).*(cá cược|nhà cái|casino|nổ hũ|đá gà)/i, // không bail nếu tiêu đề nói về xem trực tiếp // FIX (08/10/2026): trang cá cược mạo danh -> thôi chờ
         autoUserAgent: true // FIX (06/10/2026): UA thật của Chromium đang chạy, không dùng UA cứng Chrome/120 lệch phiên bản
       });

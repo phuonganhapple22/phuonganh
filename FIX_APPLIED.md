@@ -1,3 +1,21 @@
+# KHAN DAI: 0 TRAN VI khandaia.one KHONG CON window.__NUXT__ — 26/11/2026 (lan 2)
+
+Log: `[khandaitv] lan 1 (https://khandaia.one): 0 tran (HTTP 200) ... khong thay window.__NUXT__ co tran`.
+
+## Nguyen nhan
+- khandaia.one (giao dien NemBienTV) khong nhung du lieu tran vao window.__NUXT__ nua; danh sach tran do trang tu tai sau bang fetch/XHR (cac tab Truc tiep / Hom nay / Ngay mai) nen cach doc cu luon ra rong.
+
+## Da sua (de len git, ghi de) — co ban sao trong folder `changed-files/`
+- `src/utils/browserFetch.js`: them `captureAllJsonViaBrowser()` — mo trang bang trinh duyet that, GOM TAT CA response JSON khop predicate (khong dung o cai dau tien), dung khi het gio hoac sau `settleMs` khong co them cai moi; neu trang khong tu goi thi thu fetch() trong trang toi cac URL doan. Khong doi cac ham cu.
+- `src/services/khandaitv.service.js`: cach 1 = bat JSON API trang tu goi (nhan dang theo HINH DANG du lieu: object co id + home_team_name + away_team_name, khong phu thuoc domain/duong dan API); cach 2 = doc window.__NUXT__ nhu cu (rut ngan 28s -> 12s, giu lam du phong). Neu bat duoc JSON nhung KHAC schema thi log in `keys=[...]` + 1 object mau + danh sach request da goi de biet dung cho can sua.
+
+## Luu y
+- Da test bang trinh duyet gia lap: (1) 2 API dung schema -> gom du tran live + sap da, link .m3u8 dung; (2) API schema la -> log chan doan day du. CHUA test voi khandaia.one that (sandbox khong truy cap duoc).
+- Neu log van ra "CO JSON nhung KHAC schema", gui lai dong log do (keys + mau) de sua normalizeMatch() cho dung schema NemBienTV.
+- Khong xoa file nao; nhip tao playlist giu 2 phut/chu ky.
+
+---
+
 # THEM NGUON KHAN DAI (khandaia.one) — 26/11/2026
 
 Yeu cau: them nguon Khan Dai (https://khandaia.one/, giao dien NemBienTV) vao du an nhu 1 nguon rieng.

@@ -610,6 +610,77 @@ async function captureJsonViaBrowser(url, predicate, opts = {}) {
 }
 
 /**
+ * (26/11/2026 — Khán Đài/NemBienTV) Giống captureJsonViaBrowser nhưng GOM TẤT CẢ response JSON khớp predicate
+ * (không dừng ở cái đầu tiên): trang có nhiều tab (Trực tiếp / Hôm nay / Ngày mai...) thường gọi mỗi tab 1 API riêng.
+ * Dừng khi hết `timeoutMs`/`captureWaitMs`, hoặc khi đã có >=1 kết quả và `settleMs` ms liền không có thêm cái mới.
+ * Nếu trang không tự gọi, thử fetch() NGAY TRONG TRANG tới các URL `pageFetchUrls` (cùng Origin/cookie/TLS Chrome thật).
+ *
+ * @returns {Promise<{ found: {url:string, body:any}[], seen: string[], navStatus: number, title: string }>}
+ */
+async function captureAllJsonViaBrowser(url, predicate, opts = {}) {
+  const { timeoutMs = 40000, captureWaitMs = 15000, settleMs = 4000, pageFetchUrls = [] } = opts;
+  const browser = opts.browser || (await getBrowser());
+  const page = await browser.newPage();
+  const seen = [];
+  const found = [];
+  let lastFoundAt = 0;
+  let navStatus = 0;
+  const sleepMs = (ms) => new Promise((r) => setTimeout(r, ms));
+  try {
+    page.on('response', async (response) => {
+      try {
+        const type = response.request().resourceType();
+        if (type !== 'xhr' && type !== 'fetch') return;
+        const u = response.url();
+        seen.push(`${response.status()} ${u.slice(0, 140)}`);
+        let body;
+        try { body = JSON.parse(await response.text()); } catch { return; }
+        if (predicate(body, u)) {
+          found.push({ url: u, body });
+          lastFoundAt = Date.now();
+        }
+      } catch {
+        // response không đọc được — bỏ qua
+      }
+    });
+
+    const startedAt = Date.now();
+    try {
+      const resp = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+      navStatus = resp?.status() || 0;
+    } catch {
+      // goto lỗi/timeout (hay gặp khi Cloudflare tự chuyển trang) — vẫn chờ API bên dưới
+    }
+    const captureDeadline = Math.min(startedAt + timeoutMs, Date.now() + captureWaitMs);
+    while (Date.now() < captureDeadline) {
+      if (found.length && Date.now() - lastFoundAt >= settleMs) break;
+      await sleepMs(400);
+    }
+
+    if (!found.length && pageFetchUrls.length) {
+      for (const target of pageFetchUrls) {
+        try {
+          const r = await page.evaluate(async (t) => {
+            const res = await fetch(t, { credentials: 'omit', headers: { Accept: 'application/json' } });
+            return { status: res.status, text: await res.text() };
+          }, target);
+          seen.push(`${r.status} (fetch trong trang) ${String(target).slice(0, 140)}`);
+          let body;
+          try { body = JSON.parse(r.text); } catch { continue; }
+          if (predicate(body, target)) { found.push({ url: target, body }); break; }
+        } catch (e) {
+          seen.push(`lỗi fetch trong trang ${String(target).slice(0, 100)}: ${String(e?.message || e).slice(0, 80)}`);
+        }
+      }
+    }
+    const title = await page.title().catch(() => '');
+    return { found, seen, navStatus, title };
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
+/**
  * Mở 1 trang (thường là trang embed player) bằng trình duyệt thật và BẮT mọi request khớp `matchUrl` (mặc định .m3u8)
  * mà player tự gọi — kể cả trong iframe lồng nhau. Khác fetchFirstRequestHeaders: có thể gửi `referer` khi điều hướng
  * (nhiều trang embed chỉ chạy khi được nhúng từ site mẹ), tự bấm Play/giữa màn hình LẶP LẠI mỗi vài giây (player
@@ -697,6 +768,7 @@ async function captureM3u8ViaBrowser(url, opts = {}) {
 module.exports = {
   captureM3u8ViaBrowser,
   captureJsonViaBrowser,
+  captureAllJsonViaBrowser,
   fetchRenderedHtml,
   fetchApiViaBrowser,
   fetchPageGlobal,
