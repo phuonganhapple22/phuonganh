@@ -1,15 +1,15 @@
-# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-11-21T13:58:53.653Z
+# Domain các nguồn hiện tại — workflow "Check Domains" tự cập nhật lúc 2026-11-26T08:46:03.399Z
 # Dán nguyên nội dung này vào biến GitHub SOURCE_DOMAINS để khôi phục/khai báo lại. Lịch sử: data/source-domains.json
-giovang=https://giovang.gold
-gavang=https://gavangz.link
+giovang=https://giovang.baby
+gavang=https://gavang1.org
 gavang33=https://gavang33.me
-saoke=https://vip6.saoketv40.xyz
+saoke=https://vip7.saoketv40.xyz
 bonglau=https://lau06.bonglautv1.org
-xoilac=https://xoilacvck.tv
+xoilac=https://xoilacvcl.tv
 xoigac=https://xoigac.top
 xoiche=https://xoiche.live
-phalang=https://phalang2.live
 khandaitv=https://khandaia.one
+phalang=https://phalang.com
 # chuoichientv=https://live05.chuoichientv.me
 chuoichientv-player=https://live.chuoichien.tv
 saoke-player=https://sk.mediastation.live
@@ -21,3 +21,4 @@ phalang-api=https://api.plapi202624081158.com
 chuoichientv-api=https://api-v2.chuoichientv.net/v2
 xoilac-api=https://fb-api.sportliveapiz.com
 bonglau-api=https://api-v2.chuoichientv.net/v2
+sportlinktv-data=https://sonujson-v6.pages.dev/Data/events/football.json
