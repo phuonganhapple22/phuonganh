@@ -1,180 +1,182 @@
-import { buildMatchSlug, slugifyVi } from '@/src/utils/slug';
-import { fetchPageGlobal, captureAllJsonViaBrowser } from '@/src/utils/browserFetch';
+import { buildMatchSlug } from '@/src/utils/slug';
+import { getBrowser, captureM3u8ViaBrowser } from '@/src/utils/browserFetch';
+import {
+  buildRawMatches,
+  mapHrefsToMatchIds,
+  collectById,
+  canonicalSport,
+  slugVi as slugifyVi,
+  SPORT_INFO
+} from '@/src/utils/khandaiCms';
 
-// KhanDaiTV (tên gọi khác: "Khán Đài TV") — đã xác nhận qua bản HTML lấy từ
-// site (window.__NUXT__/__NUXT_DATA__, 08/09/2026): cùng schema trận đấu
-// (id, sport, home_team_name, tournament_name, commentators[].stream_url...)
-// với nguồn Pháo Hoa đã có (xem phaohoa.service.js) — tức CÙNG 1 backend,
-// khác domain/skin. Theo yêu cầu, vẫn thêm thành 1 nguồn RIÊNG trên giao
-// diện (chấp nhận có thể trùng trận với Pháo Hoa vì chung backend).
+// KhanDaiTV (giao diện NemBienTV).
 //
-// FIX (09/09/2026 — theo yêu cầu "đừng bắt chước domain Pháo Hoa"): domain
-// THẬT, ĐỘC LẬP do người dùng cung cấp: https://khandai3.link.
-//
-// FIX (10/09/2026 — QUAN TRỌNG, đổi hẳn cách lấy dữ liệu): domain này được
-// Cloudflare bảo vệ bằng "Just a moment..." (JS challenge) cho TOÀN BỘ
-// domain (đã tự kiểm tra: cả trang chủ lẫn /api/matches/ đều bị chặn 403
-// như nhau khi gọi bằng axios/HTTP thường từ server) — KHÔNG phải chặn
-// riêng API. Gọi thẳng /api/matches/ bằng axios (kiểu phaohoa.service.js)
-// KHÔNG dùng được ở nguồn này. Chuyển sang dùng trình duyệt Chromium
-// headless thật (đã có sẵn cho nguồn Giờ Vàng, xem src/utils/browserFetch)
-// để mở trang chủ — trình duyệt thật có thể vượt qua challenge vì nó chạy
-// đúng JS mà Cloudflare yêu cầu (không đảm bảo 100%, tuỳ mức độ chặn, nhưng
-// là cách duy nhất còn khả thi). Sau khi trang tải xong, đọc thẳng
-// window.__NUXT__ (dữ liệu đã được chính app tự giải mã để chạy, khỏi cần
-// tự viết lại bộ giải mã định dạng "devalue" mà Nuxt dùng để nhúng dữ liệu
-// vào HTML).
-//
-// Vì mở trình duyệt tốn vài giây (không thể làm mỗi query như axios), toàn
-// bộ trận (mọi môn, mọi trạng thái) được lấy 1 LẦN duy nhất mỗi khi cache
-// hết hạn (RAW_CACHE_TTL_MS), sau đó MỌI hàm bên dưới (getMatchesByTab,
-// getCounts, findRawMatch...) đều lọc lại từ danh sách đã lấy sẵn trong bộ
-// nhớ, thay vì tự gọi mạng riêng như các nguồn khác.
-// FIX (26/11/2026 — theo yêu cầu "thêm nguồn Khán Đài"): domain hiện tại là https://khandaia.one (giao diện NemBienTV,
-// đổi từ khandai3.link -> khandai2.com -> khandaia.one, xem data/source-domains.json). Đổi tiếp bằng KHANDAITV_DOMAIN /
-// khandaitv=... trong SOURCE_DOMAINS, không cần sửa code.
+// FIX (26/11/2026 — "không bắt được API trận (HTTP 200, title=NemBienTV...), 0 trận"):
+// khandaia.one ĐÃ ĐỔI HẲN schema — không còn Nuxt (window.__NUXT__) và /api/matches/ trả 404.
+// Dữ liệu mới (xem src/utils/khandaiCms.js):
+//   /cms-schedule.json   : lịch trận [{matchId, sport, league, home, away, homeLogo, awayLogo,
+//                          timestamp(giây), hot_priority, early_stream, hasLiveSource, commentators[]}]
+//                          (cũng được nhúng sẵn trong HTML: <script id="cms-home-matches">)
+//   /api/cms-match-live  : các trận đang có nguồn phát (+ link BLV khi có)
+// Cách lấy: mở trang chủ bằng Chromium (vượt Cloudflare như cũ), bắt 2 response trên, nếu trang chưa tự gọi
+// thì fetch() NGAY TRONG TRANG, cuối cùng đọc <script id="cms-home-matches">. Đồng thời gom href các thẻ <a>
+// chứa matchId để biết URL trang trận THẬT (không phải đoán pattern) — dùng khi cần bắt m3u8 từ trang trận.
+// Giữ nguyên toàn bộ interface cũ (getAllMatchesByTab/getMatchesByTab/getCounts/getStreamLinks/...).
 const KHANDAITV_BASE_URL = process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandaia.one';
-
-// Domain Khán Đài chỉ dùng ĐÚNG 1 giá trị khai báo (khandaitv=... trong SOURCE_DOMAINS, hoặc KHANDAITV_BASE_URL).
 const KHANDAITV_CANDIDATES = [KHANDAITV_BASE_URL.replace(/\/+$/, '')];
 const activeBaseUrl = () => KHANDAITV_CANDIDATES[0];
 
-const SPORT_ID_MAP = {
-  football: 41,
-  'bong-chuyen': 43,
-  volleyball: 43,
-  billiards: 44,
-  'cau-long': 45,
-  esports: 46,
-  'bong-ro': 47,
-  basketball: 47,
-  tennis: 48,
-  'bong-ban': 49,
-  boxing: 50
+// Tên môn (tham số cũ của các nơi gọi) -> slug môn chuẩn của schema mới. null = tất cả.
+const SPORT_FILTER = {
+  all: null,
+  football: 'football',
+  basketball: 'basketball', 'bong-ro': 'basketball',
+  volleyball: 'volleyball', 'bong-chuyen': 'volleyball',
+  billiards: 'billiards',
+  'cau-long': 'badminton', badminton: 'badminton',
+  esports: 'esports',
+  tennis: 'tennis',
+  'bong-ban': 'table-tennis', 'table-tennis': 'table-tennis',
+  boxing: 'boxing'
 };
-
-// Trận đấu trong payload luôn có 2 khoá này — dùng để nhận diện 1 object
-// bất kỳ trong cây dữ liệu window.__NUXT__ có phải là 1 trận đấu hay không,
-// KHÔNG cần biết trước tên khoá cha (vd "catalog"/"matches"/"live"...) mà
-// app này dùng để chứa danh sách trận — mỗi site Nuxt có thể đặt tên khác
-// nhau, nhưng bản thân object trận đấu thì luôn có các trường này (đã xác
-// nhận qua JSON thật từ /api/matches/ do người dùng gửi).
-function looksLikeRawMatch(obj) {
-  return !!obj
-    && typeof obj === 'object'
-    && !Array.isArray(obj)
-    && 'id' in obj
-    && 'home_team_name' in obj
-    && 'away_team_name' in obj;
-}
-
-function collectRawMatches(node, seen, out, depth = 0) {
-  if (!node || depth > 8) return;
-  if (Array.isArray(node)) {
-    for (const item of node) {
-      if (looksLikeRawMatch(item)) {
-        if (!seen.has(item.id)) {
-          seen.add(item.id);
-          out.push(item);
-        }
-      } else if (item && typeof item === 'object') {
-        collectRawMatches(item, seen, out, depth + 1);
-      }
-    }
-    return;
-  }
-  if (typeof node === 'object') {
-    for (const key of Object.keys(node)) {
-      collectRawMatches(node[key], seen, out, depth + 1);
-    }
-  }
-}
-
-
-/** Mảng object đầu tiên trong 1 cây JSON (chỉ dùng để chẩn đoán khi schema lạ). */
-function findFirstObjectArray(node, depth = 0) {
-  if (!node || depth > 4) return null;
-  if (Array.isArray(node)) {
-    if (node.length && node[0] && typeof node[0] === 'object' && !Array.isArray(node[0])) return node;
-    for (const item of node) {
-      const r = findFirstObjectArray(item, depth + 1);
-      if (r) return r;
-    }
-    return null;
-  }
-  if (typeof node === 'object') {
-    for (const key of Object.keys(node)) {
-      const r = findFirstObjectArray(node[key], depth + 1);
-      if (r) return r;
-    }
-  }
-  return null;
-}
-
-/**
- * FIX (26/11/2026 — log thật: \"khandaia.one: 0 trận (HTTP 200) ... không thấy window.__NUXT__ có trận\"): domain mới
- * khandaia.one (giao diện NemBienTV) KHÔNG còn nhúng dữ liệu trận vào window.__NUXT__ — danh sách trận được trang tự
- * tải sau bằng fetch/XHR (các tab Trực tiếp/Hôm nay/Ngày mai). Cách mới: mở trang bằng trình duyệt thật rồi BẮT mọi
- * response JSON có chứa object trận (nhận dạng theo HÌNH DẠNG dữ liệu, không phụ thuộc domain/đường dẫn API nên API
- * đổi chỗ vẫn bắt được), gom tất cả các response (mỗi tab 1 API). Cách cũ (window.__NUXT__) vẫn giữ làm dự phòng.
- * Khi bắt được JSON nhưng KHÁC schema, log in keys + 1 object mẫu để biết đúng chỗ cần sửa normalizeMatch().
- */
-async function captureMatchesFromNetwork(baseUrl, label) {
-  let sample = null;
-  const predicate = (body, u) => {
-    const tmp = [];
-    collectRawMatches(body, new Set(), tmp);
-    if (tmp.length) return true;
-    if (!sample) {
-      const arr = findFirstObjectArray(body);
-      if (arr) sample = { url: u, keys: Object.keys(arr[0]).slice(0, 30), first: JSON.stringify(arr[0]).slice(0, 700) };
-    }
-    return false;
-  };
-  try {
-    const { found, seen, navStatus, title } = await captureAllJsonViaBrowser(`${baseUrl}/`, predicate, {
-      timeoutMs: 35000,
-      captureWaitMs: 18000,
-      settleMs: 4000,
-      // Đoán đường dẫn API (chỉ dùng nếu trang không tự gọi gì) — API cũ của khandai3.link.
-      pageFetchUrls: [`${baseUrl}/api/matches/?ordering=smart&page_size=100`, `${baseUrl}/api/matches/`]
-    });
-    const out = [];
-    const dedupe = new Set();
-    for (const f of found) collectRawMatches(f.body, dedupe, out);
-    if (out.length) {
-      console.log(`[khandaitv] ${label}: bắt được ${out.length} trận từ ${found.length} API (${found.map((f) => f.url.slice(0, 90)).join(' | ')})`);
-      return out;
-    }
-    console.error(
-      `[khandaitv] ${label}: không bắt được API trận (HTTP ${navStatus || 'n/a'}, title="${title}"). ` +
-      `Request fetch/XHR trang đã gọi: ${seen.slice(0, 15).join(' | ') || '(không có)'}` +
-      (sample ? ` — CÓ JSON nhưng KHÁC schema: ${sample.url} keys=[${sample.keys.join(',')}] mẫu=${sample.first}` : '')
-    );
-  } catch (err) {
-    console.error(`[khandaitv] ${label}: lỗi khi bắt API qua trình duyệt: ${err.message}`);
-  }
-  return [];
-}
+const sportKey = (v) => (v in SPORT_FILTER ? SPORT_FILTER[v] : 'football');
 
 let rawMatchesCache = { data: null, fetchedAt: 0, pending: null };
-const RAW_CACHE_TTL_MS = 20 * 1000; // đủ nhanh cho tỉ số live, đủ lâu để đỡ mở trình duyệt liên tục
-
-// FIX (02/10/2026 — "cứ quét ra 0 trận rồi lại quét ra bình thường, lặp đi lặp lại"):
-// trình duyệt headless vượt Cloudflare KHÔNG chắc 100% mỗi lần (xem ghi chú
-// bên dưới) — có lượt kẹt ở trang "Just a moment..." nên ra 0 trận, lượt sau
-// lại qua được. Lỗi gốc: lượt rỗng đó vẫn bị LƯU vào cache như một kết quả hợp
-// lệ và GHI ĐÈ dữ liệu tốt vừa lấy được -> workflow quét mỗi 2 phút sinh ra
-// playlist 0 trận (mọi kênh Khán Đài biến mất khỏi VLC/app) rồi lại đầy lại.
-// Cách sửa: nhớ riêng "lần quét tốt gần nhất" (lastGood); lượt nào ra rỗng/lỗi
-// thì DÙNG LẠI dữ liệu đó thay vì trả rỗng, tối đa STALE_MAX_MS (mặc định 15
-// phút, đổi bằng env KHANDAITV_STALE_MAX_MS) — quá hạn mà vẫn rỗng mới thừa
-// nhận là hết trận/lỗi thật để không giữ dữ liệu cũ mãi.
+const RAW_CACHE_TTL_MS = 20 * 1000;
 let lastGood = { data: null, at: 0 };
 const STALE_MAX_MS = (() => {
   const raw = String(process.env.KHANDAITV_STALE_MAX_MS ?? '').trim();
   return raw !== '' && Number.isFinite(Number(raw)) && Number(raw) >= 0 ? Number(raw) : 15 * 60 * 1000;
 })();
+
+const resolvedCache = new Map();
+const KD_MAX_MATCHES = Number(process.env.KHANDAITV_KD_MAX || 60); // tối đa số trận hỏi streamUrl mỗi lượt quét
+const KD_CONCURRENCY = 5;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Mở trang chủ bằng Chromium thật và lấy: lịch trận, feed live, danh sách href, tiêu đề/chẩn đoán.
+ */
+async function scrapeSite(baseUrl) {
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  const got = { schedule: null, live: null };
+  const seen = [];
+  let status = 0;
+  let gotoError = '';
+  try {
+    try {
+      const real = await browser.userAgent();
+      await page.setUserAgent(String(real).replace(/HeadlessChrome/i, 'Chrome'));
+    } catch { /* dùng UA mặc định */ }
+    await page.setExtraHTTPHeaders({ 'Accept-Language': 'vi-VN,vi;q=0.9,en-US;q=0.8' });
+
+    page.on('response', async (resp) => {
+      try {
+        const u = resp.url();
+        const isSchedule = /\/cms-schedule\.json/i.test(u);
+        const isLive = /\/api\/cms-match-live/i.test(u);
+        if (!isSchedule && !isLive) return;
+        seen.push(`${resp.status()} ${u.slice(0, 120)}`);
+        if (resp.status() >= 400) return;
+        const body = JSON.parse(await resp.text());
+        if (isSchedule) got.schedule = body; else got.live = body;
+      } catch { /* response không đọc/parse được — bỏ qua, có fallback bên dưới */ }
+    });
+
+    try {
+      const r = await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 28000 });
+      status = r?.status() || 0;
+    } catch (e) {
+      gotoError = String(e?.message || e).split('\n')[0];
+    }
+
+    // 1) Chờ trang tự gọi 2 API (tối đa ~12s). Cloudflare "Just a moment" tự chuyển trang nên cứ poll.
+    const waitUntil = Date.now() + 12000;
+    while (Date.now() < waitUntil && !(got.schedule && got.live)) await sleep(400);
+
+    // 2) Lịch nhúng sẵn trong HTML (không cần mạng thêm).
+    if (!got.schedule) {
+      for (let i = 0; i < 6 && !got.schedule; i++) {
+        try {
+          got.schedule = await page.evaluate(() => {
+            const el = document.getElementById('cms-home-matches');
+            return el ? JSON.parse(el.textContent) : null;
+          });
+        } catch { /* đang chuyển trang */ }
+        if (!got.schedule) await sleep(1000);
+      }
+    }
+
+    // 3) fetch() ngay trong trang (cùng cookie/TLS Chrome thật) nếu vẫn thiếu.
+    const inPage = async (path) => {
+      try {
+        const r = await page.evaluate(async (u) => {
+          const res = await fetch(u, { credentials: 'same-origin', headers: { Accept: 'application/json' } });
+          return { status: res.status, text: await res.text() };
+        }, `${baseUrl}${path}`);
+        seen.push(`${r.status} (fetch trong trang) ${path}`);
+        return r.status < 400 ? JSON.parse(r.text) : null;
+      } catch { return null; }
+    };
+    if (!got.schedule) got.schedule = await inPage(`/cms-schedule.json?_=${Date.now()}`);
+    if (!got.live) got.live = await inPage(`/api/cms-match-live?_=${Date.now()}`);
+
+    // 4) Link phát từng trận: GET /truc-tiep/<matchId>?kd_source=1 -> {"found":true,"earlyStream":true,"streamUrl":"https://.../index.m3u8"}
+    //    (bắt từ DevTools thật 26/11/2026). Fetch CÙNG ORIGIN trong trang (cookie connect.sid + Referer = trang trận như player thật).
+    const kd = [];
+    try {
+      const schedMap = collectById(got.schedule);
+      const liveMap = collectById(got.live);
+      const wanted = [...schedMap.entries()]
+        .filter(([id, m]) => liveMap.has(id) || m.hasLiveSource === true || m.hasLiveSource === 1 || m.hasLiveSource === 'true')
+        .map(([id]) => id)
+        .slice(0, KD_MAX_MATCHES);
+      for (let i = 0; i < wanted.length; i += KD_CONCURRENCY) {
+        const chunk = wanted.slice(i, i + KD_CONCURRENCY);
+        // eslint-disable-next-line no-await-in-loop
+        const res = await page.evaluate(async (ids) => Promise.all(ids.map(async (id) => {
+          try {
+            const r = await fetch(`/truc-tiep/${id}?kd_source=1`, {
+              credentials: 'same-origin',
+              referrer: `${location.origin}/truc-tiep/${id}`,
+              headers: { Accept: '*/*', 'Cache-Control': 'no-cache' }
+            });
+            const t = await r.text();
+            return { id, status: r.status, text: t.slice(0, 2000) };
+          } catch (e) { return { id, status: 0, text: '' }; }
+        })), chunk).catch(() => []);
+        for (const r of res || []) {
+          let j = null;
+          try { j = JSON.parse(r.text); } catch { /* không phải JSON (vd trang HTML/challenge) */ }
+          if (j && j.found && typeof j.streamUrl === 'string' && j.streamUrl) {
+            kd.push({ matchId: r.id, found: true, earlyStream: !!j.earlyStream, streamUrl: j.streamUrl });
+          }
+        }
+      }
+      seen.push(`kd_source: ${kd.length}/${wanted.length} trận có streamUrl`);
+    } catch (e) {
+      seen.push(`kd_source lỗi: ${String(e?.message || e).slice(0, 80)}`);
+    }
+
+    let hrefs = [];
+    try {
+      hrefs = await page.evaluate(() => [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')));
+    } catch { /* bỏ qua */ }
+    const title = await page.title().catch(() => '');
+    const finalUrl = page.url();
+    return { ...got, kd, hrefs, seen, title, finalUrl, status, gotoError };
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
+const absUrl = (href) => {
+  if (!href) return '';
+  if (/^https?:/i.test(href)) return href;
+  if (href.startsWith('//')) return `https:${href}`;
+  return `${activeBaseUrl()}${href.startsWith('/') ? '' : '/'}${href}`;
+};
 
 class KhanDaiTvService {
   getFullUrl(url) {
@@ -193,70 +195,39 @@ class KhanDaiTvService {
   }
 
   /**
-   * Lấy TOÀN BỘ trận (mọi môn, mọi trạng thái) đúng 1 lần bằng trình duyệt
-   * headless thật, cache lại trong bộ nhớ ~20s. Mọi hàm khác trong class
-   * này đều gọi qua đây rồi tự lọc, KHÔNG gọi mạng riêng lẻ nữa.
+   * Lấy TOÀN BỘ trận (mọi môn, mọi trạng thái) 1 lần, cache ~20s; lượt rỗng/lỗi dùng lại bản tốt gần nhất
+   * (tối đa STALE_MAX_MS) để playlist không bị "0 trận" chập chờn.
    */
   async getAllRawMatches() {
     const now = Date.now();
-    if (rawMatchesCache.data && now - rawMatchesCache.fetchedAt < RAW_CACHE_TTL_MS) {
-      return rawMatchesCache.data;
-    }
-    // Nhiều request cùng lúc khi cache vừa hết hạn → chỉ mở trình duyệt 1
-    // lần, các request còn lại đợi chung kết quả đó.
-    if (rawMatchesCache.pending) {
-      return rawMatchesCache.pending;
-    }
+    if (rawMatchesCache.data && now - rawMatchesCache.fetchedAt < RAW_CACHE_TTL_MS) return rawMatchesCache.data;
+    if (rawMatchesCache.pending) return rawMatchesCache.pending;
 
-    // FIX (27/09/2026 — "luôn báo 0 trận, không rõ vì sao"): trước đây chỉ
-    // thử 1 LẦN DUY NHẤT rồi bỏ cuộc luôn nếu ra rỗng — nhưng bản thân cơ
-    // chế vượt Cloudflare (poll liên tục chờ challenge tự giải, xem
-    // browserFetch.js) vốn đã KHÔNG chắc chắn 100% mỗi lần thử, có thể ăn
-    // may qua được ở lần thử thứ 2 dù lần 1 vẫn còn kẹt ở trang "Just a
-    // moment...". Thử lại 1 lần với TAB MỚI (không dùng lại tab cũ có thể
-    // đã bị đánh dấu/kẹt) trước khi kết luận hẳn là lỗi, đồng thời LUÔN in
-    // ra chẩn đoán (tiêu đề trang, URL cuối cùng, đoạn text đầu trang) khi
-    // ra rỗng — để log lần sau chỉ thẳng ĐÚNG nguyên nhân (còn kẹt Cloudflare
-    // hay domain đã đổi/chết) thay vì chỉ thấy mỗi "0 trận".
-    const attemptFetch = async (attemptLabel, baseUrl) => {
-      // Cách 1 (domain mới khandaia.one): bắt JSON API trang tự gọi. Cách 2 (bên dưới): đọc window.__NUXT__ như cũ.
-      const captured = await captureMatchesFromNetwork(baseUrl, attemptLabel);
-      if (captured.length) return captured;
-
-      const { data, status, diagnostic } = await fetchPageGlobal(`${baseUrl}/`, {
-        evalExpr: 'window.__NUXT__',
-        timeoutMs: 12000,
-        bailOnTitle: /^(?!.*(trực tiếp|xem bóng)).*(cá cược|nhà cái|casino|nổ hũ|đá gà)/i, // không bail nếu tiêu đề nói về xem trực tiếp // FIX (08/10/2026): trang cá cược mạo danh -> thôi chờ
-        autoUserAgent: true // FIX (06/10/2026): UA thật của Chromium đang chạy, không dùng UA cứng Chrome/120 lệch phiên bản
-      });
-      const out = [];
-      collectRawMatches(data, new Set(), out);
+    const attemptFetch = async (label) => {
+      const base = activeBaseUrl();
+      const r = await scrapeSite(base);
+      const ids = [...collectById(r.schedule).keys()];
+      const hrefByMatchId = mapHrefsToMatchIds((r.hrefs || []).map(absUrl), ids);
+      const out = buildRawMatches({ schedule: r.schedule, live: [r.live, r.kd], hrefByMatchId });
       if (!out.length) {
-        const isChallenge = diagnostic && /just a moment|checking your browser|attention required/i.test(
-          `${diagnostic.title} ${diagnostic.bodySnippet}`
-        );
-        // FIX (06/10/2026): url="about:blank" = tab CHƯA hề mở được trang (lỗi mạng/DNS/bị cắt kết nối),
-        // không phải "trang tải xong mà đổi schema" như thông báo cũ — nói rõ + in lỗi goto thật.
-        const neverLoaded = diagnostic && (!diagnostic.finalUrl || diagnostic.finalUrl === 'about:blank' || /^chrome-error:/i.test(diagnostic.finalUrl));
+        const challenge = /just a moment|checking your browser|attention required/i.test(r.title || '');
+        const neverLoaded = !r.finalUrl || r.finalUrl === 'about:blank' || /^chrome-error:/i.test(r.finalUrl);
         console.error(
-          `[khandaitv] ${attemptLabel} (${baseUrl}): 0 trận (HTTP ${status || 'n/a'})` +
+          `[khandaitv] ${label} (${base}): 0 trận (HTTP ${r.status || 'n/a'})` +
           (neverLoaded
-            ? ` — KHÔNG MỞ ĐƯỢC TRANG ${baseUrl}` +
-              (diagnostic.gotoError ? `, lỗi goto: ${diagnostic.gotoError}` : '') +
-              ' [domain có thể đã chết/đổi: kiểm tra KHANDAITV_BASE_URL trong SOURCE_DOMAINS, hoặc chạy Check Domains]'
-            : diagnostic && /^(?!.*(trực tiếp|xem bóng)).*(cá cược|nhà cái|casino|nổ hũ|đá gà)/i.test(diagnostic.title)
-            ? ` — title="${diagnostic.title}" url="${diagnostic.finalUrl}" [ĐÂY LÀ TRANG CÁ CƯỢC/NHÀ CÁI, KHÔNG PHẢI Khán Đài TV — domain sai/bị đổi chủ, sửa khandaitv=... trong SOURCE_DOMAINS]`
-            : diagnostic
-            ? ` — title="${diagnostic.title}" url="${diagnostic.finalUrl}"` +
-              (diagnostic.gotoError ? ` goto="${diagnostic.gotoError}"` : '') +
-              (isChallenge ? ' [NGHI NGỜ vẫn đang kẹt ở trang thách thức Cloudflare]' : ' [trang tải xong nhưng không thấy window.__NUXT__ có trận — có thể domain đã đổi schema/API]')
-            : ' — không lấy được chẩn đoán trang (page.evaluate lỗi).')
+            ? ` — KHÔNG MỞ ĐƯỢC TRANG${r.gotoError ? `, lỗi goto: ${r.gotoError}` : ''} [domain chết/đổi? kiểm tra khandaitv=... trong SOURCE_DOMAINS]`
+            : ` — title="${r.title}" url="${r.finalUrl}"` +
+              (challenge ? ' [NGHI NGỜ kẹt Cloudflare]' : ' [không đọc được cms-schedule.json / cms-home-matches — schema có thể đã đổi tiếp]') +
+              (r.seen?.length ? ` | request: ${r.seen.join(' | ')}` : ''))
         );
+      } else if (process.env.KHANDAITV_DEBUG === '1') {
+        const withStream = out.filter((m) => m.streams.length).length;
+        console.log(`[khandaitv] ${label}: ${out.length} trận, live=${out.filter((m) => m.isLive).length}, có link phát sẵn=${withStream}, live-feed=${r.live ? 'có' : 'KHÔNG'}, kd_source=${(r.kd || []).length}`);
+        if (r.live && !withStream) console.log(`[khandaitv] mẫu cms-match-live: ${JSON.stringify(r.live).slice(0, 600)}`);
       }
       return out;
     };
 
-    // Dữ liệu cũ còn dùng được (trong hạn STALE_MAX_MS) hoặc null.
     const staleData = () => {
       const age = Date.now() - lastGood.at;
       return lastGood.data && lastGood.data.length && age <= STALE_MAX_MS ? { data: lastGood.data, ageSec: Math.round(age / 1000) } : null;
@@ -264,29 +235,25 @@ class KhanDaiTvService {
 
     const task = (async () => {
       try {
-        let out = await attemptFetch('lần 1', activeBaseUrl());
-        if (!out.length) {
-          out = await attemptFetch('lần 2 (thử lại)', activeBaseUrl());
-        }
+        let out = await attemptFetch('lần 1');
+        if (!out.length) out = await attemptFetch('lần 2 (thử lại)');
         if (out.length) {
           lastGood = { data: out, at: Date.now() };
           rawMatchesCache = { data: out, fetchedAt: Date.now(), pending: null };
           return out;
         }
-        // Rỗng sau 2 lần thử: KHÔNG ghi đè dữ liệu tốt — dùng lại bản gần nhất.
         const stale = staleData();
         if (stale) {
-          console.warn(`[khandaitv] lần quét này ra 0 trận — dùng lại ${stale.data.length} trận của lần quét tốt cách đây ${stale.ageSec}s (tối đa ${Math.round(STALE_MAX_MS / 1000)}s)`);
+          console.warn(`[khandaitv] lần quét này ra 0 trận — dùng lại ${stale.data.length} trận của lần quét tốt cách đây ${stale.ageSec}s`);
           rawMatchesCache = { data: stale.data, fetchedAt: Date.now(), pending: null };
           return stale.data;
         }
-        rawMatchesCache = { data: out, fetchedAt: Date.now(), pending: null };
+        rawMatchesCache = { data: out, fetchedAt: 0, pending: null };
         return out;
       } catch (error) {
-        console.error('Error fetching KhanDaiTV via browser [build-marker-v2]:', error.message);
+        console.error('Error fetching KhanDaiTV via browser [build-marker-v3-cms]:', error.message);
         const stale = staleData();
         const data = stale ? stale.data : (rawMatchesCache.data || []);
-        if (stale) console.warn(`[khandaitv] lỗi khi quét — dùng lại ${stale.data.length} trận của lần quét tốt cách đây ${stale.ageSec}s`);
         rawMatchesCache = { data, fetchedAt: data.length ? Date.now() : 0, pending: null };
         return data;
       }
@@ -297,120 +264,67 @@ class KhanDaiTvService {
   }
 
   normalizeMatch(m) {
-    // FIX (10/09/2026 — theo dữ liệu JSON thật người dùng gửi từ
-    // /api/matches/?ordering=smart&page_size=30): khandai3.link dùng status
-    // CHI TIẾT theo từng giai đoạn trận đấu (vd "half_time" khi đang nghỉ
-    // giữa hiệp) — KHÁC với Pháo Hoa vốn chỉ trả đúng 1 chữ "live" chung
-    // cho mọi trận đang đá. Coi mọi status KHÔNG nằm trong nhóm "chưa đá"
-    // và KHÔNG nằm trong nhóm "đã kết thúc" là đang live (chấp nhận mọi giá
-    // trị con chưa biết trước như first_half/second_half/extra_time...).
-    const rawStatus = String(m.status || '').toLowerCase();
-    const NOT_STARTED_STATUSES = new Set(['scheduled', 'not_started', 'upcoming', 'pending', 'ns']);
-    const FINISHED_STATUSES = new Set(['finished', 'ended', 'ft', 'full_time', 'cancelled', 'canceled', 'postponed', 'abandoned', 'awarded']);
-    const isNotStarted = NOT_STARTED_STATUSES.has(rawStatus);
-    const isFinished = FINISHED_STATUSES.has(rawStatus);
-    const isLive = !!rawStatus && !isNotStarted && !isFinished;
+    // m = "raw match" do buildRawMatches() (src/utils/khandaiCms.js) dựng từ cms-schedule.json + cms-match-live.
+    const sport = canonicalSport(m.sport);
+    const info = SPORT_INFO[sport] || { name: String(sport).toUpperCase(), icon: 'fa-futbol' };
+    const isLive = !!m.isLive;
+    const isFinished = !!m.isFinished;
 
-    const sportInfoMap = {
-      41: { name: 'BÓNG ĐÁ', icon: 'fa-futbol', slug: 'football' },
-      43: { name: 'BÓNG CHUYỀN', icon: 'fa-volleyball', slug: 'bong-chuyen' },
-      44: { name: 'BILLIARDS', icon: 'fa-circle-dot', slug: 'billiards' },
-      45: { name: 'CẦU LÔNG', icon: 'fa-feather', slug: 'cau-long' },
-      46: { name: 'ESPORTS', icon: 'fa-gamepad', slug: 'esports' },
-      47: { name: 'BÓNG RỔ', icon: 'fa-basketball', slug: 'bong-ro' },
-      48: { name: 'TENNIS', icon: 'fa-baseball-bat-ball', slug: 'tennis' },
-      49: { name: 'BÓNG BÀN', icon: 'fa-table-tennis-paddle-ball', slug: 'bong-ban' },
-      50: { name: 'BOXING', icon: 'fa-hand-fist', slug: 'boxing' }
-    };
+    const matchDate = m.startMs ? new Date(m.startMs) : new Date();
+    const tz = { timeZone: 'Asia/Ho_Chi_Minh' };
+    const timeStr = matchDate.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false, ...tz });
+    const dateStr = matchDate.toLocaleDateString('en-CA', tz); // YYYY-MM-DD (giờ VN)
+    const [yyyy, mm, dd] = dateStr.split('-');
 
-    const sportInfo = sportInfoMap[m.sport]
-      || (m.sport_slug ? { name: (m.sport_name || m.sport_slug).toUpperCase(), icon: 'fa-futbol', slug: m.sport_slug } : null)
-      || { name: 'BÓNG ĐÁ', icon: 'fa-futbol', slug: 'football' };
+    const commentators = (m.streams || []).filter((c) => !/hls-decoy/i.test(c.url)).map((c, i) => ({
+      id: c.id || `s${i + 1}`,
+      name: c.name || `Server ${i + 1}`,
+      avatar: this.getFullUrl(c.avatar),
+      streamUrl: c.url,
+      isLive: true,
+      cdn: this.detectCdn(c.url)
+    }));
 
-    const matchDate = m.start_time ? new Date(m.start_time) : new Date();
-    const timeStr = matchDate.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Ho_Chi_Minh' });
-    const dateStr = matchDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' }); // YYYY-MM-DD
-    const dd = String(matchDate.getDate()).padStart(2, '0');
-    const mm = String(matchDate.getMonth() + 1).padStart(2, '0');
-    const yyyy = matchDate.getFullYear();
-
-    const commentators = (m.commentators || []).map((c) => {
-      const streamUrl = c.stream_url || c.backup_stream_url || c.flv_stream_url || '';
-      return {
-        id: c.id,
-        name: c.name,
-        avatar: this.getFullUrl(c.avatar_url),
-        streamUrl,
-        isLive: !!c.is_live,
-        cdn: this.detectCdn(streamUrl)
-      };
-    }).filter((c) => c.streamUrl || c.name);
-
-    const primaryStream = commentators.find((c) => c.streamUrl)?.streamUrl
-      || m.primary_stream_url
-      || m.backup_stream_url
-      || '';
-
-    const elapsed = String(m.match_time || '').trim();
-    const slug = m.slug
-      || `${slugifyVi(m.home_team_name)}-vs-${slugifyVi(m.away_team_name)}-ngay-${dd}-${mm}-${yyyy}`;
+    const elapsed = String(m.matchTimeText || '').trim();
+    const slug = `${slugifyVi(m.home)}-vs-${slugifyVi(m.away)}-ngay-${dd}-${mm}-${yyyy}`;
+    const liveUrl = m.href ? absUrl(m.href) : `${activeBaseUrl()}/truc-tiep/${m.id}`;
 
     return {
       matchId: `kd_${m.id}`,
       originalId: m.id,
       slug,
       source: 'khandaitv',
-      sport: sportInfo.slug,
-      sportName: sportInfo.name,
-      sportIcon: sportInfo.icon,
-      competition: {
-        name: m.tournament_name || m.tournament_name_en || '',
-        logo: this.getFullUrl(m.tournament_icon_url),
-        icon: this.getFullUrl(m.tournament_icon_url)
-      },
-      homeTeam: {
-        name: m.home_team_name || 'Home',
-        logo: this.getFullUrl(m.home_team_logo)
-      },
-      awayTeam: {
-        name: m.away_team_name || 'Away',
-        logo: this.getFullUrl(m.away_team_logo)
-      },
-      score: {
-        home: m.home_score ?? 0,
-        away: m.away_score ?? 0
-      },
+      sport,
+      sportName: info.name,
+      sportIcon: info.icon,
+      competition: { name: m.league || '', logo: '', icon: '' },
+      homeTeam: { name: m.home || 'Home', logo: this.getFullUrl(m.homeLogo) },
+      awayTeam: { name: m.away || 'Away', logo: this.getFullUrl(m.awayLogo) },
+      score: { home: m.score?.home ?? 0, away: m.score?.away ?? 0 },
       status: {
         isLive,
         isFinished,
         isHalfTime: /^HT$/i.test(elapsed),
         isUpcoming: !isLive && !isFinished,
-        name: isLive
-          ? (elapsed && !/^\d+$/.test(elapsed) ? elapsed : (elapsed ? 'Hiệp 1' : 'LIVE'))
-          : (isFinished ? 'FT' : 'Sắp diễn ra'),
+        name: isLive ? (elapsed && !/^\d+$/.test(elapsed) ? elapsed : 'LIVE') : (isFinished ? 'FT' : 'Sắp diễn ra'),
         text: isLive ? (elapsed || 'LIVE') : (isFinished ? 'Kết thúc' : 'Sắp diễn ra'),
         elapsedTime: isLive ? (elapsed && /^\d+$/.test(elapsed) ? `${elapsed}'` : elapsed) : '',
         minutes: elapsed
       },
-      stats: {
-        halfTimeScore: `${m.home_halftime_score ?? 0}-${m.away_halftime_score ?? 0}`,
-        corners: '0-0',
-        yellowCards: '0-0'
-      },
-      matchTime: matchDate.getTime(),
-      matchTimeTimestamp: matchDate.getTime(),
+      stats: { halfTimeScore: '0-0', corners: '0-0', yellowCards: '0-0' },
+      matchTime: m.startMs || matchDate.getTime(),
+      matchTimeTimestamp: m.startMs || matchDate.getTime(),
       timeFormatted: `${timeStr} - ${dd}/${mm}`,
       dateStr,
       timeStr,
-      isHot: !!m.is_hot,
+      isHot: !!m.hot,
+      hasLiveSource: !!m.hasLiveSource,
       commentators,
       streamers: commentators,
-      streamUrl: primaryStream,
+      streamUrl: commentators[0]?.streamUrl || '',
       stream: {
-        // Domain thật (khandai3.link) dùng route "/truc-tiep/{slug}" KHÔNG có
-        // dấu "/" cuối — đã tự kiểm tra trực tiếp trên site.
-        liveUrl: `${activeBaseUrl()}/truc-tiep/${slug}`,
-        streamerName: commentators[0]?.name || null,
+        liveUrl,
+        streamerName: commentators[0]?.name || (m.commentatorNames || [])[0] || null,
         streamerAvatar: commentators[0]?.avatar || null
       },
       odds: null
@@ -472,21 +386,16 @@ class KhanDaiTvService {
     if (!slugOrId) return null;
     const key = decodeURIComponent(String(slugOrId)).replace(/\/+$/, '').trim();
     const cleanId = key.replace(/^kd_/, '');
-
     const all = await this.getAllRawMatches();
-    return all.find((m) =>
-      String(m.id) === cleanId
-      || m.slug === key
-      || m.slug === cleanId
-    ) || null;
+    return all.find((m) => String(m.id) === cleanId || this.normalizeMatch(m).slug === key) || null;
   }
 
   async getAllMatches(sport = 'football') {
     try {
-      const sportId = sport === 'basketball' || sport === 'bong-ro' ? 47 : (SPORT_ID_MAP[sport] || 41);
+      const want = sportKey(sport);
       const all = await this.getAllRawMatches();
       return all
-        .filter((m) => !sportId || m.sport === sportId)
+        .filter((m) => !want || m.sport === want)
         .map((m) => this.normalizeMatch(m));
     } catch (error) {
       console.error('Error fetching KhanDaiTV matches:', error.message);
@@ -500,17 +409,13 @@ class KhanDaiTvService {
    */
   async getMatchesByTab(tab, sport = 'football', page = 1, pageSize = 18) {
     try {
-      const targetSportId = tab === 'all' || sport === 'all'
+      const want = tab === 'all' || sport === 'all'
         ? null
-        : (SPORT_ID_MAP[tab] !== undefined
-          ? SPORT_ID_MAP[tab]
-          : (SPORT_ID_MAP[sport] !== undefined
-            ? SPORT_ID_MAP[sport]
-            : (sport === 'basketball' || sport === 'bong-ro' ? 47 : 41)));
+        : (tab in SPORT_FILTER ? SPORT_FILTER[tab] : sportKey(sport));
 
       const all = await this.getAllRawMatches();
       let normalized = all
-        .filter((m) => !targetSportId || m.sport === targetSportId)
+        .filter((m) => !want || m.sport === want)
         .map((m) => this.normalizeMatch(m));
 
       const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
@@ -520,7 +425,7 @@ class KhanDaiTvService {
       if (tab === 'live') normalized = normalized.filter((m) => m.status.isLive);
       else if (tab === 'upcoming') normalized = normalized.filter((m) => m.status.isUpcoming);
       else if (tab === 'hot') normalized = normalized.filter((m) => m.isHot);
-      else if (tab === 'commentator' || tab === 'with-stream') normalized = normalized.filter((m) => m.commentators.length > 0);
+      else if (tab === 'commentator' || tab === 'with-stream') normalized = normalized.filter((m) => m.commentators.length > 0 || m.hasLiveSource);
       else if (tab === 'today') normalized = normalized.filter((m) => m.dateStr === todayStr);
       else if (tab === 'tomorrow') normalized = normalized.filter((m) => m.dateStr === tomorrowStr);
 
@@ -569,14 +474,14 @@ class KhanDaiTvService {
 
   async getCounts(sport = 'football') {
     try {
-      const sportId = sport === 'basketball' || sport === 'bong-ro' ? 47 : (SPORT_ID_MAP[sport] || 41);
+      const want = sportKey(sport);
       const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
       const tomorrowDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
       const tomorrowStr = tomorrowDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
 
       const all = await this.getAllRawMatches();
       const normalized = all
-        .filter((m) => !sportId || m.sport === sportId)
+        .filter((m) => !want || m.sport === want)
         .map((m) => this.normalizeMatch(m));
 
       const liveCount = normalized.filter((m) => m.status.isLive).length;
@@ -601,11 +506,40 @@ class KhanDaiTvService {
     }
   }
 
+  /**
+   * Link phát: ưu tiên link có sẵn trong cms-schedule / cms-match-live. Nếu trận có nguồn phát
+   * (hasLiveSource) nhưng JSON không kèm link thì mở TRANG TRẬN THẬT (href lấy từ thẻ <a> trang chủ)
+   * bằng Chromium và bắt request .m3u8 do player tự gọi. Cache 2 phút để khỏi mở lại.
+   */
   async getStreamLinks(matchId) {
     try {
       const raw = await this.findRawMatch(matchId);
       if (!raw) return [];
-      return this.mapStreams(this.normalizeMatch(raw));
+      let match = this.normalizeMatch(raw);
+      let list = this.mapStreams(match);
+      if (list.length) return list;
+
+      if (!(raw.hasLiveSource || raw.isLive || raw.earlyStream)) return [];
+      const cached = resolvedCache.get(raw.id);
+      if (cached && Date.now() - cached.at < 2 * 60 * 1000) return cached.list;
+
+      // BẪY: trang tự gọi 10 playlist GIẢ /assets/hls-decoy-v13b/channel-01..10.m3u8 (cùng domain, để đánh lạc người bắt request).
+      // Link THẬT nằm ở CDN ngoài (vd https://play.saigon8386.live/live_xxx/live_xxx@saigon8386.m3u8) -> loại mọi URL "decoy".
+      const cap = await captureM3u8ViaBrowser(absUrl(raw.href || `/truc-tiep/${raw.id}`), {
+        timeoutMs: 20000,
+        referer: `${activeBaseUrl()}/`,
+        matchUrl: /^https?:\/\/(?!(?:[^/]*\.)?khandaia\.[^/]+\/assets\/hls-decoy)(?![^?#]*hls-decoy)[^?#]*\.m3u8(?:[?#]|$)/i
+      });
+      const good = (cap.found || []).filter((f) => f.status == null || f.status < 400);
+      match = {
+        ...match,
+        commentators: good.map((f, i) => ({
+          id: `m3u8_${i + 1}`, name: `Server ${i + 1}`, avatar: '', streamUrl: f.url, isLive: true, cdn: this.detectCdn(f.url)
+        }))
+      };
+      list = this.mapStreams(match);
+      resolvedCache.set(raw.id, { at: Date.now(), list });
+      return list;
     } catch (error) {
       console.error('Error fetching KhanDaiTV stream links:', error.message);
       return [];

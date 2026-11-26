@@ -177,6 +177,8 @@ const REFERER_CANDIDATES_BY_SOURCE = {
     null,
     `${String(process.env.XOICHE_DOMAIN || process.env.XOICHE_BASE_URL || 'https://xoiche.live').replace(/\/+$/, '')}/`
   ],
+  // Khán Đài (26/11/2026): Referer https://khandaia.one/ (Origin suy ra từ đó) — bắt từ DevTools thật.
+  khandaitv: [`${String(process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandaia.one').replace(/\/+$/, '')}/`, null],
   saoke: [
     // Referer/Origin thật của player (bắt từ DevTools 24/09/2026) — đặt LÊN ĐẦU.
     `${String(process.env.SAOKE_PLAYER_DOMAIN || 'https://sk.mediastation.live').replace(/\/+$/, '')}/`,

@@ -244,6 +244,8 @@ const REFERER_CANDIDATES_BY_SOURCE = {
   // #EXTVLCOPT Referer chuoichientv): trang Sao Kê tự phát bằng Referer LÀ
   // CHÍNH DOMAIN CỦA NÓ, nên Referer đúng phải là SAOKE_SITE — đặt LÊN ĐẦU.
   // Referer Chuối Chiến chỉ còn là ứng viên dự phòng.
+  // Khán Đài (26/11/2026): DevTools thật -> m3u8 ở play.saigon8386.live gửi Referer https://khandaia.one/ + Origin https://khandaia.one.
+  khandaitv: [`${String(process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandaia.one').replace(/\/+$/, '')}/`, null],
   saoke: [`${SAOKE_PLAYER}/`, `${SAOKE_SITE}/`, 'https://live05.chuoichientv.me/', 'https://chuoichientv.link/', null]
 };
 

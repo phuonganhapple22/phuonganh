@@ -41,7 +41,7 @@ async function tryFetch(url, referer) {
 }
 
 export default async function handler(req, res) {
-  const base = process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandai3.link';
+  const base = process.env.KHANDAITV_DOMAIN || process.env.KHANDAITV_BASE_URL || 'https://khandaia.one';
 
   const [apiResult, homepageResult, schedulePageResult] = await Promise.all([
     tryFetch(`${base}/api/matches/?ordering=smart&page_size=10&_t=${Date.now()}`, `${base}/`),
