@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T08:46:03.399Z",
+  "updatedAt": "2026-11-27T02:43:58.076Z",
   "domains": {
     "giovang": {
       "url": "https://giovang.baby",
       "envVar": "GIOVANG_DOMAIN",
       "role": "site",
-      "status": "moved",
+      "status": "alive",
       "from": "SOURCE_DOMAINS"
     },
     "gavang": {
@@ -62,7 +62,7 @@
       "url": "https://khandaia.one",
       "envVar": "KHANDAITV_DOMAIN",
       "role": "site",
-      "status": "chưa quét",
+      "status": "alive",
       "from": "mặc định"
     },
     "phalang": {
@@ -77,7 +77,8 @@
       "envVar": "CHUOICHIENTV_WATCH_DOMAIN",
       "role": "site",
       "status": "moved",
-      "from": "mặc định"
+      "from": "mặc định",
+      "found": "https://live13.chuoichientv.me"
     },
     "chuoichientv-player": {
       "url": "https://live.chuoichien.tv",
@@ -1256,6 +1257,13 @@
       "from": "https://live05.chuoichientv.me",
       "to": "https://live05.chuoichientv.me",
       "via": "sửa tay biến SOURCE_DOMAINS hoặc nguồn khác"
+    },
+    {
+      "at": "2026-11-27T02:43:58.076Z",
+      "source": "chuoichientv",
+      "from": "https://live05.chuoichientv.me",
+      "to": "https://live05.chuoichientv.me",
+      "via": "chuyển hướng của chính trang (đã xác minh 2 lần: tiêu đề nhắc tên nguồn)"
     }
   ]
 }
