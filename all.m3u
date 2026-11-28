@@ -1,0 +1,1497 @@
+#EXTM3U
+# Cập nhật lần cuối: 23:14:09 28/11/2026 (giờ VN) — tự làm mới mỗi 2 phút
+
+# ===== Tất cả trận, sắp theo giờ thi đấu thực — Giờ Vàng (57 trận), Chuối Chiên (20 trận), Phá Làng (80 trận), Gà Vàng (15 trận), Sao Kê (26 trận), GaVang33 (49 trận), Bông Lau (20 trận), Xôi Lạc (45 trận), Xôi Gấc (24 trận), Xôi Chè (24 trận), SportlinkTV (54 trận), Khán Đài (21 trận) =====
+
+# ----- Ngày 2026-11-28 -----
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/1eae81e51945df5660e24dc6f0ea353c.png" group-title="Gà Vàng" , 28/11 20:30 🟢 ⚽ CSKA Moscow vs Zenit StPetersburg (Lá Chanh)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/6acdcf4a1ba0f2f86b254fe9.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/93c278d5d8d1d5e2d390ff686359963d.png" group-title="Gà Vàng" , 28/11 21:00 🟢 ⚽ Frosinone vs Parma (namiiu)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/6afd3d6e53914a788517a0db.m3u8
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/5000_frosinone.jpg" group-title="Xôi Chè" , 28/11 21:00 🟢 ⚽ Frosinone vs Parma (BLV Xôi Xoài)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://livecdn321.cdnfastter.xyz/live/live_09982ecf49/index.m3u8?token=5VclvTpM2E-bfUL2cfww643kT_KZYDbKiUUT4C8ng8o&expires=1852800615
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/174590/image" group-title="SportlinkTV" , 28/11 21:00 🟢 ⚽ Chennaiyin FC vs Mumbai City FC (SONYLIV ENG - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://sonyeventsglobal.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_lrh-800300010.m3u8?hdnea=exp=1795916779~acl=/*~id=37231020905388299657628168043808~hmac=56e2936b7a948864abe2725acd97ed9f43991aace5275a27fbda12b676eb6ff4
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2801/image" group-title="SportlinkTV" , 28/11 21:00 🟢 ⚽ Frosinone vs Parma (PARAMOUNT+ - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c74afb61c9ed0eb91595e1afbe43d7f1:aa1acd988dee6106039eac115c49f79d
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/deut0uoays/out/v1/dc0b396f73ed4c8db8bfc70c985798d5/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/jw2r0jfjl0pmz84/image/small" group-title="Xôi Lạc" , 28/11 21:05 🟢 🎾 Igor Ribeiro Marcondes vs Felipe Meligeni Alves (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel52.flv?wsSecret=f0378b36599adbcb3aa4fbc4b7034a53&wsABSTime=1795925593
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kn54qllhlkwqvy9/image/small" group-title="Xôi Lạc" , 28/11 21:20 🟢 ⚽ Al-Ettifaq vs Al Hilal (HD LOGAN)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-23.flv?auth_key=3000001795882392-0-0-fbf0c0a4a3a0ad4dcb0bffd39b6acaf1
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/34318/image" group-title="SportlinkTV" , 28/11 21:20 🟢 ⚽ Al-Ettifaq vs Al-Hilal (FOX SPORTS - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=09453ce820d65fbc675de3185f9e454c:98cff9600995fa381c76fdacf3c7edae
+https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/awxnrqkbo5/out/v1/716529a4091947b0877e6cb80dbd6ccb/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-koln.png" group-title="Giờ Vàng" , 28/11 21:30 🟢 ⚽ Koln vs SV Elversberg (Giovang 1 - Trĩ)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795839105_hd/1795839105_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/sc-paderborn-07.png" group-title="Giờ Vàng" , 28/11 21:30 🟢 ⚽ SC Paderborn 07 vs Schalke 04 (Giovang 1 - Mason)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574527_hd/1795574527_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fsv-mainz-05.png" group-title="Giờ Vàng" , 28/11 21:30 🟢 ⚽ Mainz vs Union Berlin (Giovang 1 - Cầy)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574554_hd/1795574554_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/hamburger-sv.png" group-title="Giờ Vàng" , 28/11 21:30 🟢 ⚽ Hamburger vs Bayern Munich (Giovang 1 - Ngọng)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574578_hd/1795574578_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_130301_4997c01a.png" group-title="Chuối Chiên" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern München (Chuối Chao (FHD))
+#EXTVLCOPT:http-referrer=https://fhd-01.cctvsignal.xyz/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kn54qllh6lyqvy9/image/small" group-title="Phá Làng" , 28/11 21:30 🟢 ⚽ Paderborn 07 - Schalke 04
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/paderborn-07-vs-schalke-04-3glrw7hn5l8zqdy
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/bba25605b5c98846c58a1fa69842c166/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/jednm9whl2kryox/image/small" group-title="Phá Làng" , 28/11 21:30 🟢 ⚽ Mainz 05 - Union Berlin (LÝ LONG)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/mainz-05-vs-union-berlin-4wyrn4h6n7p3q86
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/b8509f80411c46e997db7a3f1a657085/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gy0or5jhdoyqwzv/image/small" group-title="Phá Làng" , 28/11 21:30 🟢 ⚽ Hamburger SV - Bayern Munich (LÝ LÀNG LÁ)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/hamburger-sv-vs-bayern-munich-l5ergph465x9r8k
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/bf581ad3b58e4aeb9c1a97d927006d4c/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/yl5ergphj74r8k0/image/small" group-title="Phá Làng" , 28/11 21:30 🟢 ⚽ FC Köln - Elversberg
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/fc-koln-vs-elversberg-l7oqdehgkew7r51
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/51831a84435163bb9333e1d1b29eb329/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/903089d338485f6c68fbc5da690a0628.png" group-title="Gà Vàng" , 28/11 21:30 🟢 ⚽ Mainz vs Union Berlin (MáN NúI)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/69cf6331585c5992182f4160.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/81f8f9e258e6b73bc522bab06730720a.png" group-title="Gà Vàng" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern Munich (A Long)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/69ef10b47146e04fbe6d4363.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/887b7663a0d47031528921d9972ae3a6.png" group-title="Gà Vàng" , 28/11 21:30 🟢 ⚽ FC Köln vs SV Elversberg (MeoMeo)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/69be75e0a0a45974afb67776.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/7c8c3c50966c793eba910e18659759a1.png" group-title="Gà Vàng" , 28/11 21:30 🟢 ⚽ SC Paderborn 07 vs Schalke 04 (Lucie23)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/6ae3500b1ba0f2f86b29d7a5.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9790.png" group-title="Sao Kê" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern München (Long Ruồi (HD))
+#EXTVLCOPT:http-referrer=https://sk.mediastation.live/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://wtyi0525.edgemaxcdn.org/live/x1-hd-1111/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/f37d116acc7e493fbe5145834a7d1b07.png" group-title="GaVang33" , 28/11 21:30 🟢 ⚽ Hamburger SV vs FC Bayern Munich (Gà Siêu Mõm)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/300523.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/7f12d434d84d4f0f9fc87c1894baa89e.png" group-title="GaVang33" , 28/11 21:30 🟢 ⚽ 1. FSV Mainz 05 vs 1. FC Union Berlin (Gà Siêu Kiêu)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/741294.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/8820980d12a844e7a76ceac3b6e67730.png" group-title="GaVang33" , 28/11 21:30 🟢 ⚽ FC Köln vs SV 07 Elversberg (Gà Siêu Tốc)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/307240.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/c0875bca20634bb99a6b74840da8c021.png" group-title="GaVang33" , 28/11 21:30 🟢 ⚽ SC Paderborn 07 vs Schalke 04 (Gà Ô Long)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/432017.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_130301_4997c01a.png" group-title="Bông Lau" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern München (Chuối Chao (FHD))
+#EXTVLCOPT:http-referrer=https://tructiep.bonglau.live/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoichaohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gy0or5jhdoyqwzv/image/small" group-title="Xôi Lạc" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern Munich (HD FABIO)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-2.flv?auth_key=3000001795882392-0-0-c3175c5a9f4a7cf9316bedce3a084c53
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kn54qllh6lyqvy9/image/small" group-title="Xôi Lạc" , 28/11 21:30 🟢 ⚽ Paderborn 07 vs Schalke 04 (HD TOM)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-4.flv?auth_key=3000001795882393-0-0-42d8f6be2dee28fe80932aba31e43376
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/jednm9whl2kryox/image/small" group-title="Xôi Lạc" , 28/11 21:30 🟢 ⚽ Mainz 05 vs Union Berlin (HD FELIX)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-24.flv?auth_key=3000001795882392-0-0-8df7a6eb8cb0f4f76433d152944d14a3
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/yl5ergphj74r8k0/image/small" group-title="Xôi Lạc" , 28/11 21:30 🟢 ⚽ FC Köln vs SV 07 Elversberg (HD KEN)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-18.flv?auth_key=3000001795882393-0-0-481e402ea8c820d5e152043cb3c88896
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/175.webp" group-title="Xôi Gấc" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern München (BLV Black Panther)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.TgnpnhwcP7RT.m3u8?expires=1795896782&signature=HnVbVCRj8sfdq17tra6rPYGvU7X5DbtIxV1pEjo5lzY
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3912_hamburger-sv.jpg" group-title="Xôi Chè" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern Munich (BLV Khô Cá)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://livecdn321.cdnfastter.xyz/live/live_062e5de010/index.m3u8?token=M6vDly-jvMUtRrO3xVQUwWJozWVPDQ0yVqDBWtZUbgM&expires=1852800615
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2671/image" group-title="SportlinkTV" , 28/11 21:30 🟢 ⚽ 1. FC Köln vs SV 07 Elversberg (PEACOCK ES - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5fd082fda7d6a9f67e706d697ff8f217:2ac6e5ec76cc0213f1a5b560bb6384bf
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/rknfkonbnx/out/v1/366e578cf16f468397abd0c10be40d67/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2556/image" group-title="SportlinkTV" , 28/11 21:30 🟢 ⚽ 1. FSV Mainz 05 vs 1. FC Union Berlin (SHAHID EN/AR - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=50a7f3afc00a40b38face4db639d0e4c:ad7000691326064706281a700b7d6714
+https://shahid-sports-2-enc.edgenextcdn.net/out/v1/589aa6b16ce942388695b5b214f4ae93/index.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2676/image" group-title="SportlinkTV" , 28/11 21:30 🟢 ⚽ Hamburger SV vs FC Bayern München (beIN ENGLISH - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=7995c724a13748ed970840a8ab5bb9b3:67bdaf1e2175b9ff682fcdf0e2354b1e
+https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2561/image" group-title="SportlinkTV" , 28/11 21:30 🟢 ⚽ SC Paderborn 07 vs FC Schalke 04 (SKY SPORT DE - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=42650c79c7a241e79d18488fef3d75da:42c319fd698c3914b7bfbaa38d08e41e
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/oi4rnidcwc/out/v1/0e3c984eb7284664919152f18e7915b1/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/nwmyWZVg-EoYxhN5r.png" group-title="Khán Đài" , 28/11 21:30 🟢 ⚽ Mainz vs Union Berlin (Server 1)
+#EXTVLCOPT:http-referrer=https://khandaia.one/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://play.saigon8386.live/live_5afc467f34a4a65b/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/vy7iqCwS-86lnAaq9.png" group-title="Khán Đài" , 28/11 21:30 🟢 ⚽ Hamburger SV vs Bayern Munich (Server 1)
+#EXTVLCOPT:http-referrer=https://khandaia.one/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gn-live.saigon999.live/lavie/lavie@hnstream.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/leeds-united.png" group-title="Giờ Vàng" , 28/11 22:00 🟢 ⚽ Leeds United vs Coventry (Giovang 1 - Tỵ)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574608_hd/1795574608_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/manchester-united.png" group-title="Giờ Vàng" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (Giovang 1 - Bee)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574631_hd/1795574631_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/west-ham-united.png" group-title="Giờ Vàng" , 28/11 22:00 🟢 ⚽ West Ham United vs Stoke City (Giovang 1 - Tèo)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795839225_hd/1795839225_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125544_6dff7e1a.png" group-title="Chuối Chiên" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (Chuối Nhỏ (FHD))
+#EXTVLCOPT:http-referrer=https://fhd-01.cctvsignal.xyz/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoinhohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phdv4m2wd/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Leeds United - Coventry City (LÝ LẦY LỘI)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/leeds-united-vs-coventry-city-1l4rjnh9p0zem7v
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/ca232b5bbb8d4704a1fa66678736cf52/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/9dn1m1ghddgmoep/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Dundee United - Saint Johnstone
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/dundee-united-vs-saint-johnstone-318q66hxd3x1qo9
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/26aa9adb2b1b904030c57ec22f0bab67/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/l965mkyh98gr1ge/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Man Utd - Brentford (LÝ LA LÀNG)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/man-utd-vs-brentford-965mkyhk9x35r1g
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/ff250310c4814ae3a862bdf111b51fe3/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gy0or5jhk1pqwzv/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Westerlo - RAAL La Louvière
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/westerlo-vs-raal-la-louviere-ednm9whwl4nvryo
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/d556b056be60f10731c9f6efb9f1f81d/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7ph4pvm2wd/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Saint Mirren - Kilmarnock
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/saint-mirren-vs-kilmarnock-jw2r09hkdgkyrz8
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/7d77df7bea768c4cc6235712864e1f23/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z8yomo4hlv8q0j6/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Iraklis - Panaitolikos
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/iraklis-vs-panaitolikos-jw2r09hkzlzdrz8
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/92fba41031de23c7dbf7b3f55fc7bd76/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z318q66hd2jqo9j/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Aberdeen - Dundee
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/aberdeen-vs-dundee-k82rekhgdjg2rep
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/1f0e6d931d89ebc5f5d86ccced35019b/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kdj2ryoh0ydq1zp/image/small" group-title="Phá Làng" , 28/11 22:00 🟢 ⚽ Rangers - Falkirk
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/rangers-vs-falkirk-l5ergph4j746r8k
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/a57aaeba8357480e4aa386183158bd77/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/d39ce586fd7278342dde33b3090b3f75.png" group-title="Gà Vàng" , 28/11 22:00 🟢 ⚽ Man Utd vs Brentford (CRIS)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/69aa9525f5ec459ae275b43f.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/1d7680c902207ad6cc3a40bc5125bdf5.png" group-title="Gà Vàng" , 28/11 22:00 🟢 ⚽ Leeds United vs Coventry City (SiêU QuậY)
+#EXTVLCOPT:http-referrer=https://playyyz4.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://playback.livetl005.com/live/6a2a59b347bbddd62a8dc4e4.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10260.png" group-title="Sao Kê" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (Ricky (HD))
+#EXTVLCOPT:http-referrer=https://sk.mediastation.live/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://wtyi0525.edgemaxcdn.org/live/x83-hd-1111/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/85f3bc66effc4225b0efb602bb5e85e3.png" group-title="GaVang33" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (Gà Siêu Phệ + Gà Siêu Quỷ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/126492.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/4aa578d66de64e7cb0d61073529bcb07.png" group-title="GaVang33" , 28/11 22:00 🟢 ⚽ Leeds United vs Coventry City (Gà Siêu Ngố)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/301238.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/701e0713c180fa36266b425447d2f9c0.png" group-title="GaVang33" , 28/11 22:00 🟢 ⚽ Queens Park Rangers vs Sheffield United (Gà Siêu Son)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/306290.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/d71ebda5c7fbca9093a1c2978c46f619.png" group-title="GaVang33" , 28/11 22:00 🟢 ⚽ West Ham United vs Stoke City (Gà Siêu Bệu)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/289650.m3u8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125544_6dff7e1a.png" group-title="Bông Lau" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (Chuối Nhỏ (FHD))
+#EXTVLCOPT:http-referrer=https://tructiep.bonglau.live/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gckc0525.edgemaxcdn.org/live/chuoinhohd/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/l965mkyh98gr1ge/image/small" group-title="Xôi Lạc" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (HD ROY)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live3979.zundrixmediapipeline.com/live/channel1.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phdv4m2wd/image/small" group-title="Xôi Lạc" , 28/11 22:00 🟢 ⚽ Leeds United vs Coventry City (FULL HD MAX)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-6.flv?auth_key=3000001795882393-0-0-f5a0fe2a5df784b3bdf36e3ee02ff4ac
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gy0or5jhk1pqwzv/image/small" group-title="Xôi Lạc" , 28/11 22:00 🟢 ⚽ KVC Westerlo vs RAAL La Louvière (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel17.flv?wsSecret=9bdfaf5a37f63233fe780b5b03e13f06&wsABSTime=1795925593
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/33.webp" group-title="Xôi Gấc" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (BLV Nova)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://4ac07980a95d.ap-northeast-1.playback.live-video.net/api/video/v1/ap-northeast-1.256097482755.channel.6M9ObhmJnIyz.m3u8?expires=1795896793&signature=0UpIRvE6wi2lyZ6WXfcEqeGSKWXZgc7FYooe9ndVKAk
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3103_leeds-united.jpg" group-title="Xôi Chè" , 28/11 22:00 🟢 ⚽ Leeds vs Coventry (BLV Tam Mao)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://livecdn321.cdnfastter.xyz/live/live_65629930db/index.m3u8?token=daKfQOAqMEgkhrfCGDxiHdGWXsymB2dcncgmNkMoACY&expires=1852800615
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/102_manchester-united.jpg" group-title="Xôi Chè" , 28/11 22:00 🟢 ⚽ Manchester Utd vs Brentford (BLV Khô Cóc)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://livecdn321.cdnfastter.xyz/live/live_22ba35ebaa/index.m3u8?token=rnGiAKd7Ef-B1Q39PpqAGJSIrNI8dj2Sz-3IRtLMfUs
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/656/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Bodø/Glimt vs KFUM Oslo (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel18/playlist.m3u8?wsSecret=bb6fb17e307bad9b72ab4ea942992409&wsABSTime=1795919112
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/27/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Derby County vs Watford (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel66/playlist.m3u8?wsSecret=f2221122317774f1f32a7c57b4d30247&wsABSTime=1795919484
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/34/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Leeds United vs Coventry City (FUBO SPORTS - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=78f7863d9908f8e036a0e19515e8e848:30e4471a447f134df0caf05559cb6fe3
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/j8amxihvvf/out/v1/ee234bf8b2854366834b938725860805/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/35/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Manchester United vs Brentford (FUBO SPORTS - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=65f9ed4580a4af3c117a339c44cdfe3b:3e7d40c4b2ca331fe48bd65acae439d7
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/4zomejgnew/out/v1/aaaab12c95924d80a77f87f7c745782a/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/25/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Millwall vs Burnley (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live3979.zundrixmediapipeline.com/live/channel22.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Queens Park Rangers vs Sheffield United (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live3979.zundrixmediapipeline.com/live/channel10.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/8/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ West Bromwich Albion vs Bristol City (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel67/playlist.m3u8?wsSecret=35f8e49410c8c7bbf6514e368d84278d&wsABSTime=1795919111
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/37/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ West Ham United vs Stoke City (PARAMOUNT+ - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=dd564ce6ea42136e413d8d18ba4eda5e:f49a28f4ac60bf390c4a89f96554f9ff
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/lvfql4t30e/out/v1/0e7cd57db7a346bdb57f1b84809f5ef7/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/64/image" group-title="SportlinkTV" , 28/11 22:00 🟢 ⚽ Wrexham vs Portsmouth (HD STREAM)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel66/playlist.m3u8?wsSecret=f2221122317774f1f32a7c57b4d30247&wsABSTime=1795919484
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/nwSRlyWg-h2pPXz3k.png" group-title="Khán Đài" , 28/11 22:00 🟢 ⚽ Manchester Utd vs Brentford (Server 1)
+#EXTVLCOPT:http-referrer=https://khandaia.one/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://play.saigon8386.live/live_6a72772f3740fd16/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/rsvCPOh5-MTp25XgE.png" group-title="Khán Đài" , 28/11 22:00 🟢 ⚽ Leeds vs Coventry (Server 1)
+#EXTVLCOPT:http-referrer=https://khandaia.one/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://gn-live.saigon999.live/banhmi/banhmi@hnstream.m3u8
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/malaga.png" group-title="Giờ Vàng" , 28/11 22:15 🟢 ⚽ Malaga vs Athletic Bilbao (Giovang 1 - Mù)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795574680_hd/1795574680_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/9k82rekh4eerepz/image/small" group-title="Phá Làng" , 28/11 22:15 🟢 ⚽ Malaga - Athletic Bilbao (LÝ LẠNH LÙNG)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/malaga-vs-athletic-bilbao-1l4rjnh90el7m7v
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/34b53ec32ed549e3b5a49fcd7cdd7b54/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/57c2f658f8e348b985018c6d65c8caa0.png" group-title="GaVang33" , 28/11 22:15 🟢 ⚽ Malaga vs Athletic Club (Gà Siêu Péo)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/303098.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2848/image" group-title="SportlinkTV" , 28/11 22:15 🟢 ⚽ Albacete Balompié vs CD Tenerife (LALIGA HYPEMOTION ES - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a88617e904504ee291f49f0e60a51d49:17f92d59fde3b6d2bf4ffb48e8ca720a
+https://cache4.zapitv.com/live/eds_c2/HYPERMOTION1/dash_live_ez/HYPERMOTION1.mpd
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2830/image" group-title="SportlinkTV" , 28/11 22:15 🟢 ⚽ Málaga CF vs Athletic Club (DAZN SPORTS - AQ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c977d5dc5dd558690680f51ed66d948d:b8f0d19112c33479b9cfc6382beba457
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/um0kkq6pea/out/v1/49c2ad5a13d14c4a895fb77f23f93fcb/cenc.mpd
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/7267_malaga.jpg" group-title="Xôi Chè" , 28/11 22:15 🟡 ⚽ Malaga vs Ath Bilbao (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/malaga-vs-ath-bilbao-28-11-2026-798942?blv=kho-cay
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/04de5924a46acce3fb629534c4e039be.png" group-title="GaVang33" , 28/11 22:30 🟢 ⚽ FC Arouca vs Rio Ave (Gà Siêu Nhí)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/301263.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/U7VD3hCr-hhkSSKkE.png" group-title="Giờ Vàng" , 28/11 23:00 🟢 🏐 Spor Toto vs Ziraat Bankasi (Giovang 1 - Sún)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795843309_hd/1795843309_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/965mkyh7786r1ge/image/small" group-title="Phá Làng" , 28/11 23:00 🟢 ⚽ Esperance Sportive - Wiliete
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/esperance-sportive-vs-wiliete-1l4rjnhn60oym7v
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/2b4375b21659194da3e6959e76233bf9/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vjxm8gh484pr6od/image/small" group-title="Phá Làng" , 28/11 23:00 🟢 ⚽ Baltika Kaliningrad - Terek Grozny
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/baltika-kaliningrad-vs-terek-grozny-8yomo4h1ove3q0j
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/a513b9b1ef266d8b6b7da60768c5bec1/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/dn1m1gh4wgymoep/image/small" group-title="Phá Làng" , 28/11 23:00 🟢 ⚽ Pyramids FC - Maghreb Fez
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/pyramids-fc-vs-maghreb-fez-zp5rzgh3j998q82
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/68acb8c7f76c3f9f1722a405a60af787/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/U7VD3hCr-hhkSSKkE.png" group-title="Phá Làng" , 28/11 23:00 🟢 🏐 Spor Toto - Ziraat Bankasi (LÝ LIỀU LĨNH)
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/spor-toto-vs-ziraat-bankasi-fc0f8733e11e4fbd99c93ded07653d7c
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pull.digitalcdn.net/live/a9d69bc45b2c4a288ea7e5cacb5775d2/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kdj2ry7t6vdr1zp/image/small" group-title="Xôi Lạc" , 28/11 23:00 🟢 🏀 Nữ Galatasaray vs Nữ Fenerbahce (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel43.flv?wsSecret=883f38533c3408f7eb2cab63db1406a4&wsABSTime=1795925593
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/d23xmvzh5x5qg8n/image/small" group-title="Xôi Lạc" , 28/11 23:00 🟢 🏐 Spor Toto vs Ziraat Bankasi (HD TYSON)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.streamhaulcdn.com/livecdn/channel-33.flv?auth_key=3000001795882394-0-0-5f1f06c6476f2dcb7b6bb9c52d487db0
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/e4wyrn3hpzpm86p/image/small" group-title="Xôi Lạc" , 28/11 23:00 🟢 🏐 Galatasaray vs Gaziantep Genclik (HD 1)
+#EXTVLCOPT:http-referrer=https://xl365.domainkqt.cc/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live1.quickscoreboardz.com/live/channel81.flv?wsSecret=041dcead358fb8fbbbc0bc19813f886c&wsABSTime=1795925593
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/angers.png" group-title="Giờ Vàng" , 28/11 23:15 🟢 ⚽ Angers SCO vs Lens (Giovang 1 - Hứa)
+#EXTVLCOPT:http-referrer=https://giovang.baby/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://pzhgifbkllliv.vcdn.cloud/1795842229_hd/1795842229_hd@720p.m3u8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/yl5ergphjggr8k0/image/small" group-title="Phá Làng" , 28/11 23:15 🟢 ⚽ Angers - Lens
+#EXTVLCOPT:http-referrer=https://phalang.com/truc-tiep/angers-vs-lens-965mkyhk9ejkr1g
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://lilive1.eu.cc/live/7007508062c42ff45c8d81b94394122c/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/78e28dea2dc74d2c94116589d17a0363.png" group-title="GaVang33" , 28/11 23:15 🟢 ⚽ Angers SCO vs RC Lens (Gà Siêu Tồ)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://live2.zktsva.app/live/796315.m3u8
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3827_angers-sco.jpg" group-title="Xôi Chè" , 28/11 23:15 🟢 ⚽ Angers vs Lens (BLV Xôi Xoài)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+https://livecdn321.cdnfastter.xyz/live/live_09982ecf49/index.m3u8?token=5VclvTpM2E-bfUL2cfww643kT_KZYDbKiUUT4C8ng8o&expires=1852800615
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/526150064f4f983d670deb33fa6385b6.png" group-title="Gà Vàng" , 28/11 23:15 🟡 ⚽ Angers vs Lens (Chưa có link — chờ cập nhật)
+https://gavang1.org/truc-tiep/angers-sco-vs-rc-lens-ngay-28-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/l5ergphpg93r8k0/image/small" group-title="Phá Làng" , 28/11 23:30 🟡 ⚽ San Marino (W) - Nữ Liechtenstein (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4wyrn4hyezyvq86
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/4jwq2gh445ym0ve/image/small" group-title="Phá Làng" , 28/11 23:30 🟡 ⚽ Nữ Faroe Islands - Nữ Estonia (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#6ypq3nhk0xxjmd7
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/2y8m4zh3d53ql07/image/small" group-title="Phá Làng" , 28/11 23:30 🟡 ⚽ Nữ Uzbekistan - Nữ Papua New Guinea (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l5ergphko4ojr8k
+
+# ----- Ngày 2026-11-29 -----
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/torino.png" group-title="Giờ Vàng" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-torino-vs-lazio-29-11-6b00df3f24d46db87041c188
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125604_aafec1fd.png" group-title="Chuối Chiên" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550214/torino-vs-lazio
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/dn1m1gh38ypmoep/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Saint-Pierre Milizac - Pontivy Stade (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#318q66h8o9g1qo9
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whgnwdryox/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ AS Saint-Ouen L'Aumône - RC Calais (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4wyrn4hy8jl1q86
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/3glrw7hod62qdyj/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Sottevillais - Quevilly Rouen (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#6ypq3nhk02n6md7
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/y39mp1h3vw0mojx/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Nimes - Grenoble (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#965mkyh87joyr1g
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whe10vryox/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ US Vermelles - ES Thaon (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dj2ryoh7kwpyq1z
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/9k82rekhky8repz/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ St Pryve St Hilaire - IS Selongey (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dn1m1gh9450gmoe
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phl3ym2wd/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ JA Le Poire Sur Vie - Sable (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#k82rekh2v5x2rep
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/p3glrw7h56xqdyj/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Grasshopper - FC Basel 1893 (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l5ergphkopoyr8k
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/p4jwq2ghj42m0ve/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Bresse Péronnas 01 - Thionville FC (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l5ergphkozy6r8k
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/n54qllh2y34qvy9/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Nữ Tây Ban Nha - Nữ Chile (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#vjxm8ghk4n5jr6o
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7ph675m2wd/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Vaduz - FC Zurich (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#y0or5jh8d97jqwz
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/z8yomo4hw6lq0j6/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Torino - Lazio (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#y0or5jh8dl7dqwz
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/ednm9whk4kgryox/image/small" group-title="Phá Làng" , 29/11 00:00 🟡 ⚽ Chambly FC - Avranches (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#y39mp1hd3x46moj
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/f0856c1b16c32245a8d2c702ffe89ac5.png" group-title="Gà Vàng" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://gavang1.org/truc-tiep/torino-vs-lazio-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9804.png" group-title="Sao Kê" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/torino-vs-lazio-6b0a432cdb180f905a762f33.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/a2bb8abc4044455eaebc95b97e4f7192.png" group-title="GaVang33" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/torino-vs-lazio-luc-0000-ngay-29-11-2026-y0or5jh8dl7dqwz
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125604_aafec1fd.png" group-title="Bông Lau" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550214
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/2y8m4vf8dvvml07/image/small" group-title="Xôi Lạc" , 29/11 00:00 🟡 🎾 Veronika Erjavec vs Julia Riera (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/veronika-erjavec-vs-julia-riera-luc-0000-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/9dn1m1nhz6zqoep/image/small" group-title="Xôi Lạc" , 29/11 00:00 🟡 🏐 Rzeszow vs GKS Katowice (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/rzeszow-vs-gks-katowice-luc-0000-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/503.webp" group-title="Xôi Gấc" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://xoigac.top/torino-vs-lazio-id373081/moon-kight
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/4973_torino.jpg" group-title="Xôi Chè" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/torino-vs-lazio-28-11-2026-807980?blv=kho-mat
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2696/image" group-title="SportlinkTV" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (⏳ Còn 46 phút)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/OQWGjGcM-0lwy4Ij1.png" group-title="Khán Đài" , 29/11 00:00 🟡 ⚽ Torino vs Lazio (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/f179c62c3ee6c1
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/OzMivUfM-nPZTIbUt.png" group-title="Giờ Vàng" , 29/11 00:05 🟡 ⚽ Michigan Wolverines vs Ohio State Buckeyes (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-michigan-wolverines-vs-ohio-state-buckeyes-29-11-3p2g8y0os4xw
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/d23xmvkhz0nqg8n/image/small" group-title="Phá Làng" , 29/11 00:15 ⚽ Cercle Brugge - Mechelen (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#y39mp1h68nl9moj
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/ipswich-town.png" group-title="Giờ Vàng" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-ipswich-vs-aston-villa-29-11-6ab1e59ae5e6975d550f070d
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/vfb-stuttgart.png" group-title="Giờ Vàng" , 29/11 00:30 ⚽ VfB Stuttgart vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-vfb-stuttgart-vs-eintracht-frankfurt-29-11-6b00df4024d46db87041c68d
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/elche.png" group-title="Giờ Vàng" , 29/11 00:30 ⚽ Elche vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-elche-vs-atletico-madrid-29-11-6ab1e5bce5e6975d550f075f
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125551_1362c589.png" group-title="Chuối Chiên" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557482/ipswich-vs-aston-villa
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133422_f8f6e27d.png" group-title="Chuối Chiên" , 29/11 00:30 ⚽ Elche vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1570466/elche-vs-atletico-madrid
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/yl5ergphgy8r8k0/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ Al Ahli - Al Taawoun (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#1l4rjnh97p46m7v
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/j1l4rjnhpo5m7vx/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ Ipswich - Aston Villa (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#23xmvkh6zjdkqg8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phd7em2wd/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ Stuttgart - Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#ednm9whw4dy5ryo
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/l7oqdehldkzr510/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ US Castanet-Tolosan - Pau FC (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#jw2r09h5le0yrz8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvvporepz/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ Avenir Foot Lozere - Montpellier (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l5ergphkoz86r8k
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gy0or5jhd2gqwzv/image/small" group-title="Phá Làng" , 29/11 00:30 ⚽ Elche - Atl. Madrid (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#x7lm7phjep7vm2w
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9902.png" group-title="Sao Kê" , 29/11 00:30 ⚽ Ipswich Town vs Aston Villa (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/ipswich-town-vs-aston-villa-6b0a432cdb180f905a762f34.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10268.png" group-title="Sao Kê" , 29/11 00:30 ⚽ Elche vs Atlético Madrid (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/elche-vs-atletico-madrid-6b0a432cdb180f905a762f36.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10269.png" group-title="Sao Kê" , 29/11 00:30 ⚽ VfB Stuttgart vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/vfb-stuttgart-vs-eintracht-frankfurt-6b0a432cdb180f905a762f38.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/08a5f0316b334cf59f2f76e2266e90c3.png" group-title="GaVang33" , 29/11 00:30 ⚽ Ipswich Town vs Aston Villa (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/ipswich-town-vs-aston-villa-luc-0030-ngay-29-11-2026-23xmvkh6zjdkqg8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/8ac0fa63d0d04be984b6f7ca57d854e1.png" group-title="GaVang33" , 29/11 00:30 ⚽ Elche CF vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/elche-cf-vs-atletico-madrid-luc-0030-ngay-29-11-2026-x7lm7phjep7vm2w
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/58d10af2e12e4ed18ee9de02c0c4235e.png" group-title="GaVang33" , 29/11 00:30 ⚽ VfB Stuttgart vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/vfb-stuttgart-vs-eintracht-frankfurt-luc-0030-ngay-29-11-2026-ednm9whw4dy5ryo
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125551_1362c589.png" group-title="Bông Lau" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557482
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133422_f8f6e27d.png" group-title="Bông Lau" , 29/11 00:30 ⚽ Elche vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1570466
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/57.webp" group-title="Xôi Gấc" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://xoigac.top/ipswich-vs-aston-villa-id373139/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/797.webp" group-title="Xôi Gấc" , 29/11 00:30 ⚽ Elche vs Atletico Madrid (Chưa có link — chờ cập nhật)
+https://xoigac.top/elche-vs-atletico-madrid-id373140/deal-pool
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/172.webp" group-title="Xôi Gấc" , 29/11 00:30 ⚽ VfB Stuttgart vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://xoigac.top/vfb-stuttgart-vs-eintracht-frankfurt-id373142/hawkeye
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/7274_elche.jpg" group-title="Xôi Chè" , 29/11 00:30 ⚽ Elche vs Atl. Madrid (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/elche-vs-atl-madrid-28-11-2026-798939?blv=tam-mao
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3933_stuttgart.jpg" group-title="Xôi Chè" , 29/11 00:30 ⚽ Stuttgart vs Eintracht Frankfurt (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/stuttgart-vs-eintracht-frankfurt-28-11-2026-809360?blv=xoi-gac
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3121_ipswich-town.jpg" group-title="Xôi Chè" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/ipswich-vs-aston-villa-28-11-2026-812765?blv=kho-ca
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/34469/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ Al-Ahli vs Al-Taawoun (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/404108/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ Charlotte FC vs Chicago Fire (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2839/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ Eibar vs Burgos Club de Fútbol (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2846/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ Elche vs Atlético Madrid (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/32/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ Ipswich Town vs Aston Villa (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2677/image" group-title="SportlinkTV" , 29/11 00:30 ⚽ VfB Stuttgart vs Eintracht Frankfurt (⏳ Còn 1h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/UcRA5fil-YmCZKGcR.png" group-title="Khán Đài" , 29/11 00:30 ⚽ Elche vs Atl. Madrid (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/3515156eab41bc
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/zm5vbmDa-0C98slBk.png" group-title="Khán Đài" , 29/11 00:30 ⚽ Ipswich vs Aston Villa (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/cc83b741296be9
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/p4jwq2ghdy9m0ve/image/small" group-title="Phá Làng" , 29/11 00:45 ⚽ Motherwell - Hibernian (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4wyrn4h61561q86
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/p3glrw7h5klqdyj/image/small" group-title="Phá Làng" , 29/11 00:45 ⚽ PSV Eindhoven - Go Ahead Eagles (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#x7lm7phjd59lm2w
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/161a341db6e5466e93700c31403bcdc3.png" group-title="GaVang33" , 29/11 00:45 ⚽ PSV Eindhoven vs Go Ahead Eagles (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/psv-eindhoven-vs-go-ahead-eagles-luc-0045-ngay-29-11-2026-x7lm7phjd59lm2w
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2346/image" group-title="SportlinkTV" , 29/11 00:45 ⚽ Motherwell vs Hibernian (⏳ Còn 1h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2952/image" group-title="SportlinkTV" , 29/11 00:45 ⚽ PSV Eindhoven vs Go Ahead Eagles (⏳ Còn 1h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCJcqPgRxrA-XYzY0L2RSjpG9p8wsk0KqdEOTq9vdiEfTt-XqSXrYELAU&s=10" group-title="Giờ Vàng" , 29/11 01:00 🏎️ F1 vs F1 (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-f1-vs-f1-29-11-d6g97g5ilk7j
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vjxm8gh4vz5r6od/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Nữ Canada - Nữ Panama (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#2y8m4zh5dj2eql0
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/x7lm7pho8npm2wd/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Montlucon - Clermont (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#2y8m4zhv32p2ql0
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phynkm2wd/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Saint-Étienne - Villefranche (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4wyrn4hy8j21q86
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/jw2r09hnj6lrz84/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ TA Rennes - FC Rouen (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#8yomo4hy7w4nq0j
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/jw2r09hlwojrz84/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Puissalicon Magalas - Riviera (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#8yomo4hy7wxnq0j
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/dj2ryoh2847q1zp/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Massay - US Orléans (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dj2ryoh7kw4zq1z
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/y39mp1h531lmojx/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Lannion - Stade Lavallois (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dj2ryoh7kwxzq1z
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/y0or5jh46j4qwzv/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ Bressuire - Pouliguen (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#k82rekh2v52prep
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/n54qllhxx1gqvy9/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ AE Kifisias - Kalamata (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l7oqdehgpnpkr51
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/y0or5jhl6d3qwzv/image/small" group-title="Phá Làng" , 29/11 01:00 ⚽ AS Furiani Agliani - Nancy (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l7oqdehjnv3pr51
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/3022/image" group-title="SportlinkTV" , 29/11 01:00 ⚽ Académico Viseu FC vs FC Alverca (⏳ Còn 1h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/x7lm7nfxk4zq2wd/image/small" group-title="Xôi Lạc" , 29/11 01:10 🎾 Lourdes Ayala vs Akli A (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/lourdes-ayala-sol-ailin-larraya-guidi-vs-akli-a-rencheli-a-luc-0110-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/l965mkdhdynr1ge/image/small" group-title="Xôi Lạc" , 29/11 01:30 🏐 Sete vs Narbonne (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/sete-vs-narbonne-luc-0130-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/n54qllh2dloqvy9/image/small" group-title="Phá Làng" , 29/11 02:00 ⚽ Vannes - Concarneau (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#3glrw7h4wxp1qdy
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/vjxm8gh4nynr6od/image/small" group-title="Phá Làng" , 29/11 02:00 ⚽ RS Berkane - Colombe Lobo (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#ednm9wh5k4y9ryo
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/965mkyh7y0lr1ge/image/small" group-title="Phá Làng" , 29/11 02:00 ⚽ Nữ Ghana  - Nữ Ecuador (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#jw2r09h5lklvrz8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/y0or5gtlzy5qwzv/image/small" group-title="Xôi Lạc" , 29/11 02:00 🏀 Austin Spurs vs Mexico City Capitanes (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/austin-spurs-vs-mexico-city-capitanes-luc-0200-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/4zp5rzdhv5jq82w/image/small" group-title="Xôi Lạc" , 29/11 02:00 🏐 Chaumont vs Cannes (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/chaumont-vs-cannes-luc-0200-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gpxwrxlh44lryk0/image/small" group-title="Phá Làng" , 29/11 02:30 ⚽ Servette - Lausanne Sports (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#3glrw7hne4dzqdy
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2508/image" group-title="SportlinkTV" , 29/11 02:30 ⚽ Houston Dynamo vs San Jose Earthquakes (⏳ Còn 3h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/inter-milan.png" group-title="Giờ Vàng" , 29/11 02:45 ⚽ Inter Milan vs Genoa (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-inter-milan-vs-genoa-29-11-6b00df4124d46db87041cc4b
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/le-mans.png" group-title="Giờ Vàng" , 29/11 02:45 ⚽ Le Mans vs Lille OSC (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-le-mans-vs-lille-osc-29-11-6b00df4124d46db87041cc89
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/paris-saint-germain-psg.png" group-title="Giờ Vàng" , 29/11 02:45 ⚽ Paris Saint Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-paris-saint-germain-vs-lorient-29-11-6b00df4124d46db87041ccc4
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125605_14c915ad.png" group-title="Chuối Chiên" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550211/inter-vs-genoa
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125513_ca6329d9.png" group-title="Chuối Chiên" , 29/11 02:45 ⚽ Paris Saint Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1552835/paris-saint-germain-vs-lorient
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/y0or5jhlegzqwzv/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ KVSK Lommel - Zulte Waregem (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#1l4rjnh9p071m7v
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/9dn1m1ghzl2moep/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ Inter - Genoa (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#23xmvkh6z351qg8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/8y39mp1hnj7mojx/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ Le Havre FC - Strasbourg (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#318q66hxd493qo9
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gx7lm7phd1wm2wd/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽  RC Charleroi - SK Beveren (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#965mkyhk9xvnr1g
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/j1l4rjnho4jm7vx/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ Le Mans - LOSC (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dn1m1ghld35dmoe
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/kjw2r09hv44rz84/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ PSG - Lorient (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#jw2r09hkdjezrz8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/p3glrw7h5oeqdyj/image/small" group-title="Phá Làng" , 29/11 02:45 ⚽ Nice - Troyes (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#l5ergph4jezxr8k
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/football/team/aa2245702c40f77799a5ad4b119581a8.png" group-title="Gà Vàng" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://gavang1.org/truc-tiep/inter-milan-vs-genoa-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8636.png" group-title="Sao Kê" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/inter-vs-genoa-6b0a432cdb180f905a762f32.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9847.png" group-title="Sao Kê" , 29/11 02:45 ⚽ Paris Saint-Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/paris-saint-germain-vs-lorient-6b0a432cdb180f905a762f35.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/a8cd83c5eca342bbafa6ab8134c27e80.png" group-title="GaVang33" , 29/11 02:45 ⚽ Inter Milan vs Genoa (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/inter-milan-vs-genoa-luc-0245-ngay-29-11-2026-23xmvkh6z351qg8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/e96f64865926408e834fa7ba11dcaf7d.png" group-title="GaVang33" , 29/11 02:45 ⚽ Havre Athletic Club vs RC Strasbourg Alsace (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/havre-athletic-club-vs-rc-strasbourg-alsace-luc-0245-ngay-29-11-2026-318q66hxd493qo9
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/a18b42e31dcc4a75b28663a3ea5998f5.png" group-title="GaVang33" , 29/11 02:45 ⚽ OGC Nice vs Troyes (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/ogc-nice-vs-troyes-luc-0245-ngay-29-11-2026-l5ergph4jezxr8k
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/52b1faac01114db59798b5191df5c925.png" group-title="GaVang33" , 29/11 02:45 ⚽ Paris Saint Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/paris-saint-germain-vs-lorient-luc-0245-ngay-29-11-2026-jw2r09hkdjezrz8
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125605_14c915ad.png" group-title="Bông Lau" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550211
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125513_ca6329d9.png" group-title="Bông Lau" , 29/11 02:45 ⚽ Paris Saint Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1552835
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/z318q67helzro9j/image/small" group-title="Xôi Lạc" , 29/11 02:45 🏐 Nữ Latino Amisa vs Nữ Rebaza Acosta (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-latino-amisa-vs-nu-rebaza-acosta-luc-0245-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/505.webp" group-title="Xôi Gấc" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://xoigac.top/inter-vs-genoa-id373206/hawkeye
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/85.webp" group-title="Xôi Gấc" , 29/11 02:45 ⚽ Paris Saint Germain vs Lorient (Chưa có link — chờ cập nhật)
+https://xoigac.top/paris-saint-germain-vs-lorient-id373210/black-panther
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/79_internazionale.jpg" group-title="Xôi Chè" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/inter-vs-genoa-28-11-2026-807977?blv=luong-kho
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/100_psg.jpg" group-title="Xôi Chè" , 29/11 02:45 ⚽ PSG vs Lorient (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/psg-vs-lorient-28-11-2026-810013?blv=kho-cay
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2697/image" group-title="SportlinkTV" , 29/11 02:45 ⚽ Inter vs Genoa (⏳ Còn 3h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1662/image" group-title="SportlinkTV" , 29/11 02:45 ⚽ Le Havre vs RC Strasbourg (⏳ Còn 3h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1672/image" group-title="SportlinkTV" , 29/11 02:45 ⚽ Le Mans vs LOSC Lille (⏳ Còn 3h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1661/image" group-title="SportlinkTV" , 29/11 02:45 ⚽ OGC Nice vs Troyes (⏳ Còn 3h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1644/image" group-title="SportlinkTV" , 29/11 02:45 ⚽ Paris Saint-Germain vs Lorient (⏳ Còn 3h31)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/EskJufg5-A7UDDuOO.png" group-title="Khán Đài" , 29/11 02:45 ⚽ PSG vs Lorient (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/5ebd1376b883d3
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/lxz64qDa-O8c8nWOb.png" group-title="Khán Đài" , 29/11 02:45 ⚽ Inter vs Genoa (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/b6810a17a581b7
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/real-madrid.png" group-title="Giờ Vàng" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-real-madrid-vs-alaves-29-11-6ab1e5bce5e6975d550f0760
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_9a1b10da.png" group-title="Chuối Chiên" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1570470/real-madrid-vs-alaves
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/4zp5rzgh993q82w/image/small" group-title="Phá Làng" , 29/11 03:00 ⚽ Palmeiras - Estudiantes LP (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#23xmvkhy3k95qg8
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/4zp5rzghegzq82w/image/small" group-title="Phá Làng" , 29/11 03:00 ⚽ SC Cambuur  - Sparta Rotterdam (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#2y8m4zh5d4zeql0
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/e4wyrn4h111q86p/image/small" group-title="Phá Làng" , 29/11 03:00 ⚽ Real Madrid - Alavés (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#ednm9whw4e0jryo
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8633.png" group-title="Sao Kê" , 29/11 03:00 ⚽ Real Madrid vs Deportivo Alavés (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/real-madrid-vs-deportivo-alaves-6b0a432cdb180f905a762f37.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/5d83fbd4a22c445080c53e8ab832a889.png" group-title="GaVang33" , 29/11 03:00 ⚽ Real Madrid vs Deportivo Alavés (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/real-madrid-vs-deportivo-alaves-luc-0300-ngay-29-11-2026-ednm9whw4e0jryo
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125625_9a1b10da.png" group-title="Bông Lau" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1570470
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/1l4rjwfgovpm7vx/image/small" group-title="Xôi Lạc" , 29/11 03:00 🎾 Luis Carlos Alvarez Valdes vs Lucas Andrade Da Silva (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/luis-carlos-alvarez-valdes-vs-lucas-andrade-da-silva-luc-0300-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/541.webp" group-title="Xôi Gấc" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://xoigac.top/real-madrid-vs-alaves-id373214/deal-pool
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/76_real-madrid.jpg" group-title="Xôi Chè" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/real-madrid-vs-alaves-28-11-2026-798943?blv=kho-coc
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1963/image" group-title="SportlinkTV" , 29/11 03:00 ⚽ Palmeiras vs Estudiantes de La Plata (⏳ Còn 3h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2829/image" group-title="SportlinkTV" , 29/11 03:00 ⚽ Real Madrid vs Deportivo Alavés (⏳ Còn 3h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/A7kHoxZA-ttfpEDUq.png" group-title="Khán Đài" , 29/11 03:00 ⚽ Real Madrid vs Alaves (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/6c7fa2150ceae5
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/3009/image" group-title="SportlinkTV" , 29/11 03:30 ⚽ Vitória SC vs CF Estrela Amadora (⏳ Còn 4h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/estudiantes-la-plata.png" group-title="Giờ Vàng" , 29/11 04:00 ⚽ Estudiantes La Plata vs Palmeiras (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-estudiantes-la-plata-vs-palmeiras-29-11-6adbf5d56ddb4d9191043f7f
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/9k82redhk6nqepz/image/small" group-title="Xôi Lạc" , 29/11 04:00 🏐 River Plate vs Boca Juniors (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/river-plate-vs-boca-juniors-luc-0400-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/k82rekhvvkorepz/image/small" group-title="Phá Làng" , 29/11 04:30 ⚽ Nữ Mexico - Nữ Haiti (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#8yomo4h1jkwjq0j
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/z8yomoxhw9em0j6/image/small" group-title="Xôi Lạc" , 29/11 04:30 🏐 Guarulhos vs Volei Renata (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/guarulhos-vs-volei-renata-luc-0430-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/39833/image" group-title="SportlinkTV" , 29/11 04:30 ⚽ Philadelphia Union vs New England Revolution (⏳ Còn 5h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/f4a3bba0c74c9f2b90bc5861ec26e3c7.png" group-title="Giờ Vàng" , 29/11 05:00 🏀 Washington Wizards vs Orlando Magic (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-washington-wizards-vs-orlando-magic-29-11-34838272
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/ac18ecfecac3af349477383866cf8ef5.png" group-title="Gà Vàng" , 29/11 05:00 🏀 Washington Wizards vs Orlando Magic (Chưa có link — chờ cập nhật)
+https://gavang1.org/basketball/washington-wizards-vs-orlando-magic-on-28-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/pxwrx5tgx8xqyk0/image/small" group-title="Xôi Lạc" , 29/11 05:00 🏀 Long Island Nets vs Maine Celtics (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/long-island-nets-vs-maine-celtics-luc-0500-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/gpxwrx5twy8qyk0/image/small" group-title="Xôi Lạc" , 29/11 05:00 🏀 Washington Wizards vs Orlando Magic (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/washington-wizards-vs-orlando-magic-luc-0500-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/tennis/team/y39mpyfj6kemojx/image/small" group-title="Xôi Lạc" , 29/11 05:00 🎾 Timo Legout vs Luis Miguel (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/timo-legout-vs-luis-miguel-luc-0500-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/jednm9vhnjnqyox/image/small" group-title="Xôi Lạc" , 29/11 05:00 🏐 Nữ Alianza Lima vs Nữ Peru (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-alianza-lima-vs-nu-peru-luc-0500-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/9e28959b5af233b67c389787d2886c84.png" group-title="Giờ Vàng" , 29/11 06:00 🏀 Charlotte Hornets vs Brooklyn Nets (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-charlotte-hornets-vs-brooklyn-nets-29-11-35838273
+
+#EXTINF:-1 tvg-logo="https://www.wwe.com/f/styles/wwe_16_9_xl/public/2026/08/20260812_RoadToSurvivorSeries_Announcement_1920x1080.jpg" group-title="Giờ Vàng" , 29/11 06:00 ⚽ WWE Survivor Series: vs WarGames 2026 (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-wwe-survivor-series-vs-wargames-2026-29-11-0y6v2be8omvh
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/e52f6ac53681289c91703501a960cb3c.png" group-title="Gà Vàng" , 29/11 06:00 🏀 Charlotte Hornets vs Brooklyn Nets (Chưa có link — chờ cập nhật)
+https://gavang1.org/basketball/charlotte-hornets-vs-brooklyn-nets-on-28-11-2026/
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/a7faffc34e6a44468bbd57b558641eb9.png" group-title="GaVang33" , 29/11 06:00 ⚽ Velez Sarsfield vs CA Independiente (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/velez-sarsfield-vs-ca-independiente-luc-0600-ngay-29-11-2026-8yomo4hy7n2lq0j
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/3glrwytw327qdyj/image/small" group-title="Xôi Lạc" , 29/11 06:00 🏀 Salt Lake City Stars vs Stockton Kings (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/salt-lake-city-stars-vs-stockton-kings-luc-0600-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/n54ql7te7lprvy9/image/small" group-title="Xôi Lạc" , 29/11 06:00 🏀 Greensboro Swarm vs College Park Skyhawks (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/greensboro-swarm-vs-college-park-skyhawks-luc-0600-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/vl7oqd4tzgjq510/image/small" group-title="Xôi Lạc" , 29/11 06:00 🏀 Charlotte Hornets vs Brooklyn Nets (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/charlotte-hornets-vs-brooklyn-nets-luc-0600-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/135.webp" group-title="Xôi Gấc" , 29/11 06:00 🏀 Charlotte Hornets vs Brooklyn Nets (Chưa có link — chờ cập nhật)
+https://xoigac.top/charlotte-hornets-vs-brooklyn-nets-id372065/the-flash
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fc-cincinnati.png" group-title="Giờ Vàng" , 29/11 06:30 ⚽ FC Cincinnati vs Nashville SC (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-fc-cincinnati-vs-nashville-sc-29-11-6b00df4124d46db87041cf72
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131611_88284967.png" group-title="Chuối Chiên" , 29/11 06:30 ⚽ FC Cincinnati vs Nashville SC (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1651122/fc-cincinnati-vs-nashville-sc
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/722265.png" group-title="Sao Kê" , 29/11 06:30 ⚽ FC Cincinnati vs Nashville SC (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/fc-cincinnati-vs-nashville-sc-6b0a432cdb180f905a762f3a.html
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131611_88284967.png" group-title="Bông Lau" , 29/11 06:30 ⚽ FC Cincinnati vs Nashville SC (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1651122
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/215167/image" group-title="SportlinkTV" , 29/11 06:30 ⚽ FC Cincinnati vs Nashville SC (⏳ Còn 7h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/botafogo-rj.png" group-title="Giờ Vàng" , 29/11 07:00 ⚽ Botafogo (RJ) vs Bahia(BA) (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-botafogo-rj-vs-bahia-ba-29-11-6b00df4124d46db87041cff6
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/56ypq3nhdkymd7o/image/small" group-title="Phá Làng" , 29/11 07:00 ⚽ Botafogo - Bahia (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4wyrn4h6o806q86
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/5d83c47462e5afb6f1add0ad508c300b.png" group-title="GaVang33" , 29/11 07:00 ⚽ Botafogo - RJ vs Bahia - BA (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/botafogo-rj-vs-bahia-ba-luc-0700-ngay-29-11-2026-4wyrn4h6o806q86
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/x7lm73todgwr2wd/image/small" group-title="Xôi Lạc" , 29/11 07:00 🏀 Cleveland Charge vs Iowa Wolves (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/cleveland-charge-vs-iowa-wolves-luc-0700-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/3glrwytw3deqdyj/image/small" group-title="Xôi Lạc" , 29/11 07:00 🏀 Grand Rapids Gold vs Noblesville Boom (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/grand-rapids-gold-vs-noblesville-boom-luc-0700-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/l965mkdhvj6r1ge/image/small" group-title="Xôi Lạc" , 29/11 07:00 🏐 Nữ San Martin Porres vs Nữ Atenea (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-san-martin-porres-vs-nu-atenea-luc-0700-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1958/image" group-title="SportlinkTV" , 29/11 07:00 ⚽ Botafogo vs Bahia (⏳ Còn 7h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e82de69ea44942a3e90a5be6cf0004da.png" group-title="Giờ Vàng" , 29/11 08:00 🏀 Milwaukee Bucks vs Oklahoma City Thunder (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-milwaukee-bucks-vs-oklahoma-city-thunder-29-11-36838274
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/c73eca8b9cc18ff386bf6ff4c1236b9e.png" group-title="Giờ Vàng" , 29/11 08:00 🏀 Chicago Bulls vs Indiana Pacers (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-chicago-bulls-vs-indiana-pacers-29-11-37838275
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/172138a954c51bb257ac1ebaa52f01a1.png" group-title="Gà Vàng" , 29/11 08:00 🏀 Milwaukee Bucks vs Oklahoma City Thunder (Chưa có link — chờ cập nhật)
+https://gavang1.org/basketball/milwaukee-bucks-vs-oklahoma-city-thunder-on-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/a3316e9ee8fe7b3a279a10d61d0b2f87.png" group-title="GaVang33" , 29/11 08:00 ⚽ Atlas vs Toluca (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/atlas-vs-toluca-luc-0800-ngay-29-11-2026-k82rekh2vlvxrep
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kjw2r02tdkkqz84/image/small" group-title="Xôi Lạc" , 29/11 08:00 🏀 Chicago Bulls vs Indiana Pacers (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/chicago-bulls-vs-indiana-pacers-luc-0800-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/9k82re8td2nrepz/image/small" group-title="Xôi Lạc" , 29/11 08:00 🏀 Milwaukee Bucks vs Oklahoma City Thunder (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/milwaukee-bucks-vs-oklahoma-city-thunder-luc-0800-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/uploads/stream-logos/2026-11/d2d8dc79dc364d489ada96412b7c1722.svg" group-title="Xôi Gấc" , 29/11 08:00 ⚽ Atlas vs Toluca (Chưa có link — chờ cập nhật)
+https://xoigac.top/live/football/7134/raccoon
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/1949/image" group-title="SportlinkTV" , 29/11 08:00 ⚽ Atlas FC vs CD Toluca (⏳ Còn 8h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/los-angeles-fc.png" group-title="Giờ Vàng" , 29/11 08:30 ⚽ Los Angeles FC vs St. Louis City (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-los-angeles-fc-vs-st-louis-city-29-11-6b00df4224d46db87041d0cc
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/cd4e8cb86960160ecba025ba8d73cd3f.png" group-title="Giờ Vàng" , 29/11 08:30 🏀 Houston Rockets vs Philadelphia 76ers (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-houston-rockets-vs-philadelphia-76ers-29-11-30998275
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131610_3c117687.png" group-title="Chuối Chiên" , 29/11 08:30 ⚽ Los Angeles FC vs St. Louis City (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1649502/los-angeles-fc-vs-st-louis-city
+
+#EXTINF:-1 tvg-logo="https://static.sportsfeed.pro/basketball/team/bcfe797437f18526ff4e62177021f638.png" group-title="Gà Vàng" , 29/11 08:30 🏀 Houston Rockets vs Philadelphia 76ers (Chưa có link — chờ cập nhật)
+https://gavang1.org/basketball/houston-rockets-vs-philadelphia-76ers-on-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/867280.png" group-title="Sao Kê" , 29/11 08:30 ⚽ Los Angeles FC vs St. Louis City (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/los-angeles-fc-vs-st-louis-city-6b0a432cdb180f905a762f39.html
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_131610_3c117687.png" group-title="Bông Lau" , 29/11 08:30 ⚽ Los Angeles FC vs St. Louis City (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1649502
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/kn54ql7ty45rvy9/image/small" group-title="Xôi Lạc" , 29/11 08:30 🏀 Houston Rockets vs Philadelphia 76ers (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/houston-rockets-vs-philadelphia-76ers-luc-0830-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/23xmv1togp3mg8n/image/small" group-title="Xôi Lạc" , 29/11 08:30 🏀 Rio Grande Vipers vs Memphis Hustle (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/rio-grande-vipers-vs-memphis-hustle-luc-0830-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/274650/image" group-title="SportlinkTV" , 29/11 08:30 ⚽ Los Angeles FC vs St.Louis City (⏳ Còn 9h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/8yomovtko3pq0j6/image/small" group-title="Xôi Lạc" , 29/11 09:00 🏀 Nữ Mid-North vs Nữ Northern Kahu (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-mid-north-vs-nu-northern-kahu-luc-0900-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/6ypq3kt5wvlmd7o/image/small" group-title="Xôi Lạc" , 29/11 09:00 🏀 Nữ Southside vs Nữ Bendigo Spirit (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-southside-vs-nu-bendigo-spirit-luc-0900-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/basketball/teams/30.webp" group-title="Xôi Gấc" , 29/11 09:00 🏀 Southside W vs Bendigo W (Chưa có link — chờ cập nhật)
+https://xoigac.top/southside-w-vs-bendigo-w-id373278/the-flash
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/7568/image" group-title="SportlinkTV" , 29/11 09:00 ⚽ Wellington Phoenix vs Adelaide United (⏳ Còn 9h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251009_205314_04bcc920.png" group-title="Chuối Chiên" , 29/11 10:00 🏐 Okayama Seagulls W vs Hisamitsu Springs W (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/993042/okayama-seagulls-w-vs-hisamitsu-springs-w
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/dj2ryohk4zkq1zp/image/small" group-title="Phá Làng" , 29/11 10:00 ⚽ Nữ New Zealand - Nữ Philippines  (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#k82rekh29zz0rep
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251009_205314_04bcc920.png" group-title="Bông Lau" , 29/11 10:00 🏐 Okayama Seagulls W vs Hisamitsu Springs W (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/993042
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/23xmv1t3p1zmg8n/image/small" group-title="Xôi Lạc" , 29/11 10:00 🏀 Santa Cruz Warriors vs Valley Suns (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/santa-cruz-warriors-vs-valley-suns-luc-1000-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/z8yomovtpw6q0j6/image/small" group-title="Xôi Lạc" , 29/11 10:00 🏀 Nữ Mitsubishi Electric Dolphins vs Nữ Aranmare Akita (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-mitsubishi-electric-dolphins-vs-nu-aranmare-akita-luc-1000-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/hbnnxXeM-KGU5ehTK.png" group-title="Phá Làng" , 29/11 10:05 🏐 Okayama Seagulls Women - Hisamitsu Springs Women (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#8f48885622514c70a60cee74a4b9f36e
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/8y39mpwhgd9qojx/image/small" group-title="Xôi Lạc" , 29/11 10:05 🏐 Nữ Okayama Seagulls vs Nữ Hisamitsu Springs (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-okayama-seagulls-vs-nu-hisamitsu-springs-luc-1005-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/6576.png" group-title="Sao Kê" , 29/11 10:10 ⚽ CF América vs Monterrey (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/cf-america-vs-monterrey-6b0a432cdb180f905a762f31.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/775a930b77d31e8f8a6d6ba8afc17c03.png" group-title="GaVang33" , 29/11 10:10 ⚽ Club America vs Rayados de Monterrey (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/club-america-vs-rayados-de-monterrey-luc-1010-ngay-29-11-2026-dn1m1gh94642moe
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/uploads/stream-logos/2026-11/d28e936c3aec4b15881fe95284c75ee3.png" group-title="Xôi Gấc" , 29/11 10:10 ⚽ Club America vs Monterrey (Chưa có link — chờ cập nhật)
+https://xoigac.top/live/football/7137/nova
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/portland-timbers.png" group-title="Giờ Vàng" , 29/11 10:30 ⚽ Portland Timbers vs FC Dallas (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-portland-timbers-vs-fc-dallas-29-11-6b00df4224d46db87041d140
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/22007/image" group-title="SportlinkTV" , 29/11 10:30 ⚽ Portland Timbers vs FC Dallas (⏳ Còn 11h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251226_202442_3c2f246b.png" group-title="Chuối Chiên" , 29/11 11:00 🏐 Ageo W vs Gunma Bank Green Wings W (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/997553/ageo-w-vs-gunma-bank-green-wings-w
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251226_202442_3c2f246b.png" group-title="Sao Kê" , 29/11 11:00 ⚽ Okayama Seagulls vs Hisamitsu Springs (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/ageo-w-vs-gunma-bank-green-wings-w-6b08cb94d4c47d37611618cf.html
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251226_202442_3c2f246b.png" group-title="Bông Lau" , 29/11 11:00 🏐 Ageo W vs Gunma Bank Green Wings W (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/997553
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/n54ql7txjyprvy9/image/small" group-title="Xôi Lạc" , 29/11 11:00 🏀 Nữ Tasmania Jewels vs Nữ UC Capitals (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-tasmania-jewels-vs-nu-uc-capitals-luc-1100-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/4zp5rzktk8jr82w/image/small" group-title="Xôi Lạc" , 29/11 11:00 🏀 Nữ Albirex Niigata vs Nữ Yamanashi QueenBees (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-albirex-niigata-vs-nu-yamanashi-queenbees-luc-1100-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/4Mqb9BEa-jgOmDmeJ.png" group-title="Giờ Vàng" , 29/11 11:05 🏐 Ageo Nữ vs Gunma Greenwings Nữ (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-ageo-nu-vs-gunma-greenwings-nu-29-11-spivi5lwkusj
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/IDJLoIcM-Q9VBAmE7.png" group-title="Phá Làng" , 29/11 11:05 🏐 Ageo Women - Gunma Greenwings Women (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#82c1feac3d01476cacaba267082916d4
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/volleyball/team/9dn1m1nhy97qoep/image/small" group-title="Xôi Lạc" , 29/11 11:05 🏐 Nữ Ageo vs Nữ Green Wings (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/nu-ageo-vs-nu-green-wings-luc-1105-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/japan-w.png" group-title="Giờ Vàng" , 29/11 11:55 ⚽ Nữ Nhật Bản vs Nữ Brazil (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-nu-nhat-ban-vs-nu-brazil-29-11-6b06252b24d46db870142c05
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/965mkyh7e0or1ge/image/small" group-title="Phá Làng" , 29/11 11:55 ⚽ Nữ Nhật Bản - Nữ Brazil (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#318q66h8olj3qo9
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/96160a8149d100c6cb317cf2c52ca4f8.jpg" group-title="Giờ Vàng" , 29/11 12:00 🏀 Fiji vs Indonesia (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-fiji-vs-indonesia-29-11-20574578
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/9k82rekh49zrepz/image/small" group-title="Phá Làng" , 29/11 12:00 ⚽ Ulsan Hyundai - Jeonbuk Hyundai (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#k82rekh2v8y0rep
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/jednm9whljpryox/image/small" group-title="Phá Làng" , 29/11 12:00 ⚽ Yokohama Marinos - FC Tokyo (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#x7lm7phjdzz8m2w
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/23xmvkh3dg6qg8n/image/small" group-title="Phá Làng" , 29/11 12:00 ⚽ Mito Hollyhock - V-Varen Nagasaki (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#y39mp1h68z06moj
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/fe07fb888ebcb282192332cb8aed21b1.png" group-title="GaVang33" , 29/11 12:00 ⚽ Ulsan HD FC vs Jeonbuk Hyundai Motors (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/ulsan-hd-fc-vs-jeonbuk-hyundai-motors-luc-1200-ngay-29-11-2026-k82rekh2v8y0rep
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/basketball/team/2y8m4pt3070ml07/image/small" group-title="Xôi Lạc" , 29/11 12:00 🏀 Fiji vs Indonesia (Chưa có link — chờ cập nhật)
+https://xoilacvbz.tv/truc-tiep/fiji-vs-indonesia-luc-1200-ngay-29-11-2026/
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/296.webp" group-title="Xôi Gấc" , 29/11 12:00 ⚽ Yokohama F. Marinos vs FC Tokyo (Chưa có link — chờ cập nhật)
+https://xoigac.top/yokohama-f-marinos-vs-fc-tokyo-id373606/raccoon
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/387_yokohama-f.-marinos.jpg" group-title="Xôi Chè" , 29/11 12:00 ⚽ Yokohama F. Marinos vs FC Tokyo (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/yokohama-f-marinos-vs-fc-tokyo-29-11-2026-807641?blv=xoi-gac
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/kawasaki-frontale.png" group-title="Giờ Vàng" , 29/11 13:00 ⚽ Kawasaki Frontale vs Gamba Osaka (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-kawasaki-frontale-vs-gamba-osaka-29-11-6b00df4324d46db87041d333
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/0715d1f2f9ca8ea91035f3fcc2af4d35.png" group-title="Giờ Vàng" , 29/11 13:00 🏀 Syria vs New Zealand (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-syria-vs-new-zealand-29-11-37808272
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/v2y8m4zh915ql07/image/small" group-title="Phá Làng" , 29/11 13:00 ⚽ Nagoya Grampus - Avispa Fukuoka (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#4jwq2ghndez9m0v
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/gpxwrxlho65ryk0/image/small" group-title="Phá Làng" , 29/11 13:00 ⚽ Kawasaki Frontale - Gamba Osaka (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#dn1m1ghld2pgmoe
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/32aa68e1fa3d62dad572d19b21a09353.png" group-title="GaVang33" , 29/11 13:00 ⚽ Nagoya Grampus vs Avispa Fukuoka (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/nagoya-grampus-vs-avispa-fukuoka-luc-1300-ngay-29-11-2026-4jwq2ghndez9m0v
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/937795c0851c1e794e96a5cb660fcd59.png" group-title="GaVang33" , 29/11 13:00 ⚽ Kawasaki Frontale vs Gamba Osaka (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/kawasaki-frontale-vs-gamba-osaka-luc-1300-ngay-29-11-2026-dn1m1ghld2pgmoe
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/uploads/stream-logos/2026-11/492d4b94e6a54d4780f63e943151a0dc.png" group-title="Xôi Gấc" , 29/11 13:00 🏀 Syria vs New Zealand (Chưa có link — chờ cập nhật)
+https://xoigac.top/live/football/7139/the-flash
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/417_kawasaki-frontale.jpg" group-title="Xôi Chè" , 29/11 13:00 ⚽ Kawasaki Frontale vs Gamba Osaka (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/kawasaki-frontale-vs-gamba-osaka-29-11-2026-807636?blv=kho-mat
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/machida-zelvia.png" group-title="Giờ Vàng" , 29/11 14:00 ⚽ FC Machida Zelvia vs Tokyo Verdy (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-fc-machida-zelvia-vs-tokyo-verdy-29-11-6b00df4324d46db87041d35a
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/zaBfVVfM-jZFjtRuk.png" group-title="Giờ Vàng" , 29/11 14:00 🏐 SOOP SOOPers Nữ vs Expressway Co Nữ (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-soop-soopers-nu-vs-expressway-co-nu-29-11-86nzxiwy1c46
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111723_dae39713.jpg" group-title="Chuối Chiên" , 29/11 14:00 🏐 Công An Nhân Dân vs Ninh Bình FC (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/994694/cong-an-nhan-dan-vs-ninh-binh-fc
+
+#EXTINF:-1 tvg-logo="https://imgts.sportpulseapiz.com/football/team/318q66hoe05qo9j/image/small" group-title="Phá Làng" , 29/11 14:00 ⚽ Machida Zelvia - Tokyo Verdy (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#3glrw7hne731qdy
+
+#EXTINF:-1 tvg-logo="https://thumb.wikimedia.org/wikipedia/vi/thumb/7/7b/Logo_CLB_C%C3%B4ng_an_nh%C3%A2n_d%C3%A2n_%282026%29.png/250px-Logo_CLB_C%C3%B4ng_an_nh%C3%A2n_d%C3%A2n_%282026%29.png" group-title="Phá Làng" , 29/11 14:00 🏐 Công An Nhân Dân - Ninh Bình  (Chưa có link — chờ cập nhật)
+https://phalang.com/trang-chu#0f02ccf74cd041b68d9ce2dd6ab7851c
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111723_dae39713.jpg" group-title="Sao Kê" , 29/11 14:00 ⚽ Công An Nhân Dân vs Ninh Bình (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/cong-an-nhan-dan-vs-ninh-binh-6b0aba8baf2456dd874ffeba.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/539c489a7bd94dd9d785308fd0f0a6b9.png" group-title="GaVang33" , 29/11 14:00 ⚽ Machida Zelvia vs Tokyo Verdy (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/machida-zelvia-vs-tokyo-verdy-luc-1400-ngay-29-11-2026-3glrw7hne731qdy
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111723_dae39713.jpg" group-title="Bông Lau" , 29/11 14:00 🏐 Công An Nhân Dân vs Ninh Bình FC (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/994694
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/303.webp" group-title="Xôi Gấc" , 29/11 14:00 ⚽ Machida Zelvia vs Tokyo Verdy (Chưa có link — chờ cập nhật)
+https://xoigac.top/machida-zelvia-vs-tokyo-verdy-id373620/moon-kight
+
+#EXTINF:-1 tvg-logo="https://assets.football-logos.cc/logos/vietnam/700x700/cong-an-nhan-dan.4cf1c4ea.png" group-title="Khán Đài" , 29/11 14:00 🏐 Công an nhân dân vs Ninh Bình (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/5865cab0a39da5
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/incheon-united.png" group-title="Giờ Vàng" , 29/11 14:30 ⚽ Incheon United FC vs Gangwon FC (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-incheon-united-fc-vs-gangwon-fc-29-11-6b00df4324d46db87041d387
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/36559689046e7d1d4f597c1a0bf9c5d6.png" group-title="GaVang33" , 29/11 14:30 ⚽ Incheon United Club vs Gangwon FC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/incheon-united-club-vs-gangwon-fc-luc-1430-ngay-29-11-2026-318q66h8o7vwqo9
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/2763.webp" group-title="Xôi Gấc" , 29/11 14:30 ⚽ Incheon United vs Gangwon FC (Chưa có link — chờ cập nhật)
+https://xoigac.top/incheon-united-vs-gangwon-fc-id373624/raccoon
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/62890b46cde58557c89cbae9af954643.png" group-title="Giờ Vàng" , 29/11 15:00 🏀 Thailand vs Hong Kong China (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-thailand-vs-hong-kong-china-29-11-21574579
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/165200.png" group-title="Sao Kê" , 29/11 15:30 ⚽ Arema vs Persebaya Surabaya (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/arema-vs-persebaya-surabaya-6b0abbe5d068272b74a4448e.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/55cba4a142146e2cdc317d21eb4daf76.png" group-title="GaVang33" , 29/11 15:30 ⚽ Arema FC vs Persebaya Surabaya (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/arema-fc-vs-persebaya-surabaya-luc-1530-ngay-29-11-2026-2y8m4zh5ky80ql0
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/da85ffb03146e72ce9928729dcabda51.png" group-title="GaVang33" , 29/11 15:30 ⚽ Persita Tangerang vs Persib Bandung (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/persita-tangerang-vs-persib-bandung-luc-1530-ngay-29-11-2026-8yomo4h1dlv7q0j
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/fd824340b59fd17ed954aa1dafac0564.jpg" group-title="Giờ Vàng" , 29/11 16:00 🏀 Iran vs Philippines (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-iran-vs-philippines-29-11-38808273
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111830_dae39713.jpg" group-title="Chuối Chiên" , 29/11 16:30 🏐 Ninh Bình    vs XMLS Thanh Hóa (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/996232/ninh-binh-vs-xmls-thanh-hoa
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111830_dae39713.jpg" group-title="Sao Kê" , 29/11 16:30 ⚽ Ninh Bình vs XMLS Thanh Hóa (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/ninh-binh-vs-xmls-thanh-hoa-6b0abaa9f617d1cc4b9bcb36.html
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20261128_111830_dae39713.jpg" group-title="Bông Lau" , 29/11 16:30 🏐 Ninh Bình    vs XMLS Thanh Hóa (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/996232
+
+#EXTINF:-1 tvg-logo="https://volleybox.net/media/upload/teams/big_1732513067X6U8F.png" group-title="Khán Đài" , 29/11 16:30 🏐 Nữ Ninh Bình vs Nữ Thanh Hóa (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/410aa1ad130822
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/thanh-hoa.png" group-title="Giờ Vàng" , 29/11 17:00 ⚽ Thanh Hóa vs Bình Phước (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-thanh-hoa-vs-binh-phuoc-29-11-6b00df4324d46db87041d477
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20250817_040540_cdc05b23.png" group-title="Chuối Chiên" , 29/11 17:00 ⚽ Thanh Hóa vs Trường Tươi Đồng Nai (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1633947/thanh-hoa-vs-truong-tuoi-dong-nai
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/179226.png" group-title="Sao Kê" , 29/11 17:00 ⚽ Thanh Hòa FC vs Trường Tươi Đồng Nai (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/thanh-hoa-fc-vs-truong-tuoi-dong-nai-6b0abbe5d068272b74a4448f.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/6d81ef01fa7aaedf7144c933bdcc62d8.png" group-title="GaVang33" , 29/11 17:00 ⚽ FC Orenburg vs Rodina Moscow (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fc-orenburg-vs-rodina-moscow-luc-1700-ngay-29-11-2026-2y8m4zh59g21ql0
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/56ce2ac5d2d7477de4df40e27bcdfd7b.png" group-title="GaVang33" , 29/11 17:00 ⚽ CLB Thanh Hoa vs Dong Nai (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/clb-thanh-hoa-vs-dong-nai-luc-1700-ngay-29-11-2026-y39mp1h67we0moj
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20250817_040540_cdc05b23.png" group-title="Bông Lau" , 29/11 17:00 ⚽ Thanh Hóa vs Trường Tươi Đồng Nai (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1633947
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/ecf6ce9d65754769fe2e08a2c00142a0.gif" group-title="Giờ Vàng" , 29/11 18:00 🏀 Mongolia vs Malaysia (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-mongolia-vs-malaysia-29-11-32574570
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/hai-phong.png" group-title="Giờ Vàng" , 29/11 18:00 ⚽ Hải Phòng vs Thể Công Viettel (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-hai-phong-vs-the-cong-viettel-29-11-6b00df4424d46db87041d617
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_132402_2fa85175.png" group-title="Chuối Chiên" , 29/11 18:00 ⚽ Hai Phong vs Viettel (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1633948/hai-phong-vs-viettel
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/179222.png" group-title="Sao Kê" , 29/11 18:00 ⚽ Hải Phòng vs Viettel (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/hai-phong-vs-viettel-6b0abbe5d068272b74a44490.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/fed18f35e0d187fb4c812f24a97c3e6a.png" group-title="GaVang33" , 29/11 18:00 ⚽ XM Hai Phong FC vs The Cong-Viettel (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/xm-hai-phong-fc-vs-the-cong-viettel-luc-1800-ngay-29-11-2026-k82rekhgl6jwrep
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_132402_2fa85175.png" group-title="Bông Lau" , 29/11 18:00 ⚽ Hai Phong vs Viettel (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1633948
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/p0GH54Xg-K8WM297g.png" group-title="Khán Đài" , 29/11 18:00 ⚽ Hải Phòng vs Viettel (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/4ded06eddc37e7
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/udinese.png" group-title="Giờ Vàng" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-udinese-vs-fiorentina-29-11-6b00df4524d46db87041d6e1
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125601_d19dd636.png" group-title="Chuối Chiên" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550215/udinese-vs-fiorentina
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8600.png" group-title="Sao Kê" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/udinese-vs-fiorentina-6b0abbe5d068272b74a44483.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/facf1e6e177848b3ac6a9405f2493c33.png" group-title="GaVang33" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/udinese-vs-fiorentina-luc-1830-ngay-29-11-2026-4wyrn4h618kvq86
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125601_d19dd636.png" group-title="Bông Lau" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550215
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/494.webp" group-title="Xôi Gấc" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://xoigac.top/udinese-vs-fiorentina-id373728/iron-man-2
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/4984_udinese.jpg" group-title="Xôi Chè" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/udinese-vs-fiorentina-29-11-2026-807981?blv=kho-mat
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/174594/image" group-title="SportlinkTV" , 29/11 18:30 ⚽ FC Goa vs Kerala Blasters (⏳ Còn 19h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2695/image" group-title="SportlinkTV" , 29/11 18:30 ⚽ Udinese vs Fiorentina (⏳ Còn 19h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/AZBQMaYA-SYw7EcY6.png" group-title="Khán Đài" , 29/11 18:30 ⚽ Udinese vs Fiorentina (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/8cae9f239fe28f
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/everton.png" group-title="Giờ Vàng" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-everton-vs-liverpool-29-11-6b00df4524d46db87041d704
+
+#EXTINF:-1 tvg-logo="https://cdn.keobongvip.digital/images/basketball-teams/e43e71c4c323cd8cbfa066024d17bef0.jpg" group-title="Giờ Vàng" , 29/11 19:00 🏀 Jordan vs Australia (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-jordan-vs-australia-29-11-36808271
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/swansea-city.png" group-title="Giờ Vàng" , 29/11 19:00 ⚽ Swansea City vs Cardiff City (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-swansea-city-vs-cardiff-city-29-11-6b00df4524d46db87041d708
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251008_222230_bd3165ac.png" group-title="Chuối Chiên" , 29/11 19:00 🏐 Hà Nội   vs Sanest Khánh Hòa (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/991311/ha-noi-vs-sanest-khanh-hoa
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125548_7d798d13.png" group-title="Chuối Chiên" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1557480/everton-vs-liverpool
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251008_222230_bd3165ac.png" group-title="Sao Kê" , 29/11 19:00 ⚽ Hà Nội vs Sanest Khánh Hòa (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/ha-noi-vs-sanest-khanh-hoa-6b0abad529232b8dc41010eb.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8668.png" group-title="Sao Kê" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/everton-vs-liverpool-6b0abbe5d068272b74a44486.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/fdcff36e72474aa59d3c9f20afce7649.png" group-title="GaVang33" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/everton-vs-liverpool-luc-1900-ngay-29-11-2026-vjxm8gheo6jvr6o
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/54d8cca610fda7b60925116c3b2aacdb.png" group-title="GaVang33" , 29/11 19:00 ⚽ Swansea City vs Cardiff City (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/swansea-city-vs-cardiff-city-luc-1900-ngay-29-11-2026-4jwq2ghnjvk8m0v
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/20251008_222230_bd3165ac.png" group-title="Bông Lau" , 29/11 19:00 🏐 Hà Nội   vs Sanest Khánh Hòa (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/991311
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_125548_7d798d13.png" group-title="Bông Lau" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1557480
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/45.webp" group-title="Xôi Gấc" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://xoigac.top/everton-vs-liverpool-id373737/black-panther
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/48/image" group-title="SportlinkTV" , 29/11 19:00 ⚽ Everton vs Liverpool FC (⏳ Còn 19h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/74/image" group-title="SportlinkTV" , 29/11 19:00 ⚽ Swansea City vs Cardiff City (⏳ Còn 19h46)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/EwJqZUZA-bRmKmISE.png" group-title="Khán Đài" , 29/11 19:00 ⚽ Everton vs Liverpool (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/2fd86a52d65c1e
+
+#EXTINF:-1 tvg-logo="https://volleybox.net/media/upload/teams/1676300142dsM6v.png" group-title="Khán Đài" , 29/11 19:00 🏐 Hà Nội vs Sanest Khánh Hoà (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/e266114e2b2bfa
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2591/image" group-title="SportlinkTV" , 29/11 19:30 ⚽ 1. FC Magdeburg vs Energie Cottbus (⏳ Còn 20h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2591/image" group-title="SportlinkTV" , 29/11 19:30 ⚽ 1. FC Magdeburg vs Energie Cottbus (⏳ Còn 20h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2557/image" group-title="SportlinkTV" , 29/11 19:30 ⚽ Eintracht Braunschweig vs VfL Wolfsburg (⏳ Còn 20h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2557/image" group-title="SportlinkTV" , 29/11 19:30 ⚽ Eintracht Braunschweig vs VfL Wolfsburg (⏳ Còn 20h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2551/image" group-title="SportlinkTV" , 29/11 19:30 ⚽ SpVgg Greuther Fürth vs Arminia Bielefeld (⏳ Còn 20h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/valencia.png" group-title="Giờ Vàng" , 29/11 20:00 ⚽ Valencia vs Osasuna (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-valencia-vs-osasuna-29-11-6ab1e5bce5e6975d550f0761
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/6beb8cab3280430894cab3befb314724.png" group-title="GaVang33" , 29/11 20:00 ⚽ Valencia CF vs CA Osasuna (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/valencia-cf-vs-ca-osasuna-luc-2000-ngay-29-11-2026-dn1m1ghlz1pnmoe
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/532.webp" group-title="Xôi Gấc" , 29/11 20:00 ⚽ Valencia vs Osasuna (Chưa có link — chờ cập nhật)
+https://xoigac.top/valencia-vs-osasuna-id373811/nova
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/Ioshoye5-MHrRLNUo.png" group-title="Khán Đài" , 29/11 20:00 ⚽ Valencia vs Osasuna (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/4bca00a9ed77b8
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/44073f2d2c979a9388f98505ac3b754d.png" group-title="GaVang33" , 29/11 20:30 ⚽ Feyenoord vs AFC Ajax (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/feyenoord-vs-afc-ajax-luc-2030-ngay-29-11-2026-pxwrxlhyw2z8ryk
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/622951cb622289cb656f2a1a05edcb13.png" group-title="GaVang33" , 29/11 20:30 ⚽ Fortuna Sittard vs SC Heerenveen (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fortuna-sittard-vs-sc-heerenveen-luc-2030-ngay-29-11-2026-y0or5jh8d0g7qwz
+
+#EXTINF:-1 tvg-logo="https://img.sofascore.com/api/v1/team/2959/image" group-title="SportlinkTV" , 29/11 20:30 ⚽ Feyenoord vs AFC Ajax (⏳ Còn 21h16)
+https://sportlinktv.pages.dev/
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/sassuolo.png" group-title="Giờ Vàng" , 29/11 21:00 ⚽ US Sassuolo Calcio vs Napoli (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-us-sassuolo-calcio-vs-napoli-29-11-6b00df4624d46db87041d943
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133425_97f4783a.png" group-title="Chuối Chiên" , 29/11 21:00 ⚽ Sassuolo vs Napoli (Chưa có link — chờ cập nhật)
+https://live05.chuoichientv.me/live/1550213/sassuolo-vs-napoli
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/7943.png" group-title="Sao Kê" , 29/11 21:00 ⚽ Sassuolo vs Napoli (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/sassuolo-vs-napoli-6b0abbe5d068272b74a44482.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/616bf242a532f72e970648f2ead423cf.png" group-title="GaVang33" , 29/11 21:00 ⚽ Sassuolo vs Napoli (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/sassuolo-vs-napoli-luc-2100-ngay-29-11-2026-4jwq2ghnd428m0v
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/233e10e0db704cb893078bb280ec0c61.png" group-title="GaVang33" , 29/11 21:00 ⚽ AJ Auxerre vs Marseille (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/aj-auxerre-vs-marseille-luc-2100-ngay-29-11-2026-y39mp1h68yxdmoj
+
+#EXTINF:-1 tvg-logo="https://media.chuoichientv.net/media/uploads/20250623_133425_97f4783a.png" group-title="Bông Lau" , 29/11 21:00 ⚽ Sassuolo vs Napoli (Chưa có link — chờ cập nhật)
+https://lau06.bonglautv1.org/truc-tiep/1550213
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3797_auxerre.jpg" group-title="Xôi Chè" , 29/11 21:00 ⚽ Auxerre vs Marseille (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/auxerre-vs-marseille-29-11-2026-810007?blv=xoi-xoai
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/4M9cIGh5-dnJZkoij.png" group-title="Khán Đài" , 29/11 21:00 🏐 Verona vs Trentino (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/513842e4a2430f
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/crystal-palace.png" group-title="Giờ Vàng" , 29/11 21:05 ⚽ Crystal Palace vs Hull City (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-crystal-palace-vs-hull-city-29-11-6b00df4724d46db87041dabb
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/sunderland-afc.png" group-title="Giờ Vàng" , 29/11 21:05 ⚽ Sunderland vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-sunderland-vs-tottenham-hotspur-29-11-6ab1e59ae5e6975d550f0711
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/fulham.png" group-title="Giờ Vàng" , 29/11 21:05 ⚽ Fulham vs AFC Bournemouth (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-fulham-vs-afc-bournemouth-29-11-6b00df4724d46db87041dac7
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/brighton-hove-albion.png" group-title="Giờ Vàng" , 29/11 21:05 ⚽ Brighton   Hove Albion vs Newcastle United (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-brighton-hove-albion-vs-newcastle-united-29-11-6b00df4724d46db87041dab7
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/10204.png" group-title="Sao Kê" , 29/11 21:05 ⚽ Brighton & Hove Albion vs Newcastle United (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/brighton-hove-albion-vs-newcastle-united-6b0abbe5d068272b74a44485.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9879.png" group-title="Sao Kê" , 29/11 21:05 ⚽ Fulham vs AFC Bournemouth (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/fulham-vs-afc-bournemouth-6b0abbe5d068272b74a44487.html
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/8472.png" group-title="Sao Kê" , 29/11 21:05 ⚽ Sunderland vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/sunderland-vs-tottenham-hotspur-6b0abbe5d068272b74a44488.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/29083e9b799845be80570fa263aa5be7.png" group-title="GaVang33" , 29/11 21:05 ⚽ Brighton Hove Albion vs Newcastle United (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/brighton-hove-albion-vs-newcastle-united-luc-2105-ngay-29-11-2026-3glrw7hne515qdy
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/6c4a14d88b0c4ffc950b06ac67257e97.png" group-title="GaVang33" , 29/11 21:05 ⚽ Crystal Palace vs Hull City (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/crystal-palace-vs-hull-city-luc-2105-ngay-29-11-2026-x7lm7phjdeo6m2w
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/9b111ad58ebc40b6bbcc47414b204d87.png" group-title="GaVang33" , 29/11 21:05 ⚽ Sunderland vs Tottenham Hotspur (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/sunderland-vs-tottenham-hotspur-luc-2105-ngay-29-11-2026-dn1m1ghldznlmoe
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/01ac732387904b048bc6982a4f45670f.png" group-title="GaVang33" , 29/11 21:05 ⚽ Fulham vs Bournemouth AFC (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/fulham-vs-bournemouth-afc-luc-2105-ngay-29-11-2026-4wyrn4h61nwzq86
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/36.webp" group-title="Xôi Gấc" , 29/11 21:05 ⚽ Fulham vs Bournemouth (Chưa có link — chờ cập nhật)
+https://xoigac.top/fulham-vs-bournemouth-id374043/joker-2
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/51.webp" group-title="Xôi Gấc" , 29/11 21:05 ⚽ Brighton vs Newcastle (Chưa có link — chờ cập nhật)
+https://xoigac.top/brighton-vs-newcastle-id374041/deal-pool
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/746.webp" group-title="Xôi Gấc" , 29/11 21:05 ⚽ Sunderland vs Tottenham (Chưa có link — chờ cập nhật)
+https://xoigac.top/sunderland-vs-tottenham-id374044/super-man-2
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3079_brighton--hove-albion.jpg" group-title="Xôi Chè" , 29/11 21:05 ⚽ Brighton vs Newcastle (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/brighton-vs-newcastle-29-11-2026-812761?blv=kho-ca
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3429_crystal-palace.jpg" group-title="Xôi Chè" , 29/11 21:05 ⚽ Crystal Palace vs Hull (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/crystal-palace-vs-hull-29-11-2026-812762?blv=xoi-gac
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/3111_sunderland.jpg" group-title="Xôi Chè" , 29/11 21:05 ⚽ Sunderland vs Tottenham (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/sunderland-vs-tottenham-29-11-2026-812769?blv=kho-mat
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/ln86XXjl-0d34NJCO.png" group-title="Khán Đài" , 29/11 21:05 ⚽ Sunderland vs Tottenham (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/4d69229555154e
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/40juIezB-b92lfEJC.png" group-title="Khán Đài" , 29/11 21:05 ⚽ Brighton vs Newcastle (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/7d0fe7042ae406
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/sc-freiburg.png" group-title="Giờ Vàng" , 29/11 21:30 ⚽ SC Freiburg vs RB Leipzig (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-sc-freiburg-vs-rb-leipzig-29-11-6b00df4824d46db87041dad4
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/ada3b68a2041492b93106bce7e5ee986.png" group-title="GaVang33" , 29/11 21:30 ⚽ SC Freiburg vs RB Leipzig (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/sc-freiburg-vs-rb-leipzig-luc-2130-ngay-29-11-2026-dn1m1ghlzoyymoe
+
+#EXTINF:-1 tvg-logo="https://images.keovip88.net/images/teams/deportivo-la-coruna.png" group-title="Giờ Vàng" , 29/11 22:15 ⚽ Deportivo La Coruna vs Barcelona (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-deportivo-la-coruna-vs-barcelona-29-11-6b00df4924d46db87041dd91
+
+#EXTINF:-1 tvg-logo="https://images.fotmob.com/image_resources/logo/teamlogo/9783.png" group-title="Sao Kê" , 29/11 22:15 ⚽ Deportivo A Coruña vs Barcelona (Chưa có link — chờ cập nhật)
+https://vip7.saoketv40.xyz/deportivo-a-coruna-vs-barcelona-6b0abbe5d068272b74a4448b.html
+
+#EXTINF:-1 tvg-logo="https://img.cltvap.cc/football/team/90b7d421e20d46f5b1c9913504c67ed0.png" group-title="GaVang33" , 29/11 22:15 ⚽ RC Deportivo vs FC Barcelona (Chưa có link — chờ cập nhật)
+https://gavang33.me/truc-tiep/rc-deportivo-vs-fc-barcelona-luc-2215-ngay-29-11-2026-3glrw7hn5opnqdy
+
+#EXTINF:-1 tvg-logo="https://xoigac.top/images/football/teams/544.webp" group-title="Xôi Gấc" , 29/11 22:15 ⚽ Deportivo La Coruna vs Barcelona (Chưa có link — chờ cập nhật)
+https://xoigac.top/deportivo-la-coruna-vs-barcelona-id374108/black-panther
+
+#EXTINF:-1 tvg-logo="https://static.flashscore.com/res/image/data/48MvoXdM-hlsaa9q3.png" group-title="Khán Đài" , 29/11 22:15 ⚽ Dep. A Coruna vs Barcelona (Chưa có link — chờ cập nhật)
+https://khandaia.one/truc-tiep/cf8afa9bc792d6
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCJcqPgRxrA-XYzY0L2RSjpG9p8wsk0KqdEOTq9vdiEfTt-XqSXrYELAU&s=10" group-title="Giờ Vàng" , 29/11 23:00 🏎️ F1 vs F1 (Chưa có link — chờ cập nhật)
+https://giovang.baby/truc-tiep-f1-vs-f1-29-11-aybbzisyzwfk
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/141_arsenal-fc.jpg" group-title="Xôi Chè" , 29/11 23:30 ⚽ Arsenal vs Manchester City (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/arsenal-vs-manchester-city-29-11-2026-812760?blv=kho-ca
+
+# ----- Ngày 2026-11-30 -----
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/139_roma.jpg" group-title="Xôi Chè" , 30/11 00:00 ⚽ AS Roma vs Monza (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/as-roma-vs-monza-29-11-2026-807973?blv=kho-mat
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/7290_celta-de-vigo.jpg" group-title="Xôi Chè" , 30/11 00:30 ⚽ Celta Vigo vs Villarreal (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/celta-vigo-vs-villarreal-29-11-2026-798937?blv=xoi-gac
+
+#EXTINF:-1 tvg-logo="https://apiv3.apifootball.com/badges/7701_goztepe.jpg" group-title="Xôi Chè" , 30/11 23:00 ⚽ Goztepe vs Trabzonspor (Chưa có link — chờ cập nhật)
+https://xoiche.live/truc-tiep/goztepe-vs-trabzonspor-30-11-2026-795746?blv=xoi-gac
